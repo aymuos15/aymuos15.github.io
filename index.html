@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <style>
+
+html, body {
+    font-family: 'Roboto';
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    line-height: 1.6;
+    color: #000; /* Black text color */
+    height: 100%; /* Ensure full height of the viewport */
+}
+
+.image-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 0px; /* Adjust the margin as needed */
+    margin-top: 300px;
+    margin-right: -80px;
+    margin-left: 70px;
+}
+
+.special-link {
+    color: #61895b; /* Change this color to the desired color for the special links */
+    text-decoration: underline; /* Remove the default underline if needed */
+    font-weight: bold; /* Make the text bold or adjust as needed */
+}
+
+.special-link2 {
+    color: #b2a569; /* Change this color to the desired color for the special links */
+    text-decoration: underline; /* Remove the default underline if needed */
+    font-weight: bold; /* Make the text bold or adjust as needed */
+}
+
+.special-link3 {
+    color: #72aac0; /* Change this color to the desired color for the special links */
+    text-decoration: underline; /* Remove the default underline if needed */
+    font-weight: bold; /* Make the text bold or adjust as needed */
+}
+
+
+
+.thank-you-section {
+    padding: 2rem;
+    background-color: #f9f9f9; /* Set a background color for the "Thank You" section */
+    border: 1px solid #ddd; /* Add a border for distinction */
+    margin-top: 20px; /* Add margin to separate it from the previous section */
+}
+
+
+img {
+    margin-bottom: 0px; /* Add margin between image and text */
+}
+
+
+html {
+    /* background: url('/home/soumya/Downloads/matte.webp') center center fixed; Set the image as the background for html */
+    background-size: cover; /* Cover the entire viewport */
+}
+
+body {
+    display: flex;
+    background: #fff; /* Set body background to none to avoid duplication */
+    margin-top: 50px;
+    margin-right: 200px;
+}
+
+.ball {
+            width: 50px;
+            height: 50px;
+            /* background-color: red; */
+            background: url('/home/soumya/Downloads/brain.jpeg') center center/cover;
+            position: absolute;
+            border-radius: 50%;
+        }
+/* Your existing styling and animations here */
+
+
+@keyframes moveSky {
+    0% {
+        background-position: 0 0; /* Initial position - no movement */
+    }
+    100% {
+        background-position: 0 10%; /* Fully shifted background position - simulates movement */
+    }
+}
+
+
+        header {
+            background-color: #fff; /* White header background */
+            color: #fff; /* Black header text color */
+            padding: 4rem;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+            /* Set a gradient background to simulate the sky and clouds */
+        }
+
+        main {
+            padding: 10rem;
+            text-align: left;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            max-height: calc(1000vh - 10px); /* Set maximum height for the main content area (adjust as needed) */
+            overflow-y: auto; /* Enable scrolling within the main content area if needed */
+            /* flex:  */
+        }
+
+        footer {
+            background-color: #e0f542; /* White footer background */
+            color: #4269f5; /* Black footer text color */
+            padding: 1rem;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<!-- Include Font Awesome CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<link rel="stylesheet" href="/path/to/folder/css/academicons.min.css"/>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soumya Snigdha Kundu</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <!-- Include Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="/path/to/folder/css/academicons.min.css"/>
+    <style>
+        html, body {
+            font-family: 'Roboto';
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            line-height: 1.6;
+            color: #000;
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            background: #fff;
+            margin-top: 50px;
+            margin-right: 200px;
+        }
+
+        header {
+            background-color: #fff;
+            color: #fff;
+            padding: 4rem;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+
+        main {
+            padding: 10rem;
+            text-align: left;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            max-height: calc(1000vh - 10px);
+            overflow-y: auto;
+        }
+
+        footer {
+            background-color: #e0f542;
+            color: #4269f5;
+            padding: 1rem;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .image-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 0px;
+            margin-top: 300px;
+            margin-right: -80px;
+            margin-left: 70px;
+        }
+
+        .special-link, .special-link2, .special-link3 {
+            text-decoration: underline;
+            font-weight: bold;
+        }
+
+        .special-link {
+            color: #61895b;
+        }
+
+        .special-link2 {
+            color: #b2a569;
+        }
+
+        .special-link3 {
+            color: #72aac0;
+        }
+
+        .thank-you-section {
+            padding: 2rem;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            margin-top: 20px;
+        }
+
+        img {
+            margin-bottom: 0px;
+        }
+
+        @keyframes moveSky {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 0 10%;
+            }
+        }
+
+        .bullet-section {
+            margin-top: -15px;
+        }
+
+        hr {
+            border-color: #3498db;
+        }
+
+        .greeting-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Soumya Snigdha Kundu</h1>
+    </header>
+
+    <!-- <img src="/home/soumya/Downloads/soumya.jpg" alt="Description of the image" width="200"> -->
+    <div class="image-container">
+        <img src="/home/soumya/Downloads/soumya.jpg" alt="Description of the image" width="200">
+        <p>Soumya (<span style="color: yellowgreen;">Shomo</span>) Kundu</p>
+    </div>
+
+    <main>
+        
+        <p>Ph.D. Student at <a href="https://cai4cai.ml/"class="special-link">CAI4CAI</a> (King's College London) supervised by <a href="https://cai4cai.ml/author/tom-vercauteren/" class="special-link2">Tom Vercauteren</a> and <a href="https://cai4cai.ml/author/jonathan-shapey/" class="special-link2">Jonathan Shapey</a>. My thesis is on applied machine learning for neuro-oncology. <a href="https://www.sciencedirect.com/science/article/pii/S0169260722005387" class="special-link">Automatically segmenting brain tumuors</a> was truly mesmerising as an undergrad. So I am continuing to do so <a href="https://cai4cai.ml/post/2022-10-16-tumourmanagementphd/"class="special-link">now</a> as well. 
+        I am fully funded by the <a href="https://kcl-mrcdtp.com/"class="special-link">Medical Research Council</a>.</p> 
+        <p>My general interest is in medical image computing, and figuring out how to do it <a href="https://ieeexplore.ieee.org/abstract/document/9671562"class="special-link">securely</a>, <a href="https://link.springer.com/chapter/10.1007/978-981-19-5090-2_10"class="special-link">efficiently</a>, and <a href="https://drive.google.com/file/d/10at_w7Wlkz0Ig4fU9BoNWe8m8FttlaDD/view"class="special-link">transparently</a>. Good labels are tough to come by. Even tougher when it involves the human brain. So, I also like self-supervised learning. </p>
+        For my M.Sc., I was at the <a href="https://www.qmul.ac.uk/deri/" class="special-link">DERI</a> (Queen Mary Univeristy of London) advised by <a href="https://eecs.qmul.ac.uk/~gslabaugh/" class="special-link2">Greg Slabaugh</a> and <a href="https://www.unicornmedics.com/" class="special-link2">Vineet Batta</a>. I have had a few fantastic summers interning at Oxford (with <a href="https://www.bdi.ox.ac.uk/Team/bartek-papiez" class="special-link2">Bartek Papiez</a>), TRIUMF (with <a href="https://pdeperio.github.io/"class="special-link2">Patrick de Perio</a> and <a href="https://www.uvic.ca/science/physics/vispa/people/adjunct/konaka.php"class="special-link2">Akira Konaka</a>) and IIT-Gandhinagar (with <a href="https://sites.google.com/umn.edu/tarungangwar/home"class="special-link2">Tarun Gangwar</a>).</p>
+        <p>In my past life, I represented my country, state (national silver medal) and (captained) school in futsal.</p>
+
+        <div class="bullet-section">
+            <h3>Updates:</h3>
+            <ul style="margin-top: -15px;">
+                <li>??/??/??: Next paper or announcement of binging jujutsu kaisen</li>
+                <li>25/11/23: Reviewer at ISBI'24.</li>
+                <li>5/11/23: Top 8 Finish at Anthropic-London Hackaton. We made mock co-pilot for debugging.</li>
+                <li>27/10/23: Began my alignment on the Smart Imaging CDT.</li>
+            </ul>
+        </div>
+
+        <!-- <h2>Thank You!</h2> -->
+        <hr style="border-color: #3498db;"> <!-- Change the color as needed -->
+
+        <p> Thanks to (in no particular order) <a href="https://www.linkedin.com/in/pooja-ganesh-alpha/" class="special-link3">Pooja Ganesh</a> (UIUC), <a href="https://rakshit-naidu.github.io/" class="special-link3">Rakshit Naidu</a> (GaTech/CMU), <a href="https://www.linkedin.com/in/aarsh-chaube-568b901b2/?originalSubdomain=in" class="special-link3">Aarsh Chaube</a> (UCL) and <a href="https://www.linkedin.com/in/mona-furukawa-1043b916a/" class="special-link3">Mona Furukawa</a> (Oxford) for supporting my research journey.</p><br>
+        
+        
+    </div>
+    </main>
+
+    <footer>
+        <p>
+            <a href="https://github.com/aymuos15"><i class="fab fa-github"></i></a> |
+            <a href="https://www.linkedin.com/in/soumyaskundu/"><i class="fab fa-linkedin"></i></a> |
+            <a href="https://scholar.google.com/citations?user=WmHtKBYAAAAJ&hl=en&oi=ao"><i class="fa-brands fa-google-scholar"></i>G-Scholar</a> |
+            <a href="https://github.com/aymuos15/Portfolio/blob/main/CV.pdf"><i class="far fa-file-alt"></i></a> |
+            <a href="mailto:soumya_snighda.kundu@kcl.ac.uk"><i class="far fa-envelope"></i></a>
+        </p>
+        
+    </footer>
+    
+
+</body>
+</html>
+
+
+</html>
+
+        <!-- Bouncing Ball -->
+        <div class="ball" id="ball"></div>
+
+        <script>
+            // Random initial position
+            let posX = Math.random() * window.innerWidth;
+            let posY = Math.random() * window.innerHeight;
+
+            // Random velocity
+            let velX = (Math.random() - 0.5) * 5; // Adjust the multiplier for speed
+            let velY = (Math.random() - 0.5) * 5;
+
+            const ball = document.getElementById('ball');
+
+            function update() {
+                posX += velX;
+                posY += velY;
+
+                if (posX < 0 || posX > window.innerWidth - ball.clientWidth) {
+                    velX = -velX;
+                }
+
+                if (posY < 0 || posY > window.innerHeight - ball.clientHeight) {
+                    velY = -velY;
+                }
+
+                ball.style.left = posX + 'px';
+                ball.style.top = posY + 'px';
+
+                requestAnimationFrame(update);
+            }
+
+            update();
+        </script>
