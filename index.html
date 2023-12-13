@@ -96,25 +96,31 @@
             max-height: calc(1000vh - 3000px);
             overflow-y: auto;
         }
+        
         main {
             /* padding: 1rem; */
             margin-left: 0px;
             margin-right: 0px;
             position: fixed;
             text-align: left;
-            max-height: calc(100vh - 300px);
+            max-height: calc(114vh - 300px);
             overflow-y: auto;
         }
 
         .image-container{
-            margin-top: 0px;
+            margin-top: -100px;
+        }
+
+        .image-container img {
+            margin-top: 100px;
+            width: 100px;
         }
     
         .ball {
                 width: 40px;
                 height: 40px;
-                /* background-color: red; */
-                background: url('/home/soumya/Downloads/aymuos15.github.io/images/brain.jpeg') center center/cover;
+/*                 background: url('/home/soumya/Downloads/aymuos15.github.io/images/brain.jpeg') center center/cover; */ This is for local development
+                   background: url('images/brain.jpeg') center center/cover;
                 position: absolute;
             }
     }  
@@ -125,7 +131,8 @@
 <body>
 
     <div class="image-container">
-        <img src="/home/soumya/Downloads/aymuos15.github.io/images/soumya.jpg" alt="Description of the image" width="200">
+<!--         <img src="/home/soumya/Downloads/aymuos15.github.io/images/soumya.jpg" alt="Description of the image" width="200"> --> This is for local development
+             <img src="images/soumya.jpg" alt="Description of the image" width="200">
         <p>Soumya (<span style="color: yellowgreen;">Shomo</span>) Snigdha (<span style="color: yellowgreen;">Snigdho</span>) Kundu</p>
     </div>
 
