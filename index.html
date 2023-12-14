@@ -51,16 +51,17 @@
     .ball {
                 width: 50px;
                 height: 50px;
-                /* background-color: red; */
-/*                 background: url('/home/soumya/Downloads/aymuos15.github.io/images/brain.jpeg') center center/cover; -> This is for local dev */
-                   background: url('images/brain.jpeg') center center/cover;
+                /* background: url('/home/soumya/Downloads/aymuos15.github.io/images/brain.jpeg') center center/cover; */
+                background: url('images/brain.jpeg') center center/cover;
                 position: absolute;
             }
 
     header {
         background-color: #fff; /* White header background */
-        color: #fff; /* Black header text color */->
+        color: #fff; /* Black header text color */
         font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        max-height: calc(1000vh - 10px); /* Set maximum height for the main content area (adjust as needed) */
+        overflow-y: auto; /* Enable scrolling within the main content area if needed */
         /* Set a gradient background to simulate the sky and clouds */
     }
 
@@ -97,7 +98,7 @@
             max-height: calc(1000vh - 3000px);
             overflow-y: auto;
         }
-        
+
         main {
             /* padding: 1rem; */
             margin-left: 0px;
@@ -120,11 +121,49 @@
         .ball {
                 width: 40px;
                 height: 40px;
-/*                 background: url('/home/soumya/Downloads/aymuos15.github.io/images/brain.jpeg') center center/cover; -> This is for local development */
-                   background: url('images/brain.jpeg') center center/cover;
+                /* background: url('/home/soumya/Downloads/aymuos15.github.io/images/brain.jpeg') center center/cover; */
+                background: url('images/brain.jpeg') center center/cover; 
                 position: absolute;
             }
-    }  
+    } 
+
+    @media only screen and (max-width: 10000px) {
+        /* Add specific styles for screens with a maximum width of 800 pixels or smaller */
+        header {
+            /* padding: 1rem; */
+            position: fixed;
+            text-align: left;
+            max-height: calc(1000vh - 3000px);
+            overflow-y: auto;
+        }
+
+        main {
+            /* padding: 1rem; */
+            margin-left: 200px;
+            margin-right: 200px;
+            position: fixed;
+            text-align: left;
+            max-height: calc(114vh - 300px);
+            overflow-y: auto;
+        }
+
+        .image-container{
+            margin-top: -100px;
+        }
+
+        .image-container img {
+            margin-top: 135px;
+            width: 200px;
+        }
+    
+        .ball {
+                width: 40px;
+                height: 40px;
+                /* background: url('/home/soumya/Downloads/aymuos15.github.io/images/brain.jpeg') center center/cover; */
+                background: url('images/brain.jpeg') center center/cover;
+                position: absolute;
+            }
+    } 
 
     </style>
 </head>
@@ -132,8 +171,8 @@
 <body>
 
     <div class="image-container">
-<!--         <img src="/home/soumya/Downloads/aymuos15.github.io/images/soumya.jpg" alt="Description of the image" width="200"> -> This is for local development -->
-             <img src="images/soumya.jpg" alt="Description of the image" width="200">
+        <!-- <img src="/home/soumya/Downloads/aymuos15.github.io/images/soumya.jpg" alt="Description of the image" width="200"> -->
+        <img src="images/soumya.jpg" alt="Description of the image" width="200">
         <p>Soumya (<span style="color: yellowgreen;">Shomo</span>) Snigdha (<span style="color: yellowgreen;">Snigdho</span>) Kundu</p>
     </div>
 
@@ -148,7 +187,8 @@
         Oxford (with <a href="https://www.bdi.ox.ac.uk/Team/bartek-papiez" class="special-link2"> Bartek Papiez</a>), 
         TRIUMF (with <a href="https://pdeperio.github.io/"class="special-link2">Patrick de Perio</a> and <a href="https://www.uvic.ca/science/physics/vispa/people/adjunct/konaka.php"class="special-link2">Akira Konaka</a>) and 
         IIT-Gandhinagar (with <a href="https://sites.google.com/umn.edu/tarungangwar/home"class="special-link2">Tarun Gangwar</a>).
-        For my undergrad, I was at SRM Institute of Science and Technology, advised by <a href="https://www.linkedin.com/in/mona-furukawa-1043b916a/" class="special-link2">Dhanalakshmi Samiappan.</a> </p>
+        For my undergrad, I was at SRM Institute of Science and Technology, 
+        advised by <a href="https://www.srmist.edu.in/faculty/dr-s-dhanalakshmi/" class="special-link2">Dhanalakshmi Samiappan.</a> </p>
 
         <p>In my past life, I represented my country, state (national silver medal) and (captained) school in futsal.</p>
         <div class="bullet-section">
@@ -156,12 +196,11 @@
             <ul style="margin-top: -15px;">
                 <li>??/??/??: Next paper or announcement of binging jujutsu kaisen</li>
                 <li>25/11/23: Reviewer at ISBI'24.</li>
-                <li>5/11/23: Top 8 Finish at Anthropic-London Hackaton. We made mock co-pilot for debugging.</li>
+                <li>5/11/23: Top 8 Finish at Anthropic-London Hackaton. We made a mock co-pilot for python debugging through a bash alias.</li>
                 <li>27/10/23: Began my alignment on the Smart Imaging CDT.</li>
             </ul>
         </div>
 
-        <!-- <h2>Thank You!</h2> -->
         <hr style="border-color: #3498db;"> <!-- Change the color as needed -->
 
         <p> Everyone at CAI4CAI has been the most amazing. Espicially (in no particular order)   
