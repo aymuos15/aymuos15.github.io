@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
     <style>
+    
+    
 
     html {
         font-family: 'Roboto';
@@ -24,9 +26,6 @@
         }
 
     .image-container {
-        display: 1;
-        /* flex-direction: column; */
-        margin-top: 110px;
         align-items: center;
     }
 
@@ -51,8 +50,8 @@
     .ball {
                 width: 50px;
                 height: 50px;
-                /* background: url('/home/soumya/Downloads/aymuos15.github.io/images/brain.jpeg') center center/cover; */
-                background: url('images/brain.jpeg') center center/cover;
+                background: url('/home/soumya/Downloads/aymuos15.github.io/images/brain.jpeg') center center/cover;
+/*                 background: url('images/brain.jpeg') center center/cover; */
                 position: absolute;
             }
 
@@ -60,19 +59,11 @@
         background-color: #fff; /* White header background */
         color: #fff; /* Black header text color */
         font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-        max-height: calc(1000vh - 10px); /* Set maximum height for the main content area (adjust as needed) */
-        overflow-y: auto; /* Enable scrolling within the main content area if needed */
-        /* Set a gradient background to simulate the sky and clouds */
     }
 
     main {
         text-align: left;
-        margin-left: 280px;
-        margin-right: 280px;
         font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-        max-height: calc(1000vh - 10px); /* Set maximum height for the main content area (adjust as needed) */
-        overflow-y: auto; /* Enable scrolling within the main content area if needed */
-        /* flex:  */
     }
 
     footer {
@@ -88,91 +79,96 @@
     .bullet-section {
             margin-top: -15px;
     }
-        
-    @media only screen and (max-width: 800px) {
-        /* Add specific styles for screens with a maximum width of 800 pixels or smaller */
-        header {
-            /* padding: 1rem; */
-            position: fixed;
-            text-align: left;
-            max-height: calc(1000vh - 3000px);
-            overflow-y: auto;
-        }
+
+    @media only screen and (min-width: 1301px) {
+    /* Styles for screens with a maximum width of 600 pixels */
+    /* .mobile-component {
+        display: block; /* or any other style you want */
 
         main {
-            /* padding: 1rem; */
-            margin-left: 0px;
-            margin-right: 0px;
-            position: fixed;
-            text-align: left;
-            max-height: calc(114vh - 300px);
-            overflow-y: auto;
-        }
+    text-align: left;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    overflow: auto; /* Add this line to enable scrolling for overflowing content */
+    max-height: 60vh; /* Adjust the maximum height as needed */
+    margin-right: 200px;
+    margin-left: 200px;
+}
 
-        .image-container{
-            margin-top: -100px;
-        }
+/* Add this style to customize the scrollbar appearance */
+main::-webkit-scrollbar {
+    width: 12px;
+}
 
-        .image-container img {
-            margin-top: 100px;
-            width: 100px;
-        }
-    
-        .ball {
-                width: 40px;
-                height: 40px;
-                /* background: url('/home/soumya/Downloads/aymuos15.github.io/images/brain.jpeg') center center/cover; */
-                background: url('images/brain.jpeg') center center/cover; 
-                position: absolute;
-            }
-    } 
+main::-webkit-scrollbar-thumb {
+    background-color: #3498db; /* Customize scrollbar thumb color */
+    border-radius: 6px;
+}
 
-    @media only screen and (max-width: 10000px) {
-        /* Add specific styles for screens with a maximum width of 800 pixels or smaller */
-        header {
-            /* padding: 1rem; */
-            position: fixed;
-            text-align: left;
-            max-height: calc(1000vh - 3000px);
-            overflow-y: auto;
-        }
+main::-webkit-scrollbar-track {
+    background-color: #f1f1f1; /* Customize scrollbar track color */
+}
+}
+
+    @media only screen and (max-width: 1300px) {
+    /* Styles for screens with a maximum width of 600 pixels */
+    /* .mobile-component {
+        display: block; /* or any other style you want */
 
         main {
-            /* padding: 1rem; */
-            margin-left: 200px;
-            margin-right: 200px;
-            position: fixed;
-            text-align: left;
-            max-height: calc(114vh - 300px);
-            overflow-y: auto;
-        }
+    text-align: left;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    overflow: auto; /* Add this line to enable scrolling for overflowing content */
+    max-height: 60vh; /* Adjust the maximum height as needed */
+}
 
-        .image-container{
-            margin-top: -100px;
-        }
+/* Add this style to customize the scrollbar appearance */
+main::-webkit-scrollbar {
+    width: 12px;
+}
 
-        .image-container img {
-            margin-top: 135px;
-            width: 200px;
-        }
-    
-        .ball {
-                width: 40px;
-                height: 40px;
-                /* background: url('/home/soumya/Downloads/aymuos15.github.io/images/brain.jpeg') center center/cover; */
-                background: url('images/brain.jpeg') center center/cover;
-                position: absolute;
-            }
-    } 
+main::-webkit-scrollbar-thumb {
+    background-color: #3498db; /* Customize scrollbar thumb color */
+    border-radius: 6px;
+}
 
+main::-webkit-scrollbar-track {
+    background-color: #f1f1f1; /* Customize scrollbar track color */
+}
+
+        @media only screen and (max-width: 316px) {
+    /* Styles for screens with a maximum width of 600 pixels */
+    /* .mobile-component {
+        display: block; /* or any other style you want */
+
+        main {
+    text-align: left;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    overflow: auto; /* Add this line to enable scrolling for overflowing content */
+    max-height: 60vh; /* Adjust the maximum height as needed */
+}
+
+/* Add this style to customize the scrollbar appearance */
+main::-webkit-scrollbar {
+    width: 8px;
+}
+
+main::-webkit-scrollbar-thumb {
+    background-color: #3498db; /* Customize scrollbar thumb color */
+    border-radius: 4px;
+}
+
+main::-webkit-scrollbar-track {
+    background-color: #f1f1f1; /* Customize scrollbar track color */
+}
+        }}
     </style>
 </head>
 
 <body>
 
     <div class="image-container">
-        <!-- <img src="/home/soumya/Downloads/aymuos15.github.io/images/soumya.jpg" alt="Description of the image" width="200"> -->
-        <img src="images/soumya.jpg" alt="Description of the image" width="200">
+        <img src="/home/soumya/Downloads/aymuos15.github.io/images/soumya.jpg" alt="Description of the image" width="200">
+<!--         <img src="images/soumya.jpg" alt="Description of the image" width="200"> -->
         <p>Soumya (<span style="color: yellowgreen;">Shomo</span>) Snigdha (<span style="color: yellowgreen;">Snigdho</span>) Kundu</p>
     </div>
 
@@ -190,11 +186,12 @@
         For my undergrad, I was at SRM Institute of Science and Technology, 
         advised by <a href="https://www.srmist.edu.in/faculty/dr-s-dhanalakshmi/" class="special-link2">Dhanalakshmi Samiappan.</a> </p>
 
-        <p>In my past life, I represented my country, state (national silver medal) and (captained) school in futsal.</p>
+        <p>In my past life, I represented my country, state (national silver medal) and (captained) school in futsal. I also debated at a National level.</p>
         <div class="bullet-section">
             <h3>Updates:</h3>
             <ul style="margin-top: -15px;">
                 <li>??/??/??: Next paper or announcement of binging jujutsu kaisen</li>
+                <li>23/01/24: Student Representative for the <a href="https://kcl-mrcdtp.com/about/the-team/" class='special-link3'>KCL MRC DTP</a>.</li>
                 <li>25/11/23: Reviewer at ISBI'24.</li>
                 <li>5/11/23: Top 8 Finish at Anthropic-London Hackaton. We made a mock co-pilot for python debugging through a bash alias.</li>
                 <li>27/10/23: Began my alignment on the Smart Imaging CDT.</li>
@@ -207,7 +204,7 @@
             <a href="https://cai4cai.ml/author/aaron-kujawa/" class="special-link3">Aaron Kujawa</a>,
             <a href="https://cai4cai.ml/author/theo-barfoot/" class="special-link3">Theo Barfoot</a>,
             <a href="https://cai4cai.ml/author/marina-ivory/" class="special-link3">Marina Ivory</a>, and
-            <a href="https://cai4cai.ml/author/navodini-wijethilake/" class="special-link3">Navodini Wijethilake</a>. 
+            <a href="https://cai4cai.ml/author/navodini-wijethilake/" class="special-link3">Navodini Wijethilake</a>.
             <br>
             Thanks to (in no particular order) 
             <a href="https://www.linkedin.com/in/pooja-ganesh-alpha/" class="special-link3">Pooja Ganesh</a> (UIUC), 
