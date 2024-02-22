@@ -1,210 +1,152 @@
 <!DOCTYPE html>
-
 <html lang="en">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
-    
-    
-
-    html {
-        font-family: 'Roboto';
-        margin: 0;
-        padding: 0;
-        text-align: center;
-        line-height: 1.6;
-        color: #000; /* Black text color */
-        height: 100%; /* Ensure full height of the viewport */
-    }
-
-    body {
+        html {
+            font-family: 'Roboto';
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            line-height: 1.6;
+            color: #000;
+            height: 100%;
+        }
+        body {
             display: 1;
             background: #fff;
         }
-
-    .image-container {
-        align-items: center;
-    }
-
-    .special-link {
-        color: #61895b; 
-        text-decoration: underline; 
-        font-weight: bold;
-    }
-
-    .special-link2 {
-        color: #b2a569; 
-        text-decoration: underline; 
-        font-weight: bold;
-    }
-
-    .special-link3 {
-        color: #72aac0; 
-        text-decoration: underline; 
-        font-weight: bold;
-    }
-
-    .ball {
-                width: 50px;
-                height: 50px;
-/*                 background: url('/home/soumya/Downloads/aymuos15.github.io/images/brain.jpeg') center center/cover; */
-                background: url('images/brain.jpeg') center center/cover;
-                position: absolute;
-            }
-
-    header {
-        background-color: #fff; /* White header background */
-        color: #fff; /* Black header text color */
-        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    }
-
-    main {
-        text-align: left;
-        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    }
-
-    footer {
-        background-color: #e0f542; /* White footer background */
-        color: #4269f5; /* Black footer text color */
-        /* padding: 0rem; */
-        position: fixed;
-        bottom: 0;
-        right: 1px;
-        width: 100%;
-    }
-
-    .bullet-section {
+        .image-container {
+            align-items: center;
+        }
+        .special-link, .special-link2, .special-link3 {
+            text-decoration: underline;
+            font-weight: bold;
+        }
+        .special-link { color: #61895b; }
+        .special-link2 { color: #b2a569; }
+        .special-link3 { color: #72aac0; }
+        .ball {
+            width: 50px;
+            height: 50px;
+            background: url('images/brain.jpeg') center center/cover;
+            position: absolute;
+        }
+        header {
+            background-color: #fff;
+            color: #fff;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+        main {
+            text-align: left;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+        footer {
+            background-color: #e0f542;
+            color: #4269f5;
+            position: fixed;
+            bottom: 0;
+            right: 1px;
+            width: 100%;
+        }
+        .bullet-section {
             margin-top: -15px;
-    }
-
-    @media only screen and (min-width: 1301px) {
-    /* Styles for screens with a maximum width of 600 pixels */
-    /* .mobile-component {
-        display: block; /* or any other style you want */
-
-        main {
-    text-align: left;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    overflow: auto; /* Add this line to enable scrolling for overflowing content */
-    max-height: 60vh; /* Adjust the maximum height as needed */
-    margin-right: 200px;
-    margin-left: 200px;
-}
-
-/* Add this style to customize the scrollbar appearance */
-main::-webkit-scrollbar {
-    width: 12px;
-}
-
-main::-webkit-scrollbar-thumb {
-    background-color: #3498db; /* Customize scrollbar thumb color */
-    border-radius: 6px;
-}
-
-main::-webkit-scrollbar-track {
-    background-color: #f1f1f1; /* Customize scrollbar track color */
-}
-}
-
-    @media only screen and (max-width: 1300px) {
-    /* Styles for screens with a maximum width of 600 pixels */
-    /* .mobile-component {
-        display: block; /* or any other style you want */
-
-        main {
-    text-align: left;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    overflow: auto; /* Add this line to enable scrolling for overflowing content */
-    max-height: 60vh; /* Adjust the maximum height as needed */
-}
-
-/* Add this style to customize the scrollbar appearance */
-main::-webkit-scrollbar {
-    width: 12px;
-}
-
-main::-webkit-scrollbar-thumb {
-    background-color: #3498db; /* Customize scrollbar thumb color */
-    border-radius: 6px;
-}
-
-main::-webkit-scrollbar-track {
-    background-color: #f1f1f1; /* Customize scrollbar track color */
-}
-
+        }
+        @media only screen and (min-width: 1301px) {
+            main {
+                text-align: left;
+                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+                overflow: auto;
+                max-height: 60vh;
+                margin-right: 200px;
+                margin-left: 200px;
+            }
+            main::-webkit-scrollbar {
+                width: 12px;
+            }
+            main::-webkit-scrollbar-thumb {
+                background-color: #3498db;
+                border-radius: 6px;
+            }
+            main::-webkit-scrollbar-track {
+                background-color: #f1f1f1;
+            }
+        }
+        @media only screen and (max-width: 1300px) {
+            main {
+                text-align: left;
+                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+                overflow: auto;
+                max-height: 60vh;
+            }
+            main::-webkit-scrollbar {
+                width: 12px;
+            }
+            main::-webkit-scrollbar-thumb {
+                background-color: #3498db;
+                border-radius: 6px;
+            }
+            main::-webkit-scrollbar-track {
+                background-color: #f1f1f1;
+            }
+        }
         @media only screen and (max-width: 316px) {
-    /* Styles for screens with a maximum width of 600 pixels */
-    /* .mobile-component {
-        display: block; /* or any other style you want */
-
-        main {
-    text-align: left;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    overflow: auto; /* Add this line to enable scrolling for overflowing content */
-    max-height: 60vh; /* Adjust the maximum height as needed */
-}
-
-/* Add this style to customize the scrollbar appearance */
-main::-webkit-scrollbar {
-    width: 8px;
-}
-
-main::-webkit-scrollbar-thumb {
-    background-color: #3498db; /* Customize scrollbar thumb color */
-    border-radius: 4px;
-}
-
-main::-webkit-scrollbar-track {
-    background-color: #f1f1f1; /* Customize scrollbar track color */
-}
-        }}
+            main {
+                text-align: left;
+                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+                overflow: auto;
+                max-height: 60vh;
+            }
+            main::-webkit-scrollbar {
+                width: 8px;
+            }
+            main::-webkit-scrollbar-thumb {
+                background-color: #3498db;
+                border-radius: 4px;
+            }
+            main::-webkit-scrollbar-track {
+                background-color: #f1f1f1;
+            }
+        }
     </style>
 </head>
-
 <body>
-
+    
     <div class="image-container">
-<!--         <img src="/home/soumya/Downloads/aymuos15.github.io/images/soumya.jpg" alt="Description of the image" width="200"> -->
         <img src="images/soumya.jpg" alt="Description of the image" width="200">
         <p>Soumya (<span style="color: yellowgreen;">Shomo</span>) Snigdha (<span style="color: yellowgreen;">Snigdho</span>) Kundu</p>
     </div>
-
+    
     <main>
-        <p>Ph.D. Student at <a href="https://cai4cai.ml/"class="special-link">CAI4CAI</a> (King's College London) supervised by <a href="https://cai4cai.ml/author/tom-vercauteren/" class="special-link2">Tom Vercauteren</a> and <a href="https://cai4cai.ml/author/jonathan-shapey/" class="special-link2">Jonathan Shapey</a>. My thesis is on applied machine learning for neuro-oncology. <a href="https://www.sciencedirect.com/science/article/pii/S0169260722005387" class="special-link">Automatically segmenting brain tumuors</a> was truly mesmerising as an undergrad. So I am continuing to do so <a href="https://cai4cai.ml/post/2022-10-16-tumourmanagementphd/"class="special-link">now</a> as well. 
-        I am fully funded by the <a href="https://kcl-mrcdtp.com/"class="special-link">Medical Research Council</a>.</p> 
-        <p>My general interest is in medical image computing, and figuring out how to do it <a href="https://ieeexplore.ieee.org/abstract/document/9671562"class="special-link">securely</a>, <a href="https://link.springer.com/chapter/10.1007/978-981-19-5090-2_10"class="special-link">efficiently</a>, and <a href="https://drive.google.com/file/d/10at_w7Wlkz0Ig4fU9BoNWe8m8FttlaDD/view"class="special-link">transparently</a>. 
-           Good labels are tough to come by. Even tougher when it involves the human brain. 
-           So, I also like self-supervised learning. For my M.Sc., I was at <a href="https://www.qmul.ac.uk/deri/" class="special-link">DERI</a> (Queen Mary Univeristy of London) advised by <a href="https://eecs.qmul.ac.uk/~gslabaugh/" class="special-link2">Greg Slabaugh</a> and <a href="https://www.unicornmedics.com/" class="special-link2">Vineet Batta</a>.</p> 
-        
-<!--         I have had a few fantastic summers interning at
-        Oxford (with <a href="https://www.bdi.ox.ac.uk/Team/bartek-papiez" class="special-link2"> Bartek Papiez</a>), 
-        TRIUMF (with <a href="https://pdeperio.github.io/"class="special-link2">Patrick de Perio</a> and <a href="https://www.uvic.ca/science/physics/vispa/people/adjunct/konaka.php"class="special-link2">Akira Konaka</a>) and 
-        IIT-Gandhinagar (with <a href="https://sites.google.com/umn.edu/tarungangwar/home"class="special-link2">Tarun Gangwar</a>). -->
-       <p></p> I have been fortunate to have had a few fantastic summers interning with great labs. 
-Through the Oxford Big Data Summer Internship Programme, I worked (with <a href="https://www.bdi.ox.ac.uk/Team/bartek-papiez" class="special-link2"> Bartek Papiez</a>) at Oxford. 
-I worked (with <a href="https://pdeperio.github.io/"class="special-link2">Patrick de Perio</a> and <a href="https://www.uvic.ca/science/physics/vispa/people/adjunct/konaka.php"class="special-link2">Akira Konaka</a>) at TRIUMF via the MITACS scholarship.
-The Summer Research Intern Programme (SRIP) at IIT-Gandhinagar let me work (with <a href="https://sites.google.com/umn.edu/tarungangwar/home"class="special-link2">Tarun Gangwar</a>). For my undergrad, I was at SRM Institute of Science and Technology, 
-        advised by <a href="https://www.srmist.edu.in/faculty/dr-s-dhanalakshmi/" class="special-link2">Dhanalakshmi Samiappan.</a> I majored in Computer Science and specialised in Cloud Computing. </p> 
-        
+        <p>Ph.D. Student at <a href="https://cai4cai.ml/" class="special-link">CAI4CAI</a> (King's College London) supervised by <a href="https://cai4cai.ml/author/tom-vercauteren/" class="special-link2">Tom Vercauteren</a> and <a href="https://cai4cai.ml/author/jonathan-shapey/" class="special-link2">Jonathan Shapey</a>. My thesis is on applied machine learning for neuro-oncology. <a href="https://www.sciencedirect.com/science/article/pii/S0169260722005387" class="special-link">Automatically segmenting brain tumors</a> was truly mesmerizing as an undergrad. So I am continuing to do so <a href="https://cai4cai.ml/post/2022-10-16-tumourmanagementphd/" class="special-link">now</a> as well. 
+        I am fully funded by the <a href="https://kcl-mrcdtp.com/" class="special-link">Medical Research Council</a>.</p> 
+        <p>My general interest is in medical image computing, and figuring out how to do it <a href="https://ieeexplore.ieee.org/abstract/document/9671562" class="special-link">securely</a>, <a href="https://link.springer.com/chapter/10.1007/978-981-19-5090-2_10" class="special-link">efficiently</a>, and <a href="https://drive.google.com/file/d/10at_w7Wlkz0Ig4fU9BoNWe8m8FttlaDD/view" class="special-link">transparently</a>. 
+           Good labels are tough to come by. Even tougher when it involves the human brain. So, I also like self-supervised learning. 
+           For my M.Sc., I was at <a href="https://www.qmul.ac.uk/deri/" class="special-link">DERI</a> (Queen Mary University of London) advised by <a href="https://eecs.qmul.ac.uk/~gslabaugh/" class="special-link2">Greg Slabaugh</a> and <a href="https://www.unicornmedics.com/" class="special-link2">Vineet Batta</a>.</p> 
+        <p>I have been fortunate to have had a few fantastic summers interning with great labs. 
+           Through the Oxford-Big Data Summer Internship Programme, I worked with <a href="https://www.bdi.ox.ac.uk/Team/bartek-papiez" class="special-link2"> Bartek Papiez</a> at the University of Oxford. 
+           I worked with <a href="https://pdeperio.github.io/" class="special-link2">Patrick de Perio</a> and <a href="https://www.uvic.ca/science/physics/vispa/people/adjunct/konaka.php" class="special-link2">Akira Konaka</a>) at TRIUMF via the MITACS scholarship.
+           The Summer Research Intern Programme (SRIP) at IIT-Gandhinagar led me back to India for a short while to work (with <a href="https://sites.google.com/umn.edu/tarungangwar/home" class="special-link2">Tarun Gangwar</a>). For my undergrad, I was at SRM Institute of Science and Technology, 
+           advised by <a href="https://www.srmist.edu.in/faculty/dr-s-dhanalakshmi/" class="special-link2">Dhanalakshmi Samiappan.</a> I majored in Computer Science and specialized in Cloud Computing.</p> 
         <p>Even before that, I represented my country, state (national silver medal) and (captained) school in futsal. I also debated at a National level.</p>
+        
         <div class="bullet-section">
             <h3>Updates:</h3>
             <ul style="margin-top: -15px;">
                 <li>??/??/??: Next paper or announcement of binging jujutsu kaisen</li>
-                <li>2/2/24:   Internship work at Oxford accepted at ISBI'24! Pilot work on Spinal Osteophyte Identification in X-Rays. Big Thanks to <a href="https://dblp.org/pid/198/0698.html" class="special link2">Yuanhan Mo!</a>. </li>
+                <li>2/2/24:   Internship work at Oxford accepted at ISBI'24! Pilot work on Spinal Osteophyte Identification in X-Rays. Big Thanks to <a href="https://dblp.org/pid/198/0698.html" class="special-link2">Yuanhan Mo!</a>.</li>
                 <li>23/01/24: Student Representative for the <a href="https://kcl-mrcdtp.com/about/the-team/" class='special-link3'>KCL MRC DTP</a>.</li>
                 <li>25/11/23: Reviewer at ISBI'24.</li>
                 <li>5/11/23:  Top 8 Finish at Anthropic-London Hackaton. We made a mock co-pilot for python debugging through a bash alias.</li>
                 <li>27/10/23: Began my alignment on the Smart Imaging CDT.</li>
             </ul>
         </div>
-
-        <hr style="border-color: #3498db;"> <!-- Change the color as needed -->
-
-        <p> Everyone at CAI4CAI has been the most amazing. Espicially (in no particular order)   
+        
+        <hr style="border-color: #3498db;">
+        <p> Everyone at CAI4CAI has been the most amazing. Especially (in no particular order)   
             <a href="https://cai4cai.ml/author/aaron-kujawa/" class="special-link3">Aaron Kujawa</a>,
             <a href="https://cai4cai.ml/author/theo-barfoot/" class="special-link3">Theo Barfoot</a>,
             <a href="https://cai4cai.ml/author/marina-ivory/" class="special-link3">Marina Ivory</a>, and
@@ -213,11 +155,9 @@ The Summer Research Intern Programme (SRIP) at IIT-Gandhinagar let me work (with
             Thanks to (in no particular order) 
             <a href="https://www.linkedin.com/in/pooja-ganesh-alpha/" class="special-link3">Pooja Ganesh</a> (UIUC), 
             <a href="https://rakshit-naidu.github.io/" class="special-link3">Rakshit Naidu</a> (GaTech/CMU), 
-            <a href="https://www.linkedin.com/in/aarsh-chaube-568b901b2/?originalSubdomain=in" class="special-link3">Aarsh Chaube</a> (UCL) and 
-            <a href="https://www.linkedin.com/in/mona-furukawa-1043b916a/" class="special-link3">Mona Furukawa</a> (Oxford) for supporting my research journey.</p><br>
-
+            <a href="https://www.linkedin.com/in/aarsh-chaube-568b901b2/?originalSubdomain=in" class="special-link3">Aarsh Chaube</a> (UCL), and 
+            <a href="https://www.linkedin.com/in/mona-furukawa-1043b916a/" class="special-link3">Mona Furukawa</a> (Oxford) for supporting my research journey.</p>
     </main>
-
     <footer>
         <p>
             <a href="https://github.com/aymuos15"><i class="fab fa-github"></i></a> |
@@ -226,42 +166,31 @@ The Summer Research Intern Programme (SRIP) at IIT-Gandhinagar let me work (with
             <a href="https://github.com/aymuos15/Portfolio/blob/main/CV.pdf"><i class="far fa-file-alt"></i></a> |
             <a href="mailto:soumya_snighda.kundu@kcl.ac.uk"><i class="far fa-envelope"></i></a>
         </p>
-        
     </footer>
-
-        <!-- Bouncing Ball -->
-        <div class="ball" id="ball"></div>
-
-        <script>
-            // Random initial position
-            let posX = Math.random() * window.innerWidth;
-            let posY = Math.random() * window.innerHeight;
-
-            // Random velocity
-            let velX = 1; // Adjust the multiplier for speed
-            let velY = 1;
-
-            const ball = document.getElementById('ball');
-
-            function update() {
-                posX += velX;
-                posY += velY;
-
-                if (posX < 0 || posX > window.innerWidth - ball.clientWidth) {
-                    velX = -velX;
-                }
-
-                if (posY < 0 || posY > window.innerHeight - ball.clientHeight) {
-                    velY = -velY;
-                }
-
-                ball.style.left = posX + 'px';
-                ball.style.top = posY + 'px';
-
-                requestAnimationFrame(update);
+    <!-- Bouncing Ball -->
+    <div class="ball" id="ball"></div>
+    <script>
+        // Random initial position
+        let posX = Math.random() * window.innerWidth;
+        let posY = Math.random() * window.innerHeight;
+        // Random velocity
+        let velX = 1; // Adjust the multiplier for speed
+        let velY = 1;
+        const ball = document.getElementById('ball');
+        function update() {
+            posX += velX;
+            posY += velY;
+            if (posX < 0 || posX > window.innerWidth - ball.clientWidth) {
+                velX = -velX;
             }
-
-            update();
-        </script> 
-
+            if (posY < 0 || posY > window.innerHeight - ball.clientHeight) {
+                velY = -velY;
+            }
+            ball.style.left = posX + 'px';
+            ball.style.top = posY + 'px';
+            requestAnimationFrame(update);
+        }
+        update();
+    </script>
+</body>
 </html>
