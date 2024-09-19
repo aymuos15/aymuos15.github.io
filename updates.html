@@ -14,15 +14,54 @@
             padding: 0;
             line-height: 1.6;
             min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
         }
+
+        body::before,
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        body::before {
+            background:
+                radial-gradient(50% 50% at 100% 0%, #fff 45%, transparent 50%),
+                radial-gradient(50% 50% at 0% 100%, #fff 45%, transparent 50%),
+                radial-gradient(50% 50% at 50% 50%, #fff 45%, transparent 50%);
+            background-size: 60% 60%;
+            animation: cloudMove 60s linear infinite;
+        }
+
+        body::after {
+            background:
+                radial-gradient(50% 50% at 0% 0%, #fff 45%, transparent 50%),
+                radial-gradient(50% 50% at 100% 100%, #fff 45%, transparent 50%),
+                radial-gradient(50% 50% at 50% 0%, #fff 45%, transparent 50%);
+            background-size: 70% 70%;
+            animation: cloudMove 40s linear infinite reverse;
+        }
+
+        @keyframes cloudMove {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
+        }
+
         .content {
             margin: 20px;
             max-height: 900px;
             overflow-y: auto;
-            padding-right: 200px;
-            padding-left: 200px;
-            padding-top: 305px;
+            padding: 305px 200px 0 200px;
+            position: relative;
+            z-index: 1;
         }
+
         .bullet-section {
             max-height: 300px;
             overflow-y: auto;
@@ -30,34 +69,42 @@
             border-left: 10px solid #3498db;
             padding-left: 10px;
         }
+
         .bullet-section::-webkit-scrollbar {
             width: 12px;
         }
+
         .bullet-section::-webkit-scrollbar-thumb {
             background-color: #ffffff;
             border-radius: 6px;
         }
+
         .bullet-section::-webkit-scrollbar-track {
             background-color: #f1f1f1;
         }
+
         h2 {
             text-align: center;
         }
+
         table {
             width: 100%;
             margin-top: -15px;
             border-collapse: collapse;
         }
+
         td:first-child {
             text-align: right;
             white-space: nowrap;
             padding-left: 10px;
             vertical-align: top;
         }
+
         td:last-child {
             text-align: left;
             padding-left: 10px;
         }
+
         .home-button {
             position: absolute;
             top: 10px;
@@ -68,10 +115,13 @@
             text-decoration: none;
             border-radius: 5px;
             font-weight: bold;
+            z-index: 2;
         }
+
         .home-button:hover {
             background-color: #2980b9;
         }
+
         footer {
             background-color: #e0f542;
             color: #4269f5;
@@ -81,18 +131,81 @@
             width: 100%;
             text-align: center;
             padding: 10px 0;
+            z-index: 2;
         }
+
         footer img {
             width: 18px;
             height: auto;
             vertical-align: middle;
             margin: 0 5px;
         }
+
         .ball {
             width: 50px;
             height: 50px;
             background: url('images/brain.jpeg') center center/cover;
             position: absolute;
+            z-index: 3;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .content {
+                padding: 150px 20px 0 20px;
+            }
+
+            h2 {
+                font-size: 1.2rem;
+            }
+
+            table {
+                font-size: 0.9rem;
+            }
+
+            .home-button {
+                font-size: 0.8rem;
+                padding: 5px 10px;
+            }
+
+            footer {
+                padding: 5px 0;
+                font-size: 0.8rem;
+            }
+
+            .ball {
+                width: 30px;
+                height: 30px;
+            }
+        }
+
+        /* Very Small Screens */
+        @media (max-width: 480px) {
+            .content {
+                padding: 100px 10px 0 10px;
+            }
+
+            h2 {
+                font-size: 1rem;
+            }
+
+            table {
+                font-size: 0.8rem;
+            }
+
+            .home-button {
+                font-size: 0.7rem;
+                padding: 5px 8px;
+            }
+
+            footer {
+                font-size: 0.7rem;
+            }
+
+            .ball {
+                width: 25px;
+                height: 25px;
+            }
         }
     </style>
 </head>
@@ -145,7 +258,6 @@
                 <td style="text-align: right; white-space: nowrap; padding-left: 10px;">27/10/23:</td>
                 <td>Began my alignment on the Smart Imaging CDT.</td>
             </tr>
-            <!-- Add more updates as needed -->
         </table>
     </div>
 
@@ -160,14 +272,11 @@
         </p>
     </footer>
 
-    <!-- Bouncing Ball -->
     <div class="ball" id="ball"></div>
     <script>
-        // Random initial position
         let posX = Math.random() * window.innerWidth;
         let posY = Math.random() * window.innerHeight;
-        // Random velocity
-        let velX = 1; // Adjust the multiplier for speed
+        let velX = 1;
         let velY = 1;
         const ball = document.getElementById('ball');
         function update() {
