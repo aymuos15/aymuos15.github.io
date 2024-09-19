@@ -17,7 +17,7 @@
         }
         body {
             display: 1;
-            background: #fff;
+            background: linear-gradient(to bottom, #e6f3ff, #ffffff);
         }
         .image-container {
             align-items: center;
@@ -175,24 +175,61 @@
                 background-color: #f1f1f1;
             }
         }
-        @media only screen and (max-width: 316px) {
-            main {
-                text-align: left;
-                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-                overflow: auto;
-                max-height: 60vh;
-            }
-            main::-webkit-scrollbar {
-                width: 8px;
-            }
-            main::-webkit-scrollbar-thumb {
-                background-color: #3498db;
-                border-radius: 4px;
-            }
-            main::-webkit-scrollbar-track {
-                background-color: #ffffff;
-            }
+        @media only screen and (max-width: 816px) {
+        body {
+            font-size: 14px; /* Reduce overall font size */
         }
+
+        .image-container {
+            margin-top: 100px; /* Reduce top margin */
+        }
+
+        .image-container img {
+            width: 150px; /* Make image smaller */
+        }
+
+        main {
+            text-align: left;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            overflow: auto;
+            max-height: 90vh;
+            margin-right: 20px; /* Reduce side margins */
+            margin-left: 20px;
+            padding: 10px; /* Add some padding */
+        }
+
+        main::-webkit-scrollbar {
+            width: 6px; /* Make scrollbar thinner */
+        }
+
+        main::-webkit-scrollbar-thumb {
+            background-color: #3498db;
+            border-radius: 3px;
+        }
+
+        main::-webkit-scrollbar-track {
+            background-color: #ffffff;
+        }
+
+        .top-buttons {
+            top: 5px;
+            left: 5px;
+            right: 5px;
+        }
+
+        .home-button {
+            padding: 5px 10px;
+            font-size: 12px;
+        }
+
+        footer {
+            font-size: 16px;
+        }
+
+        footer img {
+            width: 14px; /* Make footer icons smaller */
+        }
+    }
     </style>
     
 </head>
@@ -249,12 +286,12 @@
 
     <footer>
         <p>
-            <a href="https://github.com/aymuos15"><img src="images/Feather-logos-github.svg" alt="github" style="width: 18px; height: auto; vertical-align: middle;"></a>  |
-            <a href="https://www.linkedin.com/in/soumyaskundu/"><img src="images/64px-LinkedIn_logo_initials.png" alt="LinkedIn" style="width: 18px; height: auto; vertical-align: middle;"></a> |
-            <a href="https://scholar.google.com/citations?user=WmHtKBYAAAAJ&hl=en&oi=ao"><img src="images/scholar.svg.png" alt="Google Scholar" style="width: 18px; height: auto; vertical-align: middle;"></a> |
+            <a href="https://github.com/aymuos15"><img src="images/Feather-logos-github.svg" alt="github" style="width: 20px; height: auto; vertical-align: middle;"></a>  |
+            <a href="https://www.linkedin.com/in/soumyaskundu/"><img src="images/64px-LinkedIn_logo_initials.png" alt="LinkedIn" style="width: 20px; height: auto; vertical-align: middle;"></a> |
+            <a href="https://scholar.google.com/citations?user=WmHtKBYAAAAJ&hl=en&oi=ao"><img src="images/scholar.svg.png" alt="Google Scholar" style="width: 20px; height: auto; vertical-align: middle;"></a> |
             <a href="https://github.com/aymuos15/Portfolio/blob/main/CV.pdf"><img src="images/resume.webp" alt="Resume" style="width: 20px; height: auto; vertical-align: middle;"></a> |
-            <a href="mailto:soumya_snighda.kundu@kcl.ac.uk"><img src="images/mail.png" alt="e-mail" style="width: 18px; height: auto; vertical-align: middle;"></a> |
-            <a href="https://discuss.pytorch.org/u/soumya_kundu/summary"><img src="images/torch.svg.png" alt="PyTorch" style="width: 14px; height: auto; vertical-align: middle;"></a>
+            <a href="mailto:soumya_snighda.kundu@kcl.ac.uk"><img src="images/mail.png" alt="e-mail" style="width: 20px; height: auto; vertical-align: middle;"></a> |
+            <a href="https://discuss.pytorch.org/u/soumya_kundu/summary"><img src="images/torch.svg.png" alt="PyTorch" style="width: 16px; height: auto; vertical-align: middle;"></a>
         </p>
     </footer>
 
