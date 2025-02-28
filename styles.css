@@ -1,0 +1,290 @@
+html {
+    font-family: 'Roboto';
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    line-height: 1.6;
+    color: #000;
+    height: 100%;
+}
+body {
+    display: 1;
+    background: #f9f5f2;
+}
+.image-container {
+    align-items: center;
+    margin-top: 50px;
+}
+.special-link, .special-link2, .special-link3 {
+    text-decoration: underline;
+    font-weight: bold;
+}
+.special-link { color: #61895b; }
+.special-link2 { color: #b2a569; }
+.special-link3 { color: #72aac0; }
+.ball {
+    width: 50px;
+    height: 50px;
+    background: url('images/brain.jpeg') center center/cover;
+    position: absolute;
+}
+header {
+    background-color: #fff;
+    color: #fff;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+main {
+    text-align: left;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding-bottom: 80px; /* Add padding to prevent content from being hidden by footer */
+}
+footer {
+    background-color: #e0f542;
+    color: #4269f5;
+    position: fixed;
+    bottom: 0;
+    right: 1px;
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    z-index: 2;
+    height: 50px; /* Define a specific height for the footer */
+}
+footer img {
+    width: 18px;
+    height: auto;
+    vertical-align: middle;
+    margin: 0 5px;
+}
+.bullet-section {
+    max-height: 300px; /* Adjust the height as needed */
+    overflow-y: auto; /* Enable vertical scrolling */
+    overflow-x: hidden; /* Hide horizontal scrollbar */
+    border-left: 10px solid #3498db; /* Optional: Add a border on the left to make scrollbar more noticeable */
+    padding-left: 10px; /* Optional: Add padding to ensure content is not too close to the scrollbar */
+    position: relative; /* Ensure positioning context */
+}
+.bullet-section::-webkit-scrollbar {
+    width: 12px; /* Width of the scrollbar */
+}
+.bullet-section::-webkit-scrollbar-thumb {
+    background-color: #ffffff; /* Color of the scrollbar thumb */
+    border-radius: 6px; /* Rounded corners for the scrollbar thumb */
+}
+.bullet-section::-webkit-scrollbar-track {
+    background-color: #f1f1f1; /* Color of the scrollbar track */
+}
+.top-buttons {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    justify-content: flex-start;
+    z-index: 1000;
+}
+.home-button {
+    padding: 10px 15px;
+    background-color: #3498db;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 16px;
+    width: 80px;
+    text-align: center;
+    box-sizing: border-box;
+    transition: background-color 0.3s;
+}
+.home-button:hover {
+    background-color: #2980b9;
+}
+.dropdown {
+    display: flex;
+    align-items: center;
+}
+.dropdown select {
+    margin-left: 10px;
+}
+/* Define your CSS styles here */
+.blue {
+    background-color: blue; /* Change the background color to your desired color */
+}
+.lightblue {
+    background-color: lightblue; /* Change the background color to your desired color */
+}
+.darkblue {
+    background-color: darkblue; /* Change the background color to your desired color */
+}
+.green {
+    background-color: green; /* Change the background color to your desired color */
+}
+.lightgreen {
+    background-color: lightgreen; /* Change the background color to your desired color */
+}
+.yellow {
+    background-color: yellow; /* Change the background color to your desired color */
+}
+@keyframes rainbow-animation {
+    0% { color: red; }
+    20% { color: orange; }
+    40% { color: yellow; }
+    60% { color: green; }
+    80% { color: blue; }
+    100% { color: violet; }
+}
+@media only screen and (min-width: 1301px) {
+    main {
+        text-align: left;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        overflow: auto;
+        max-height: 60vh;
+        margin-right: 200px;
+        margin-left: 200px;
+        padding-bottom: 80px; /* Keep padding consistent */
+    }
+    main::-webkit-scrollbar {
+        width: 12px;
+    }
+    main::-webkit-scrollbar-thumb {
+        background-color: #3498db;
+        border-radius: 6px;
+    }
+    main::-webkit-scrollbar-track {
+        background-color: #f1f1f1;
+    }
+}
+@media only screen and (max-width: 1300px) {
+    main {
+        text-align: left;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        overflow: auto;
+        max-height: 52vh;
+        margin-right: 200px;
+        margin-left: 200px;
+        padding-bottom: 80px; /* Keep padding consistent */
+    }
+    main::-webkit-scrollbar {
+        width: 12px;
+    }
+    main::-webkit-scrollbar-thumb {
+        background-color: #3498db;
+        border-radius: 6px;
+    }
+    main::-webkit-scrollbar-track {
+        background-color: #f1f1f1;
+    }
+}
+@media only screen and (max-width: 816px) {
+    body {
+        font-size: 14px; /* Reduce overall font size */
+    }
+    .image-container {
+        margin-top: 10px; /* Reduce top margin */
+    }
+    .image-container img {
+        width: 150px; /* Make image smaller */
+    }
+    main {
+        text-align: left;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        overflow: auto;
+        max-height: 70vh;
+        margin-right: 20px; /* Reduce side margins */
+        margin-left: 20px;
+        padding: 10px; /* Add some padding */
+        padding-bottom: 100px; /* Increased padding for smaller screens */
+    }
+    main::-webkit-scrollbar {
+        width: 6px; /* Make scrollbar thinner */
+    }
+    main::-webkit-scrollbar-thumb {
+        background-color: #3498db;
+        border-radius: 3px;
+    }
+    main::-webkit-scrollbar-track {
+        background-color: #ffffff;
+    }
+    .top-buttons {
+        top: 10px;
+        left: 10px;
+    }
+    .home-button {
+        padding: 8px 12px;
+        font-size: 14px;
+        width: 70px;
+    }
+    footer {
+        font-size: 16px;
+        height: 60px; /* Slightly taller footer on mobile */
+    }
+    footer img {
+        width: 14px; /* Make footer icons smaller */
+    }
+}
+body {
+    font-family: 'Roboto';
+    background: linear-gradient(to bottom, #e6f3ff, #ffffff);
+    color: #000;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    min-height: 50vh;
+    position: relative;
+    overflow-x: hidden;
+}
+body::before,
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.15; /* Reduced opacity from 0.3 to 0.15 */
+    pointer-events: none;
+}
+body::before {
+    background:
+        radial-gradient(50% 50% at 100% 0%, #fff 45%, transparent 50%),
+        radial-gradient(50% 50% at 0% 100%, #fff 45%, transparent 50%),
+        radial-gradient(50% 50% at 50% 50%, #fff 45%, transparent 50%);
+    background-size: 60% 60%;
+    animation: cloudMove 60s linear infinite;
+}
+body::after {
+    background:
+        radial-gradient(50% 50% at 0% 0%, #fff 45%, transparent 50%),
+        radial-gradient(50% 50% at 100% 100%, #fff 45%, transparent 50%),
+        radial-gradient(50% 50% at 50% 0%, #fff 45%, transparent 50%);
+    background-size: 70% 70%;
+    animation: cloudMove 40s linear infinite reverse;
+}
+@keyframes cloudMove {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 100% 100%; }
+}
+.content {
+    margin: 20px;
+    max-height: 900px;
+    overflow-y: auto;
+    padding: 105px 200px 0 200px;
+    position: relative;
+    z-index: 1;
+}
+h2 {
+    text-align: center;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+td:first-child {
+    text-align: right;
+    white-space: nowrap;
+    padding-left: 10px;
+    vertical-align: top;
+}
+td:last-child {
+    text-align: left;
+    padding-left: 10px;
+}
