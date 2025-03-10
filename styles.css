@@ -9,7 +9,7 @@ html {
 }
 body {
     display: 1;
-    background: #f9f5f2;
+    background: #e6f7ff; /* Light sky blue background */
     min-height: 100vh;
     overflow-x: hidden; /* Prevent horizontal scrolling */
     overflow-y: auto; /* Allow vertical scrolling on the body */
@@ -64,6 +64,12 @@ main {
     margin-right: 200px;
     margin-left: 200px;
 }
+
+/* Text justification for paragraphs in main content */
+main p {
+    text-align: justify;
+}
+
 footer {
     background-color: #e0f542;
     color: #4269f5;
@@ -233,10 +239,23 @@ footer img {
     footer img {
         width: 14px; /* Make footer icons smaller */
     }
+    .content-wrapper {
+        flex-direction: column-reverse;
+    }
+    
+    .text-content {
+        padding-right: 0;
+        width: 100%;
+    }
+    
+    .image-content {
+        margin-bottom: 20px;
+        width: 100%;
+    }
 }
 body {
     font-family: 'Roboto';
-    background: #f9f5f2; /* Simplified background color - removed gradient */
+    background: #e6f7ff; /* Light sky blue background - repeat to ensure override */
     color: #000;
     margin: 0;
     padding: 0;
@@ -268,4 +287,55 @@ td:first-child {
 td:last-child {
     text-align: left;
     padding-left: 10px;
+}
+
+/* Layout for the index page content */
+.content-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.text-content {
+    flex: 3;
+    padding-right: 40px;
+}
+
+.image-content {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Updates page specific styles */
+#updates-container {
+    padding: 20px 0;
+}
+
+#updates-container ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#updates-container li {
+    padding: 8px 0;
+    line-height: 1.5;
+    display: flex;
+}
+
+#updates-container .date-part {
+    min-width: fit-content;
+    margin-right: 5px;
+    white-space: nowrap;
+}
+
+#updates-container .text-part {
+    flex: 1;
 }

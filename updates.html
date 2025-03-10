@@ -1,33 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Updates</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
-    <style>
-        /* Specific styles for updates page */
-        #updates-container {
-            padding: 20px 0;
-        }
-        #updates-container table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        #updates-container td {
-            padding: 8px 0;
-            vertical-align: top;
-        }
-    </style>
 </head>
+
 <body>
-    
     <!-- Home Button -->
     <div class="top-buttons">
         <a href="index.html" class="home-button">Home</a>
     </div>
-    
+
     <div class="image-container">
         <h1 style="color: green;">UPDATES</h1>
     </div>
@@ -38,57 +25,29 @@
 
     <footer>
         <p>
-            <a href="https://github.com/aymuos15"><img src="images/Feather-logos-github.svg" alt="github" style="width: 20px; height: auto; vertical-align: middle;"></a>  |
-            <a href="https://www.linkedin.com/in/soumyaskundu/"><img src="images/64px-LinkedIn_logo_initials.png" alt="LinkedIn" style="width: 20px; height: auto; vertical-align: middle;"></a> |
-            <a href="https://scholar.google.com/citations?user=WmHtKBYAAAAJ&hl=en&oi=ao"><img src="images/scholar.svg.png" alt="Google Scholar" style="width: 20px; height: auto; vertical-align: middle;"></a> |
-            <a href="https://github.com/aymuos15/aymuos15.github.io/blob/main/CV.pdf"><img src="images/resume.webp" alt="Resume" style="width: 20px; height: auto; vertical-align: middle;"></a> |
-            <a href="mailto:soumya_snighda.kundu@kcl.ac.uk"><img src="images/mail.png" alt="e-mail" style="width: 20px; height: auto; vertical-align: middle;"></a> |
-            <a href="https://discuss.pytorch.org/u/soumya_kundu/summary"><img src="images/torch.svg.png" alt="PyTorch" style="width: 16px; height: auto; vertical-align: middle;"></a> |
-            <a href="https://www.alphaxiv.org/profile/6770c388aa490fa39fe15b19/aymuos"><img src="images/alphaxiv.png" alt="PyTorch" style="width: 20px; height: auto; vertical-align: middle;"></a>
+            <a href="https://github.com/aymuos15"><img src="images/Feather-logos-github.svg" alt="github"
+                    style="width: 20px; height: auto; vertical-align: middle;"></a> |
+            <a href="https://www.linkedin.com/in/soumyaskundu/"><img src="images/64px-LinkedIn_logo_initials.png"
+                    alt="LinkedIn" style="width: 20px; height: auto; vertical-align: middle;"></a> |
+            <a href="https://scholar.google.com/citations?user=WmHtKBYAAAAJ&hl=en&oi=ao"><img
+                    src="images/scholar.svg.png" alt="Google Scholar"
+                    style="width: 20px; height: auto; vertical-align: middle;"></a> |
+            <a href="https://github.com/aymuos15/aymuos15.github.io/blob/main/CV.pdf"><img src="images/resume.webp"
+                    alt="Resume" style="width: 20px; height: auto; vertical-align: middle;"></a> |
+            <a href="mailto:soumya_snighda.kundu@kcl.ac.uk"><img src="images/mail.png" alt="e-mail"
+                    style="width: 20px; height: auto; vertical-align: middle;"></a> |
+            <a href="https://discuss.pytorch.org/u/soumya_kundu/summary"><img src="images/torch.svg.png" alt="PyTorch"
+                    style="width: 16px; height: auto; vertical-align: middle;"></a> |
+            <a href="https://www.alphaxiv.org/profile/6770c388aa490fa39fe15b19/aymuos"><img src="images/alphaxiv.png"
+                    alt="PyTorch" style="width: 20px; height: auto; vertical-align: middle;"></a>
         </p>
     </footer>
 
     <!-- Bouncing Ball -->
     <div class="ball" id="ball"></div>
-    <script>
-        // Random initial position
-        let posX = Math.random() * window.innerWidth;
-        let posY = Math.random() * window.innerHeight;
-        // Random velocity
-        let velX = 1; // Adjust the multiplier for speed
-        let velY = 1;
-        const ball = document.getElementById('ball');
-        function update() {
-            posX += velX;
-            posY += velY;
-            if (posX < 0 || posX > window.innerWidth - ball.clientWidth) {
-                velX = -velX;
-            }
-            if (posY < 0 || posY > window.innerHeight - ball.clientHeight) {
-                velY = -velY;
-            }
-            ball.style.left = posX + 'px';
-            ball.style.top = posY + 'px';
-            requestAnimationFrame(update);
-        }
-        update();
-        
-        // Load updates from an external file
-        fetch('updates.json')
-            .then(response => response.json())
-            .then(data => {
-                const updatesContainer = document.getElementById('updates-container');
-                let updatesHtml = '<table>';
-                data.updates.forEach(update => {
-                    updatesHtml += `<tr>
-                        <td style="text-align: right; white-space: nowrap; padding-left: 10px;">${update.date}:</td>
-                        <td>${update.description}</td>
-                    </tr>`;
-                });
-                updatesHtml += '</table>';
-                updatesContainer.innerHTML = updatesHtml;
-            })
-            .catch(error => console.error('Error loading updates:', error));
-    </script>
+
+    <!-- JavaScript -->
+    <script src="main.js"></script>
 </body>
+
 </html>

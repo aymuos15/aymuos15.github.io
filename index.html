@@ -85,28 +85,8 @@
 
     <!-- Bouncing Ball -->
     <div class="ball" id="ball"></div>
-    <script>
-        // Random initial position
-        let posX = Math.random() * window.innerWidth;
-        let posY = Math.random() * window.innerHeight;
-        // Random velocity
-        let velX = 1; // Adjust the multiplier for speed
-        let velY = 1;
-        const ball = document.getElementById('ball');
-        function update() {
-            posX += velX;
-            posY += velY;
-            if (posX < 0 || posX > window.innerWidth - ball.clientWidth) {
-                velX = -velX;
-            }
-            if (posY < 0 || posY > window.innerHeight - ball.clientHeight) {
-                velY = -velY;
-            }
-            ball.style.left = posX + 'px';
-            ball.style.top = posY + 'px';
-            requestAnimationFrame(update);
-        }
-        update();
-    </script>
+    
+    <!-- JavaScript -->
+    <script src="main.js"></script>
 </body>
 </html>
