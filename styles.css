@@ -33,7 +33,7 @@ body {
 /* For Firefox */
 * {
     scrollbar-width: thin;
-    scrollbar-color: #3498db #f1f1f1;
+    scrollbar-color: #76c7fd #f1f1f1;
 }
 .image-container {
     align-items: center;
@@ -71,7 +71,7 @@ main p {
 }
 
 footer {
-    background-color: #e0f542;
+    background-color: #f7ffba;
     color: #4269f5;
     position: fixed;
     bottom: 0;
@@ -116,7 +116,7 @@ footer img {
 }
 .home-button {
     padding: 10px 15px;
-    background-color: #3498db;
+    background-color: #508f68;
     color: white;
     text-decoration: none;
     border-radius: 5px;
