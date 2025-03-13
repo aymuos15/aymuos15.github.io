@@ -1,0 +1,372 @@
+\documentclass[letterpaper,10pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+\usepackage{multicol}
+\usepackage{dirtytalk}
+
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.85in} %Left Margin
+\addtolength{\evensidemargin}{11.2in}
+\addtolength{\textwidth}{1.6in} % Right Margin
+\addtolength{\topmargin}{-.9in}
+\addtolength{\textheight}{1.8in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+\usepackage{titlesec}
+\usepackage{xcolor}
+
+\titleformat{\section}
+{\vspace{-4pt}\scshape\raggedright\color{black}}
+{}{0em}{}
+[\color{black}
+\vspace{-0.7mm}
+\titlerule
+\vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\usepackage{setspace}
+
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    \begin{spacing}{0.92}
+      #1
+    \end{spacing}
+    \vspace{-2pt}
+  }
+}
+
+\newcommand{\resumeSubheading}[4] {
+  \vspace{-3pt}
+  \item
+    \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{\small#1} & \small#2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+  \item
+    \begin{tabular*}{0.99\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+  \item
+    \begin{tabular*}{0.99\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-5pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{
+  \begin{itemize}[leftmargin=0in, rightmargin=0in, label={}, wide=0pt]
+}
+
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+\usepackage{contour}
+\usepackage{ulem}
+
+\renewcommand{\ULdepth}{1.8pt}
+\contourlength{0.8pt}
+
+\newcommand{\myuline}[1]{%
+  \uline{\phantom{#1}}%
+  \llap{\contour{white}{#1}}%
+}
+
+\renewcommand{\underline}[1]{{\color{blue}\uline{#1}}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    \textbf{\Large \scshape Soumya Snigdha Kundu} \\ 
+
+    \small +44-7436-215-187 $|$
+    \href{https://www.linkedin.com/in/soumyaskundu/}
+    {\myuline{Linkedin}}  $|$
+    \href{https://scholar.google.com/citations?user=WmHtKBYAAAAJ&hl=en&oi=ao}
+    {\myuline{G-Scholar}} $|$
+    \href{https://github.com/aymuos15}
+    {\myuline{Github}} $|$
+    \href{https://aymuos15.github.io/}
+    {\myuline{Website}} $|$
+    \href{https://discuss.pytorch.org/u/soumya_kundu/summary}
+    {\myuline{PyTorch-Forums}} $|$ \href{https://www.alphaxiv.org/profile/6770c388aa490fa39fe15b19/aymuos}{\myuline{alphaxiv}} $|$
+    \href{mailto:soumyawork15@gmail.com} 
+    {\myuline{E-mail}} $|$ London, United Kingdom
+\end{center}
+\vspace{-7.5mm}
+
+%-----------EDUCATION-------
+\section{Education}
+\resumeSubHeadingListStart
+    \resumeSubheading
+      {King's College London | \texttt{Ph.D. Biomedical Engineering and Imaging Science Research}\vspace{-1mm}}
+      {Oct. 2023 -- Oct. 2027 {\scriptsize (Expected)}}
+      {\textit{\textnormal{\myuline{\texttt{Advisors:}} Prof. Tom Vercauteren {\scriptsize (Computational)} and Dr. Jonathan Shapey {\scriptsize (Clinical)}}}}
+      {}
+    \vspace{-0.5mm}
+    \resumeSubheading
+      {\textit{\textnormal{\myuline{\texttt{Thesis:}} \hspace{2mm} Artificial Intelligence-driven Management of Brain Tumours}}}
+      {}{}{}
+    \vspace{-3.5mm}
+        
+    \resumeSubheading
+      {Queen Mary University of London | \texttt{M.Sc. Machine Learning for Visual Data Analytics {\scriptsize (Distinction)}}\vspace{-1mm}}
+      {Sep. 2022 -- Sep. 2023}
+      {\textit{\textnormal{\myuline{\texttt{Advisors:}} Prof. Greg Slabaugh {\scriptsize (Computational)} and Mr. Vineet Batta {\scriptsize (Clinical)}}}}
+      {}
+    \vspace{-0.5mm}
+    \resumeSubheading
+      {\textit{\textnormal{\myuline{\texttt{Thesis:}} \hspace{2mm} Unveiling the Localization Advantage in Automated Orthopaedic Identification}}}
+      {}{}{}
+    \vspace{-3.5mm}
+    
+    \resumeSubheading
+      {SRM Institute of Science and Technology | \texttt{B.Tech. Computer Science and Engineering {\scriptsize (Distinction)}}}
+      {Jul. 2018 -- May. 2022}
+      {}{}
+\resumeSubHeadingListEnd
+\vspace{-9mm}
+
+\section{Selected Publications}
+\small{
+\resumeSubHeadingListStart
+
+    \resumeSubheading
+        {}{}{}{}
+    \vspace{-7mm}
+    \resumeItemListStart
+          
+      \resumeItem{\textbf{S. S. Kundu} et al., \say{Spinal Osteophyte Detection Via Robust Patch Extraction on Minimally Annotated X-Rays}, in \myuline{IEEE International Symposium on Biomedical Imaging} (\textit{\textbf{ISBI}}), 2024.}
+      
+      \resumeItem{R. Naidu and \textbf{S. S. Kundu}, \say{Improved variants of Score-CAM via Smoothing and Integrating}, in \myuline{Responsible Computer Vision Workshop @ Conference on Computer Vision and Pattern Recognition} (\textit{\textbf{CVPR Workshop}}), 2021. }
+
+      \resumeItem{\textbf{S. S. Kundu}, \say{A Distributed Deep Learning Framework for Federated Big Medical Image Analysis}, in \myuline{IEEE International Conference on Big Data (\textbf{Big Data}), 2021.}}
+    \resumeItemListEnd
+
+\resumeSubHeadingListEnd
+}
+
+\textbf{Reviewing}: MICCAI, ICML, NeurIPS, ICLR, AISTAS and IEEE-ISBI.
+
+
+\vspace{-3mm}
+
+\section{Research Experience}
+  
+\resumeSubHeadingListStart
+    \resumeSubheading
+        {University of Oxford | Research Intern}
+        {\hspace*{-5cm}Prof. Bartek Papiez $|$ Fall 2023}
+        {}
+        {}
+        \vspace{-4mm}
+            \resumeItemListStart
+                \resumeItem{Developed the \underline{$1^{st}$ spinal new bone formation (osteophytes) identification pipeline} achieving a \underline{200\% increase from baseline precision} scores through a custom multi-view post-processing strategy \textit{SegPatch}. \hfill {\scriptsize[ISBI'24]}}
+
+            \resumeItem{Investigated weighed ensembling for knee radiographic performance evaluation to handle extreme class imbalance.
+            \hfill {\scriptsize[MICAD'24]}}
+            
+            \resumeItemListEnd
+\vspace{1.5mm}
+
+    \resumeSubheading
+        {TRIUMF-Canada's particle accelerator centre | Research Intern}
+        {\hspace*{-5cm} Prof. Akira Konaka \& Dr. Patrick De Perio $|$  Summer 2021}
+        {}{}
+        \vspace{-4mm}
+            \resumeItemListStart
+                \resumeItem{Collaborated with engineers and physicists at the \textit{Water Cherenkov Machine Learning Group} to design a robust scaling function to facilitate a 70\% loss decrease for the reconstruction of energy, position and angles of electrons in a \textit{regression} neural network.}
+\resumeItemListEnd
+\vspace{1.5mm}
+          
+                \resumeSubheading
+        {National Institute of Technology, Durgapur | Research Intern}
+        {Prof. Debashis Nandi $|$ Winter 2021}
+        {}
+        {}
+        \vspace{-4mm}
+            \resumeItemListStart
+
+            \resumeItem{Engineered a compound classification + segmentation pipeline for segmenting multiple sclerosis lesions that \underline{outperforms stand-alone segmentation networks by 10-12\% dice score.} \hfill {\scriptsize[Computer methods and programs in biomedicine 2022]}}
+     
+            \resumeItemListEnd
+    
+\resumeSubHeadingListEnd
+\vspace{-4mm}
+
+\section{Industry Experience}
+\resumeSubHeadingListStart
+
+    \resumeSubheading
+        {TCS Research \& IIIT-Hyderabad | Research Scientist}
+        {Mrs. Ramya Hebbalaguppe \& Prof. Ranjitha Prasad $|$ Fall 2024}
+        {}
+        {}
+                \vspace{-4mm}
+
+            \resumeItemListStart
+                                
+                \resumeItem{Responsible for instituting complete explainablity throughout the NORD-F pipeline by generating class activation maps,  and reporting Out-of-domain specific fairness and calibration metrics.}
+
+                \resumeItem{Devised multiple large-scale ablations to surmount the efficiency of NORD-F and improved the the performance by 5\% through the integration of a ConvNeXt based backbone.}
+        
+          \resumeItemListEnd
+
+\vspace{1mm}
+
+    \resumeSubheading
+        {Stealth Startup | Founding Engineer}
+        {Oct. 2020 -- Sept. 2022}
+        {}
+        {}
+        \vspace{-4mm}
+            \resumeItemListStart
+                
+                \resumeItem{Raised $\sim$ \pounds50000 for the \underline{$1^{st}$ end-to-end automated system to identify 10 separate orthopaedic implants in plain radiographs}, while reducing data requirements by $>$90\% and achieving 98\% F1-Score.  \hfill {\scriptsize[ISBI'23, MIUA'23]}}
+                
+                \resumeItem{Spearheaded a multi-institutional collaboration involving renowned Orthopaedic Surgeons, gathering valuable insights and perspectives to publish an in-depth systematic review of 50+ papers on automated orthopaedic implant identification. \hfill {\scriptsize[SICOT'21, IOACON'22, EFORT'22]}}
+                
+                \resumeItem{Maintained the internal \textit{HPC} and \textit{MLOps} infrastructure along with reviewing monthly software updates of junior members, identifying potential improvements and increasing code performance metrics by an average of 15\%.}
+        
+          \resumeItemListEnd
+\resumeSubHeadingListEnd
+
+\vspace{-4mm}
+
+\section{Open-Source Software \& Hackathons/Competitions}
+  
+\resumeSubHeadingListStart
+
+    \resumeSubheading
+        {UltraFlwr: Federated Object Detection}
+        {Jun 2024 - March 2025}
+        {}{}
+        \vspace{-4mm}
+            \resumeItemListStart
+                \resumeItem{
+Developed a library which combines Flower and Ultralytics libraries to perform and benchmark Federated Object Detection.}
+                \resumeItem{
+Proposed a novel partial aggregration strategy YOLO-PA, specifically to perform partial aggregation in YOLO models. \hfill{\scriptsize[MICCAI'25]}}
+    \resumeItemListEnd
+    \vspace{2mm}
+
+    \resumeSubheading
+        {Insta-Match}
+        {Jan 2024 - Oct 2024}
+        {}{}
+        \vspace{-4mm}
+            \resumeItemListStart
+
+\resumeItem{The \underline{$1^{st}$} GPU optimised library to compute \textit{segment matching} based performance metrics for segmentation. \hfill{\scriptsize[SPIE Medical Imaging'25]}}
+    \resumeItemListEnd
+    \vspace{2mm}
+
+\resumeSubheading
+    {GPU Optimised Random Walker and Random Walker with Restart Algorithm}
+    {Jan 2024 - March 2023}
+    {}{}
+    \vspace{-3mm}
+        \resumeItemListStart
+        \resumeItem{Re-purposed the commonly used random walker repository for speed ups with PyTorch and CUDA.}
+\resumeItemListEnd
+\vspace{2mm}
+
+\resumeSubheading
+    {Promptly-Cited: Citation based Inference via Pseudo-Retrieval-Augmented Generation}
+    {Dec 2023}
+    {}{}
+    \vspace{-3mm}
+        \resumeItemListStart
+        \resumeItem{Developed test-time citation based LLM inference in small context scenarios. \hfill{\scriptsize[NeurIPS Workshop 25]}}
+\resumeItemListEnd
+\vspace{2mm}
+
+\resumeSubheading
+    {Anthropic London Hackathon}
+    {Dec 2023}
+    {}{}
+    \vspace{-3mm}
+        \resumeItemListStart
+            \resumeItem{Built a Python debugging agent based a novel prompting scheme which earned the recognition of \underline{Top 8 finalist} in the Hackathon.}
+        
+        \resumeItemListEnd
+
+\resumeSubHeadingListEnd
+
+\vspace{-3.5mm}
+
+%-----------PROGRAMMING SKILLS-----------
+\section{Programming and Software Development}
+\vspace{-1mm}
+Python, C++, HTML, CSS, Javascript $|$ PyTorch, JAX, NumPy, OpenCV, Docker, Git, Slurm, Bash, \LaTeX.
+\vspace{-3mm}
+
+%-----------Fellowships and Awards------------
+\section{Fellowships, Grants and Awards.}
+\vspace{-1mm}
+
+MRC DTP Postgraduate \textit{Studentship} \hspace*{2.8mm} --- King's College London $||$ $<$ 2\% Selection rate. $||$ $\sim$ \pounds205000 $||$ 2023 Cohort \\
+BDI Summer \textit{Internship} Programme \hspace*{4mm} --- University of Oxford $||$ 1 of 4 selected applicants $||$ 2023 Cohort\\
+Summer Research \textit{Internship} Program \hspace*{1.5mm} --- IIT - Gandhinagar $||$ $<$ 0.008\% Selection rate. $||$ 2023 Cohort
+\\
+UKRI Fast Start: Innovation \textit{Grant} \hspace*{5.5mm} --- Co-Applicant $||$ $\sim$ \pounds50000 $||$ 2022 Cohort \\
+MITACS Globalink Research \textit{Internship} --- TRIUMF (UVic) $||$ $<$ 3\% Selection rate $||$ 2021 Cohort
+\\
+
+SPIE Medical Imaging'25 \hspace{0.55cm} --- Travel Grant Award $||$ \$1000 \\
+
+IEEE ISBI'24  \hspace{2.25cm} --- Best Student Poster Award Finalist. (Top 8 out 717 Acceptances)
+
+IEEE ICETCI'21 \textit{Competition}  --- 3$^{rd}$ Place (Electronic Substation Detection)
+
+\vspace{-3mm}
+
+%-----------Graduate Teaching------------
+\section{Graduate Teaching}
+\vspace{-1mm}
+Journal Club -- Biomedical Enggineering $|$ Winter 24 \& Spring 25 {\scriptsize(Short Course)} \hfill{} Prof. Monica Agromayor\\
+Statistics \hspace{0.56cm}-- Biomedical Enggineering 
+ $|$ Spring 25 {\scriptsize(Short Course)} \hfill{} Prof.  James Housden\\
+
+\end{document}
