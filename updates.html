@@ -7,6 +7,43 @@
     <title>Updates</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
+    <style>
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+            gap: 10px;
+        }
+        .filter-button {
+            padding: 8px 16px;
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .filter-button.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .filter-button:hover {
+            background-color: #e0e0e0;
+        }
+        .filter-button.active:hover {
+            background-color: #3e8e41;
+        }
+        
+        /* New styles for update items */
+        .update-item {
+            margin-bottom: 5px;
+            width: 100%;
+        }
+        #updates-container {
+            width: 90%;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+    </style>
 </head>
 
 <body>
@@ -17,6 +54,15 @@
 
     <div class="image-container">
         <h1 style="color: green;">UPDATES</h1>
+    </div>
+
+    <!-- Filter Buttons -->
+    <div class="filter-buttons">
+        <button class="filter-button active" data-category="all">All</button>
+        <button class="filter-button" data-category="publishing">Publishing</button>
+        <button class="filter-button" data-category="reviewing">Reviewing</button>
+        <button class="filter-button" data-category="teaching">Teaching</button>
+        <button class="filter-button" data-category="misc">Misc</button>
     </div>
 
     <main>

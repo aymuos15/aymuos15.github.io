@@ -50,3 +50,67 @@ document.addEventListener('DOMContentLoaded', function() {
     initBouncingBall();
     loadUpdates();
 });
+
+// For the updates page
+document.addEventListener('DOMContentLoaded', function() {
+    // Fetch updates from JSON file
+    fetch('updates.json')
+        .then(response => response.json())
+        .then(data => {
+            const updatesContainer = document.getElementById('updates-container');
+            const filterButtons = document.querySelectorAll('.filter-button');
+            
+            // Display all updates initially
+            displayUpdates(data.updates, updatesContainer);
+            
+            // Add event listeners to filter buttons
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const category = this.getAttribute('data-category');
+                    
+                    // Toggle active class
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Filter updates based on category
+                    if (category === 'all') {
+                        displayUpdates(data.updates, updatesContainer);
+                    } else {
+                        const filteredUpdates = data.updates.filter(update => update.category === category);
+                        displayUpdates(filteredUpdates, updatesContainer);
+                    }
+                });
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching updates:', error);
+        });
+});
+
+function displayUpdates(updates, container) {
+    container.innerHTML = '';
+    
+    if (updates.length === 0) {
+        container.innerHTML = '<p>No updates found in this category.</p>';
+        return;
+    }
+    
+    updates.forEach(update => {
+        const updateElement = document.createElement('div');
+        updateElement.className = 'update-item';
+        
+        // Create the update HTML with proper formatting to prevent text overflow
+        updateElement.innerHTML = `
+            <div style="display: flex; margin-bottom: 10px;">
+                <div style="min-width: 100px; font-weight: bold; margin-right: -20px;">
+                    ${update.date}
+                </div>
+                <div style="flex: 1;">
+                    ${update.description}
+                </div>
+            </div>
+        `;
+        
+        container.appendChild(updateElement);
+    });
+}
