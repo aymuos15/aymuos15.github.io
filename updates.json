@@ -1,6 +1,7 @@
 {
     "updates": [
         { "date": "??/??/??", "description": "Next paper or announcement of binging One Piece.", "category": "misc" },
+        { "date": "[Jun. '25]", "description": "Starting an internship at <a href=\"https://cosine.sh/\" class=\"special-link3\">Cosine</a>.", "category": "misc" },
         { "date": "[Mar. '25]", "description": "Released <a href=\"https://github.com/KCL-BMEIS/UltraFlwr\" class=\"special-link\">Ultraflwr</a>. Library for Federated Object Detection on the edge. Hi 5 Yang!", "category": "publishing" },
         { "date": "[Mar. '25]", "description": "Graduate TA for Statistics with Prof. Richard Housden", "category": "teaching" },
         { "date": "[Mar. '25]", "description": "Reviewing for MICCAI 2025, NeurIPS 2025 and ICML 2025.", "category": "reviewing" },
