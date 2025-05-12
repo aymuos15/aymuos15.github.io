@@ -1,0 +1,196 @@
+.gallery-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 15px;
+}
+
+.photo-viewer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.photo-display {
+    width: 100%;
+    max-width: 500px;
+    height: 300px;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.photo-display img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.photo-display img:hover {
+    transform: scale(1.03);
+}
+
+.photo-nav {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.photo-nav button {
+    background: transparent;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 5px 10px;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+}
+
+body.light-mode .photo-nav button {
+    color: #ea1717;
+}
+
+body.dark-mode .photo-nav button {
+    color: #e7805b;
+}
+
+body.light-mode .photo-nav button:hover {
+    background-color: rgba(234, 23, 23, 0.1);
+}
+
+body.dark-mode .photo-nav button:hover {
+    background-color: rgba(231, 128, 91, 0.1);
+}
+
+.photo-caption {
+    text-align: center;
+    font-size: 0.9rem;
+    margin-top: 8px;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.photo-caption:hover {
+    opacity: 1;
+}
+
+.thumbnail-nav {
+    margin: 10px auto 0;
+    width: 100%;
+    max-width: 300px;
+    overflow: hidden;
+    position: relative;
+    padding: 5px 0;
+    mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        #000 8%,
+        #000 92%,
+        transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        #000 8%,
+        #000 92%,
+        transparent 100%
+    );
+}
+
+.thumbnail-container {
+    display: flex;
+    gap: 8px;
+    padding: 3px 0;
+    will-change: transform;
+    position: relative;
+    left: 0;
+    animation: slide 15s linear infinite;
+    animation-play-state: running;
+    width: max-content; /* Ensure container takes full width of all thumbnails */
+}
+
+/* Show only 3 thumbnails at a time */
+.thumbnail-nav::before,
+.thumbnail-nav::after {
+    content: '';
+    flex: 1;
+    min-width: 20px;
+    z-index: 1;
+}
+
+.thumbnail-nav::before {
+    background: linear-gradient(to right, var(--bg-color), transparent);
+}
+
+.thumbnail-nav::after {
+    background: linear-gradient(to left, var(--bg-color), transparent);
+}
+
+.thumbnail {
+    width: 75px;
+    height: 75px;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+    flex-shrink: 0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.thumbnail:hover {
+    opacity: 0.9;
+    transform: scale(1.05);
+}
+
+.thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.thumbnail.active {
+    opacity: 1;
+}
+
+body.light-mode .thumbnail.active {
+    border-color: #ea1717;
+}
+
+body.dark-mode .thumbnail.active {
+    border-color: #e7805b;
+}
+
+/* Hover effect for sliding */
+.thumbnail-nav:hover .thumbnail-container {
+    animation-play-state: paused;
+}
+
+/* Animation for auto-sliding */
+@keyframes slide {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-100% + 300px)); } /* Adjust based on visible thumbnails */
+}
+
+.filters-header-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.page-title {
+    margin: 0;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    text-align: center;
+}

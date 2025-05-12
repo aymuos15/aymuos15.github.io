@@ -1,3 +1,2 @@
-Feel free to fork the code if you like it :)
+Source code for my website. Feel free to use it for your own portfolio!
 
-I have attached my CV tex file for reference as well for my CV!

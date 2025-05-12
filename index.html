@@ -3,88 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Soumya Kundu</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        /* Specific styles for index page */
-        main p {
-            margin-bottom: 20px;
-        }
-    </style>
+    <title>My Portfolio</title>
+
+    <!-- Added Google Fonts - Roboto is a clean minimalist font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap">
+    <link rel="stylesheet" href="theme.css">
 </head>
-<body>
-    
-    <!-- Updates Button -->
-    <div class="top-buttons">
-        <a href="updates.html" class="home-button">Updates</a>
-    </div>
-    
-    <div class="image-container">
-        <img src="images/soumya.jpg" alt="Description of the image" width="200">
-        <p>Soumya (<span style="color: yellowgreen;">Shomo</span>) Snigdha (<span style="color: yellowgreen;">Snigdho</span>) Kundu</p>
+<body class="light-mode">
+
+    <div id="mode-toggle">
+        <label class="toggle-switch">
+            <input type="checkbox" id="theme-toggle">
+            <span class="toggle-slider"></span>
+        </label>
     </div>
 
-    <main>
-        <p>Ph.D. Student at <a href="https://cai4cai.ml/" class="special-link">CAI4CAI</a> (King's College London) supervised by <a href="https://cai4cai.ml/author/tom-vercauteren/" class="special-link2">Tom Vercauteren</a> and <a href="https://cai4cai.ml/author/jonathan-shapey/" class="special-link2">Jonathan Shapey</a>. 
-           I work on Trustworthy Volumteric Deep Learning for Neuro-Oncology. 
-        <!-- <a href="https://www.sciencedirect.com/science/article/pii/S0169260722005387" class="special-link">Automatically segmenting brain tumors</a> was truly mesmerizing as an undergrad. So I am continuing to do so <a href="https://cai4cai.ml/post/2022-10-16-tumourmanagementphd/" class="special-link">now</a> as well.  -->
-           I am funded by the <a href="https://kcl-mrcdtp.com/" class="special-link">Medical Research Council</a>.
-           For my M.Sc., I was at <a href="https://www.qmul.ac.uk/deri/" class="special-link">DERI</a> (Queen Mary University of London) advised by <a href="https://eecs.qmul.ac.uk/~gslabaugh/" class="special-link2">Greg Slabaugh</a> and <a href="https://www.unicornmedics.com/" class="special-link2">Vineet Batta</a>. 
-           I worked on Automated Orthopaedic Implant Identification. I was funded through the <a href='https://www.ukri.org/opportunity/fast-start-innovation/' class="special-link"> UKRI Fast Start: Innovation Grant</a>. For my undergrad, I was at SRM Institute of Science and Technology, advised by <a href="https://www.srmist.edu.in/faculty/dr-s-dhanalakshmi/" class="special-link2">Dhanalakshmi Samiappan</a> and  <a href="https://nitdgp.ac.in/department/computer-science-engineering/faculty-1/debashis-nandi" class="special-link2">Debashis Nandi</a> (NIT Durgapur).</p>
-
-        
-        <!-- <p>My general interest is in medical image computing and domain adaptation while figuring out how to do so 
-        <a href="https://ieeexplore.ieee.org/abstract/document/9671562" class="special-link">securely</a>, 
-        <a href="https://arxiv.org/abs/2402.19263" class="special-link">efficiently</a>, and 
-        <a href="https://sites.google.com/view/rcv-cvpr2021" class="special-link">transparently</a>.  -->
-        <!-- Good labels are tough to come by. Even tougher when it involves the human brain. So, I also like self-supervised learning.  -->
-       
-        <p>I have been beyond fortunate to spend a few fantastic summers interning with <a href="https://www.bdi.ox.ac.uk/Team/bartek-papiez" class="special-link2"> Bartek Papiez</a>  (Oxford), <a href="https://pdeperio.github.io/" class="special-link2">Patrick de Perio</a> and <a href="https://www.uvic.ca/science/physics/vispa/people/adjunct/konaka.php" class="special-link2">Akira Konaka</a> (TRIUMF Canada) and <a href="https://sites.google.com/umn.edu/tarungangwar/home" class="special-link2">Tarun Gangwar</a> (IIT-Gandhinagar). 
-           
-        
-        <hr style="border-color: #3498db;">
-        <!-- <hr style="border-color: #3498db;"> -->
-        
-        <p> Everyone at CAI4CAI has/had been the most amazing. Especially (in no particular order)   
-            <a href="https://cai4cai.ml/author/lorena-garcia-foncillas-macias/" class="special-link3">Lorena Macias</a>,
-            <a href="https://cai4cai.ml/author/aaron-kujawa/" class="special-link3">Aaron Kujawa</a>,
-            <a href="https://cai4cai.ml/author/theo-barfoot/" class="special-link3">Theo Barfoot</a>,
-            <a href="https://cai4cai.ml/author/marina-ivory/" class="special-link3">Marina Ivory</a>, and
-            <a href="https://cai4cai.ml/author/navodini-wijethilake/" class="special-link3">Navodini Wijethilake</a>,
-            <a href="https://cai4cai.ml/author/meng-wei/" class="special-link3">Meng Wei</a> and 
-            <a href="https://cai4cai.ml/author/yang-chen/" class="special-link3">Oluwatosin Alabi</a>.
-            Thanks to (in no particular order) 
-            <a href="https://www.linkedin.com/in/pooja-ganesh-alpha/" class="special-link3">Pooja Ganesh</a> (SEL), 
-            <a href="https://rakshit-naidu.github.io/" class="special-link3">Rakshit Naidu</a> (GaTech), 
-            <a href="https://www.linkedin.com/in/aarsh-chaube-568b901b2/?originalSubdomain=in" class="special-link3">Aarsh Chaube</a> (Edinburgh), and 
-            <a href="https://www.oncology.ox.ac.uk/research/research-group/mcgowan-group" class="special-link3">Mona Furukawa</a> (Oxford) for supporting my research journey.</p>
-
-        <p>In my previous life, I represented my country, state (national silver medal) and (captained) school in futsal. I also debated at a National level. 
-           I massively enjoy tech, anime, figuring out rhyming schemes in lyrically dense rap and aim to try a new cuisine every month.  
-            <!-- My Favourite bars:
-           "Catch a <span class="lightgreen">throat</span><span class="green">ful</span> from the <span class="yellow">fire</span> <span class="lightgreen">vo</span><span class="green">cal</span>,
-            With <span class="lightblue">ash</span> and molten <span class="lightblue">glass</span> <span class="yellow">like</span> <span class="yellow">Ey</span>jafjallajö<span class="green">kull</span>,
-            The volca<span class="green">no</span> out of <span class="yellow">Ice</span>land".</p> -->
-    </main>
-
-    <footer>
+    <div id="cloud-background"></div>
+    <div id="content-box">
         <p>
-            <a href="https://github.com/aymuos15"><img src="images/Feather-logos-github.svg" alt="github" style="width: 20px; height: auto; vertical-align: middle;"></a>  |
-            <a href="https://www.linkedin.com/in/soumyaskundu/"><img src="images/64px-LinkedIn_logo_initials.png" alt="LinkedIn" style="width: 20px; height: auto; vertical-align: middle;"></a> |
-            <a href="https://scholar.google.com/citations?user=WmHtKBYAAAAJ&hl=en&oi=ao"><img src="images/scholar.svg.png" alt="Google Scholar" style="width: 20px; height: auto; vertical-align: middle;"></a> |
-            <a href="https://github.com/aymuos15/aymuos15.github.io/blob/main/CV.pdf"><img src="images/resume.webp" alt="Resume" style="width: 20px; height: auto; vertical-align: middle;"></a> |
-            <a href="mailto:soumya_snighda.kundu@kcl.ac.uk"><img src="images/mail.png" alt="e-mail" style="width: 20px; height: auto; vertical-align: middle;"></a> |
-            <a href="https://discuss.pytorch.org/u/soumya_kundu/summary"><img src="images/torch.svg.png" alt="PyTorch" style="width: 16px; height: auto; vertical-align: middle;"></a> |
-            <a href="https://www.alphaxiv.org/profile/6770c388aa490fa39fe15b19/aymuos"><img src="images/alphaxiv.png" alt="PyTorch" style="width: 20px; height: auto; vertical-align: middle;"></a>
-
+            <b id="name-clickable">Soumya Snigdha Kundu</b>
+            <br>
+            <span class="pronunciation" style="display: none;">(Shou-mo Snigh-dho Kun-du)</span>
         </p>
-    </footer>
+        <p>2<sup>nd</sup> Year Ph.D. working on Volumetric Trustworthy ML for Neuro-Oncology at KCL advised by <a href="https://cai4cai.ml/author/tom-vercauteren/" class="_blank">Tom Vercauteren</a> and <a href="https://cai4cai.ml/author/jonathan-shapey/" class="_blank">Jonathan Shapey</a>. I am also a ML Engineer (intern) working on LLMs and ML Infra at Cosine.</p>
 
-    <!-- Bouncing Ball -->
-    <div class="ball" id="ball"></div>
-    
-    <!-- JavaScript -->
-    <script src="main.js"></script>
+        <p> Previously, I've interned with <a href="https://www.bdi.ox.ac.uk/Team/bartek-papiez" class="special-link2"> Bartek Papiez</a> at Oxford, <a href="https://pdeperio.github.io/" class="special-link2">Patrick de Perio</a> and <a href="https://www.uvic.ca/science/physics/vispa/people/adjunct/konaka.php" class="special-link2">Akira Konaka</a> at TRIUMF-Canada and <a href="https://sites.google.com/umn.edu/tarungangwar/home" class="special-link2">Tarun Gangwar</a> at IIT-GN.</p>
+        
+        <p>Take a look at my <a href="https://scholar.google.com/citations?user=WmHtKBYAAAAJ&hl=en" style="text-decoration: underline;">papers</a>, <a href="https://github.com/aymuos15" style="text-decoration: underline;">code</a>, <a href="updates/updates.html" style="text-decoration: underline;">updates</a>, <a href="gallery/gallery.html" style="text-decoration: underline;">gallery</a>, or a bit more about <a href="about.html" style="text-decoration: underline;">me</a>.</p>
+        
+    </div>
+
+    <script src="theme.js"></script>
 </body>
 </html>
