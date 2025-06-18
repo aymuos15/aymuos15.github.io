@@ -1,9 +1,9 @@
 {
     "updates": [
-        { "date": "??/??/??", "description": "Next paper or announcement of binging One Piece.", "category": "misc" },
+        { "date": "[Jul. '25]", "description": "Will be hosting <a href=\"https://www.linkedin.com/in/jeeezzhusss/\" class=\"special-link3\">Jai</a> and <a href=\"https://www.linkedin.com/in/pranav-rustagi-8a5a18253/\" class=\"special-link3\">Pranav</a> from LNMIIT as research interns with Yang. They will be contributing to Ultraflwr!", "category": "teaching" },
         { "date": "[Jun. '25]", "description": "Starting an internship at <a href=\"https://cosine.sh/\" class=\"special-link3\">Cosine</a>. Machine Learning Engineering and Product.", "category": "misc" },
         { "date": "[Mar. '25]", "description": "Released <a href=\"https://github.com/KCL-BMEIS/UltraFlwr\" class=\"special-link\">Ultraflwr</a>. Library for Federated Object Detection on the edge. Hi 5 <a href=\"https://dblp.org/pid/198/0698.html\" class=\"special-link2\">Yang!</a>", "category": "publishing" },
-        { "date": "[Mar. '25]", "description": "Graduate TA for Statistics with Prof. Richard Housden", "category": "teaching" },
+        { "date": "[Mar. '25]", "description": "Graduate TA for Statistics with <a href=\"https://kclpure.kcl.ac.uk/portal/en/persons/richard.housden\" class=\"special-link3\">Prof. Richard Housden</a>", "category": "teaching" },
         { "date": "[Mar. '25]", "description": "Reviewing for MICCAI 2025, NeurIPS 2025 and ICML 2025.", "category": "reviewing" },
         { "date": "[Feb. '25]", "description": "<a href=\"https://github.com/aymuos15/Promptly-Cited\" class=\"special-link\">KneeXNeT</a> accepted to MICAD'24. Congrats Nicahree!", "category": "publishing" },
         { "date": "[Dec. '24]", "description": "Passed my Qualifiers. Officially a PhD Student!", "category": "misc" },
@@ -12,7 +12,7 @@
         { "date": "[Sept '24]", "description": "Reviewing for AISTATS 2025.", "category": "reviewing" },
         { "date": "[Sept '24]", "description": "<a href=\"https://github.com/aymuos15/Promptly-Cited\" class=\"special-link\">Promptly-Cited</a> accepted at NeurIPS-WiML Workshop. Generating citation based LLM responses directly at inference time. Congrats Pooja!", "category": "publishing" },
         { "date": "[Sept '24]", "description": "<a href=\"https://voxel51.com/computer-vision-events/visual-ai-in-healthcare-sept-19-2024/\" class=\"special-link\">Talk</a> for Voxel 51 on my current Ph.D. work!", "category": "misc" },
-        { "date": "[Sept '24]", "description": "Graduate TA for Research Club - Biomedical Engineering with Prof. Monica Agromayor", "category": "teaching" },
+        { "date": "[Sept '24]", "description": "Graduate TA for Research Club - Biomedical Engineering with <a href=\"https://www.kcl.ac.uk/people/monica-agromayor\" class=\"special-link3\">Prof. Monica Agromayor</a>", "category": "teaching" },
         { "date": "[Sept '24]", "description": "Reviewing for NeurIPS-WiML 2024, ICLR 2024.", "category": "reviewing" },
         { "date": "[Aug. '24]", "description": "Hosted 2 High School Interns via the <a href=\"https://in2scienceuk.org/our-programmes/in2stem/\" class=\"special-link3\">In2STEM programme</a>.", "category": "teaching" },
         { "date": "[June '24]", "description": "Reviewing for NeurIPS, MICCAI-FAIMI, CaPTion@MICCAI, and ICML-ML4MLS 2024.", "category": "reviewing" },
