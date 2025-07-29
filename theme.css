@@ -1,15 +1,15 @@
-/* Basic Reset and Body Setup */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+    /* Basic Reset and Body Setup */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-:root {
-    /* Light mode variables */
-    --light-bg: linear-gradient(to bottom, #ececec, #ffffff);
-    --light-text-primary: #333;
-    --light-text-secondary: #555;
+    :root {
+        /* Light mode variables */
+        --light-bg: linear-gradient(to bottom, #ececec, #ffffff);
+        --light-text-primary: #333;
+        --light-text-secondary: #555;
     --light-link-person: #ea1717;
     --light-link-other: #007acc;
     --light-link-hover: #004499;

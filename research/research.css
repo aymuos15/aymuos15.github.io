@@ -1,0 +1,123 @@
+/* Content box styling */
+#content-box {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+#content-box > p {
+    margin: 0 !important;
+    padding: 0 !important;
+    margin-bottom: 8px !important;
+}
+
+/* Research grid layout */
+.research-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 15px;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100%;
+}
+
+/* Card styling */
+.research-card {
+    background: var(--light-cloud-bg, rgba(255, 255, 255, 0.8));
+    background: var(--dark-cloud-bg, rgba(255, 255, 255, 0.15));
+    color: var(--text-color, #333);
+    border-radius: 10px;
+    padding: 3px 10px 20px 10px; /* Increased left/right padding for upper indent */
+    box-shadow: 0 3px 8px var(--light-cloud-shadow, rgba(0, 0, 0, 0.1));
+    transition: all 0.3s ease;
+    cursor: pointer;
+    overflow: hidden;
+    height: auto;
+    max-height: 70px;
+    transition: max-height 0.3s ease-out, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Expanded card state */
+.research-card.expanded {
+    max-height: 500px;
+    transform: translateY(-10px);
+    box-shadow: 0 6px 5px var(--light-cloud-shadow, rgba(0, 0, 0, 0.15));
+}
+
+/* Card header */
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* Card title */
+.research-card h2 {
+    margin: 0;
+    padding: 0;
+    font-size: 1em;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+/* Card content */
+.research-card .card-content {
+    opacity: 0;
+    transform: translateY(1px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    padding: 1px 0 0 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    margin: 10px 0 0 0;
+}
+
+/* Target the paragraph directly */
+.research-card .card-content p {
+    padding-left: 5px !important;
+    margin: 0 !important;
+    text-indent: 0 !important;
+}
+
+/* Expanded state styles */
+.research-card.expanded .card-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Color theming */
+body.light-mode .research-card h2 {
+    color: #ea1717;
+}
+
+body.dark-mode .research-card h2 {
+    color: #e7805b;
+}
+
+body.light-mode .research-card p {
+    color: #555;
+}
+
+body.dark-mode .research-card p {
+    color: #b0b0b0;
+}
+
+/* Toggle icon */
+.toggle-icon {
+    transition: transform 0.3s ease;
+    font-size: 1.2em;
+}
+
+.research-card.expanded .toggle-icon {
+    transform: rotate(180deg);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .research-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .research-card {
+        max-height: 60px;
+    }
+}
