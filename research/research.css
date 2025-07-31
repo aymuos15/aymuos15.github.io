@@ -19,9 +19,9 @@
 .research-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 10px;
+    gap: 15px;
     margin: 0 !important;
-    padding: 0 !important;
+    padding: 0 0 20px 0 !important;
     width: 100%;
 }
 
@@ -77,8 +77,8 @@ body:not(.light-mode) .research-card {
 /* Card title */
 .research-card h2 {
     margin: 0;
-    padding: 0;
-    font-size: 1em;
+    padding: 5px 0;
+    font-size: 0.95em;
     font-weight: 500;
     transition: color 0.2s ease;
 }
@@ -88,9 +88,10 @@ body:not(.light-mode) .research-card {
     opacity: 0;
     transform: translateY(1px);
     transition: opacity 0.3s ease, transform 0.3s ease;
-    padding: 1px 0 0 20px;
+    padding: 1px 0 10px 20px;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
-    margin: 10px 0 0 0;
+    margin: 10px 0 10px 0;
+    font-size: 0.95em;
 }
 
 /* Target the paragraph directly */
