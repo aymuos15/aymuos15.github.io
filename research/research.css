@@ -116,12 +116,22 @@ body.dark-mode .research-card h2 {
     color: var(--dark-link-person) !important;
 }
 
+/* Default card state (collapsed) */
+.research-card {
+    max-height: 55px;
+    overflow: hidden;
+}
+
+/* Expanded state */
+.research-card.expanded {
+    max-height: 500px;
+    transform: translateY(-5px);
+    box-shadow: 0 4px 4px var(--light-cloud-shadow, rgba(0,0,0,0.15));
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .research-grid {
         grid-template-columns: 1fr;
-    }
-    .research-card {
-        max-height: 55px;
     }
 }
