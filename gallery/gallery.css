@@ -1,3 +1,32 @@
+/* Page title styles */
+.page-title {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    transition: color var(--transition-speed) ease;
+}
+
+body.light-mode .page-title {
+    color: var(--light-link-person);
+}
+
+body.dark-mode .page-title {
+    color: var(--dark-link-person);
+}
+
+.page-title a {
+    text-decoration: none;
+    transition: color var(--transition-speed) ease;
+}
+
+body.light-mode .page-title a {
+    color: var(--light-link-person);
+}
+
+body.dark-mode .page-title a {
+    color: var(--dark-link-person);
+}
+
+/* Gallery container */
 .gallery-container {
     display: flex;
     flex-direction: column;

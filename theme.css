@@ -1,4 +1,4 @@
-    /* Basic Reset and Body Setup */
+/* Basic Reset and Body Setup */
     * {
         margin: 0;
         padding: 0;
@@ -6,10 +6,10 @@
     }
 
     :root {
-        /* Light mode variables */
-        --light-bg: linear-gradient(to bottom, #ececec, #ffffff);
-        --light-text-primary: #333;
-        --light-text-secondary: #555;
+    /* Light mode variables */
+    --light-bg: linear-gradient(to bottom, #ececec, #ffffff);
+    --light-text-primary: #333;
+    --light-text-secondary: #555;
     --light-link-person: #ea1717;
     --light-link-other: #007acc;
     --light-link-hover: #004499;
@@ -224,6 +224,7 @@ body.light-mode a:hover {
 
 body.light-mode .person-link, 
 body.light-mode #name-clickable, 
+body.light-mode #bio-link,
 body.light-mode .special-link, 
 body.light-mode .special-link2, 
 body.light-mode .special-link3 {
@@ -233,6 +234,7 @@ body.light-mode .special-link3 {
 
 body.light-mode .person-link:hover, 
 body.light-mode #name-clickable:hover,
+body.light-mode #bio-link:hover,
 body.light-mode .special-link:hover, 
 body.light-mode .special-link2:hover, 
 body.light-mode .special-link3:hover {
@@ -263,6 +265,7 @@ body.dark-mode a:hover {
 
 body.dark-mode .person-link, 
 body.dark-mode #name-clickable,
+body.dark-mode #bio-link,
 body.dark-mode .special-link, 
 body.dark-mode .special-link2, 
 body.dark-mode .special-link3 {
@@ -272,6 +275,7 @@ body.dark-mode .special-link3 {
 
 body.dark-mode .person-link:hover, 
 body.dark-mode #name-clickable:hover,
+body.dark-mode #bio-link:hover,
 body.dark-mode .special-link:hover, 
 body.dark-mode .special-link2:hover, 
 body.dark-mode .special-link3:hover {
@@ -286,6 +290,27 @@ body.dark-mode .other-link {
 
 body.dark-mode .other-link:hover {
     color: var(--dark-link-other-hover);
+    text-decoration-color: var(--dark-decoration-hover);
+}
+
+/* News Link Styling */
+body.light-mode #news-link {
+    color: var(--light-link-person);
+    text-decoration-color: var(--light-decoration-color);
+}
+
+body.light-mode #news-link:hover {
+    color: var(--light-link-hover);
+    text-decoration-color: var(--light-decoration-hover);
+}
+
+body.dark-mode #news-link {
+    color: var(--dark-link-person);
+    text-decoration-color: var(--dark-decoration-color);
+}
+
+body.dark-mode #news-link:hover {
+    color: var(--dark-link-hover);
     text-decoration-color: var(--dark-decoration-hover);
 }
 
@@ -401,4 +426,34 @@ body.dark-mode #content-box p.pronunciation {
 /* Hidden class */
 .hidden {
     display: none;
+}
+
+/* Industry Research Heading Styling */
+#content-box #industry-heading {
+    color: var(--light-link-person);
+    text-decoration-color: var(--light-decoration-color);
+}
+
+body.light-mode #content-box #industry-heading:hover {
+    color: var(--light-link-hover);
+    text-decoration-color: var(--light-decoration-hover);
+}
+
+body.dark-mode #content-box #industry-heading {
+    color: var(--dark-link-person);
+    text-decoration-color: var(--dark-decoration-color);
+}
+
+body.dark-mode #content-box #industry-heading:hover {
+    color: var(--dark-link-hover);
+    text-decoration-color: var(--dark-decoration-hover);
+}
+
+/* Ensure special-link2 has proper color in both light and dark modes */
+body.light-mode .special-link2 {
+    color: var(--light-link-other, #007acc);
+}
+
+body.dark-mode .special-link2 {
+    color: var(--dark-link-other, #80d4ff);
 }
