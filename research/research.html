@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research | Soumya Snigdha Kundu</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap">
+    <link rel="stylesheet" href="../theme.css">
+    <link rel="stylesheet" href="research.css">
+</head>
+<body class="light-mode">
+    <div id="mode-toggle">
+        <label class="toggle-switch">
+            <input type="checkbox" id="theme-toggle">
+            <span class="toggle-slider"></span>
+        </label>
+    </div>
+    <div id="cloud-background"></div>
+    <div id="content-box">
+        <p>
+            <b><a href="../index.html" class="special-link2">Core Academic Research</a></b>
+            &nbsp;|&nbsp;
+            <a href="https://scholar.google.com/citations?user=WmHtKBYAAAAJ&hl=en&oi=ao" title="Google Scholar Profile" style="text-decoration: none; border: none; padding: 0; display: inline-block; margin-left: -8px;">
+                <img class="gscholar-logo" alt="Google Scholar" style="width: 12px; height: 12px; vertical-align: middle; border: none;">
+            </a><a href="https://github.com/aymuos15" title="GitHub Profile" style="text-decoration: none; border: none; padding: 0; display: inline-block; margin-left: 2px;">
+                <img src="../assets/github_logo.png" alt="GitHub" style="width: 20px; height: 20px; vertical-align: middle; border: none;">
+            </a>
+        </p>
+        <div class="research-grid">
+            <div class="research-card" onclick="toggleCard(this)">
+                <div class="card-header">
+                    <h2>Segmentation at all granularity</h2>
+
+                </div>
+                <div class="card-content">
+                    <p> Semantic/Instance/Panoptic and Part Aware Segmentation networks which are invariant to instance imbalance. 
+                        
+                    With BraTS, I help build their evaluation pipeline for most of their challenges.</p>
+                </div>
+            </div>
+            
+            <div class="research-card" onclick="toggleCard(this)">
+                <div class="card-header">
+                    <h2>Kernels for Segmentation</h2>
+
+                </div>
+                <div class="card-content">
+                    <p>Triton kernels specifically to enhance segmentation pipelines.</p>
+                </div>
+            </div>
+            
+            <div class="research-card" onclick="toggleCard(this)">
+                <div class="card-header">
+                    <h2>Federated Learning on the Edge</h2>
+
+                </div>
+                <div class="card-content">
+                    <p>With Yang Li, End-to-end hardware + software stack for FL on the Edge and hyper-optimisation of neural networks for edge deployment.</p>
+                </div>
+            </div>
+        </div>
+
+        <p>
+            <br>
+            <b><a href="../index.html" class="special-link">Industry Research</a></b>
+            <br>
+        </p>
+        <div class="research-grid">
+            <div class="research-card" onclick="toggleCard(this)">
+                <div class="card-header">
+                    <h2>Parallelism for Large Models</h2>
+                </div>
+                <div class="card-content">
+                    <p>Investigation of all sorts of parallelism strategies to accelerate large model training and inference.</p>
+                </div>
+            </div>
+            <div class="research-card" onclick="toggleCard(this)">
+                <div class="card-header">
+                    <h2>Data Acquisition for Large Code Models</h2>
+                </div>
+                <div class="card-content">
+                    <p> Scalable pipelines for acquisition, filtering, and curation of high-quality, multi-lingual code datasets to train and test large code models.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../theme.js"></script>
+    <script src="research.js"></script>
+</body>
+</html>
