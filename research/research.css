@@ -1,140 +1,127 @@
+/* styles.css - Compact Card Headers */
 :root {
-    --text-color: #333; /* Explicitly define text color */
+    --text-color: #333;
 }
 
-/* Content box styling */
+/* Container */
 #content-box {
     max-width: 1000px;
-    margin: -120px auto 0 auto;
-    padding: 0 10px 10px 10px;
+    margin: -100px auto 0;
+    padding: 0 45px;
 }
 
 #content-box > p {
-    margin: 0 !important;
-    padding: 0 !important;
-    margin-bottom: 8px !important;
+    margin: 10 !important;
 }
 
-/* Research grid layout */
+/* Grid Layout */
 .research-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 15px;
+    gap: 10px;             /* Reduced gap */
     margin: 0 !important;
-    padding: 0 0 20px 0 !important;
-    width: 100%;
+    padding: 0 0 5px !important;
 }
 
-/* Card styling */
+/* Cards */
 .research-card {
-    border-radius: 10px;
-    padding: 0 10px 10px 10px;
+    border-radius: 8px;
+    padding: 10px 8px;      /* Minimal vertical padding */
     cursor: pointer;
     overflow: hidden;
-    height: auto;
-    max-height: 55px;
-    transition: all 0.3s ease;
+    transition: all 0.25s ease;
+    margin-bottom: 2px; /* Added margin for spacing */
 }
 
-/* Light mode styles */
+/* Light Mode */
 body.light-mode .research-card {
-    background: rgba(241, 216, 213, 0.3) !important; /* Semi-transparent light pink */
-    color: #333333 !important;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    background: rgba(241, 216, 213, 0.3) !important;
+    color: #333 !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Google Scholar logo styles */
-.gscholar-logo {
-    content: url(../assets/gscholar_logo.png);
-}
-
-body:not(.light-mode) .gscholar-logo {
-    content: url(../assets/gscholar_logo_dark.png);
-}
-
-/* Dark mode styles */
+/* Dark Mode */
 body:not(.light-mode) .research-card {
     background: var(--dark-cloud-bg) !important;
     color: var(--dark-text-primary) !important;
-    box-shadow: 0 3px 8px var(--dark-cloud-shadow);
+    box-shadow: 0 2px 5px var(--dark-cloud-shadow);
 }
 
-/* Expanded card state */
+/* Expanded State */
 .research-card.expanded {
     max-height: 500px;
-    transform: translateY(-10px);
-    box-shadow: 0 6px 5px var(--light-cloud-shadow, rgba(0, 0, 0, 0.15));
+    transform: translateY(-5px);
+    box-shadow: 0 4px 4px var(--light-cloud-shadow, rgba(0,0,0,0.15));
 }
 
-/* Card header */
+/* Header */
 .card-header {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
+    align-items: flex-start;
+    margin: 0;
+    padding: 0;
+    gap: 2px;              /* Reduced gap between elements */
 }
 
-/* Card title */
 .research-card h2 {
-    margin: 0;
-    padding: 5px 0;
-    font-size: 0.95em;
-    font-weight: 500;
+    font-size: 0.9em;
+    font-weight: 5000;
+    line-height: 1.1;
+    word-break: break-word;
     transition: color 0.2s ease;
 }
 
-/* Card content */
-.research-card .card-content {
-    opacity: 0;
-    transform: translateY(1px);
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    padding: 1px 0 10px 20px;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-    margin: 10px 0 10px 0;
-    font-size: 0.95em;
-}
-
-/* Target the paragraph directly */
-.research-card .card-content p {
-    padding-left: 5px !important;
-    margin: 0 !important;
-    text-indent: 0 !important;
-}
-
-/* Expanded state styles */
-.research-card.expanded .card-content {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Color theming */
-body.light-mode .research-card h2 {
-    color: var(--light-link-person) !important;
-    transition: color var(--transition-speed) ease;
-}
-
-body.dark-mode .research-card h2 {
-    color: var(--dark-link-person) !important;
-    transition: color var(--transition-speed) ease;
-}
-
-/* Toggle icon */
 .toggle-icon {
-    transition: transform 0.3s ease;
-    font-size: 1.2em;
+    transition: transform 0.25s ease;
+    font-size: 1em;        /* Slightly smaller icon */
 }
 
 .research-card.expanded .toggle-icon {
     transform: rotate(180deg);
 }
 
-/* Responsive adjustments */
+/* Content */
+.research-card .card-content {
+    opacity: 0;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    font-size: 0.8em;
+}
+
+.research-card .card-content p {
+    margin: 0 !important;
+    padding: 0 !important;
+    text-indent: 0 !important;
+}
+
+.research-card.expanded .card-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Logos */
+.gscholar-logo {
+    content: url(../assets/gscholar_logo.png);
+}
+body:not(.light-mode) .gscholar-logo {
+    content: url(../assets/gscholar_logo_dark.png);
+}
+
+/* Theming */
+body.light-mode .research-card h2 {
+    color: var(--light-link-person) !important;
+}
+body.dark-mode .research-card h2 {
+    color: var(--dark-link-person) !important;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
     .research-grid {
         grid-template-columns: 1fr;
     }
-    
     .research-card {
-        max-height: 60px;
+        max-height: 55px;
     }
 }
