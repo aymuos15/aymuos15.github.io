@@ -11,26 +11,27 @@
 }
 
 #content-box > p {
-    margin: 10 !important;
+    margin: 5px 0 !important;
+    line-height: 1.2;
 }
 
 /* Grid Layout */
 .research-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 10px;             /* Reduced gap */
+    gap: 8px;
     margin: 0 !important;
-    padding: 0 0 5px !important;
+    padding: 2px 0 !important;
 }
 
 /* Cards */
 .research-card {
     border-radius: 8px;
-    padding: 10px 8px;      /* Minimal vertical padding */
+    padding: 8px;
     cursor: pointer;
     overflow: hidden;
     transition: all 0.25s ease;
-    margin-bottom: 2px; /* Added margin for spacing */
+    margin: 0;
 }
 
 /* Light Mode */
