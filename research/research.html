@@ -80,9 +80,41 @@
                 </div>
             </div>
         </div>
+
+        <p style="margin-top: 30px;">
+            Some of the <span id="grants-link" class="special-link" style="cursor: pointer;">grants/awards</span> I have received in the past:
+        </p>
+        <div id="grants-list" style="display: none; margin-top: 10px; padding-left: 15px; border-left: 2px solid rgba(0, 0, 0, 0.1); transition: all 0.3s ease;">
+            <p>My Phd is fully funded by the <a href="https://kcl-mrcdtp.com/" target="_blank">Medical Research Council of UK</a>. I was selected for the <a href="https://www.ukri.org/opportunity/fast-start-innovation/" target="_blank">UKRI fast track grant</a> for my MSc. During UG, I was awarded the <a href="https://www.mitacs.ca/our-programs/globalink-research-internship-students/" target="_blank">MITACS Globalink Fellowship</a>.</p>
+        </div>
+        <p>I also frequently <span id="reviewing-link" class="special-link" style="cursor: pointer;">review</span>.</p>
+        <div id="reviewing-list" style="display: none; margin-top: 10px; padding-left: 15px; border-left: 2px solid rgba(0, 0, 0, 0.1); transition: all 0.3s ease;">
+            <p>MICCAI, ICML, NeurIPS, ICLR, AISTATS and IEEE-ISBI.</p>
+        </div>
     </div>
 
     <script src="../theme.js"></script>
     <script src="research.js"></script>
+    <script>
+        // Toggle grants/awards section
+        document.getElementById('grants-link').addEventListener('click', function() {
+            const grantsList = document.getElementById('grants-list');
+            if (grantsList.style.display === 'none') {
+                grantsList.style.display = 'block';
+            } else {
+                grantsList.style.display = 'none';
+            }
+        });
+
+        // Toggle reviewing section
+        document.getElementById('reviewing-link').addEventListener('click', function() {
+            const reviewingList = document.getElementById('reviewing-list');
+            if (reviewingList.style.display === 'none') {
+                reviewingList.style.display = 'block';
+            } else {
+                reviewingList.style.display = 'none';
+            }
+        });
+    </script>
 </body>
 </html>
