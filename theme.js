@@ -1,10 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Initialize theme based on user preference if available
+    // Initialize theme based on user preference if available, otherwise random
     const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
+    const theme = savedTheme || (Math.random() < 0.5 ? 'light' : 'dark');
+
+    if (theme === 'dark') {
         document.body.classList.remove('light-mode');
         document.body.classList.add('dark-mode');
         document.getElementById('theme-toggle').checked = true;
+    }
+
+    // Save the theme if it wasn't already saved
+    if (!savedTheme) {
+        localStorage.setItem('theme', theme);
     }
 
     // Theme toggle functionality
