@@ -1,5 +1,6 @@
 {
     "updates": [
+        { "date": "[Oct. '25]", "description": "Will be supervising the BSc thesis of Yingfan Tao and Jiayue Liang", "category": "teaching" },
         { "date": "[Aug. '25]", "description": "Hosting 2 High School Interns via the <a href=\"https://in2scienceuk.org/our-programmes/in2stem/\" class=\"special-link3\">In2STEM programme</a>.", "category": "teaching" },
         { "date": "[Jul. '25]", "description": "Will be hosting <a href=\"https://www.linkedin.com/in/jeeezzhusss/\" class=\"special-link3\">Jai</a> and <a href=\"https://www.linkedin.com/in/pranav-rustagi-8a5a18253/\" class=\"special-link3\">Pranav</a> from LNMIIT as research interns with Yang. They will be contributing to Ultraflwr!", "category": "teaching" },
         { "date": "[Jun. '25]", "description": "Starting an internship at <a href=\"https://cosine.sh/\" class=\"special-link3\">Cosine</a>. Machine Learning Engineering and Product.", "category": "misc" },
