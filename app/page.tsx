@@ -1,12 +1,35 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Home() {
+  const [showPronunciation, setShowPronunciation] = useState(false);
+
   return (
     <div className="min-h-[calc(100vh-80px)] flex items-center justify-center px-4">
       <div className="max-w-2xl space-y-6">
         <div>
-          <h1 className="text-3xl font-bold">Soumya Snigdha Kundu</h1>
-          <p className="text-sm text-muted-foreground mt-1">(Shou-mo Snigh-dho Kun-du)</p>
+          <h1
+            className="text-3xl font-bold cursor-pointer hover:opacity-70"
+            onClick={() => setShowPronunciation(!showPronunciation)}
+          >
+            Soumya Snigdha Kundu
+          </h1>
+          <AnimatePresence>
+            {showPronunciation && (
+              <motion.p
+                initial={{ opacity: 0, height: 0, marginTop: 0 }}
+                animate={{ opacity: 1, height: "auto", marginTop: 4 }}
+                exit={{ opacity: 0, height: 0, marginTop: 0 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                className="text-sm text-muted-foreground overflow-hidden"
+              >
+                (Shou-mo Snigh-dho Kun-du)
+              </motion.p>
+            )}
+          </AnimatePresence>
         </div>
 
         <p className="text-base leading-relaxed text-justify">
