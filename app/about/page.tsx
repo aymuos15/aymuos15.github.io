@@ -2,35 +2,14 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function About() {
   const [showCollaborators, setShowCollaborators] = useState(false);
 
   return (
-    <div className="min-h-[calc(100vh-80px)] flex items-center justify-center px-4">
+    <div className="min-h-screen flex items-center justify-center px-4">
       <div className="max-w-2xl space-y-6">
-        <div className="flex items-center gap-4">
-          <Link href="/" className="font-bold underline hover:opacity-70">
-            Bio
-          </Link>
-          <span>|</span>
-          <Link
-            href="https://www.linkedin.com/in/soumyaskundu/"
-            target="_blank"
-            title="LinkedIn Profile"
-          >
-            <Image
-              src="/assets/64px-LinkedIn_logo_initials.png"
-              alt="LinkedIn"
-              width={16}
-              height={16}
-              className="inline hover:opacity-70"
-            />
-          </Link>
-        </div>
-
         <p className="text-base leading-relaxed text-justify">
           My MSc was with{" "}
           <Link href="https://eecs.qmul.ac.uk/~gslabaugh/" target="_blank" className="underline hover:opacity-70">

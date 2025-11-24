@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import updatesData from "@/lib/updates.json";
@@ -22,8 +23,23 @@ const categoryLabels: Record<Category, string> = {
   misc: "Misc",
 };
 
+const researchImages = [
+  "/research_pics/a_street_tunis_2021.34.6.jpg",
+  "/research_pics/jan_Novak_old_man.jpg",
+  "/research_pics/jeunesse_passe_vite_vertu_..._2015.143.103.jpg",
+  "/research_pics/keelmen_heaving_in_coals_by_moonlight_1942.9.86.jpg",
+  "/research_pics/paul-klee_color-chart-qu-1.png",
+];
+
 export default function Updates() {
   const [activeCategory, setActiveCategory] = useState<Category>("all");
+  const [randomImage, setRandomImage] = useState<string>("");
+
+  useEffect(() => {
+    // Select random image on mount
+    const randomIndex = Math.floor(Math.random() * researchImages.length);
+    setRandomImage(researchImages[randomIndex]);
+  }, []);
 
   const filteredUpdates = updatesData.updates.filter((update: Update) => {
     if (activeCategory === "all") return true;
@@ -31,25 +47,31 @@ export default function Updates() {
   }).slice(0, 6);
 
   return (
-    <div className="min-h-[calc(100vh-80px)] flex flex-col justify-center px-4 py-8">
-      <div className="max-w-3xl mx-auto w-full space-y-8">
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-          <Link href="/" className="font-bold text-xl underline hover:opacity-70">
-            News
-          </Link>
-
-          <div className="flex flex-wrap gap-2">
-            {(Object.keys(categoryLabels) as Category[]).map((category) => (
-              <Button
-                key={category}
-                variant={activeCategory === category ? "default" : "ghost"}
-                size="sm"
-                onClick={() => setActiveCategory(category)}
-                className="text-sm"
-              >
-                {categoryLabels[category]}
-              </Button>
-            ))}
+    <div className="min-h-screen flex flex-col items-center justify-center px-4 py-8">
+      <div className="max-w-3xl w-full space-y-8">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-end gap-4">
+          <div className="relative rounded-lg overflow-hidden">
+            {randomImage && (
+              <Image
+                src={randomImage}
+                alt="Background"
+                fill
+                className="object-cover opacity-30"
+              />
+            )}
+            <div className="relative z-10 flex flex-wrap gap-2 p-3">
+              {(Object.keys(categoryLabels) as Category[]).map((category) => (
+                <Button
+                  key={category}
+                  variant={activeCategory === category ? "default" : "ghost"}
+                  size="sm"
+                  onClick={() => setActiveCategory(category)}
+                  className="text-sm"
+                >
+                  {categoryLabels[category]}
+                </Button>
+              ))}
+            </div>
           </div>
         </div>
 

@@ -8,7 +8,7 @@ export default function Home() {
   const [showPronunciation, setShowPronunciation] = useState(false);
 
   return (
-    <div className="min-h-[calc(100vh-80px)] flex items-center justify-center px-4">
+    <div className="min-h-screen flex items-center justify-center px-4">
       <div className="max-w-2xl space-y-6">
         <div>
           <h1

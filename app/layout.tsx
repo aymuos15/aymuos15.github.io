@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Header } from "@/components/header";
+import { PageTransition } from "@/components/page-transition";
+import { PrefetchRoutes } from "@/components/prefetch-routes";
+import { InitialLoader } from "@/components/initial-loader";
 
 export const metadata: Metadata = {
   title: "Ayush Tiwari",
@@ -35,8 +38,10 @@ export default function RootLayout({
         />
       </head>
       <body style={{ fontFamily: "'Roboto', sans-serif" }}>
+        <InitialLoader />
+        <PrefetchRoutes />
         <Header />
-        {children}
+        <PageTransition>{children}</PageTransition>
       </body>
     </html>
   );

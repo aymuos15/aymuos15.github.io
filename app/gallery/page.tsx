@@ -27,8 +27,8 @@ export default function Gallery() {
   const duplicatedPhotos = [...photos, ...photos, ...photos];
 
   return (
-    <div className="min-h-[calc(100vh-80px)] flex flex-col justify-center px-4 py-8">
-      <div className="max-w-4xl mx-auto w-full">
+    <div className="min-h-screen flex flex-col items-center justify-center px-4 py-8">
+      <div className="max-w-4xl w-full">
         <div className="space-y-6">
           <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden bg-muted">
             <Image

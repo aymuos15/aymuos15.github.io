@@ -42,7 +42,7 @@ export default function Research() {
   const allResearch = [...academicResearch, ...industryResearch];
 
   return (
-    <div className="min-h-[calc(100vh-80px)] flex items-center justify-center px-4">
+    <div className="min-h-screen flex items-center justify-center px-4">
       <section className="max-w-xl w-full">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
