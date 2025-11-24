@@ -78,6 +78,10 @@ export default function Home() {
             updates
           </Link>
           ,{" "}
+          <Link href="https://aymuos15.github.io/blog/" className="underline hover:opacity-70" target="_blank" rel="noopener noreferrer">
+            blog
+          </Link>
+          ,{" "}
           <Link href="/gallery" className="underline hover:opacity-70">
             gallery
           </Link>

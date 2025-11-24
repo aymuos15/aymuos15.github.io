@@ -38,7 +38,7 @@ export function Header() {
                 Gallery
               </Button>
             </Link>
-            <Link href="/blog">
+            <Link href="https://aymuos15.github.io/blog/" target="_blank" rel="noopener noreferrer">
               <Button variant="ghost" size="sm">
                 Blog
               </Button>

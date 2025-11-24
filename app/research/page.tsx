@@ -3,37 +3,26 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Research() {
-  const [showGrants, setShowGrants] = useState(false);
-  const [showReviewing, setShowReviewing] = useState(false);
-  const [expandedCards, setExpandedCards] = useState<Set<number>>(new Set());
-
-  const toggleCard = (index: number) => {
-    const newExpanded = new Set(expandedCards);
-    if (newExpanded.has(index)) {
-      newExpanded.delete(index);
-    } else {
-      newExpanded.add(index);
-    }
-    setExpandedCards(newExpanded);
-  };
-
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [selectedResearch, setSelectedResearch] = useState<number | null>(null);
   const academicResearch = [
     {
-      title: "Volumetric Segmentation at all granularity",
+      title: "Segmentation at all granularity",
       content: "Building instance imblance invariant networks, losses and metrics for Semantic, Instance, Panoptic and Part Aware Segmentation. Part of this is in collaboration with BraTS where I am organiser for BraTS-METS.",
+      image: "/research_pics/a_street_tunis_2021.34.6.jpg",
     },
     {
       title: "Kernels for Segmentation",
       content: "Engineering Triton kernels specifically to enhance segmentation pipelines.",
+      image: "/research_pics/jan_Novak_old_man.jpg",
     },
     {
       title: "Federated Learning on the Edge",
       content: "With Yang Li, we are developing end-to-end hardware + software stack for FL on the Edge and work on the hyper-optimisation of neural networks for edge deployment.",
+      image: "/research_pics/paul-klee_color-chart-qu-1.png",
     },
   ];
 
@@ -41,186 +30,174 @@ export default function Research() {
     {
       title: "Parallelism for Large Models",
       content: "Investigate all sorts of parallelism strategies to massively accelerate large model training and inference.",
+      image: "/research_pics/keelmen_heaving_in_coals_by_moonlight_1942.9.86.jpg",
     },
     {
       title: "Data Acquisition for Large Code Models",
       content: "Orchestration of scalable pipelines for acquisition, filtering, and curation of high-quality, multi-lingual code datasets to train and test large code models.",
+      image: "/research_pics/jeunesse_passe_vite_vertu_..._2015.143.103.jpg",
     },
   ];
 
+  const allResearch = [...academicResearch, ...industryResearch];
+
   return (
-    <div className="max-w-4xl mx-auto space-y-6">
-      <Card>
-        <CardContent className="pt-6">
-          <div className="flex items-center gap-4 mb-6">
-            <Link href="/" className="font-bold underline hover:text-primary">
-              Core Academic Research
-            </Link>
-            <span>|</span>
-            <Link
-              href="https://scholar.google.com/citations?user=WmHtKBYAAAAJ&hl=en&oi=ao"
-              target="_blank"
-              title="Google Scholar Profile"
-            >
-              <Image
-                src="/assets/google_scholar.png"
-                alt="Google Scholar"
-                width={20}
-                height={20}
-                className="inline"
-              />
-            </Link>
-            <Link href="https://github.com/aymuos15" target="_blank" title="GitHub Profile">
-              <Image
-                src="/assets/github_logo.png"
-                alt="GitHub"
-                width={20}
-                height={20}
-                className="inline"
-              />
-            </Link>
-          </div>
-
-          <div className="grid gap-4">
-            {academicResearch.map((research, index) => (
-              <Card
-                key={index}
-                className="cursor-pointer hover:shadow-md transition-shadow"
-                onClick={() => toggleCard(index)}
-              >
-                <CardHeader>
-                  <CardTitle className="text-lg flex items-center justify-between">
-                    {research.title}
-                    {expandedCards.has(index) ? (
-                      <ChevronUp className="h-5 w-5" />
-                    ) : (
-                      <ChevronDown className="h-5 w-5" />
-                    )}
-                  </CardTitle>
-                </CardHeader>
-                {expandedCards.has(index) && (
-                  <CardContent>
-                    <p className="text-base leading-relaxed">{research.content}</p>
-                  </CardContent>
-                )}
-              </Card>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
-
-      <Card>
-        <CardContent className="pt-6">
-          <div className="mb-6">
-            <Link href="/" className="font-bold underline hover:text-primary">
-              Industry Research (with Cosine)
-            </Link>
-          </div>
-
-          <div className="grid gap-4">
-            {industryResearch.map((research, index) => {
-              const cardIndex = academicResearch.length + index;
-              return (
-                <Card
-                  key={cardIndex}
-                  className="cursor-pointer hover:shadow-md transition-shadow"
-                  onClick={() => toggleCard(cardIndex)}
+    <div className="min-h-[calc(100vh-80px)] flex items-center justify-center px-4">
+      <section className="max-w-xl w-full">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="border border-border rounded-lg overflow-hidden"
+        >
+          {/* Research Block */}
+          <div className="grid grid-cols-[2fr_1fr] relative">
+            <div className="border-r border-border">
+              {allResearch.map((research, index) => (
+                <motion.div
+                  key={index}
+                  layout
+                  className="px-6 py-3 border-b border-border cursor-pointer hover:bg-muted/50 transition-all relative overflow-hidden"
+                  onClick={() => setSelectedResearch(selectedResearch === index ? null : index)}
+                  transition={{ duration: 0.4, ease: "easeInOut" }}
                 >
-                  <CardHeader>
-                    <CardTitle className="text-lg flex items-center justify-between">
-                      {research.title}
-                      {expandedCards.has(cardIndex) ? (
-                        <ChevronUp className="h-5 w-5" />
-                      ) : (
-                        <ChevronDown className="h-5 w-5" />
-                      )}
-                    </CardTitle>
-                  </CardHeader>
-                  {expandedCards.has(cardIndex) && (
-                    <CardContent>
-                      <p className="text-base leading-relaxed">{research.content}</p>
-                    </CardContent>
-                  )}
-                </Card>
-              );
-            })}
-          </div>
-        </CardContent>
-      </Card>
-
-      <Card>
-        <CardContent className="pt-6 space-y-4">
-          <div>
-            <p className="text-base">
-              I have been fortunate with{" "}
-              <Button
-                variant="link"
-                className="p-0 h-auto underline hover:text-primary"
-                onClick={() => setShowGrants(!showGrants)}
-              >
-                grants
-                {showGrants ? (
-                  <ChevronUp className="inline ml-1 h-4 w-4" />
-                ) : (
-                  <ChevronDown className="inline ml-1 h-4 w-4" />
+                  <AnimatePresence>
+                    {selectedResearch === index && (
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 0.3 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.6 }}
+                        className="absolute inset-0 z-0"
+                      >
+                        <Image
+                          src={research.image}
+                          alt={research.title}
+                          fill
+                          className="object-cover"
+                        />
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                  <h3 className="text-lg font-semibold relative z-10">
+                    {research.title}
+                  </h3>
+                </motion.div>
+              ))}
+            </div>
+            <div className="absolute left-[66.66%] top-0 bottom-0 right-0 flex items-start justify-start p-6 overflow-y-auto scrollbar-hide">
+              <AnimatePresence mode="wait">
+                {selectedResearch !== null && (
+                  <motion.p
+                    key={selectedResearch}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.4 }}
+                    className="text-sm leading-relaxed"
+                  >
+                    {allResearch[selectedResearch].content}
+                  </motion.p>
                 )}
-              </Button>
-              .
-            </p>
-
-            {showGrants && (
-              <Card className="border-l-2 border-primary mt-2">
-                <CardContent className="pt-4">
-                  <p className="text-base leading-relaxed">
-                    My Phd is fully funded by the{" "}
-                    <Link href="https://kcl-mrcdtp.com/" target="_blank" className="underline hover:text-primary">
-                      Medical Research Council of UK
-                    </Link>
-                    . I was awarded the{" "}
-                    <Link href="https://www.ukri.org/opportunity/fast-start-innovation/" target="_blank" className="underline hover:text-primary">
-                      UKRI fast track grant
-                    </Link>{" "}
-                    for my MSc. During UG, I secured the{" "}
-                    <Link href="https://www.mitacs.ca/our-programs/globalink-research-internship-students/" target="_blank" className="underline hover:text-primary">
-                      MITACS Globalink Fellowship
-                    </Link>
-                    .
-                  </p>
-                </CardContent>
-              </Card>
-            )}
+              </AnimatePresence>
+            </div>
           </div>
 
-          <div>
-            <p className="text-base">
-              I also frequently{" "}
-              <Button
-                variant="link"
-                className="p-0 h-auto underline hover:text-primary"
-                onClick={() => setShowReviewing(!showReviewing)}
-              >
-                review
-                {showReviewing ? (
-                  <ChevronUp className="inline ml-1 h-4 w-4" />
-                ) : (
-                  <ChevronDown className="inline ml-1 h-4 w-4" />
+          {/* Grants & Reviewing Side by Side */}
+          <div className="grid grid-cols-[2fr_1fr] border-t border-border">
+            {/* Grants Block */}
+            <div className="p-6 border-r border-border">
+              <div className="relative" style={{ minHeight: "2.5rem" }}>
+                <motion.h2
+                  className="text-xl font-bold cursor-pointer hover:opacity-70 absolute w-full"
+                  onClick={() => setIsExpanded(!isExpanded)}
+                  initial={false}
+                  animate={{
+                    left: isExpanded ? "0%" : "50%",
+                    x: isExpanded ? "0%" : "-50%",
+                  }}
+                  transition={{ duration: 1.2, ease: [0.4, 0, 0.2, 1] }}
+                >
+                  Grants
+                </motion.h2>
+              </div>
+              <AnimatePresence>
+                {isExpanded && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 1.2, ease: "easeInOut" }}
+                    className="overflow-hidden"
+                  >
+                    <p className="text-sm leading-relaxed mt-3">
+                      My Phd is fully funded by the{" "}
+                      <Link
+                        href="https://kcl-mrcdtp.com/"
+                        target="_blank"
+                        className="underline hover:opacity-70"
+                      >
+                        Medical Research Council of UK
+                      </Link>
+                      . I was awarded the{" "}
+                      <Link
+                        href="https://www.ukri.org/opportunity/fast-start-innovation/"
+                        target="_blank"
+                        className="underline hover:opacity-70"
+                      >
+                        UKRI fast track grant
+                      </Link>{" "}
+                      for my MSc. During UG, I secured the{" "}
+                      <Link
+                        href="https://www.mitacs.ca/our-programs/globalink-research-internship-students/"
+                        target="_blank"
+                        className="underline hover:opacity-70"
+                      >
+                        MITACS Globalink Fellowship
+                      </Link>
+                      .
+                    </p>
+                  </motion.div>
                 )}
-              </Button>
-              .
-            </p>
+              </AnimatePresence>
+            </div>
 
-            {showReviewing && (
-              <Card className="border-l-2 border-primary mt-2">
-                <CardContent className="pt-4">
-                  <p className="text-base leading-relaxed">
-                    MICCAI, ICML, NeurIPS, ICLR, AISTATS and IEEE-ISBI.
-                  </p>
-                </CardContent>
-              </Card>
-            )}
+            {/* Reviewing Block */}
+            <div className="p-6">
+              <div className="relative" style={{ minHeight: "2.5rem" }}>
+                <motion.h2
+                  className="text-xl font-bold cursor-pointer hover:opacity-70 absolute w-full"
+                  onClick={() => setIsExpanded(!isExpanded)}
+                  initial={false}
+                  animate={{
+                    left: isExpanded ? "0%" : "50%",
+                    x: isExpanded ? "0%" : "-50%",
+                  }}
+                  transition={{ duration: 1.2, ease: [0.4, 0, 0.2, 1] }}
+                >
+                  Reviewing
+                </motion.h2>
+              </div>
+              <AnimatePresence>
+                {isExpanded && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 1.2, ease: "easeInOut" }}
+                    className="overflow-hidden"
+                  >
+                    <p className="text-sm leading-relaxed mt-3">
+                      I frequently review for MICCAI, ICML, NeurIPS, ICLR, AISTATS and IEEE-ISBI.
+                    </p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
           </div>
-        </CardContent>
-      </Card>
+        </motion.div>
+      </section>
     </div>
   );
 }
