@@ -31,6 +31,16 @@ const researchImages = [
   "/research_pics/paul-klee_color-chart-qu-1.png",
 ];
 
+// Pastel VIBGYOR colors (skip indigo)
+const pastelColors = [
+  "#E6D5F5", // Violet
+  "#D5E5F5", // Blue
+  "#D5F5E5", // Green
+  "#F5F5D5", // Yellow
+  "#F5E5D5", // Orange
+  "#F5D5D5", // Red
+];
+
 export default function Updates() {
   const [activeCategory, setActiveCategory] = useState<Category>("all");
   const [randomImage, setRandomImage] = useState<string>("");
@@ -44,7 +54,7 @@ export default function Updates() {
   const filteredUpdates = updatesData.updates.filter((update: Update) => {
     if (activeCategory === "all") return true;
     return update.category === activeCategory;
-  }).slice(0, 6);
+  });
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center px-4 py-8">
@@ -75,42 +85,53 @@ export default function Updates() {
           </div>
         </div>
 
-        <div className="space-y-6">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeCategory}
-              initial={{
-                opacity: 0,
-                filter: "blur(20px) brightness(1.5)"
-              }}
-              animate={{
-                opacity: 1,
-                filter: "blur(0px) brightness(1)"
-              }}
-              exit={{
-                opacity: 0,
-                filter: "blur(20px) brightness(1.5)"
-              }}
-              transition={{
-                duration: 0.4,
-                ease: "easeInOut"
-              }}
-              className="space-y-6"
-            >
-              {filteredUpdates.map((update: Update, index: number) => (
-                <div key={index} className="flex flex-col sm:flex-row gap-3 group">
-                  <span className="text-sm font-medium text-muted-foreground whitespace-nowrap min-w-[80px]">
-                    {update.date}
-                  </span>
-                  <p
-                    className="text-base leading-relaxed flex-1 text-justify"
-                    dangerouslySetInnerHTML={{ __html: update.description }}
-                  />
-                </div>
-              ))}
-            </motion.div>
-          </AnimatePresence>
-        </div>
+        <motion.div
+          className="relative"
+          layout
+          transition={{
+            layout: { duration: 0.3, ease: "easeInOut" }
+          }}
+        >
+          <div className="max-h-[300px] overflow-y-auto scrollbar-hide space-y-6">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeCategory}
+                initial={{
+                  opacity: 0,
+                  filter: "blur(20px) brightness(1.5)"
+                }}
+                animate={{
+                  opacity: 1,
+                  filter: "blur(0px) brightness(1)"
+                }}
+                exit={{
+                  opacity: 0,
+                  filter: "blur(20px) brightness(1.5)"
+                }}
+                transition={{
+                  duration: 0.4,
+                  ease: "easeInOut"
+                }}
+                className="space-y-6"
+              >
+                {filteredUpdates.map((update: Update, index: number) => (
+                  <div key={index} className="flex flex-col sm:flex-row gap-3 group sm:items-center">
+                    <span
+                      className="text-sm font-medium whitespace-nowrap w-fit rounded leading-tight"
+                      style={{ backgroundColor: pastelColors[index % pastelColors.length] }}
+                    >
+                      {update.date}
+                    </span>
+                    <p
+                      className="text-base leading-relaxed flex-1 text-justify"
+                      dangerouslySetInnerHTML={{ __html: update.description }}
+                    />
+                  </div>
+                ))}
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </motion.div>
       </div>
     </div>
   );

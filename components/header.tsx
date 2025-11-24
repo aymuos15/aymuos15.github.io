@@ -13,11 +13,25 @@ export function Header() {
 
   return (
     <>
-      <motion.div layoutId="theme-toggle" className="fixed top-4 right-4 z-[60]">
+      <motion.div
+        layoutId="theme-toggle"
+        className="fixed top-4 right-4 z-[60]"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.3 }}
+      >
         <ThemeToggle />
       </motion.div>
-      <motion.header layoutId="main-header" className="fixed top-0 left-0 right-0 w-full py-4 flex justify-center z-50">
-        <div className="relative rounded-full overflow-hidden shadow-md">
+      <motion.header
+        layoutId="main-header"
+        className="fixed top-0 left-0 right-0 w-full py-4 flex justify-center z-50"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.3 }}
+      >
+        <motion.div className="relative rounded-full overflow-hidden shadow-md" layout>
           <CloudBackground />
           <nav className="relative z-10 flex items-center gap-2 px-6 py-2">
             <Link
@@ -84,7 +98,7 @@ export function Header() {
               Blog
             </Link>
           </nav>
-        </div>
+        </motion.div>
       </motion.header>
     </>
   );
