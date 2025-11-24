@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+:root {
+  --radius: 0.625rem;
+  /* Cursor light mode colors */
+  --background: #f7f7f4;
+  --foreground: #14120b;
+  --card: #ffffff;
+  --card-foreground: #14120b;
+  --popover: #ffffff;
+  --popover-foreground: #14120b;
+  --primary: #14120b;
+  --primary-foreground: #f7f7f4;
+  --secondary: #e5e5e2;
+  --secondary-foreground: #14120b;
+  --muted: #e5e5e2;
+  --muted-foreground: #6b6b6b;
+  --accent: #e5e5e2;
+  --accent-foreground: #14120b;
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: #d4d4d1;
+  --input: #d4d4d1;
+  --ring: #8a8a8a;
+}
+
+.dark {
+  /* Cursor dark mode colors */
+  --background: #14120b;
+  --foreground: #f7f7f4;
+  --card: #1c1a13;
+  --card-foreground: #f7f7f4;
+  --popover: #1c1a13;
+  --popover-foreground: #f7f7f4;
+  --primary: #f7f7f4;
+  --primary-foreground: #14120b;
+  --secondary: #2a2820;
+  --secondary-foreground: #f7f7f4;
+  --muted: #2a2820;
+  --muted-foreground: #a3a39d;
+  --accent: #2a2820;
+  --accent-foreground: #f7f7f4;
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: rgba(247, 247, 244, 0.1);
+  --input: rgba(247, 247, 244, 0.15);
+  --ring: #6b6b6b;
+}
+
+* {
+  border-color: var(--border);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-feature-settings: "rlig" 1, "calt" 1;
+}
