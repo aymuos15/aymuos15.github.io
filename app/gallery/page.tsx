@@ -1,9 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import Image from "next/image";
-import { Card, CardContent } from "@/components/ui/card";
 
 interface Photo {
   src: string;
@@ -23,54 +21,71 @@ const photos: Photo[] = [
 
 export default function Gallery() {
   const [selectedPhoto, setSelectedPhoto] = useState<Photo>(photos[0]);
+  const [isPaused, setIsPaused] = useState(false);
+
+  // Duplicate photos for seamless loop
+  const duplicatedPhotos = [...photos, ...photos, ...photos];
 
   return (
-    <div className="max-w-4xl mx-auto space-y-6">
-      <Card>
-        <CardContent className="pt-6">
-          <Link href="/" className="font-bold text-xl underline hover:text-primary mb-6 block">
-            Gallery
-          </Link>
+    <div className="min-h-[calc(100vh-80px)] flex flex-col justify-center px-4 py-8">
+      <div className="max-w-4xl mx-auto w-full">
+        <div className="space-y-6">
+          <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden bg-muted">
+            <Image
+              src={selectedPhoto.src}
+              alt={selectedPhoto.alt}
+              fill
+              className="object-contain"
+              sizes="(max-width: 768px) 100vw, 896px"
+            />
+          </div>
 
-          <div className="space-y-6">
-            <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden bg-muted">
-              <Image
-                src={selectedPhoto.src}
-                alt={selectedPhoto.alt}
-                fill
-                className="object-contain"
-                sizes="(max-width: 768px) 100vw, 896px"
-              />
-            </div>
+          <p className="text-center text-base text-muted-foreground">
+            {selectedPhoto.caption}
+          </p>
 
-            <p className="text-center text-base text-muted-foreground">
-              {selectedPhoto.caption}
-            </p>
-
-            <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-7 gap-2">
-              {photos.map((photo, index) => (
+          <div className="relative overflow-hidden max-w-[340px] mx-auto">
+            <style dangerouslySetInnerHTML={{
+              __html: `
+                @keyframes gallery-scroll {
+                  0% {
+                    transform: translateX(0);
+                  }
+                  100% {
+                    transform: translateX(calc(-112px * ${photos.length}));
+                  }
+                }
+              `
+            }} />
+            <div
+              className="flex gap-4"
+              style={{
+                animation: "gallery-scroll 10s linear infinite",
+                animationPlayState: isPaused ? "paused" : "running",
+              }}
+              onMouseEnter={() => setIsPaused(true)}
+              onMouseLeave={() => setIsPaused(false)}
+            >
+              {duplicatedPhotos.map((photo, index) => (
                 <button
                   key={index}
                   onClick={() => setSelectedPhoto(photo)}
-                  className={`relative aspect-square rounded-md overflow-hidden border-2 transition-all hover:scale-105 ${
-                    selectedPhoto.src === photo.src
-                      ? "border-primary"
-                      : "border-transparent"
-                  }`}
+                  onMouseEnter={() => setSelectedPhoto(photo)}
+                  className="relative flex-shrink-0 w-24 h-24 rounded-md overflow-hidden border-2 border-transparent hover:border-primary transition-all"
                 >
                   <Image
                     src={photo.src}
                     alt={photo.alt}
                     fill
                     className="object-cover"
-                    sizes="(max-width: 640px) 25vw, (max-width: 768px) 16vw, 12vw"
+                    sizes="96px"
                   />
                 </button>
               ))}
             </div>
           </div>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     </div>
   );
 }
