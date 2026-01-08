@@ -15,6 +15,29 @@ body {
     gap: 120px;
 }
 
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+    padding: 20px calc(50% - 485px);
+    display: flex;
+    gap: 30px;
+    font-family: Garamond, serif;
+    z-index: 100;
+}
+
+.header a {
+    text-decoration: none;
+    color: #333;
+    font-size: 1.1rem;
+}
+
+.header a:hover {
+    text-decoration: underline;
+}
+
 .container {
     text-align: left;
     display: flex;
@@ -153,5 +176,14 @@ p {
     #volume-select {
         padding: 3px 6px;
         font-size: 0.6rem;
+    }
+
+    .header {
+        padding: 15px 20px;
+        gap: 20px;
+    }
+
+    .header a {
+        font-size: 0.8rem;
     }
 }
