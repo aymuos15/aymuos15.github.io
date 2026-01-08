@@ -284,6 +284,26 @@ body {
     color: #333;
 }
 
+.research-link {
+    cursor: pointer;
+    text-decoration: underline;
+    color: #333;
+}
+
+.research-link:hover {
+    color: #666;
+}
+
+.text-2,
+.text-2-mobile {
+    transition: opacity 0.5s ease-in-out;
+}
+
+.text-2.fade-out,
+.text-2-mobile.fade-out {
+    opacity: 0;
+}
+
 .footer {
     margin-top: 7px;
     padding: 40px 20px;

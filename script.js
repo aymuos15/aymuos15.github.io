@@ -26,6 +26,31 @@ document.querySelectorAll('.tab').forEach(tab => {
     });
 });
 
+// Research link click handler - shows collaborators with fade animation
+const collaboratorsText = `<p>In no particular order, Everyone at CAI4CAI: Lorena Macias, Aaron Kujawa, Theo Barfoot, Marina Ivory, Navodini Wijethilake, Meng Wei, Oluwatosin Alabi and Martin Huber. Along with: Pooja Ganesh (SEL), Rakshit Naidu (GaTech), Aarsh Chaube (Edinburgh), Mona Furukawa (Oxford), Yang Li (KCL), Feng He (KCL), and Ruoyang Liu (KCL).</p>`;
+
+document.querySelectorAll('.research-link').forEach(link => {
+    link.addEventListener('click', () => {
+        const desktopText = document.getElementById('text-2-desktop');
+        const mobileText = document.getElementById('text-2-mobile');
+
+        // Fade out
+        if (desktopText) desktopText.classList.add('fade-out');
+        if (mobileText) mobileText.classList.add('fade-out');
+
+        // After fade out, change content and fade back in
+        setTimeout(() => {
+            if (desktopText) desktopText.innerHTML = collaboratorsText;
+            if (mobileText) mobileText.innerHTML = collaboratorsText;
+
+            setTimeout(() => {
+                if (desktopText) desktopText.classList.remove('fade-out');
+                if (mobileText) mobileText.classList.remove('fade-out');
+            }, 50);
+        }, 500);
+    });
+});
+
 // Smooth scroll navigation
 document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', (e) => {
