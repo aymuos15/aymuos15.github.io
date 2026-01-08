@@ -115,6 +115,14 @@ body {
     border-radius: 8px;
 }
 
+.mobile-only {
+    display: none;
+}
+
+.desktop-only {
+    display: block;
+}
+
 .text-2 {
     position: absolute;
     bottom: 0;
@@ -247,13 +255,28 @@ p {
     }
 
     .image-wrapper-2 {
-        padding: 10px;
-        height: 230px;
+        padding: 20px;
+        height: auto;
+        width: auto;
+        flex: none;
     }
 
-    .profile-2 {
-        width: 85%;
-        height: 80%;
+    .profile-2-mobile {
+        width: 150px;
+        height: 190px;
+    }
+
+    .text-2-mobile {
+        max-width: 200px;
+        padding: 20px;
+    }
+
+    .mobile-only {
+        display: block;
+    }
+
+    .desktop-only {
+        display: none;
     }
 
     .niivue-wrapper {
