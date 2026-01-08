@@ -15,7 +15,7 @@ export function Header() {
     <>
       <motion.div
         layoutId="theme-toggle"
-        className="fixed top-4 right-4 z-[60]"
+        className="fixed bottom-4 right-4 z-[60]"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
@@ -33,14 +33,14 @@ export function Header() {
       >
         <motion.div className="relative rounded-full overflow-hidden shadow-md" layout>
           <CloudBackground />
-          <nav className="relative z-10 flex items-center gap-2 px-6 py-2">
+          <nav className="relative z-10 flex items-center gap-1 px-3 py-1.5">
             <Link
               href="/"
               prefetch={true}
               className={
                 isActive("/")
-                  ? "text-yellow-400 dark:text-[#D4A574] px-4 py-2 text-sm font-medium rounded-l-full transition-colors"
-                  : "text-white px-4 py-2 text-sm font-medium rounded-l-full transition-colors"
+                  ? "text-yellow-400 dark:text-[#D4A574] px-2 py-1 text-xs font-medium rounded-l-full transition-colors"
+                  : "text-white px-2 py-1 text-xs font-medium rounded-l-full transition-colors"
               }
             >
               Home
@@ -50,8 +50,8 @@ export function Header() {
               prefetch={true}
               className={
                 isActive("/about")
-                  ? "text-yellow-400 dark:text-[#D4A574] px-4 py-2 text-sm font-medium transition-colors"
-                  : "text-white px-4 py-2 text-sm font-medium transition-colors"
+                  ? "text-yellow-400 dark:text-[#D4A574] px-2 py-1 text-xs font-medium transition-colors"
+                  : "text-white px-2 py-1 text-xs font-medium transition-colors"
               }
             >
               About
@@ -61,8 +61,8 @@ export function Header() {
               prefetch={true}
               className={
                 isActive("/research")
-                  ? "text-yellow-400 dark:text-[#D4A574] px-4 py-2 text-sm font-medium transition-colors"
-                  : "text-white px-4 py-2 text-sm font-medium transition-colors"
+                  ? "text-yellow-400 dark:text-[#D4A574] px-2 py-1 text-xs font-medium transition-colors"
+                  : "text-white px-2 py-1 text-xs font-medium transition-colors"
               }
             >
               Research
@@ -72,8 +72,8 @@ export function Header() {
               prefetch={true}
               className={
                 isActive("/updates")
-                  ? "text-yellow-400 dark:text-[#D4A574] px-4 py-2 text-sm font-medium transition-colors"
-                  : "text-white px-4 py-2 text-sm font-medium transition-colors"
+                  ? "text-yellow-400 dark:text-[#D4A574] px-2 py-1 text-xs font-medium transition-colors"
+                  : "text-white px-2 py-1 text-xs font-medium transition-colors"
               }
             >
               Updates
@@ -83,8 +83,8 @@ export function Header() {
               prefetch={true}
               className={
                 isActive("/gallery")
-                  ? "text-yellow-400 dark:text-[#D4A574] px-4 py-2 text-sm font-medium transition-colors"
-                  : "text-white px-4 py-2 text-sm font-medium transition-colors"
+                  ? "text-yellow-400 dark:text-[#D4A574] px-2 py-1 text-xs font-medium transition-colors"
+                  : "text-white px-2 py-1 text-xs font-medium transition-colors"
               }
             >
               Gallery
@@ -93,7 +93,7 @@ export function Header() {
               href="https://aymuos15.github.io/blog/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white px-4 py-2 text-sm font-medium rounded-r-full transition-colors"
+              className="text-white px-2 py-1 text-xs font-medium rounded-r-full transition-colors"
             >
               Blog
             </Link>

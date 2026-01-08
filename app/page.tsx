@@ -8,11 +8,11 @@ export default function Home() {
   const [showPronunciation, setShowPronunciation] = useState(false);
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4">
-      <div className="max-w-2xl space-y-6">
+    <div className="fixed inset-0 flex items-center justify-center px-8 overflow-hidden">
+      <div className="max-w-xl space-y-4">
         <div>
           <h1
-            className="text-3xl font-bold cursor-pointer hover:opacity-70"
+            className="text-2xl font-bold cursor-pointer hover:opacity-70"
             onClick={() => setShowPronunciation(!showPronunciation)}
           >
             Soumya Snigdha Kundu
@@ -32,7 +32,7 @@ export default function Home() {
           </AnimatePresence>
         </div>
 
-        <p className="text-base leading-relaxed text-justify">
+        <p className="text-sm leading-relaxed text-justify">
           2<sup>nd</sup> Year Ph.D. working on ML for Neuro-Oncology at KCL advised by{" "}
           <Link href="https://cai4cai.ml/author/tom-vercauteren/" className="underline hover:opacity-70" target="_blank">
             Tom Vercauteren
@@ -44,7 +44,7 @@ export default function Home() {
           .
         </p>
 
-        <p className="text-base leading-relaxed text-justify">
+        <p className="text-sm leading-relaxed text-justify">
           Previously, I've interned at{" "}
           <Link href="https://cosine.sh/" className="underline hover:opacity-70" target="_blank">
             Cosine
@@ -68,7 +68,7 @@ export default function Home() {
           at IIT-GN.
         </p>
 
-        <p className="text-base text-justify">
+        <p className="text-sm text-justify">
           Do take a look at my{" "}
           <Link href="/research" className="underline hover:opacity-70">
             research
