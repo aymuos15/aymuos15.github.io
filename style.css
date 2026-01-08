@@ -115,6 +115,156 @@ body {
     border-radius: 8px;
 }
 
+.mock-ide {
+    width: 90%;
+    height: 85%;
+    background: #2d2a3e;
+    display: flex !important;
+    flex-direction: row !important;
+    overflow: hidden;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 12px;
+}
+
+.ide-sidebar {
+    width: 90px;
+    background: #2d2a3e;
+    border-right: 1px solid #444;
+    padding: 4px 0;
+    overflow-y: auto;
+}
+
+.ide-file {
+    padding: 1px 8px;
+    color: #ccc;
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+.ide-file:hover {
+    background: #3d3a4e;
+}
+
+.ide-file.active {
+    background: #3d3a4e;
+    color: #fff;
+}
+
+.ide-main {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    background: #f5f0e6;
+}
+
+.ide-tabs {
+    display: flex;
+    background: #e8e4da;
+    border-bottom: 1px solid #ccc;
+}
+
+.ide-tab {
+    padding: 4px 12px;
+    color: #666;
+    cursor: pointer;
+    border-right: 1px solid #ccc;
+    font-size: 11px;
+    background: #e8e4da;
+}
+
+.ide-tab.active {
+    background: #f5f0e6;
+    color: #333;
+}
+
+.ide-split-view {
+    flex: 1;
+    display: flex;
+    min-height: 0;
+    background: #f5f0e6;
+}
+
+.ide-pane {
+    flex: 1;
+    min-width: 0;
+    border-right: 1px solid #ccc;
+    overflow: auto;
+    background: #f5f0e6;
+    scrollbar-width: none;
+}
+
+.ide-pane::-webkit-scrollbar {
+    display: none;
+}
+
+.ide-pane:last-child {
+    border-right: none;
+}
+
+.ide-code {
+    margin: 0;
+    padding: 6px 10px;
+    color: #333;
+    line-height: 1.4;
+    font-size: 11px;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    white-space: pre;
+}
+
+.ln {
+    color: #888;
+    display: inline-block;
+    width: 20px;
+    text-align: right;
+    margin-right: 14px;
+    user-select: none;
+}
+
+.css-sel {
+    color: #b58900;
+}
+
+.css-prop {
+    color: #268bd2;
+}
+
+.css-val {
+    color: #cb4b16;
+}
+
+.html-tag {
+    color: #2aa198;
+}
+
+.html-attr {
+    color: #268bd2;
+}
+
+.html-str {
+    color: #cb4b16;
+}
+
+.js-key {
+    color: #859900;
+}
+
+.js-func {
+    color: #268bd2;
+}
+
+.js-str {
+    color: #cb4b16;
+}
+
+.js-comment {
+    color: #93a1a1;
+}
+
 .mobile-only {
     display: none;
 }

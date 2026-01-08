@@ -84,3 +84,54 @@ document.querySelectorAll('.nav-links a').forEach(link => {
         }
     });
 });
+
+// Mock IDE file switching
+document.querySelectorAll('.ide-file[data-file]').forEach(file => {
+    file.addEventListener('click', () => {
+        const fileType = file.dataset.file;
+
+        // Update sidebar active state
+        document.querySelectorAll('.ide-file').forEach(f => f.classList.remove('active'));
+        file.classList.add('active');
+
+        // Update the ">" indicator
+        document.querySelectorAll('.ide-file[data-file]').forEach(f => {
+            f.textContent = f.textContent.replace('> ', '');
+        });
+        file.textContent = '> ' + file.textContent;
+
+        // Switch content in pane 1
+        const pane1 = document.querySelector('[data-pane="1"]');
+        pane1.querySelectorAll('.ide-code').forEach(code => code.style.display = 'none');
+        const pane1Code = document.getElementById('pane1-' + fileType);
+        if (pane1Code) pane1Code.style.display = 'block';
+        pane1.dataset.showing = fileType;
+
+        // Update tabs
+        const tabs = document.querySelectorAll('.ide-tab');
+        tabs[0].dataset.file = fileType;
+        tabs[0].textContent = '1:' + file.textContent.replace('> ', '');
+        tabs[0].classList.add('active');
+        tabs[1].classList.remove('active');
+    });
+});
+
+// Tab click switching
+document.querySelectorAll('.ide-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+        const fileType = tab.dataset.file;
+        const paneNum = tab.textContent.charAt(0);
+
+        // Update tab active state
+        document.querySelectorAll('.ide-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        // Switch to corresponding pane content
+        const pane = document.querySelector(`[data-pane="${paneNum}"]`);
+        if (pane) {
+            pane.querySelectorAll('.ide-code').forEach(code => code.style.display = 'none');
+            const paneCode = document.getElementById(`pane${paneNum}-${fileType}`);
+            if (paneCode) paneCode.style.display = 'block';
+        }
+    });
+});

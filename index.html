@@ -41,7 +41,164 @@
     </div>
     <div class="container container-2" id="about">
         <div class="image-wrapper image-wrapper-2">
-            <img src="assests/see_editor.png" alt="Code Editor" class="profile-2 desktop-only">
+            <div class="mock-ide desktop-only">
+                <div class="ide-sidebar">
+                    <div class="ide-file">.claude</div>
+                    <div class="ide-file">.git</div>
+                    <div class="ide-file">.github</div>
+                    <div class="ide-file">assests</div>
+                    <div class="ide-file">.gitignore</div>
+                    <div class="ide-file" data-file="index">index.html</div>
+                    <div class="ide-file" data-file="script">script.js</div>
+                    <div class="ide-file active" data-file="style">> style.css</div>
+                    <div class="ide-file" data-file="updates">updates.json</div>
+                </div>
+                <div class="ide-main">
+                    <div class="ide-tabs">
+                        <div class="ide-tab active" data-file="style">1:style.css</div>
+                        <div class="ide-tab" data-file="index">2:index.html</div>
+                    </div>
+                    <div class="ide-split-view">
+                        <div class="ide-pane" data-pane="1" data-showing="style"><pre class="ide-code" id="pane1-style"><span class="ln">1</span>  <span class="css-sel">*</span> {
+<span class="ln">2</span>      <span class="css-prop">margin</span>: <span class="css-val">0</span>;
+<span class="ln">3</span>      <span class="css-prop">padding</span>: <span class="css-val">0</span>;
+<span class="ln">4</span>      <span class="css-prop">box-sizing</span>: <span class="css-val">border-box</span>;
+<span class="ln">5</span>  }
+<span class="ln">6</span>
+<span class="ln">7</span>  <span class="css-sel">html</span> {
+<span class="ln">8</span>      <span class="css-prop">scrollbar-width</span>: <span class="css-val">none</span>;
+<span class="ln">9</span>  }
+<span class="ln">10</span>
+<span class="ln">11</span> <span class="css-sel">html</span>::<span class="css-sel">-webkit-scrollbar</span> {
+<span class="ln">12</span>     <span class="css-prop">display</span>: <span class="css-val">none</span>;
+<span class="ln">13</span> }
+<span class="ln">14</span>
+<span class="ln">15</span> <span class="css-sel">body</span> {
+<span class="ln">16</span>     <span class="css-prop">min-height</span>: <span class="css-val">100vh</span>;
+<span class="ln">17</span>     <span class="css-prop">display</span>: <span class="css-val">flex</span>;
+<span class="ln">18</span>     <span class="css-prop">flex-direction</span>: <span class="css-val">column</span>;
+<span class="ln">19</span>     <span class="css-prop">align-items</span>: <span class="css-val">center</span>;
+<span class="ln">20</span> }</pre><pre class="ide-code" id="pane1-script" style="display:none"><span class="ln">1</span>  <span class="js-comment">// Updates rendering</span>
+<span class="ln">2</span>  <span class="js-key">let</span> updates = [];
+<span class="ln">3</span>
+<span class="ln">4</span>  <span class="js-key">function</span> <span class="js-func">renderUpdates</span>(category) {
+<span class="ln">5</span>      <span class="js-key">const</span> list = document.<span class="js-func">getElementById</span>(<span class="js-str">'updates-list'</span>);
+<span class="ln">6</span>      <span class="js-key">const</span> filtered = category === <span class="js-str">'all'</span>
+<span class="ln">7</span>          ? updates
+<span class="ln">8</span>          : updates.<span class="js-func">filter</span>(u => u.category === category);
+<span class="ln">9</span>      list.innerHTML = filtered.<span class="js-func">map</span>(u =>
+<span class="ln">10</span>         <span class="js-str">`&lt;div class="update-item"&gt;...&lt;/div&gt;`</span>
+<span class="ln">11</span>     ).<span class="js-func">join</span>(<span class="js-str">''</span>);
+<span class="ln">12</span> }
+<span class="ln">13</span>
+<span class="ln">14</span> <span class="js-comment">// Load updates from JSON</span>
+<span class="ln">15</span> <span class="js-func">fetch</span>(<span class="js-str">'updates.json'</span>)
+<span class="ln">16</span>     .<span class="js-func">then</span>(response => response.<span class="js-func">json</span>())
+<span class="ln">17</span>     .<span class="js-func">then</span>(data => {
+<span class="ln">18</span>         updates = data;
+<span class="ln">19</span>         <span class="js-func">renderUpdates</span>(<span class="js-str">'all'</span>);
+<span class="ln">20</span>     });</pre><pre class="ide-code" id="pane1-updates" style="display:none"><span class="ln">1</span>  [
+<span class="ln">2</span>    {
+<span class="ln">3</span>      <span class="js-str">"date"</span>: <span class="js-str">"Dec 2024"</span>,
+<span class="ln">4</span>      <span class="js-str">"category"</span>: <span class="js-str">"publishing"</span>,
+<span class="ln">5</span>      <span class="js-str">"description"</span>: <span class="js-str">"Paper accepted"</span>
+<span class="ln">6</span>    },
+<span class="ln">7</span>    {
+<span class="ln">8</span>      <span class="js-str">"date"</span>: <span class="js-str">"Nov 2024"</span>,
+<span class="ln">9</span>      <span class="js-str">"category"</span>: <span class="js-str">"teaching"</span>,
+<span class="ln">10</span>     <span class="js-str">"description"</span>: <span class="js-str">"TA for ML"</span>
+<span class="ln">11</span>   },
+<span class="ln">12</span>   {
+<span class="ln">13</span>     <span class="js-str">"date"</span>: <span class="js-str">"Oct 2024"</span>,
+<span class="ln">14</span>     <span class="js-str">"category"</span>: <span class="js-str">"reviewing"</span>,
+<span class="ln">15</span>     <span class="js-str">"description"</span>: <span class="js-str">"MICCAI reviewer"</span>
+<span class="ln">16</span>   }
+<span class="ln">17</span> ]</pre><pre class="ide-code" id="pane1-index" style="display:none"><span class="ln">1</span>  <span class="html-tag">&lt;!DOCTYPE html&gt;</span>
+<span class="ln">2</span>  <span class="html-tag">&lt;html</span> <span class="html-attr">lang</span>=<span class="html-str">"en"</span><span class="html-tag">&gt;</span>
+<span class="ln">3</span>  <span class="html-tag">&lt;head&gt;</span>
+<span class="ln">4</span>      <span class="html-tag">&lt;meta</span> <span class="html-attr">charset</span>=<span class="html-str">"UTF-8"</span><span class="html-tag">&gt;</span>
+<span class="ln">5</span>      <span class="html-tag">&lt;title&gt;</span>Soumya Snigdha Kundu<span class="html-tag">&lt;/title&gt;</span>
+<span class="ln">6</span>      <span class="html-tag">&lt;link</span> <span class="html-attr">rel</span>=<span class="html-str">"stylesheet"</span> <span class="html-attr">href</span>=<span class="html-str">"style.css"</span><span class="html-tag">&gt;</span>
+<span class="ln">7</span>  <span class="html-tag">&lt;/head&gt;</span>
+<span class="ln">8</span>  <span class="html-tag">&lt;body&gt;</span>
+<span class="ln">9</span>      <span class="html-tag">&lt;nav</span> <span class="html-attr">class</span>=<span class="html-str">"header"</span><span class="html-tag">&gt;</span>
+<span class="ln">10</span>         <span class="html-tag">&lt;div</span> <span class="html-attr">class</span>=<span class="html-str">"nav-links"</span><span class="html-tag">&gt;</span>
+<span class="ln">11</span>             <span class="html-tag">&lt;a</span> <span class="html-attr">href</span>=<span class="html-str">"#home"</span><span class="html-tag">&gt;</span>Home<span class="html-tag">&lt;/a&gt;</span>
+<span class="ln">12</span>             <span class="html-tag">&lt;a</span> <span class="html-attr">href</span>=<span class="html-str">"#about"</span><span class="html-tag">&gt;</span>About<span class="html-tag">&lt;/a&gt;</span>
+<span class="ln">13</span>         <span class="html-tag">&lt;/div&gt;</span>
+<span class="ln">14</span>     <span class="html-tag">&lt;/nav&gt;</span>
+<span class="ln">15</span> <span class="html-tag">&lt;/body&gt;</span>
+<span class="ln">16</span> <span class="html-tag">&lt;/html&gt;</span></pre></div>
+                        <div class="ide-pane" data-pane="2" data-showing="index"><pre class="ide-code" id="pane2-index"><span class="ln">1</span>  <span class="html-tag">&lt;!DOCTYPE html&gt;</span>
+<span class="ln">2</span>  <span class="html-tag">&lt;html</span> <span class="html-attr">lang</span>=<span class="html-str">"en"</span><span class="html-tag">&gt;</span>
+<span class="ln">3</span>  <span class="html-tag">&lt;head&gt;</span>
+<span class="ln">4</span>      <span class="html-tag">&lt;meta</span> <span class="html-attr">charset</span>=<span class="html-str">"UTF-8"</span><span class="html-tag">&gt;</span>
+<span class="ln">5</span>      <span class="html-tag">&lt;meta</span> <span class="html-attr">name</span>=<span class="html-str">"viewport"</span> <span class="html-attr">content</span>=<span class="html-str">"width=device-width"</span><span class="html-tag">&gt;</span>
+<span class="ln">6</span>      <span class="html-tag">&lt;title&gt;</span>Soumya Snigdha Kundu<span class="html-tag">&lt;/title&gt;</span>
+<span class="ln">7</span>      <span class="html-tag">&lt;link</span> <span class="html-attr">rel</span>=<span class="html-str">"stylesheet"</span> <span class="html-attr">href</span>=<span class="html-str">"style.css"</span><span class="html-tag">&gt;</span>
+<span class="ln">8</span>  <span class="html-tag">&lt;/head&gt;</span>
+<span class="ln">9</span>  <span class="html-tag">&lt;body&gt;</span>
+<span class="ln">10</span>     <span class="html-tag">&lt;nav</span> <span class="html-attr">class</span>=<span class="html-str">"header"</span><span class="html-tag">&gt;</span>
+<span class="ln">11</span>         <span class="html-tag">&lt;div</span> <span class="html-attr">class</span>=<span class="html-str">"nav-links"</span><span class="html-tag">&gt;</span>
+<span class="ln">12</span>             <span class="html-tag">&lt;a</span> <span class="html-attr">href</span>=<span class="html-str">"#home"</span><span class="html-tag">&gt;</span>Home<span class="html-tag">&lt;/a&gt;</span>
+<span class="ln">13</span>             <span class="html-tag">&lt;a</span> <span class="html-attr">href</span>=<span class="html-str">"#about"</span><span class="html-tag">&gt;</span>About<span class="html-tag">&lt;/a&gt;</span>
+<span class="ln">14</span>             <span class="html-tag">&lt;a</span> <span class="html-attr">href</span>=<span class="html-str">"#research"</span><span class="html-tag">&gt;</span>Research<span class="html-tag">&lt;/a&gt;</span>
+<span class="ln">15</span>             <span class="html-tag">&lt;a</span> <span class="html-attr">href</span>=<span class="html-str">"#news"</span><span class="html-tag">&gt;</span>News<span class="html-tag">&lt;/a&gt;</span>
+<span class="ln">16</span>         <span class="html-tag">&lt;/div&gt;</span>
+<span class="ln">17</span>     <span class="html-tag">&lt;/nav&gt;</span>
+<span class="ln">18</span> <span class="html-tag">&lt;/body&gt;</span>
+<span class="ln">19</span> <span class="html-tag">&lt;/html&gt;</span></pre><pre class="ide-code" id="pane2-style" style="display:none"><span class="ln">1</span>  <span class="css-sel">*</span> {
+<span class="ln">2</span>      <span class="css-prop">margin</span>: <span class="css-val">0</span>;
+<span class="ln">3</span>      <span class="css-prop">padding</span>: <span class="css-val">0</span>;
+<span class="ln">4</span>      <span class="css-prop">box-sizing</span>: <span class="css-val">border-box</span>;
+<span class="ln">5</span>  }
+<span class="ln">6</span>
+<span class="ln">7</span>  <span class="css-sel">html</span> {
+<span class="ln">8</span>      <span class="css-prop">scrollbar-width</span>: <span class="css-val">none</span>;
+<span class="ln">9</span>  }
+<span class="ln">10</span>
+<span class="ln">11</span> <span class="css-sel">body</span> {
+<span class="ln">12</span>     <span class="css-prop">min-height</span>: <span class="css-val">100vh</span>;
+<span class="ln">13</span>     <span class="css-prop">display</span>: <span class="css-val">flex</span>;
+<span class="ln">14</span>     <span class="css-prop">flex-direction</span>: <span class="css-val">column</span>;
+<span class="ln">15</span>     <span class="css-prop">align-items</span>: <span class="css-val">center</span>;
+<span class="ln">16</span>     <span class="css-prop">padding</span>: <span class="css-val">180px 20px 20px</span>;
+<span class="ln">17</span>     <span class="css-prop">gap</span>: <span class="css-val">120px</span>;
+<span class="ln">18</span> }</pre><pre class="ide-code" id="pane2-script" style="display:none"><span class="ln">1</span>  <span class="js-comment">// Tab click handlers</span>
+<span class="ln">2</span>  document.<span class="js-func">querySelectorAll</span>(<span class="js-str">'.tab'</span>).<span class="js-func">forEach</span>(tab => {
+<span class="ln">3</span>      tab.<span class="js-func">addEventListener</span>(<span class="js-str">'click'</span>, () => {
+<span class="ln">4</span>          document.<span class="js-func">querySelectorAll</span>(<span class="js-str">'.tab'</span>)
+<span class="ln">5</span>              .<span class="js-func">forEach</span>(t => t.classList.<span class="js-func">remove</span>(<span class="js-str">'active'</span>));
+<span class="ln">6</span>          tab.classList.<span class="js-func">add</span>(<span class="js-str">'active'</span>);
+<span class="ln">7</span>          <span class="js-func">renderUpdates</span>(tab.dataset.category);
+<span class="ln">8</span>      });
+<span class="ln">9</span>  });
+<span class="ln">10</span>
+<span class="ln">11</span> <span class="js-comment">// Name click handler</span>
+<span class="ln">12</span> document.<span class="js-func">querySelector</span>(<span class="js-str">'.name-link'</span>)
+<span class="ln">13</span>     .<span class="js-func">addEventListener</span>(<span class="js-str">'click'</span>, () => {
+<span class="ln">14</span>         <span class="js-key">const</span> el = document.<span class="js-func">getElementById</span>(<span class="js-str">'pronunciation'</span>);
+<span class="ln">15</span>         el.classList.<span class="js-func">toggle</span>(<span class="js-str">'visible'</span>);
+<span class="ln">16</span>     });</pre><pre class="ide-code" id="pane2-updates" style="display:none"><span class="ln">1</span>  [
+<span class="ln">2</span>    {
+<span class="ln">3</span>      <span class="js-str">"date"</span>: <span class="js-str">"Dec 2024"</span>,
+<span class="ln">4</span>      <span class="js-str">"category"</span>: <span class="js-str">"publishing"</span>,
+<span class="ln">5</span>      <span class="js-str">"description"</span>: <span class="js-str">"Paper accepted at MICCAI"</span>
+<span class="ln">6</span>    },
+<span class="ln">7</span>    {
+<span class="ln">8</span>      <span class="js-str">"date"</span>: <span class="js-str">"Nov 2024"</span>,
+<span class="ln">9</span>      <span class="js-str">"category"</span>: <span class="js-str">"teaching"</span>,
+<span class="ln">10</span>     <span class="js-str">"description"</span>: <span class="js-str">"Started TA for ML course"</span>
+<span class="ln">11</span>   },
+<span class="ln">12</span>   {
+<span class="ln">13</span>     <span class="js-str">"date"</span>: <span class="js-str">"Oct 2024"</span>,
+<span class="ln">14</span>     <span class="js-str">"category"</span>: <span class="js-str">"misc"</span>,
+<span class="ln">15</span>     <span class="js-str">"description"</span>: <span class="js-str">"Joined Cosine as intern"</span>
+<span class="ln">16</span>   }
+<span class="ln">17</span> ]</pre></div>
+                    </div>
+                </div>
+            </div>
             <img src="assests/see.png" alt="Soumya Snigdha Kundu" class="profile profile-2-mobile mobile-only">
             <div class="text text-2 desktop-only" id="text-2-desktop">
                 <p>My MSc was with Greg Slabaugh and Vineet Batta at QMUL. Did my UG with Dhanalakshmi Samiappan and Debashis Nandi (NIT-D) at SRM.</p>
