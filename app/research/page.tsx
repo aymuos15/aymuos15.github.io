@@ -107,21 +107,13 @@ export default function Research() {
           {/* Grants & Reviewing Side by Side */}
           <div className="grid grid-cols-[2fr_1fr] border-t border-border">
             {/* Grants Block */}
-            <div className="p-6 border-r border-border">
-              <div className="relative" style={{ minHeight: "2.5rem" }}>
-                <motion.h2
-                  className="text-xl font-bold cursor-pointer hover:opacity-70 absolute w-full"
-                  onClick={() => setIsExpanded(!isExpanded)}
-                  initial={false}
-                  animate={{
-                    left: isExpanded ? "0%" : "50%",
-                    x: isExpanded ? "0%" : "-50%",
-                  }}
-                  transition={{ duration: 1.2, ease: [0.4, 0, 0.2, 1] }}
-                >
-                  Grants
-                </motion.h2>
-              </div>
+            <div className="px-6 py-3 border-r border-border">
+              <h3
+                className="text-lg font-semibold cursor-pointer hover:opacity-70"
+                onClick={() => setIsExpanded(!isExpanded)}
+              >
+                Grants
+              </h3>
               <AnimatePresence>
                 {isExpanded && (
                   <motion.div
@@ -164,21 +156,13 @@ export default function Research() {
             </div>
 
             {/* Reviewing Block */}
-            <div className="p-6">
-              <div className="relative" style={{ minHeight: "2.5rem" }}>
-                <motion.h2
-                  className="text-xl font-bold cursor-pointer hover:opacity-70 absolute w-full"
-                  onClick={() => setIsExpanded(!isExpanded)}
-                  initial={false}
-                  animate={{
-                    left: isExpanded ? "0%" : "50%",
-                    x: isExpanded ? "0%" : "-50%",
-                  }}
-                  transition={{ duration: 1.2, ease: [0.4, 0, 0.2, 1] }}
-                >
-                  Reviewing
-                </motion.h2>
-              </div>
+            <div className="px-6 py-3">
+              <h3
+                className="text-lg font-semibold cursor-pointer hover:opacity-70"
+                onClick={() => setIsExpanded(!isExpanded)}
+              >
+                Reviewing
+              </h3>
               <AnimatePresence>
                 {isExpanded && (
                   <motion.div

@@ -5,8 +5,8 @@ import { PageTransition } from "@/components/page-transition";
 import { PrefetchRoutes } from "@/components/prefetch-routes";
 
 export const metadata: Metadata = {
-  title: "Ayush Tiwari",
-  description: "Personal website of Ayush Tiwari",
+  title: "Soumya Snigdha Kundu",
+  description: "Personal website of Soumya Snigdha Kundu",
 };
 
 export default function RootLayout({
