@@ -47,6 +47,7 @@ body {
 
 .profile {
     width: 400px;
+    height: 500px;
     object-fit: cover;
     border-radius: 8px;
 }
@@ -74,6 +75,7 @@ p {
 
     .profile {
         width: 150px;
+        height: 190px;
     }
 
     h1 {
