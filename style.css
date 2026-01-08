@@ -93,8 +93,42 @@ body {
     align-items: center;
 }
 
+.container-2 {
+    width: 970px;
+}
+
 .image-wrapper-2 {
     background-image: url('assests/Intro-to-Landscape-Final.jpg');
+    width: 100%;
+    height: 620px;
+    position: relative;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-2 {
+    width: 90%;
+    height: 85%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.text-2 {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    max-width: 450px;
+    background: rgba(245, 230, 200, 0.95);
+    padding: 12px 15px;
+    min-height: auto;
+    font-size: 0.75rem;
+    line-height: 1.4;
+}
+
+.text-2 p {
+    margin-bottom: 5px;
 }
 
 .container-3,
@@ -194,9 +228,32 @@ p {
         margin-bottom: 8px;
     }
 
+    .container-2,
     .container-3,
     .container-4 {
         width: auto;
+    }
+
+    .text-2 {
+        max-width: 120px;
+        padding: 8px;
+        font-size: 0.5rem;
+        bottom: 0;
+        right: 0;
+    }
+
+    .text-2 p {
+        margin-bottom: 5px;
+    }
+
+    .image-wrapper-2 {
+        padding: 10px;
+        height: 230px;
+    }
+
+    .profile-2 {
+        width: 85%;
+        height: 80%;
     }
 
     .niivue-wrapper {
