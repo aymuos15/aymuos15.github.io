@@ -117,7 +117,7 @@ export default function Updates() {
                 {filteredUpdates.map((update: Update, index: number) => (
                   <div key={index} className="flex flex-col sm:flex-row gap-3 group sm:items-center">
                     <span
-                      className="text-sm font-medium whitespace-nowrap w-fit rounded leading-tight"
+                      className="text-sm font-medium whitespace-nowrap w-fit rounded leading-tight text-black"
                       style={{ backgroundColor: pastelColors[index % pastelColors.length] }}
                     >
                       {update.date}
