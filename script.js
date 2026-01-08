@@ -135,3 +135,60 @@ document.querySelectorAll('.ide-tab').forEach(tab => {
         }
     });
 });
+
+// p5.js Perlin Noise Cloud Animation (binary 0/1 style)
+const cloudSketch = (p) => {
+    const cloudPixelScale = 4;
+    const cloudCutOff = 0.5;
+    const panSpeed = 6;
+    const cloudEvolutionSpeed = 3;
+
+    p.setup = () => {
+        const container = document.getElementById('p5-container');
+        const canvas = p.createCanvas(container.offsetWidth, container.offsetHeight);
+        canvas.parent('p5-container');
+    };
+
+    p.draw = () => {
+        // Sky blue background
+        p.background(135, 206, 235);
+
+        for (let x = 0; x <= p.width; x += cloudPixelScale) {
+            for (let y = 0; y <= p.height; y += cloudPixelScale) {
+                let tinyTimeOffset = p.millis() / 100000;
+                let noiseScale = 0.01;
+
+                let n = p.noise(
+                    x * noiseScale + tinyTimeOffset * panSpeed,
+                    y * noiseScale + tinyTimeOffset * 0.25 * panSpeed,
+                    tinyTimeOffset * cloudEvolutionSpeed
+                );
+
+                if (n < cloudCutOff) continue;
+
+                let alpha = p.map(n, cloudCutOff, 0.65, 10, 255);
+                p.fill(255, alpha);
+                p.textSize(cloudPixelScale * 1.15);
+                p.text(getLetterForCoordinate(x, y), x, y);
+            }
+        }
+    };
+
+    p.windowResized = () => {
+        const container = document.getElementById('p5-container');
+        if (container) {
+            p.resizeCanvas(container.offsetWidth, container.offsetHeight);
+        }
+    };
+
+    function getLetterForCoordinate(x, y) {
+        let hash = (x + y) * Math.sin(x * y);
+        let bit = Math.abs(Math.floor(hash * 1000)) % 2;
+        return bit.toString();
+    }
+};
+
+// Initialize the p5 sketch
+if (document.getElementById('p5-container')) {
+    new p5(cloudSketch);
+}

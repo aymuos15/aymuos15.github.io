@@ -85,12 +85,30 @@ body {
 }
 
 .image-wrapper {
-    background-image: url('assests/simple.avif');
-    background-size: cover;
-    background-position: center;
+    position: relative;
+    overflow: hidden;
+    background-color: #87CEEB; /* Sky blue background */
     padding: 60px;
     display: flex;
     align-items: center;
+}
+
+#p5-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.profile {
+    width: 400px;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 8px;
+    position: relative;
+    z-index: 2;
 }
 
 .container-2 {
