@@ -572,6 +572,10 @@ p {
         display: none;
     }
 
+    .mock-ide {
+        display: none !important;
+    }
+
     .niivue-wrapper {
         padding: 20px;
     }
