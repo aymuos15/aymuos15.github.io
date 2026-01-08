@@ -26,6 +26,12 @@ document.querySelectorAll('.tab').forEach(tab => {
     });
 });
 
+// Name click handler - shows pronunciation
+document.querySelector('.name-link').addEventListener('click', () => {
+    const pronunciation = document.getElementById('pronunciation');
+    pronunciation.classList.toggle('visible');
+});
+
 // Research link click handler - shows collaborators with fade animation
 const collaboratorsText = `<p>In no particular order, Everyone at CAI4CAI: Lorena Macias, Aaron Kujawa, Theo Barfoot, Marina Ivory, Navodini Wijethilake, Meng Wei, Oluwatosin Alabi and Martin Huber. Along with: Pooja Ganesh (SEL), Rakshit Naidu (GaTech), Aarsh Chaube (Edinburgh), Mona Furukawa (Oxford), Yang Li (KCL), Feng He (KCL), and Ruoyang Liu (KCL).</p>`;
 
