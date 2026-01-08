@@ -284,6 +284,15 @@ body {
     color: #333;
 }
 
+.footer {
+    margin-top: 7px;
+    padding: 40px 20px;
+    text-align: center;
+    font-family: Garamond, serif;
+    font-size: 0.95rem;
+    color: #333;
+}
+
 .profile {
     width: 400px;
     height: 500px;
@@ -447,5 +456,11 @@ p {
     .social-links svg {
         width: 18px;
         height: 18px;
+    }
+
+    .footer {
+        margin-top: 7px;
+        padding: 20px;
+        font-size: 0.7rem;
     }
 }
