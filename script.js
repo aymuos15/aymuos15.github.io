@@ -138,9 +138,9 @@ document.querySelectorAll('.ide-tab').forEach(tab => {
 
 // p5.js Perlin Noise Cloud Animation (binary 0/1 style)
 const cloudSketch = (p) => {
-    const cloudPixelScale = 4;
-    const cloudCutOff = 0.5;
-    const panSpeed = 6;
+    const cloudPixelScale = 6;
+    const cloudCutOff = 0.6;
+    const panSpeed = 10;
     const cloudEvolutionSpeed = 3;
 
     p.setup = () => {
