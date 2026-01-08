@@ -28,5 +28,39 @@
             <p>I regularly mentor students (see In2Stem!) and researchers. Please reach out! There are many who have supported my research.</p>
         </div>
     </div>
+    <div class="container container-3">
+        <div class="text text-3">
+            <p>My research focuses on handling instance imbalance in brain tumuor segmentation.</p>
+            <p>But I enjoy coding in general. Maybe an ode to my undergrad in CS. It's why I worked at Cosine to work on Large Code Models and why I love building developer tools such as the editor in the previous photo.</>
+        </div>
+        <div class="niivue-wrapper">
+            <div class="niivue-viewer">
+                <select id="volume-select">
+                    <option value="assests/BraTS-MET-00001-000/BraTS-MET-00001-000-t1c.nii.gz">T1 Contrast</option>
+                    <option value="assests/BraTS-MET-00001-000/BraTS-MET-00001-000-t1n.nii.gz">T1 Native</option>
+                    <option value="assests/BraTS-MET-00001-000/BraTS-MET-00001-000-t2f.nii.gz">T2 FLAIR</option>
+                    <option value="assests/BraTS-MET-00001-000/BraTS-MET-00001-000-t2w.nii.gz">T2 Weighted</option>
+                    <option value="assests/BraTS-MET-00001-000/BraTS-MET-00001-000-seg.nii.gz">Segmentation</option>
+                </select>
+                <canvas id="gl"></canvas>
+            </div>
+        </div>
+    </div>
+    <script type="module" async>
+        import { Niivue } from "https://unpkg.com/@niivue/niivue@0.57.0/dist/index.js";
+
+        var nv = new Niivue({
+            sliceType: 0,
+            isResizeCanvas: true
+        });
+        await nv.attachTo("gl");
+
+        const select = document.getElementById("volume-select");
+        await nv.loadVolumes([{ url: select.value }]);
+
+        select.addEventListener("change", async () => {
+            await nv.loadVolumes([{ url: select.value }]);
+        });
+    </script>
 </body>
 </html>

@@ -25,6 +25,7 @@ body {
 
 .text {
     max-width: 450px;
+    min-height: 500px;
     padding: 60px;
     background-color: #f5e6c8;
     display: flex;
@@ -43,6 +44,51 @@ body {
 
 .image-wrapper-2 {
     background-image: url('assests/Intro-to-Landscape-Final.jpg');
+}
+
+.container-3 {
+    width: 970px;
+}
+
+.niivue-wrapper {
+    flex: 7;
+    background-image: url('assests/simple.avif');
+    background-size: cover;
+    background-position: center;
+    padding: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.niivue-viewer {
+    position: relative;
+    width: 100%;
+    height: 500px;
+}
+
+.niivue-viewer canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+#volume-select {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 10;
+    padding: 5px 10px;
+    border-radius: 0;
+    border: none;
+    background: rgba(255, 255, 255, 0.9);
+    cursor: pointer;
+}
+
+.text-3 {
+    flex: 3;
+    max-width: none;
+    min-height: auto;
+    padding: 30px;
 }
 
 .profile {
@@ -86,5 +132,26 @@ p {
     p {
         font-size: 0.7rem;
         margin-bottom: 8px;
+    }
+
+    .container-3 {
+        width: auto;
+    }
+
+    .niivue-wrapper {
+        padding: 20px;
+    }
+
+    .niivue-viewer {
+        height: 190px;
+    }
+
+    .text-3 {
+        padding: 15px;
+    }
+
+    #volume-select {
+        padding: 3px 6px;
+        font-size: 0.6rem;
     }
 }
