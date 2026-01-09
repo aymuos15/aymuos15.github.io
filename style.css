@@ -84,6 +84,17 @@ body {
     justify-content: center;
 }
 
+.text a,
+.text-2 a {
+    color: #a67c5b;
+    text-decoration: underline;
+}
+
+.text a:hover,
+.text-2 a:hover {
+    color: #8b6348;
+}
+
 .image-wrapper {
     position: relative;
     overflow: hidden;
