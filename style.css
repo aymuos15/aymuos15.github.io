@@ -359,6 +359,15 @@ body {
     padding: 30px;
 }
 
+.text-3 a {
+    color: #a67c5b;
+    text-decoration: underline;
+}
+
+.text-3 a:hover {
+    color: #8b6348;
+}
+
 .pane-4-bg {
     width: 100%;
     height: 620px;
