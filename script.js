@@ -1,3 +1,49 @@
+// Theme toggle with localStorage persistence
+(function initTheme() {
+    const saved = localStorage.getItem('theme-preference') || 'light';
+    applyTheme(saved);
+})();
+
+function applyTheme(preference) {
+    if (preference === 'system') {
+        const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.setAttribute('data-theme', systemDark ? 'dark' : 'light');
+    } else {
+        document.documentElement.setAttribute('data-theme', preference);
+    }
+}
+
+// Listen for system theme changes
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+    if (localStorage.getItem('theme-preference') === 'system') {
+        applyTheme('system');
+    }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('.theme-toggle button');
+    const saved = localStorage.getItem('theme-preference') || 'light';
+
+    // Set initial active state
+    buttons.forEach(btn => {
+        if (btn.dataset.themeOption === saved) {
+            btn.classList.add('active');
+        }
+    });
+
+    buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const preference = btn.dataset.themeOption;
+            localStorage.setItem('theme-preference', preference);
+            applyTheme(preference);
+
+            // Update active state
+            buttons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        });
+    });
+});
+
 // Updates rendering
 let updates = [];
 
@@ -296,8 +342,13 @@ const cloudSketch = (p) => {
     };
 
     p.draw = () => {
-        // Sky blue background
-        p.background(135, 206, 235);
+        // Theme-aware background
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        if (isDark) {
+            p.background(30, 58, 95); // #1e3a5f
+        } else {
+            p.background(135, 206, 235); // #87CEEB
+        }
 
         for (let x = 0; x <= p.width; x += cloudPixelScale) {
             for (let y = 0; y <= p.height; y += cloudPixelScale) {
