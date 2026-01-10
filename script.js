@@ -156,10 +156,12 @@ function applyImagePosition(img) {
 document.querySelectorAll('.image-grid-cell').forEach(cell => {
     const wrapper = cell.querySelector('.slide-wrapper');
     let currentImg = wrapper.querySelector('img');
+    let isAnimating = false;
     applyImagePosition(currentImg);
 
     cell.addEventListener('click', () => {
-        if (extraImages.length > 0 && !wrapper.classList.contains('sliding')) {
+        if (extraImages.length > 0 && !isAnimating) {
+            isAnimating = true;
             const oldSrc = currentImg.src;
             const newSrc = extraImages.shift();
 
@@ -186,6 +188,7 @@ document.querySelectorAll('.image-grid-cell').forEach(cell => {
                     wrapper.style.transition = '';
                 });
                 currentImg = nextImg;
+                isAnimating = false;
             }, 1500);
 
             // Add old image to queue
