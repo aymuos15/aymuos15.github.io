@@ -241,19 +241,22 @@ document.querySelectorAll('.ide-file[data-file]').forEach(file => {
         });
         file.textContent = '> ' + file.textContent;
 
-        // Switch content in pane 1
-        const pane1 = document.querySelector('[data-pane="1"]');
-        pane1.querySelectorAll('.ide-code').forEach(code => code.style.display = 'none');
-        const pane1Code = document.getElementById('pane1-' + fileType);
-        if (pane1Code) pane1Code.style.display = 'block';
-        pane1.dataset.showing = fileType;
+        // Find the currently active tab
+        const activeTab = document.querySelector('.ide-tab.active');
+        const paneNum = activeTab ? activeTab.textContent.charAt(0) : '1';
 
-        // Update tabs
-        const tabs = document.querySelectorAll('.ide-tab');
-        tabs[0].dataset.file = fileType;
-        tabs[0].textContent = '1:' + file.textContent.replace('> ', '');
-        tabs[0].classList.add('active');
-        tabs[1].classList.remove('active');
+        // Switch content in the active pane
+        const pane = document.querySelector(`[data-pane="${paneNum}"]`);
+        pane.querySelectorAll('.ide-code').forEach(code => code.style.display = 'none');
+        const paneCode = document.getElementById(`pane${paneNum}-` + fileType);
+        if (paneCode) paneCode.style.display = 'block';
+        pane.dataset.showing = fileType;
+
+        // Update the active tab
+        if (activeTab) {
+            activeTab.dataset.file = fileType;
+            activeTab.textContent = paneNum + ':' + file.textContent.replace('> ', '');
+        }
     });
 });
 
