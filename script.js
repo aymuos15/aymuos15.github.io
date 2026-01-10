@@ -3,7 +3,9 @@ let updates = [];
 
 function renderUpdates(category) {
     const list = document.getElementById('updates-list');
-    const filtered = category === 'all' ? updates : updates.filter(u => u.category === category);
+    const filtered = category === 'all'
+        ? updates.filter(u => u.category !== 'pr')
+        : updates.filter(u => u.category === category);
     list.innerHTML = filtered.map(u =>
         `<div class="update-item"><span class="update-date">${u.date}</span><span class="update-desc">${u.description}</span></div>`
     ).join('');
