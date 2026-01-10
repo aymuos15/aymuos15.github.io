@@ -136,6 +136,65 @@ function attachBackBtnHandler(btnId, desktopText, mobileText) {
 
 attachResearchLinkHandlers();
 
+// Image grid click to cycle through extra images
+const extraImages = [
+    'gallery/isbi.jpeg',
+    'gallery/pupil.jpeg'
+];
+
+// Custom object-position for specific images
+const imagePositions = {
+    'pupil.jpeg': 'center top',
+    'isbi.jpeg': 'center bottom'
+};
+
+function applyImagePosition(img) {
+    const filename = img.src.split('/').pop();
+    img.style.objectPosition = imagePositions[filename] || 'center center';
+}
+
+document.querySelectorAll('.image-grid-cell').forEach(cell => {
+    const wrapper = cell.querySelector('.slide-wrapper');
+    let currentImg = wrapper.querySelector('img');
+    applyImagePosition(currentImg);
+
+    cell.addEventListener('click', () => {
+        if (extraImages.length > 0 && !wrapper.classList.contains('sliding')) {
+            const oldSrc = currentImg.src;
+            const newSrc = extraImages.shift();
+
+            // Create next image and add to wrapper
+            const nextImg = document.createElement('img');
+            nextImg.src = newSrc;
+            applyImagePosition(nextImg);
+            wrapper.appendChild(nextImg);
+
+            // Slide the wrapper
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    wrapper.classList.add('sliding');
+                });
+            });
+
+            // After slide, clean up and reset
+            setTimeout(() => {
+                currentImg.remove();
+                wrapper.classList.remove('sliding');
+                wrapper.style.transition = 'none';
+                wrapper.style.transform = '';
+                requestAnimationFrame(() => {
+                    wrapper.style.transition = '';
+                });
+                currentImg = nextImg;
+            }, 1500);
+
+            // Add old image to queue
+            const oldPath = 'gallery/' + oldSrc.split('/gallery/')[1];
+            extraImages.push(oldPath);
+        }
+    });
+});
+
 // Smooth scroll navigation
 document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', (e) => {
