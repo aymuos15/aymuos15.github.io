@@ -223,13 +223,6 @@ body {
     align-items: center;
 }
 
-.profile-2 {
-    width: 90%;
-    height: 85%;
-    object-fit: cover;
-    border-radius: 8px;
-}
-
 .mock-ide {
     width: 90%;
     height: 85%;
@@ -446,8 +439,7 @@ body {
     outline: none;
 }
 
-.text-3,
-.text-4 {
+.text-3 {
     flex: 3;
     max-width: none;
     min-height: auto;
@@ -672,13 +664,6 @@ body {
     font-family: Garamond, serif;
     font-size: 0.95rem;
     color: var(--text-primary);
-}
-
-.profile {
-    width: 400px;
-    height: 500px;
-    object-fit: cover;
-    border-radius: 8px;
 }
 
 h1 {
@@ -939,7 +924,6 @@ html {
 
 body,
 .header,
-.text-3,
 .updates-widget,
 .mock-ide,
 .ide-main,

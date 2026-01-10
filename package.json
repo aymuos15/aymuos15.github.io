@@ -1,0 +1,39 @@
+{
+  "name": "aymuos15.github.io",
+  "version": "1.0.0",
+  "description": "This is me.",
+  "main": "script.js",
+  "type": "module",
+  "scripts": {
+    "lint": "npm run lint:js && npm run lint:css && npm run lint:html",
+    "lint:js": "eslint script.js",
+    "lint:css": "stylelint style.css",
+    "lint:html": "htmlhint index.html",
+    "lint:fix": "eslint script.js --fix && stylelint style.css --fix",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.js": "eslint --fix",
+    "*.css": "stylelint --fix",
+    "*.html": "htmlhint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aymuos15/aymuos15.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aymuos15/aymuos15.github.io/issues"
+  },
+  "homepage": "https://github.com/aymuos15/aymuos15.github.io#readme",
+  "devDependencies": {
+    "eslint": "^9.39.2",
+    "htmlhint": "^1.8.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
+    "stylelint": "^16.26.1",
+    "stylelint-config-standard": "^39.0.1"
+  }
+}
