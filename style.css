@@ -509,11 +509,17 @@ body {
 
 .text-2,
 .text-2-mobile {
-    transition: opacity 0.5s ease-in-out;
+    transition: height 0.8s ease-in-out;
+    overflow: hidden;
 }
 
-.text-2.fade-out,
-.text-2-mobile.fade-out {
+.text-2 p,
+.text-2-mobile p {
+    transition: opacity 0.4s ease-in-out;
+}
+
+.text-2.fade-out p,
+.text-2-mobile.fade-out p {
     opacity: 0;
 }
 

@@ -45,32 +45,80 @@ const originalMobileText = `<p>My MSc was with <a href="https://webspace.eecs.qm
             <p>I regularly mentor students (see In2Stem!) and researchers. Please reach out! There are many who have supported my <span class="research-link">research</span>.</p>
             <button class="back-btn" id="back-btn-mobile" style="display: none;"></button>`;
 
+function animateContentChange(desktopText, mobileText, newDesktopContent, newMobileContent, callback) {
+    // Store current heights and lock them with explicit height
+    const startDesktopHeight = desktopText ? desktopText.offsetHeight : 0;
+    const startMobileHeight = mobileText ? mobileText.offsetHeight : 0;
+
+    if (desktopText) desktopText.style.height = startDesktopHeight + 'px';
+    if (mobileText) mobileText.style.height = startMobileHeight + 'px';
+
+    // Use double rAF to ensure styles are committed
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+            // Fade out text
+            if (desktopText) desktopText.classList.add('fade-out');
+            if (mobileText) mobileText.classList.add('fade-out');
+
+            // After fade out, change content and resize to new height
+            setTimeout(() => {
+                // Change content
+                if (desktopText) desktopText.innerHTML = newDesktopContent;
+                if (mobileText) mobileText.innerHTML = newMobileContent;
+
+                // Measure new heights (temporarily set height to auto)
+                let newDesktopHeight = 0;
+                let newMobileHeight = 0;
+
+                if (desktopText) {
+                    desktopText.style.height = 'auto';
+                    newDesktopHeight = desktopText.offsetHeight;
+                    desktopText.style.height = startDesktopHeight + 'px';
+                }
+                if (mobileText) {
+                    mobileText.style.height = 'auto';
+                    newMobileHeight = mobileText.offsetHeight;
+                    mobileText.style.height = startMobileHeight + 'px';
+                }
+
+                // Animate to new heights
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                        if (desktopText) desktopText.style.height = newDesktopHeight + 'px';
+                        if (mobileText) mobileText.style.height = newMobileHeight + 'px';
+
+                        // After resize, fade in
+                        setTimeout(() => {
+                            if (desktopText) desktopText.classList.remove('fade-out');
+                            if (mobileText) mobileText.classList.remove('fade-out');
+
+                            // Clean up height after animation
+                            setTimeout(() => {
+                                if (desktopText) desktopText.style.height = '';
+                                if (mobileText) mobileText.style.height = '';
+                                if (callback) callback();
+                            }, 400);
+                        }, 800);
+                    });
+                });
+            }, 400);
+        });
+    });
+}
+
 function attachResearchLinkHandlers() {
     document.querySelectorAll('.research-link').forEach(link => {
         link.addEventListener('click', () => {
             const desktopText = document.getElementById('text-2-desktop');
             const mobileText = document.getElementById('text-2-mobile');
 
-            // Fade out
-            if (desktopText) desktopText.classList.add('fade-out');
-            if (mobileText) mobileText.classList.add('fade-out');
+            const newDesktopContent = collaboratorsText + '<button class="back-btn" id="back-btn-desktop"></button>';
+            const newMobileContent = collaboratorsText + '<button class="back-btn" id="back-btn-mobile"></button>';
 
-            // After fade out, change content and fade back in
-            setTimeout(() => {
-                if (desktopText) {
-                    desktopText.innerHTML = collaboratorsText + '<button class="back-btn" id="back-btn-desktop"></button>';
-                    attachBackBtnHandler('back-btn-desktop', desktopText, mobileText);
-                }
-                if (mobileText) {
-                    mobileText.innerHTML = collaboratorsText + '<button class="back-btn" id="back-btn-mobile"></button>';
-                    attachBackBtnHandler('back-btn-mobile', desktopText, mobileText);
-                }
-
-                setTimeout(() => {
-                    if (desktopText) desktopText.classList.remove('fade-out');
-                    if (mobileText) mobileText.classList.remove('fade-out');
-                }, 50);
-            }, 500);
+            animateContentChange(desktopText, mobileText, newDesktopContent, newMobileContent, () => {
+                attachBackBtnHandler('back-btn-desktop', desktopText, mobileText);
+                attachBackBtnHandler('back-btn-mobile', desktopText, mobileText);
+            });
         });
     });
 }
@@ -79,21 +127,9 @@ function attachBackBtnHandler(btnId, desktopText, mobileText) {
     const btn = document.getElementById(btnId);
     if (btn) {
         btn.addEventListener('click', () => {
-            // Fade out
-            if (desktopText) desktopText.classList.add('fade-out');
-            if (mobileText) mobileText.classList.add('fade-out');
-
-            // After fade out, restore original content and fade back in
-            setTimeout(() => {
-                if (desktopText) desktopText.innerHTML = originalDesktopText;
-                if (mobileText) mobileText.innerHTML = originalMobileText;
+            animateContentChange(desktopText, mobileText, originalDesktopText, originalMobileText, () => {
                 attachResearchLinkHandlers();
-
-                setTimeout(() => {
-                    if (desktopText) desktopText.classList.remove('fade-out');
-                    if (mobileText) mobileText.classList.remove('fade-out');
-                }, 50);
-            }, 500);
+            });
         });
     }
 }
