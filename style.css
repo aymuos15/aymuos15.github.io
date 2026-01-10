@@ -517,6 +517,24 @@ body {
     opacity: 0;
 }
 
+.back-btn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 24px;
+    height: 24px;
+    background: rgba(245, 230, 200, 0.95);
+    border: none;
+    border-radius: 4px 0 0 0;
+    cursor: pointer;
+    box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.15), inset -1px -1px 2px rgba(255, 255, 255, 0.5);
+    transition: all 0.2s;
+}
+
+.back-btn:hover {
+    box-shadow: inset 3px 3px 6px rgba(0, 0, 0, 0.2), inset -1px -1px 2px rgba(255, 255, 255, 0.5);
+}
+
 .footer {
     margin-top: 7px;
     padding: 40px 20px;
@@ -699,5 +717,10 @@ p {
         margin-top: 7px;
         padding: 20px;
         font-size: 0.7rem;
+    }
+
+    .back-btn {
+        width: 18px;
+        height: 18px;
     }
 }

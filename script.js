@@ -35,27 +35,70 @@ document.querySelector('.name-link').addEventListener('click', () => {
 // Research link click handler - shows collaborators with fade animation
 const collaboratorsText = `<p>In no particular order, Everyone at CAI4CAI: Lorena Macias, Aaron Kujawa, Theo Barfoot, Marina Ivory, Navodini Wijethilake, Meng Wei, Oluwatosin Alabi and Martin Huber. Along with: Pooja Ganesh (SEL), Rakshit Naidu (GaTech), Aarsh Chaube (Edinburgh), Mona Furukawa (Oxford), Yang Li (KCL), Feng He (KCL), and Ruoyang Liu (KCL).</p>`;
 
-document.querySelectorAll('.research-link').forEach(link => {
-    link.addEventListener('click', () => {
-        const desktopText = document.getElementById('text-2-desktop');
-        const mobileText = document.getElementById('text-2-mobile');
+const originalDesktopText = `<p>My MSc was with <a href="https://webspace.eecs.qmul.ac.uk/g.slabaugh/" target="_blank">Greg Slabaugh</a> and Vineet Batta at QMUL. Did my UG with <a href="https://www.srmist.edu.in/faculty/dr-s-dhanalakshmi/" target="_blank">Dhanalakshmi Samiappan</a> and Debashis Nandi (NIT-D) at SRM.</p>
+                <p>I am always exploring London's food scene or breaking down complex rhyme schemes in rap. In school, I represented my country in futsal and debated nationally.</p>
+                <p>I regularly mentor students (see In2Stem!) and researchers. Please reach out! There are many who have supported my <span class="research-link">research</span>.</p>
+                <button class="back-btn" id="back-btn-desktop" style="display: none;"></button>`;
 
-        // Fade out
-        if (desktopText) desktopText.classList.add('fade-out');
-        if (mobileText) mobileText.classList.add('fade-out');
+const originalMobileText = `<p>My MSc was with <a href="https://webspace.eecs.qmul.ac.uk/g.slabaugh/" target="_blank">Greg Slabaugh</a> and Vineet Batta at QMUL. Did my UG with <a href="https://www.srmist.edu.in/faculty/dr-s-dhanalakshmi/" target="_blank">Dhanalakshmi Samiappan</a> and Debashis Nandi (NIT-D) at SRM.</p>
+            <p>I am always exploring London's food scene or breaking down complex rhyme schemes in rap. In school, I represented my country in futsal and debated nationally.</p>
+            <p>I regularly mentor students (see In2Stem!) and researchers. Please reach out! There are many who have supported my <span class="research-link">research</span>.</p>
+            <button class="back-btn" id="back-btn-mobile" style="display: none;"></button>`;
 
-        // After fade out, change content and fade back in
-        setTimeout(() => {
-            if (desktopText) desktopText.innerHTML = collaboratorsText;
-            if (mobileText) mobileText.innerHTML = collaboratorsText;
+function attachResearchLinkHandlers() {
+    document.querySelectorAll('.research-link').forEach(link => {
+        link.addEventListener('click', () => {
+            const desktopText = document.getElementById('text-2-desktop');
+            const mobileText = document.getElementById('text-2-mobile');
 
+            // Fade out
+            if (desktopText) desktopText.classList.add('fade-out');
+            if (mobileText) mobileText.classList.add('fade-out');
+
+            // After fade out, change content and fade back in
             setTimeout(() => {
-                if (desktopText) desktopText.classList.remove('fade-out');
-                if (mobileText) mobileText.classList.remove('fade-out');
-            }, 50);
-        }, 500);
+                if (desktopText) {
+                    desktopText.innerHTML = collaboratorsText + '<button class="back-btn" id="back-btn-desktop"></button>';
+                    attachBackBtnHandler('back-btn-desktop', desktopText, mobileText);
+                }
+                if (mobileText) {
+                    mobileText.innerHTML = collaboratorsText + '<button class="back-btn" id="back-btn-mobile"></button>';
+                    attachBackBtnHandler('back-btn-mobile', desktopText, mobileText);
+                }
+
+                setTimeout(() => {
+                    if (desktopText) desktopText.classList.remove('fade-out');
+                    if (mobileText) mobileText.classList.remove('fade-out');
+                }, 50);
+            }, 500);
+        });
     });
-});
+}
+
+function attachBackBtnHandler(btnId, desktopText, mobileText) {
+    const btn = document.getElementById(btnId);
+    if (btn) {
+        btn.addEventListener('click', () => {
+            // Fade out
+            if (desktopText) desktopText.classList.add('fade-out');
+            if (mobileText) mobileText.classList.add('fade-out');
+
+            // After fade out, restore original content and fade back in
+            setTimeout(() => {
+                if (desktopText) desktopText.innerHTML = originalDesktopText;
+                if (mobileText) mobileText.innerHTML = originalMobileText;
+                attachResearchLinkHandlers();
+
+                setTimeout(() => {
+                    if (desktopText) desktopText.classList.remove('fade-out');
+                    if (mobileText) mobileText.classList.remove('fade-out');
+                }, 50);
+            }, 500);
+        });
+    }
+}
+
+attachResearchLinkHandlers();
 
 // Smooth scroll navigation
 document.querySelectorAll('.nav-links a').forEach(link => {
