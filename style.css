@@ -165,6 +165,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .text a,
@@ -938,8 +939,6 @@ html {
 
 body,
 .header,
-.text,
-.text-2,
 .text-3,
 .updates-widget,
 .mock-ide,
