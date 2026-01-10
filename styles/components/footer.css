@@ -1,0 +1,17 @@
+/* Footer */
+.footer {
+    margin-top: 7px;
+    padding: 40px 20px;
+    text-align: center;
+    font-family: Garamond, serif;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+}
+
+@media (max-width: 768px) {
+    .footer {
+        margin-top: 7px;
+        padding: 20px;
+        font-size: 0.7rem;
+    }
+}

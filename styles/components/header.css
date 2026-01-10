@@ -1,0 +1,63 @@
+/* Header Component */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: var(--bg-header);
+    padding: 20px calc(50% - 485px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: Garamond, serif;
+    z-index: 100;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-primary);
+    font-size: 1.1rem;
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+}
+
+.social-links a {
+    color: var(--text-primary);
+    transition: color 0.2s;
+}
+
+.social-links a:hover {
+    color: var(--text-secondary);
+}
+
+@media (max-width: 768px) {
+    .header {
+        padding: 15px 20px;
+    }
+
+    .nav-links {
+        gap: 15px;
+    }
+
+    .nav-links a {
+        font-size: 0.8rem;
+    }
+
+    .social-links svg {
+        width: 18px;
+        height: 18px;
+    }
+}

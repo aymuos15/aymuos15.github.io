@@ -1,0 +1,80 @@
+/* Theme Variables */
+:root {
+    /* Backgrounds */
+    --bg-page: #ffffff;
+    --bg-card: #f5e6c8;
+    --bg-card-translucent: rgba(245, 230, 200, 0.95);
+    --bg-header: #fff;
+    --bg-home: #87CEEB;
+
+    /* Text */
+    --text-primary: #333;
+    --text-secondary: #666;
+    --text-muted: #888;
+
+    /* Links */
+    --link-color: #a67c5b;
+    --link-hover: #8b6348;
+
+    /* Borders */
+    --border-subtle: rgba(0, 0, 0, 0.1);
+    --border-medium: #ccc;
+    --border-strong: #333;
+
+    /* IDE Theme */
+    --ide-sidebar-bg: #2d2a3e;
+    --ide-sidebar-border: #444;
+    --ide-file-text: #ccc;
+    --ide-file-hover: #3d3a4e;
+    --ide-main-bg: #f5f0e6;
+    --ide-tabs-bg: #e8e4da;
+
+    /* Tabs/Buttons */
+    --tab-active-bg: #333;
+    --tab-active-text: #fff;
+
+    /* Scrollbar */
+    --scrollbar-thumb: #333;
+    --scrollbar-thumb-hover: #555;
+    --scrollbar-track: #f5e6c8;
+}
+
+[data-theme="dark"] {
+    /* Backgrounds */
+    --bg-page: #1a1714;
+    --bg-card: #2d2a24;
+    --bg-card-translucent: rgba(45, 42, 36, 0.95);
+    --bg-header: #1a1714;
+    --bg-home: #1e3a5f;
+
+    /* Text */
+    --text-primary: #e8e4da;
+    --text-secondary: #b0a99a;
+    --text-muted: #8a8478;
+
+    /* Links */
+    --link-color: #d4a574;
+    --link-hover: #e8bc8a;
+
+    /* Borders */
+    --border-subtle: rgba(255, 255, 255, 0.1);
+    --border-medium: #4a4640;
+    --border-strong: #5a5650;
+
+    /* IDE Theme */
+    --ide-sidebar-bg: #1f1c28;
+    --ide-sidebar-border: #3a3630;
+    --ide-file-text: #b0a99a;
+    --ide-file-hover: #3a3630;
+    --ide-main-bg: #2d2a24;
+    --ide-tabs-bg: #3a3630;
+
+    /* Tabs/Buttons */
+    --tab-active-bg: #4a4640;
+    --tab-active-text: #e8e4da;
+
+    /* Scrollbar */
+    --scrollbar-thumb: #5a5650;
+    --scrollbar-thumb-hover: #6a6660;
+    --scrollbar-track: #2d2a24;
+}

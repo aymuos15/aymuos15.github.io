@@ -1,0 +1,82 @@
+/* Research Section */
+.container-3 {
+    width: 970px;
+}
+
+.niivue-wrapper {
+    flex: 7;
+    background-image: url('../../assests/mountains.webp');
+    background-size: cover;
+    background-position: center;
+    padding: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.niivue-viewer {
+    position: relative;
+    width: 100%;
+    height: 500px;
+}
+
+.niivue-viewer canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+#volume-select {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 10;
+    padding: 8px 12px;
+    border: none;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    font-family: Garamond, serif;
+    font-size: 0.95rem;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.text-3 {
+    flex: 3;
+    max-width: none;
+    min-height: auto;
+    padding: 30px;
+    background-color: var(--bg-card);
+}
+
+.text-3 a {
+    color: var(--link-color);
+    text-decoration: underline;
+}
+
+.text-3 a:hover {
+    color: var(--link-hover);
+}
+
+@media (max-width: 768px) {
+    .container-3 {
+        width: auto;
+    }
+
+    .niivue-wrapper {
+        padding: 20px;
+    }
+
+    .niivue-viewer {
+        height: 190px;
+    }
+
+    .text-3 {
+        padding: 15px;
+    }
+
+    #volume-select {
+        padding: 3px 6px;
+        font-size: 0.6rem;
+    }
+}
