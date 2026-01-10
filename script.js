@@ -81,7 +81,7 @@ document.querySelector('.name-link').addEventListener('click', () => {
 });
 
 // Research link click handler - shows collaborators with fade animation
-const collaboratorsText = `<p>In no particular order, Everyone at CAI4CAI: Lorena Macias, Aaron Kujawa, Theo Barfoot, Marina Ivory, Navodini Wijethilake, Meng Wei, Oluwatosin Alabi and Martin Huber. Along with: Pooja Ganesh (SEL), Rakshit Naidu (GaTech), Aarsh Chaube (Edinburgh), Mona Furukawa (Oxford), Yang Li (KCL), Feng He (KCL), and Ruoyang Liu (KCL).</p>`;
+const collaboratorsText = '<p>In no particular order, Everyone at CAI4CAI: Lorena Macias, Aaron Kujawa, Theo Barfoot, Marina Ivory, Navodini Wijethilake, Meng Wei, Oluwatosin Alabi and Martin Huber. Along with: Pooja Ganesh (SEL), Rakshit Naidu (GaTech), Aarsh Chaube (Edinburgh), Mona Furukawa (Oxford), Yang Li (KCL), Feng He (KCL), and Ruoyang Liu (KCL).</p>';
 
 const originalDesktopText = `<p>My MSc was with <a href="https://webspace.eecs.qmul.ac.uk/g.slabaugh/" target="_blank">Greg Slabaugh</a> and Vineet Batta at QMUL. Did my UG with <a href="https://www.srmist.edu.in/faculty/dr-s-dhanalakshmi/" target="_blank">Dhanalakshmi Samiappan</a> and Debashis Nandi (NIT-D) at SRM.</p>
                 <p>I am always exploring London's food scene or breaking down complex rhyme schemes in rap. In school, I represented my country in futsal and debated nationally.</p>
@@ -246,33 +246,77 @@ document.querySelectorAll('.image-grid-cell').forEach(cell => {
     });
 });
 
+// Mobile nav toggle - Home link expands/collapses dropdown
+const navHome = document.querySelector('.nav-home');
+const navLinks = document.querySelector('.nav-links');
+const navDropdown = document.querySelector('.nav-dropdown');
+const isMobile = () => window.innerWidth <= 768;
+
+if (navHome && navLinks && navDropdown) {
+    // Close menu when clicking dropdown links
+    navDropdown.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            if (isMobile()) {
+                navLinks.classList.remove('open');
+            }
+        });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (isMobile() && !navLinks.contains(e.target)) {
+            navLinks.classList.remove('open');
+        }
+    });
+}
+
 // Smooth scroll navigation
 document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', (e) => {
+        const isHome = link.classList.contains('nav-home');
+
+        // Handle Home link on mobile
+        if (isHome && isMobile()) {
+            e.preventDefault();
+            if (navLinks.classList.contains('open')) {
+                // Close dropdown and scroll to home
+                navLinks.classList.remove('open');
+                smoothScrollTo('home');
+            } else {
+                // Just open dropdown
+                navLinks.classList.add('open');
+            }
+            return;
+        }
+
         e.preventDefault();
         const targetId = link.getAttribute('href').slice(1);
-        const target = document.getElementById(targetId);
-        if (target) {
-            const targetPosition = target.offsetTop - 80;
-            const startPosition = window.pageYOffset;
-            const distance = targetPosition - startPosition;
-            const duration = 1500;
-            let start = null;
-
-            function animation(currentTime) {
-                if (start === null) start = currentTime;
-                const timeElapsed = currentTime - start;
-                const progress = Math.min(timeElapsed / duration, 1);
-                const ease = progress < 0.5
-                    ? 4 * progress * progress * progress
-                    : 1 - Math.pow(-2 * progress + 2, 3) / 2;
-                window.scrollTo(0, startPosition + distance * ease);
-                if (timeElapsed < duration) requestAnimationFrame(animation);
-            }
-            requestAnimationFrame(animation);
-        }
+        smoothScrollTo(targetId);
     });
 });
+
+function smoothScrollTo(targetId) {
+    const target = document.getElementById(targetId);
+    if (target) {
+        const targetPosition = target.offsetTop - 80;
+        const startPosition = window.pageYOffset;
+        const distance = targetPosition - startPosition;
+        const duration = 1500;
+        let start = null;
+
+        function animation(currentTime) {
+            if (start === null) start = currentTime;
+            const timeElapsed = currentTime - start;
+            const progress = Math.min(timeElapsed / duration, 1);
+            const ease = progress < 0.5
+                ? 4 * progress * progress * progress
+                : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+            window.scrollTo(0, startPosition + distance * ease);
+            if (timeElapsed < duration) requestAnimationFrame(animation);
+        }
+        requestAnimationFrame(animation);
+    }
+}
 
 // Mock IDE file switching
 document.querySelectorAll('.ide-file[data-file]').forEach(file => {
