@@ -1,4 +1,8 @@
 [
+    { "date": "Jan. '26", "description": "<a href=\"https://github.com/Project-MONAI/MONAI/pull/8680\">Rename NormalizeLabelsInDatasetd to RemapLabelsToSequentiald</a> - MONAI", "category": "pr" },
+    { "date": "Jan. '26", "description": "<a href=\"https://github.com/google-deepmind/optax/pull/1458\">Generalize dice_loss with alpha/beta weighting</a> - Optax", "category": "pr" },
+    { "date": "Jan. '26", "description": "<a href=\"https://github.com/cai4cai/torchsparsegradutils/pull/66\">Performance improvements for sparse operations</a> - torchsparsegradutils", "category": "pr" },
+    { "date": "Jan. '26", "description": "<a href=\"https://github.com/cai4cai/torchsparsegradutils/pull/63\">Fix PyTorch version comparison</a> - torchsparsegradutils", "category": "pr" },
     { "date": "Dec. '25", "description": "<a href=\"https://github.com/sinelaw/fresh/pull/421\">Support for opening multiple files from CLI</a> - Fresh", "category": "pr" },
     { "date": "Nov. '25", "description": "<a href=\"https://github.com/co-DE-mon/yolov11n/pull/1\">Restructure project with modular architecture</a> - YOLOv11n", "category": "pr" },
     { "date": "Nov. '25", "description": "<a href=\"https://github.com/anomalyco/opentui/pull/253\">Fix TerminalConsole.resize parameters</a> - OpenTUI", "category": "pr" },
