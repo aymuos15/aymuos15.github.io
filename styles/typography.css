@@ -1,6 +1,6 @@
 /* Typography */
 h1 {
-    font-family: "Space Mono", "Courier New", monospace;
+    font-family: var(--font-mono);
     font-size: 2.4rem;
     font-weight: 400;
     letter-spacing: -0.02em;
@@ -9,7 +9,7 @@ h1 {
 }
 
 .section-label {
-    font-family: "Space Mono", "Courier New", monospace;
+    font-family: var(--font-mono);
     font-size: 0.65rem;
     font-weight: 400;
     letter-spacing: 0.2em;

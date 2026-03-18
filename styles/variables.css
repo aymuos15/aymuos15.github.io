@@ -4,8 +4,14 @@
     --text: #1a1a1a;
     --text-secondary: #888;
     --link: #8c7b6b;
-    --link-hover: #5c4e42;
     --border: rgba(0, 0, 0, 0.1);
+
+    /* Layout */
+    --content-max-width: 640px;
+
+    /* Fonts */
+    --font-sans: "IBM Plex Sans", "Helvetica Neue", arial, sans-serif;
+    --font-mono: "Space Mono", "Courier New", monospace;
 }
 
 [data-theme="dark"] {
@@ -13,6 +19,5 @@
     --text: #e8e4dd;
     --text-secondary: #777;
     --link: #c4a882;
-    --link-hover: #dbbf9e;
     --border: rgba(255, 255, 255, 0.1);
 }

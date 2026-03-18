@@ -8,7 +8,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 640px;
+    max-width: var(--content-max-width);
     margin: 0 auto;
     padding: 1.5rem 2rem;
     transition: color 0.4s ease;
@@ -20,7 +20,7 @@
 }
 
 .nav-links a {
-    font-family: "Space Mono", "Courier New", monospace;
+    font-family: var(--font-mono);
     font-size: 0.7rem;
     font-weight: 400;
     letter-spacing: 0.15em;
@@ -32,7 +32,6 @@
 
 .nav-links a:hover {
     color: var(--text);
-    text-decoration: none;
 }
 
 .nav-links a.active {

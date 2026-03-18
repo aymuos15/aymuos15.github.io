@@ -1,4 +1,8 @@
 /* About Section */
+#about-content.hidden {
+    display: none;
+}
+
 .collaborators {
     display: none;
 }
@@ -24,7 +28,7 @@
     background: none;
     border: none;
     color: var(--text-secondary);
-    font-family: "Space Mono", "Courier New", monospace;
+    font-family: var(--font-mono);
     font-size: 0.9rem;
     cursor: pointer;
     padding: 0;

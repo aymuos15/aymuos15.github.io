@@ -10,12 +10,9 @@ export default [
                 document: 'readonly',
                 console: 'readonly',
                 localStorage: 'readonly',
-                fetch: 'readonly',
-                XMLHttpRequest: 'readonly',
+                Image: 'readonly',
                 setTimeout: 'readonly',
-                requestAnimationFrame: 'readonly',
-                p5: 'readonly',
-                Niivue: 'readonly'
+                requestAnimationFrame: 'readonly'
             }
         },
         rules: {

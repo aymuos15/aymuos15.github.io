@@ -10,7 +10,7 @@
     border: none;
     border-bottom: 1px solid var(--border);
     padding: 10px 0;
-    font-family: "Space Mono", "Courier New", monospace;
+    font-family: var(--font-mono);
     font-size: 0.75rem;
     font-weight: 400;
     cursor: pointer;
@@ -72,7 +72,7 @@
 }
 
 .update-date {
-    font-family: "Space Mono", "Courier New", monospace;
+    font-family: var(--font-mono);
     min-width: 75px;
     font-size: 0.8rem;
     font-weight: 700;

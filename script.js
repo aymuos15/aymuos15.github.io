@@ -15,6 +15,29 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+// Cached DOM references
+const navLinks = document.querySelectorAll('.nav-links a');
+const updatesList = document.getElementById('updates-list');
+const tabs = document.querySelectorAll('.tab');
+
+// Pastel rainbow link colors
+const pastelColors = [
+    '#e8a0bf', '#f0b8a8', '#f2cc8f', '#b5d99c',
+    '#a8d8ea', '#b8b8f0', '#d4a5e5', '#f5a8a8',
+    '#a8e0c8', '#c4b8e8', '#e8c8a0', '#a0c8e8'
+];
+
+function colorizeLinks() {
+    document.querySelectorAll('main a').forEach(link => {
+        const color = pastelColors[Math.floor(Math.random() * pastelColors.length)];
+        link.style.color = color;
+    });
+}
+
+function nextFrame(fn) {
+    requestAnimationFrame(() => requestAnimationFrame(fn));
+}
+
 // Section switching
 let isTransitioning = false;
 
@@ -28,12 +51,10 @@ function switchSection(targetId) {
 
     isTransitioning = true;
 
-    // Update nav
-    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+    navLinks.forEach(a => a.classList.remove('active'));
     const navLink = document.querySelector(`.nav-links a[href="#${targetId}"]`);
     if (navLink) navLink.classList.add('active');
 
-    // Fade out current
     current.classList.remove('active');
     current.classList.add('leaving');
 
@@ -41,11 +62,11 @@ function switchSection(targetId) {
         current.classList.remove('leaving');
         next.classList.add('active');
         isTransitioning = false;
+        colorizeLinks();
     }, 300);
 }
 
-// Nav click handlers
-document.querySelectorAll('.nav-links a').forEach(link => {
+navLinks.forEach(link => {
     link.addEventListener('click', (e) => {
         e.preventDefault();
         const targetId = link.getAttribute('href').slice(1);
@@ -102,17 +123,16 @@ const updates = [
 ];
 /* eslint-enable quotes */
 
-function renderUpdates(category, animate) {
-    const list = document.getElementById('updates-list');
+function renderUpdates(category, resetScroll) {
     const filtered = category === 'all'
         ? updates.filter(u => u.category !== 'pr')
         : updates.filter(u => u.category === category);
-    list.innerHTML = filtered.map((u, i) =>
+    updatesList.innerHTML = filtered.map((u, i) =>
         `<div class="update-item" style="animation-delay: ${i * 30}ms"><span class="update-date">${u.date}</span><span class="update-desc">${u.description}</span></div>`
     ).join('');
 
-    if (animate) {
-        list.scrollTop = 0;
+    if (resetScroll) {
+        updatesList.scrollTop = 0;
     }
 }
 
@@ -121,20 +141,20 @@ renderUpdates('all', false);
 // Tab click handlers
 let tabSwitching = false;
 
-document.querySelectorAll('.tab').forEach(tab => {
+tabs.forEach(tab => {
     tab.addEventListener('click', () => {
         if (tabSwitching || tab.classList.contains('active')) return;
         tabSwitching = true;
 
-        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        tabs.forEach(t => t.classList.remove('active'));
         tab.classList.add('active');
 
-        const list = document.getElementById('updates-list');
-        list.classList.add('fading');
+        updatesList.classList.add('fading');
 
         setTimeout(() => {
             renderUpdates(tab.dataset.category, true);
-            list.classList.remove('fading');
+            updatesList.classList.remove('fading');
+            colorizeLinks();
             tabSwitching = false;
         }, 300);
     });
@@ -147,49 +167,28 @@ document.querySelector('.name-link').addEventListener('click', () => {
 
 // Research link - toggle collaborators
 document.querySelector('.research-link').addEventListener('click', () => {
-    document.getElementById('about-content').style.display = 'none';
+    document.getElementById('about-content').classList.add('hidden');
     document.getElementById('collaborators').classList.add('visible');
 });
 
 document.getElementById('back-btn').addEventListener('click', () => {
     document.getElementById('collaborators').classList.remove('visible');
-    document.getElementById('about-content').style.display = '';
+    document.getElementById('about-content').classList.remove('hidden');
 });
 
-// Pastel rainbow link colors
-const pastelColors = [
-    '#e8a0bf', '#f0b8a8', '#f2cc8f', '#b5d99c',
-    '#a8d8ea', '#b8b8f0', '#d4a5e5', '#f5a8a8',
-    '#a8e0c8', '#c4b8e8', '#e8c8a0', '#a0c8e8'
-];
-
-function colorizeLinks() {
-    document.querySelectorAll('main a, .update-desc a').forEach(link => {
-        const color = pastelColors[Math.floor(Math.random() * pastelColors.length)];
-        link.style.color = color;
-    });
-}
-
 colorizeLinks();
-
-// Re-colorize after tab switch and section change
-const origRender = renderUpdates;
-renderUpdates = function (category, animate) {
-    origRender(category, animate);
-    colorizeLinks();
-};
-
-const origSwitch = switchSection;
-switchSection = function (targetId) {
-    origSwitch(targetId);
-    setTimeout(colorizeLinks, 350);
-};
 
 // Gallery image cycling
 const extraImages = [
     'gallery/isbi.jpeg',
     'gallery/pupil.jpeg'
 ];
+
+// Preload gallery images
+extraImages.forEach(src => {
+    const img = new Image();
+    img.src = src;
+});
 
 const imagePositions = {
     'pupil.jpeg': 'center top',
@@ -203,18 +202,18 @@ const slideDirections = [
     { enter: 'translateY(-100%)', exit: 'translateY(100%)' }
 ];
 
-function applyImagePosition(img) {
-    const filename = img.src.split('/').pop();
+function applyImagePosition(img, src) {
+    const filename = src.split('/').pop();
     img.style.objectPosition = imagePositions[filename] || 'center center';
 }
 
 document.querySelectorAll('.image-grid-cell').forEach(cell => {
     let currentImg = cell.querySelector('img');
     let isAnimating = false;
-    applyImagePosition(currentImg);
+    applyImagePosition(currentImg, currentImg.src);
 
     cell.addEventListener('click', () => {
-        if (extraImages.length > 0 && !isAnimating) {
+        if (!isAnimating) {
             isAnimating = true;
             const oldSrc = currentImg.src;
             const newSrc = extraImages.shift();
@@ -222,17 +221,15 @@ document.querySelectorAll('.image-grid-cell').forEach(cell => {
 
             const nextImg = document.createElement('img');
             nextImg.src = newSrc;
-            applyImagePosition(nextImg);
+            applyImagePosition(nextImg, newSrc);
             nextImg.style.transition = 'none';
             nextImg.style.transform = dir.enter;
             cell.appendChild(nextImg);
 
-            requestAnimationFrame(() => {
-                requestAnimationFrame(() => {
-                    nextImg.style.transition = '';
-                    nextImg.style.transform = 'translate(0, 0)';
-                    currentImg.style.transform = dir.exit;
-                });
+            nextFrame(() => {
+                nextImg.style.transition = '';
+                nextImg.style.transform = 'translate(0, 0)';
+                currentImg.style.transform = dir.exit;
             });
 
             setTimeout(() => {
