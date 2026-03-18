@@ -16,9 +16,22 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Cached DOM references
+const navLinksContainer = document.querySelector('.nav-links');
 const navLinks = document.querySelectorAll('.nav-links a');
+const navToggle = document.querySelector('.nav-toggle');
 const updatesList = document.getElementById('updates-list');
 const tabs = document.querySelectorAll('.tab');
+
+// Mobile nav dropdown
+navToggle.addEventListener('click', () => {
+    navLinksContainer.classList.toggle('open');
+});
+
+document.addEventListener('click', (e) => {
+    if (!navLinksContainer.contains(e.target) && !navToggle.contains(e.target)) {
+        navLinksContainer.classList.remove('open');
+    }
+});
 
 // Pastel rainbow link colors
 const pastelColors = [
@@ -69,6 +82,7 @@ function switchSection(targetId) {
 navLinks.forEach(link => {
     link.addEventListener('click', (e) => {
         e.preventDefault();
+        navLinksContainer.classList.remove('open');
         const targetId = link.getAttribute('href').slice(1);
         switchSection(targetId);
     });
