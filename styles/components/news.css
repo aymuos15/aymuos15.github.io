@@ -104,3 +104,47 @@
         min-width: 55px;
     }
 }
+
+/* Contribution graph — 3D canvas, PRs tab */
+.contrib-graph {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.contrib-graph.visible {
+    max-height: 500px;
+}
+
+.contrib-graph__inner {
+    padding-top: 1rem;
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.45s ease 0.2s, transform 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
+}
+
+.contrib-graph.visible .contrib-graph__inner {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.contrib-graph canvas {
+    max-width: 100%;
+    display: block;
+    cursor: crosshair;
+}
+
+.contrib-tip {
+    display: none;
+    position: fixed;
+    z-index: 300;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.05em;
+    color: var(--text);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 0.25rem 0.55rem;
+    pointer-events: none;
+    white-space: nowrap;
+}

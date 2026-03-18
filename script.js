@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const next = current === 'light' ? 'dark' : 'light';
         document.documentElement.setAttribute('data-theme', next);
         localStorage.setItem('theme-preference', next);
+        if (contribGraph.classList.contains('visible')) _renderCanvas();
     });
 });
 
@@ -21,6 +22,133 @@ const navLinks = document.querySelectorAll('.nav-links a');
 const navToggle = document.querySelector('.nav-toggle');
 const updatesList = document.getElementById('updates-list');
 const tabs = document.querySelectorAll('.tab');
+const contribGraph  = document.getElementById('contrib-graph');
+const contribCanvas = document.getElementById('contrib-canvas');
+const contribTip    = document.getElementById('contrib-tip');
+
+// ── 3D isometric contribution graph ──────────────────────────────────────────
+let _weeks = [], _graphReady = false;
+
+function _colors() {
+    const dark = document.documentElement.getAttribute('data-theme') === 'dark';
+    return dark
+        ? ['#1e1c18', '#4a3520', '#8a6530', '#c4a060', '#f0d090']
+        : ['#e8e3da', '#c4a070', '#a07840', '#7a5520', '#4a3010'];
+}
+
+function _shade(hex, f) {
+    const n = parseInt(hex.slice(1), 16);
+    return `rgb(${Math.min(255,~~(((n>>16)&255)*f))},${Math.min(255,~~(((n>>8)&255)*f))},${Math.min(255,~~((n&255)*f))})`;
+}
+
+function _renderCanvas() {
+    if (!_weeks.length) return;
+    const pal = _colors();
+    const CW = 9, GAP = 2, PX = CW + GAP, PY = CW + GAP;
+    const MAX_H = 18, MIN_H = 1, DX = 3, DY = 3;
+    const nC = _weeks.length, nR = 7;
+    const maxN = Math.max(1, ..._weeks.flat().filter(Boolean).map(d => d.count));
+
+    const OX = 4, OY = MAX_H + DY + 4;
+    const W  = OX + nC * PX + DX + 4;
+    const H  = OY + nR * PY + 4;
+
+    const dpr = window.devicePixelRatio || 1;
+    contribCanvas.width  = Math.ceil(W * dpr);
+    contribCanvas.height = Math.ceil(H * dpr);
+    contribCanvas.style.width  = W + 'px';
+    contribCanvas.style.height = H + 'px';
+
+    const ctx = contribCanvas.getContext('2d');
+    ctx.scale(dpr, dpr);
+    ctx.clearRect(0, 0, W, H);
+
+    const hits = [];
+    for (let row = 0; row < nR; row++) {
+        for (let col = 0; col < nC; col++) {
+            const day   = _weeks[col]?.[row];
+            const level = day?.level ?? 0;
+            const count = day?.count ?? 0;
+            const h = count > 0 ? MIN_H + (count / maxN) * (MAX_H - MIN_H) : MIN_H;
+
+            const sx = OX + col * PX;
+            const by = OY + row * PY + CW;
+            const ty = by - h;
+            const c  = pal[level];
+
+            // front face
+            ctx.fillStyle = c;
+            ctx.fillRect(sx, ty, CW, h);
+            // top face
+            ctx.beginPath();
+            ctx.moveTo(sx, ty); ctx.lineTo(sx + CW, ty);
+            ctx.lineTo(sx + CW + DX, ty - DY); ctx.lineTo(sx + DX, ty - DY);
+            ctx.closePath(); ctx.fillStyle = _shade(c, 1.18); ctx.fill();
+            // right face
+            ctx.beginPath();
+            ctx.moveTo(sx + CW, ty); ctx.lineTo(sx + CW + DX, ty - DY);
+            ctx.lineTo(sx + CW + DX, by - DY); ctx.lineTo(sx + CW, by);
+            ctx.closePath(); ctx.fillStyle = _shade(c, 0.65); ctx.fill();
+
+            hits.push({ sx, ty, h, day });
+        }
+    }
+    contribCanvas._hits = hits;
+    contribCanvas._CW   = CW;
+}
+
+contribCanvas.addEventListener('mousemove', e => {
+    const hits = contribCanvas._hits;
+    if (!hits) return;
+    const CW = contribCanvas._CW;
+    const rect = contribCanvas.getBoundingClientRect();
+    const sc   = (parseFloat(contribCanvas.style.width) || rect.width) / rect.width;
+    const mx   = (e.clientX - rect.left) * sc;
+    const my   = (e.clientY - rect.top)  * sc;
+
+    let hit = null;
+    for (let i = hits.length - 1; i >= 0; i--) {
+        const { sx, ty, h } = hits[i];
+        if (mx >= sx && mx < sx + CW && my >= ty && my < ty + h) { hit = hits[i]; break; }
+    }
+
+    if (hit?.day) {
+        const { count, date } = hit.day;
+        const label = new Date(date + 'T12:00:00').toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+        contribTip.textContent = `${count || 'no'} contribution${count !== 1 ? 's' : ''} · ${label}`;
+        contribTip.style.display = 'block';
+        contribTip.style.left = (e.clientX + 14) + 'px';
+        contribTip.style.top  = (e.clientY - 38) + 'px';
+    } else {
+        contribTip.style.display = 'none';
+    }
+});
+contribCanvas.addEventListener('mouseleave', () => { contribTip.style.display = 'none'; });
+
+async function _loadContribs() {
+    const res  = await window.fetch('https://github-contributions-api.jogruber.de/v4/aymuos15?y=last');
+    const days = (await res.json()).contributions || [];
+    const weeks = [];
+    let week = new Array(7).fill(null);
+    days.forEach(day => {
+        const dow = new Date(day.date + 'T12:00:00').getDay();
+        if (dow === 0 && week.some(Boolean)) { weeks.push([...week]); week = new Array(7).fill(null); }
+        week[dow] = day;
+    });
+    if (week.some(Boolean)) weeks.push(week);
+    return weeks;
+}
+
+function showContribGraph() {
+    contribGraph.classList.add('visible');
+    if (_graphReady) { _renderCanvas(); return; }
+    _loadContribs().then(w => { _weeks = w; _graphReady = true; _renderCanvas(); })
+        .catch(err => console.warn('Contrib graph:', err));
+}
+function hideContribGraph() {
+    contribGraph.classList.remove('visible');
+    contribTip.style.display = 'none';
+}
 
 // Mobile nav dropdown
 navToggle.addEventListener('click', () => {
@@ -142,7 +270,7 @@ function renderUpdates(category, resetScroll) {
         ? updates.filter(u => u.category !== 'pr')
         : updates.filter(u => u.category === category);
     updatesList.innerHTML = filtered.map((u, i) =>
-        `<div class="update-item" style="animation-delay: ${i * 30}ms"><span class="update-date">${u.date}</span><span class="update-desc">${u.description}</span></div>`
+        `<div class="update-item" data-category="${u.category}" style="animation-delay: ${i * 30}ms"><span class="update-date">${u.date}</span><span class="update-desc">${u.description}</span></div>`
     ).join('');
 
     if (resetScroll) {
@@ -164,12 +292,14 @@ tabs.forEach(tab => {
         tab.classList.add('active');
 
         updatesList.classList.add('fading');
+        hideContribGraph();
 
         setTimeout(() => {
             renderUpdates(tab.dataset.category, true);
             updatesList.classList.remove('fading');
             colorizeLinks();
             tabSwitching = false;
+            if (tab.dataset.category === 'pr') showContribGraph();
         }, 300);
     });
 });
