@@ -181,13 +181,16 @@ function nextFrame(fn) {
 
 // Social icon highlights per section
 const socialHighlights = {
-    about:    { linkedin: '#0A66C2' },
+    about:    { linkedin: '#0A66C2', x: null },
     research: { scholar: '#4285F4' },
     news:     { github: null, pytorch: '#EE4C2C' }
 };
 
-// GitHub brand is black/white — just use site text color
+// GitHub & X brand is black/white — just use site text color
 Object.defineProperty(socialHighlights.news, 'github', {
+    get() { return window.getComputedStyle(document.documentElement).getPropertyValue('--text').trim(); }
+});
+Object.defineProperty(socialHighlights.about, 'x', {
     get() { return window.getComputedStyle(document.documentElement).getPropertyValue('--text').trim(); }
 });
 
