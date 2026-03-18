@@ -48,15 +48,15 @@
 
 .nav-links {
     position: absolute;
-    top: 100%;
+    top: 70%;
     right: 2rem;
     display: flex;
     flex-direction: column;
     gap: 0;
-    padding: 0.5rem 1rem;
+    padding: 0;
     opacity: 0;
     pointer-events: none;
-    transform: translateY(-4px);
+    transform: translateY(-8px);
     transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
