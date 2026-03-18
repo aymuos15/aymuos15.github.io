@@ -7,7 +7,7 @@
 
 html {
     scrollbar-width: none;
-    transition: background-color 0.3s ease;
+    overflow: hidden;
 }
 
 html::-webkit-scrollbar {
@@ -15,15 +15,34 @@ html::-webkit-scrollbar {
 }
 
 body {
-    min-height: 100vh;
+    font-family: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    height: 100vh;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+main {
+    flex: 1;
+    display: flex;
     align-items: center;
-    justify-content: flex-start;
-    font-family: system-ui, -apple-system, sans-serif;
-    padding: 180px 20px 20px;
-    gap: 120px;
-    background-color: var(--bg-page);
-    color: var(--text-primary);
-    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    justify-content: center;
+    max-width: 640px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: currentcolor;
+    transition: opacity 0.2s ease;
+}
+
+a:hover {
+    opacity: 0.65;
 }

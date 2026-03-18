@@ -1,29 +1,4 @@
 /* News Section */
-.container-4 {
-    width: 970px;
-}
-
-.pane-4-bg {
-    width: 100%;
-    height: 620px;
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.updates-widget {
-    background: var(--bg-card-translucent);
-    padding: 0;
-    max-width: 700px;
-    width: 90%;
-    max-height: 500px;
-    display: flex;
-    flex-direction: column;
-    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-}
-
 .tabs {
     display: flex;
     width: 100%;
@@ -33,62 +8,75 @@
     flex: 1;
     background: transparent;
     border: none;
-    border-bottom: 1px solid var(--border-strong);
+    border-bottom: 1px solid var(--border);
     padding: 10px 0;
-    font-family: Garamond, serif;
-    font-size: 0.85rem;
+    font-family: "Space Mono", "Courier New", monospace;
+    font-size: 0.75rem;
+    font-weight: 400;
     cursor: pointer;
-    color: var(--text-primary);
-    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    color: var(--text-secondary);
+    transition: color 0.2s ease, border-color 0.2s ease;
 }
 
 .tab:hover {
-    background: var(--tab-active-bg);
-    color: var(--tab-active-text);
+    color: var(--text);
 }
 
 .tab.active {
-    background: var(--tab-active-bg);
-    color: var(--tab-active-text);
+    color: var(--text);
+    border-bottom: 2px solid var(--text);
 }
 
 .updates-list {
+    max-height: 13rem;
     overflow-y: auto;
-    flex: 1;
-    padding: 15px 20px;
+    padding: 15px 0;
     scrollbar-width: thin;
-    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+    scrollbar-color: var(--border) transparent;
+    transition: opacity 0.3s ease;
+}
+
+.updates-list.fading {
+    opacity: 0;
 }
 
 .updates-list::-webkit-scrollbar {
-    width: 8px;
-}
-
-.updates-list::-webkit-scrollbar-track {
-    background: var(--scrollbar-track);
+    width: 4px;
 }
 
 .updates-list::-webkit-scrollbar-thumb {
-    background: var(--scrollbar-thumb);
-    border-radius: 4px;
-}
-
-.updates-list::-webkit-scrollbar-thumb:hover {
-    background: var(--scrollbar-thumb-hover);
+    background: var(--border);
 }
 
 .update-item {
     display: flex;
     gap: 15px;
     padding: 8px 0;
-    border-bottom: 1px solid var(--border-subtle);
-    font-size: 0.85rem;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    opacity: 0;
+    transform: translateY(6px);
+    animation: item-in 0.35s ease forwards;
+}
+
+@keyframes item-in {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.update-item:last-child {
+    border-bottom: none;
 }
 
 .update-date {
-    min-width: 70px;
-    font-weight: bold;
-    font-family: Garamond, serif;
+    font-family: "Space Mono", "Courier New", monospace;
+    min-width: 75px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    flex-shrink: 0;
 }
 
 .update-desc {
@@ -96,56 +84,23 @@
 }
 
 .update-desc a {
-    color: var(--text-primary);
+    text-decoration: underline;
+    text-decoration-color: currentcolor;
 }
 
 @media (max-width: 768px) {
-    .container-4 {
-        width: auto;
-    }
-
-    .pane-4-bg {
-        height: 300px;
-    }
-
-    .updates-widget {
-        padding: 0;
-        max-height: 250px;
-    }
-
     .tab {
         padding: 6px 0;
-        font-size: 0.55rem;
-    }
-
-    .updates-list {
-        padding: 10px;
-        scrollbar-width: thin;
-        scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track) !important;
-        -webkit-overflow-scrolling: touch;
-    }
-
-    .updates-list::-webkit-scrollbar {
-        width: 6px !important;
-        background: var(--scrollbar-track) !important;
-    }
-
-    .updates-list::-webkit-scrollbar-track {
-        background: var(--scrollbar-track) !important;
-    }
-
-    .updates-list::-webkit-scrollbar-thumb {
-        background: var(--scrollbar-thumb) !important;
-        border-radius: 3px;
+        font-size: 0.6rem;
     }
 
     .update-item {
-        font-size: 0.6rem;
+        font-size: 0.8rem;
         gap: 8px;
         padding: 5px 0;
     }
 
     .update-date {
-        min-width: 50px;
+        min-width: 55px;
     }
 }

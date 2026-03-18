@@ -11,6 +11,7 @@ export default [
                 console: 'readonly',
                 localStorage: 'readonly',
                 fetch: 'readonly',
+                XMLHttpRequest: 'readonly',
                 setTimeout: 'readonly',
                 requestAnimationFrame: 'readonly',
                 p5: 'readonly',
