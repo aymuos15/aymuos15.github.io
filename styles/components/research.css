@@ -1,1 +1,283 @@
-/* Research Section - inherits from .section */
+/* Research Section — Instance Imbalance Diagram */
+.instance-diagram {
+    margin: 1.5rem 0 2rem;
+}
+
+/* Scatter + vertical bars side by side */
+.diagram-top {
+    display: flex;
+    gap: 12px;
+    align-items: stretch;
+}
+
+.diagram-scatter {
+    position: relative;
+    flex: 1;
+    height: 150px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Label type tabs */
+.diagram-labels {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+}
+
+.label-tab {
+    background: none;
+    border: none;
+    padding: 0 0 3px;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    border-bottom: 1.5px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.label-tab.active {
+    color: var(--text);
+    border-bottom-color: var(--text);
+}
+
+.label-tab.active.rainbow {
+    background: linear-gradient(90deg, #b8a0d8, #7cbcd4, #8cc8a0, #d4cc80, #d48888);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    border-image: linear-gradient(90deg, #b8a0d8, #7cbcd4, #8cc8a0, #d4cc80, #d48888) 1;
+}
+
+.label-tab:hover:not(.active) {
+    color: var(--text);
+}
+
+.diagram-blob {
+    position: absolute;
+    border-radius: 50%;
+    background: var(--blob-color, var(--link));
+    transform: translate(-50%, -50%);
+    transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), filter 0.3s ease, background 0.5s ease;
+    cursor: pointer;
+}
+
+.blob-ring {
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    border: 1.5px solid var(--blob-color, var(--link));
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.6s ease, border-color 0.5s ease;
+    pointer-events: none;
+}
+
+.instance-diagram.has-highlight .diagram-blob:not(.highlighted) {
+    opacity: 0.1 !important;
+    filter: grayscale(0.8);
+}
+
+.instance-diagram.has-highlight .diagram-bar-col:not(.highlighted) {
+    opacity: 0.2;
+}
+
+/* Vertical bars container */
+.diagram-bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 4px;
+    height: 150px;
+    padding-bottom: 14px;
+}
+
+.diagram-bar-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 3px;
+    height: 100%;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.bar-dot {
+    border-radius: 50%;
+    background: var(--blob-color, var(--link));
+    flex-shrink: 0;
+    min-width: 4px;
+    min-height: 4px;
+    transition: background 0.5s ease;
+}
+
+.bar-track-v {
+    width: 6px;
+    flex: 1;
+    background: var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+}
+
+.bar-fill-v {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: var(--blob-color, var(--link));
+    border-radius: 3px;
+    transition: height 0.6s cubic-bezier(0.22, 1, 0.36, 1), background 0.5s ease;
+}
+
+.bar-pct {
+    font-family: var(--font-mono);
+    font-size: 0.45rem;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    transition: color 0.3s;
+}
+
+.diagram-bar-col.highlighted .bar-pct {
+    color: var(--text);
+}
+
+/* Toggle + Scores row */
+.diagram-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0.6rem 0;
+}
+
+.diagram-toggle {
+    display: flex;
+}
+
+.diagram-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    padding: 5px 14px;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 400;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: color 0.2s, background 0.2s;
+}
+
+.diagram-btn:first-child {
+    border-radius: 4px 0 0 4px;
+}
+
+.diagram-btn:last-child {
+    border-radius: 0 4px 4px 0;
+    border-left: none;
+}
+
+.diagram-btn.active {
+    color: var(--text);
+    background: var(--border);
+}
+
+.diagram-btn.active.rainbow {
+    background: linear-gradient(90deg, #b8a0d8, #7cbcd4, #8cc8a0, #d4cc80, #d48888);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.diagram-btn:hover:not(.active) {
+    color: var(--text);
+}
+
+/* Score cards */
+.diagram-scores {
+    display: flex;
+    gap: 1.2rem;
+}
+
+.score-card {
+    display: flex;
+    align-items: baseline;
+    gap: 0.35rem;
+}
+
+.score-label {
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+}
+
+.score-value {
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text);
+    min-width: 2.4em;
+    transition: color 0.3s;
+}
+
+.score-value.low {
+    color: var(--link);
+}
+
+.score-value.high {
+    background: linear-gradient(90deg, #b8a0d8, #8b9bd4, #7cbcd4, #8cc8a0, #d4cc80, #d8a878, #d48888, #d4a0b8);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Caption */
+.diagram-caption {
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    text-align: center;
+    line-height: 1.7;
+    min-height: 2.5em;
+}
+
+@media (max-width: 768px) {
+    .diagram-scatter {
+        height: 120px;
+    }
+
+    .diagram-bars {
+        height: 120px;
+    }
+
+    .diagram-blob {
+        transform: translate(-50%, -50%) scale(0.65);
+    }
+
+    .diagram-controls {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .diagram-caption {
+        font-size: 0.72rem;
+    }
+
+    .diagram-btn {
+        font-size: 0.58rem;
+        padding: 4px 10px;
+    }
+
+    .score-value {
+        font-size: 0.85rem;
+    }
+
+    .bar-track-v {
+        width: 5px;
+    }
+
+    .bar-pct {
+        font-size: 0.4rem;
+    }
+}
