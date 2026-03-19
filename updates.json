@@ -1,4 +1,6 @@
 [
+    { "date": "Mar. '26", "description": "Graduate TA for Image and Signal Processing with <a href=\"https://kclpure.kcl.ac.uk/portal/en/persons/richard.housden\">Prof. James Housden</a>", "category": "teaching" },
+    { "date": "Mar. '26", "description": "Graduate TA for Python with <a href=\"https://www.kcl.ac.uk/people/marc-modat\">Prof. Marc Modat</a> and <a href=\"https://cai4cai.ml/author/jonathan-shapey/\">Dr. Jonathan Shapey</a>", "category": "teaching" },
     { "date": "Feb. '26", "description": "<a href=\"https://github.com/Project-MONAI/MONAI/pull/8688\">Fix docstring typos across codebase</a> - Project-MONAI/MONAI", "category": "pr" },
     { "date": "Jan. '26", "description": "<a href=\"https://github.com/cai4cai/torchsparsegradutils/pull/67\">perf: replace torch.cat([*B]) with reshape in sparse_triangular_solve</a> - cai4cai/torchsparsegradutils", "category": "pr" },
     { "date": "Jan. '26", "description": "<a href=\"https://github.com/cai4cai/torchsparsegradutils/pull/65\">perf: replace torch.cat([*B]) with reshape in sparse_mm</a> - cai4cai/torchsparsegradutils", "category": "pr" },
@@ -9,7 +11,7 @@
     { "date": "Dec. '25", "description": "<a href=\"https://github.com/sinelaw/fresh/pull/421\">Support for opening multiple files from CLI</a> - sinelaw/fresh", "category": "pr" },
     { "date": "Nov. '25", "description": "<a href=\"https://github.com/anomalyco/opentui/pull/253\">Fix TerminalConsole.resize parameters</a> - anomalyco/opentui", "category": "pr" },
     { "date": "Oct. '25", "description": "<a href=\"https://github.com/lbr-stack/roboreg/pull/88\">Fix Kabsch algorithm naming</a> - lbr-stack/roboreg", "category": "pr" },
-    { "date": "Oct. '25", "description": "Will be supervising the BSc thesis of Yingfan Tao and Jiayue Liang", "category": "teaching" },
+    { "date": "Oct. '25", "description": "Will be supervising the BSc thesis of Yingfan Tao", "category": "teaching" },
     { "date": "Sept. '25", "description": "<a href=\"https://github.com/BrainLesion/panoptica/pull/234\">Setup workflows from voronoi branch</a> - BrainLesion/panoptica", "category": "pr" },
     { "date": "Sept. '25", "description": "<a href=\"https://github.com/BrainLesion/panoptica/pull/228\">Fix voxelspacing dimension mismatch</a> - BrainLesion/panoptica", "category": "pr" },
     { "date": "Jun. '25", "description": "<a href=\"https://github.com/google-deepmind/optax/pull/1366\">Add segmentation based (dice) loss</a> - google-deepmind/optax", "category": "pr" },
