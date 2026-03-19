@@ -41,7 +41,7 @@ function _shade(hex, f) {
     return `rgb(${Math.min(255,~~(((n>>16)&255)*f))},${Math.min(255,~~(((n>>8)&255)*f))},${Math.min(255,~~((n&255)*f))})`;
 }
 
-function _renderCanvas() {
+function _renderCanvas(animate) {
     if (!_weeks.length) return;
     const pal = _colors();
     const CW = 9, GAP = 2, PX = CW + GAP, PY = CW + GAP;
@@ -59,42 +59,72 @@ function _renderCanvas() {
     contribCanvas.style.width  = W + 'px';
     contribCanvas.style.height = H + 'px';
 
-    const ctx = contribCanvas.getContext('2d');
-    ctx.scale(dpr, dpr);
-    ctx.clearRect(0, 0, W, H);
-
-    const hits = [];
+    // precompute target heights
+    const targets = [];
     for (let row = 0; row < nR; row++) {
+        targets[row] = [];
         for (let col = 0; col < nC; col++) {
             const day   = _weeks[col]?.[row];
-            const level = day?.level ?? 0;
             const count = day?.count ?? 0;
-            const h = count > 0 ? MIN_H + (count / maxN) * (MAX_H - MIN_H) : MIN_H;
-
-            const sx = OX + col * PX;
-            const by = OY + row * PY + CW;
-            const ty = by - h;
-            const c  = pal[level];
-
-            // front face
-            ctx.fillStyle = c;
-            ctx.fillRect(sx, ty, CW, h);
-            // top face
-            ctx.beginPath();
-            ctx.moveTo(sx, ty); ctx.lineTo(sx + CW, ty);
-            ctx.lineTo(sx + CW + DX, ty - DY); ctx.lineTo(sx + DX, ty - DY);
-            ctx.closePath(); ctx.fillStyle = _shade(c, 1.18); ctx.fill();
-            // right face
-            ctx.beginPath();
-            ctx.moveTo(sx + CW, ty); ctx.lineTo(sx + CW + DX, ty - DY);
-            ctx.lineTo(sx + CW + DX, by - DY); ctx.lineTo(sx + CW, by);
-            ctx.closePath(); ctx.fillStyle = _shade(c, 0.65); ctx.fill();
-
-            hits.push({ sx, ty, h, day });
+            targets[row][col] = count > 0 ? MIN_H + (count / maxN) * (MAX_H - MIN_H) : MIN_H;
         }
     }
-    contribCanvas._hits = hits;
-    contribCanvas._CW   = CW;
+
+    function drawFrame(progress) {
+        const ctx = contribCanvas.getContext('2d');
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        ctx.clearRect(0, 0, W, H);
+
+        const hits = [];
+        for (let row = 0; row < nR; row++) {
+            for (let col = 0; col < nC; col++) {
+                const day   = _weeks[col]?.[row];
+                const level = day?.level ?? 0;
+                const targetH = targets[row][col];
+
+                // stagger: each column starts slightly later
+                const delay = col / nC * 0.5;
+                const local = Math.max(0, Math.min(1, (progress - delay) / (1 - 0.5)));
+                // ease out cubic
+                const ease = 1 - Math.pow(1 - local, 3);
+                const h = MIN_H + (targetH - MIN_H) * ease;
+
+                const sx = OX + col * PX;
+                const by = OY + row * PY + CW;
+                const ty = by - h;
+                const c  = pal[level];
+
+                // front face
+                ctx.fillStyle = c;
+                ctx.fillRect(sx, ty, CW, h);
+                // top face
+                ctx.beginPath();
+                ctx.moveTo(sx, ty); ctx.lineTo(sx + CW, ty);
+                ctx.lineTo(sx + CW + DX, ty - DY); ctx.lineTo(sx + DX, ty - DY);
+                ctx.closePath(); ctx.fillStyle = _shade(c, 1.18); ctx.fill();
+                // right face
+                ctx.beginPath();
+                ctx.moveTo(sx + CW, ty); ctx.lineTo(sx + CW + DX, ty - DY);
+                ctx.lineTo(sx + CW + DX, by - DY); ctx.lineTo(sx + CW, by);
+                ctx.closePath(); ctx.fillStyle = _shade(c, 0.65); ctx.fill();
+
+                hits.push({ sx, ty, h, day });
+            }
+        }
+        contribCanvas._hits = hits;
+        contribCanvas._CW   = CW;
+    }
+
+    if (!animate) { drawFrame(1); return; }
+
+    const duration = 800;
+    const start = performance.now();
+    function tick(now) {
+        const progress = Math.min(1, (now - start) / duration);
+        drawFrame(progress);
+        if (progress < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
 }
 
 contribCanvas.addEventListener('mousemove', e => {
@@ -141,14 +171,18 @@ async function _loadContribs() {
 
 function showContribGraph() {
     contribGraph.classList.add('visible');
-    if (_graphReady) { _renderCanvas(); return; }
-    _loadContribs().then(w => { _weeks = w; _graphReady = true; _renderCanvas(); })
+    if (_graphReady) { _renderCanvas(true); return; }
+    _loadContribs().then(w => { _weeks = w; _graphReady = true; _renderCanvas(true); })
         .catch(err => console.warn('Contrib graph:', err));
 }
 function hideContribGraph() {
     contribGraph.classList.remove('visible');
     contribTip.style.display = 'none';
 }
+
+const spotifyEmbed = document.getElementById('spotify-embed');
+function showSpotify() { spotifyEmbed.classList.add('visible'); }
+function hideSpotify() { spotifyEmbed.classList.remove('visible'); }
 
 // Mobile nav dropdown
 navToggle.addEventListener('click', () => {
@@ -343,6 +377,7 @@ tabs.forEach(tab => {
 
         updatesList.classList.add('fading');
         hideContribGraph();
+        hideSpotify();
 
         setTimeout(() => {
             renderUpdates(tab.dataset.category, true);
@@ -350,6 +385,7 @@ tabs.forEach(tab => {
             colorizeLinks();
             tabSwitching = false;
             if (tab.dataset.category === 'pr') showContribGraph();
+            if (tab.dataset.category === 'misc') showSpotify();
         }, 300);
     });
 });

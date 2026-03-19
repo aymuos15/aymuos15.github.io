@@ -105,6 +105,21 @@
     }
 }
 
+.spotify-embed {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.spotify-embed.visible {
+    max-height: 200px;
+}
+
+.spotify-embed iframe {
+    display: block;
+    margin-top: 2rem;
+}
+
 /* Contribution graph — 3D canvas, PRs tab */
 .contrib-graph {
     overflow: hidden;

@@ -12,7 +12,8 @@ export default [
                 localStorage: 'readonly',
                 Image: 'readonly',
                 setTimeout: 'readonly',
-                requestAnimationFrame: 'readonly'
+                requestAnimationFrame: 'readonly',
+                performance: 'readonly'
             }
         },
         rules: {
