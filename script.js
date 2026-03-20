@@ -169,6 +169,10 @@ async function _loadContribs() {
     return weeks;
 }
 
+// Prefetch contrib data at load time so it's ready when the PRs tab is opened
+_loadContribs().then(w => { _weeks = w; _graphReady = true; })
+    .catch(err => console.warn('Contrib graph prefetch:', err));
+
 function showContribGraph() {
     contribGraph.classList.add('visible');
     if (_graphReady) { _renderCanvas(true); return; }
