@@ -1,0 +1,297 @@
+/* Microblog Section */
+
+/* Tag filter bar */
+.microblog-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.microblog-tag-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    padding: 0.25rem 0.6rem;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.microblog-tag-btn:hover {
+    color: var(--text);
+    border-color: var(--text-secondary);
+}
+
+.microblog-tag-btn.active {
+    color: var(--text);
+    border-color: var(--text);
+}
+
+/* Cards container */
+.microblog-cards {
+    max-height: 18rem;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+    transition: opacity 0.3s ease;
+}
+
+.microblog-cards.fading {
+    opacity: 0;
+}
+
+.microblog-cards::-webkit-scrollbar {
+    width: 4px;
+}
+
+.microblog-cards::-webkit-scrollbar-thumb {
+    background: var(--border);
+}
+
+/* Card */
+.microblog-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(6px);
+    animation: item-in 0.35s ease forwards;
+    transition: opacity 0.2s ease;
+}
+
+.microblog-card:last-child {
+    border-bottom: none;
+}
+
+.microblog-card:hover {
+    opacity: 0.65;
+}
+
+.microblog-card-title {
+    font-size: 0.9rem;
+    color: var(--text);
+}
+
+.microblog-card-date {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    flex-shrink: 0;
+    margin-left: 1rem;
+}
+
+/* Blurb */
+.microblog-blurb {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin-bottom: 0.7rem;
+}
+
+.microblog-blurb:last-of-type {
+    margin-bottom: 3.2rem;
+}
+
+/* Detail view */
+#microblog-list.hidden {
+    display: none;
+}
+
+.microblog-detail {
+    display: none;
+}
+
+.microblog-detail.visible {
+    display: block;
+}
+
+.microblog-detail .back-btn {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    cursor: pointer;
+    padding: 0;
+    margin-bottom: 1rem;
+    transition: color 0.2s ease;
+}
+
+.microblog-detail .back-btn:hover {
+    color: var(--text);
+}
+
+.microblog-detail-title {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 0.4rem;
+    color: var(--text);
+}
+
+.microblog-detail-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 1.2rem;
+}
+
+.microblog-detail-date {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.microblog-detail-tag {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+    padding: 0.15rem 0.45rem;
+    border-radius: 2px;
+}
+
+.microblog-detail-content p {
+    font-size: 0.9rem;
+    line-height: 1.75;
+    margin-bottom: 0.8rem;
+    color: var(--text);
+}
+
+.microblog-detail-refs {
+    margin-top: 1.2rem;
+    padding-top: 0.8rem;
+    border-top: 1px solid var(--border);
+}
+
+.microblog-detail-refs span {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    display: block;
+    margin-bottom: 0.4rem;
+}
+
+.microblog-detail-refs a {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--text);
+    text-decoration: underline;
+    text-decoration-color: var(--link);
+    text-underline-offset: 3px;
+    margin-right: 1rem;
+    transition: color 0.2s ease;
+}
+
+.microblog-detail-refs a:hover {
+    color: var(--link);
+}
+
+/* Deformable conv diagram */
+.microblog-diagram {
+    margin: 1.2rem 0;
+}
+
+.dcn-toggle {
+    display: flex;
+    gap: 0;
+    margin-bottom: 0.8rem;
+}
+
+.dcn-btn {
+    flex: 1;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--border);
+    padding: 8px 0;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.dcn-btn:hover {
+    color: var(--text);
+}
+
+.dcn-btn.active {
+    color: var(--text);
+    border-bottom: 2px solid var(--text);
+}
+
+.dcn-svg {
+    width: 100%;
+    max-width: 280px;
+    display: block;
+    margin: 0 auto;
+}
+
+.dcn-line {
+    stroke: var(--text-secondary);
+    stroke-width: 0.5;
+    opacity: 0.4;
+    transition: opacity 0.3s ease;
+}
+
+.dcn-dot {
+    fill: var(--text);
+    transition: fill 0.3s ease;
+}
+
+.dcn-arrow {
+    stroke: var(--link);
+    stroke-width: 0.6;
+    stroke-dasharray: 2 1.5;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.dcn-svg.dcn-deformable .dcn-arrow {
+    opacity: 0.7;
+}
+
+.dcn-svg.dcn-deformable .dcn-dot {
+    fill: var(--link);
+}
+
+.dcn-caption {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--text-secondary);
+    text-align: center;
+    margin-top: 0.6rem;
+}
+
+@media (max-width: 768px) {
+    .microblog-tag-btn {
+        font-size: 0.6rem;
+        padding: 0.2rem 0.45rem;
+    }
+
+    .microblog-card-title {
+        font-size: 0.8rem;
+    }
+
+    .microblog-card-date {
+        font-size: 0.7rem;
+    }
+
+    .microblog-detail-title {
+        font-size: 1rem;
+    }
+
+    .microblog-detail-content p {
+        font-size: 0.8rem;
+    }
+
+    .microblog-detail-refs a {
+        font-size: 0.7rem;
+    }
+}

@@ -217,7 +217,8 @@ function nextFrame(fn) {
 const socialHighlights = {
     about:    { linkedin: '#0A66C2', x: null },
     research: { scholar: '#4285F4' },
-    news:     { github: null, pytorch: '#EE4C2C' }
+    news:     { github: null, pytorch: '#EE4C2C' },
+    microblog: { scholar: '#4285F4' }
 };
 
 // GitHub & X brand is black/white — just use site text color
@@ -407,6 +408,261 @@ document.getElementById('back-btn').addEventListener('click', () => {
     document.getElementById('collaborators').classList.remove('visible');
     document.getElementById('about-content').classList.remove('hidden');
 });
+
+// ── Microblog ────────────────────────────────────────────────────────────────
+/* eslint-disable quotes */
+const microblogEntries = [
+    {
+        id: "deformable-convolutions",
+        date: "Mar. '26",
+        title: "Deformable Convolutions",
+        tags: ["computer-vision", "convolutions"],
+        diagram: "deformable-conv",
+        content: `<p>Standard convolutions sample on a fixed rectangular grid, limiting for irregular shapes. Deformable Convolutions (Dai et al., 2017) add learnable offsets to each sampling position so the receptive field adapts to the geometry of the content. DCNv2 (Zhu et al., 2019) adds per-sample modulation scalars that control <em>how much</em> each offset position contributes. DCNv3 (Wang et al., 2023) shares weights across groups and softmax-normalises the modulation, and DCNv4 (Xiong et al., 2024) removes the softmax constraint and optimises memory access for faster inference.</p>`,
+        links: [
+            { label: "Dai et al., ICCV 2017", url: "https://arxiv.org/abs/1703.06211" },
+            { label: "Zhu et al., CVPR 2019", url: "https://arxiv.org/abs/1811.11168" },
+            { label: "Wang et al., CVPR 2023", url: "https://arxiv.org/abs/2211.05778" },
+            { label: "Xiong et al., CVPR 2024", url: "https://arxiv.org/abs/2401.06197" }
+        ]
+    }
+];
+/* eslint-enable quotes */
+
+const microblogCards = document.getElementById('microblog-cards');
+const microblogTagsEl = document.getElementById('microblog-tags');
+const microblogList = document.getElementById('microblog-list');
+const microblogDetail = document.getElementById('microblog-detail');
+let microblogTagSwitching = false;
+
+// ── Deformable Convolution Diagram ───────────────────────────────────────────
+function buildMicroblogDiagram(type) {
+    if (type !== 'deformable-conv') return;
+    const container = document.getElementById('microblog-diagram-deformable-conv');
+    if (!container) return;
+
+    // 3x3 kernel positions on a normalised grid
+    const gridPts = [];
+    for (let r = 0; r < 3; r++) {
+        for (let c = 0; c < 3; c++) {
+            gridPts.push({ x: 25 + c * 25, y: 25 + r * 25 });
+        }
+    }
+
+    // Deformed offsets — points that hug the ellipse boundary (cx=50, cy=50, rx=34, ry=28, rot=-12deg)
+    const deformedPts = [
+        { x: 20, y: 28 }, { x: 50, y: 20 }, { x: 80, y: 26 },
+        { x: 16, y: 50 }, { x: 50, y: 50 }, { x: 84, y: 48 },
+        { x: 22, y: 72 }, { x: 50, y: 78 }, { x: 78, y: 72 }
+    ];
+
+    let mode = 'standard';
+    const currentPts = gridPts.map(p => ({ x: p.x, y: p.y }));
+
+    // Blob shape (irregular region the kernel adapts to)
+    const blobSvg = `<ellipse cx="50" cy="50" rx="34" ry="28"
+        transform="rotate(-12 50 50)"
+        fill="none" stroke="var(--border)" stroke-width="1.2"
+        stroke-dasharray="4 3" opacity="0.6"/>`;
+
+    // Build SVG
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('viewBox', '5 12 90 80');
+    svg.setAttribute('class', 'dcn-svg');
+    svg.innerHTML = blobSvg;
+
+    // Connection lines (grid edges)
+    const lines = [];
+    const lineIdxPairs = [
+        [0,1],[1,2],[3,4],[4,5],[6,7],[7,8],
+        [0,3],[3,6],[1,4],[4,7],[2,5],[5,8]
+    ];
+    lineIdxPairs.forEach(([a, b]) => {
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line.setAttribute('class', 'dcn-line');
+        svg.appendChild(line);
+        lines.push({ el: line, a, b });
+    });
+
+    // Sample points
+    const dots = [];
+    gridPts.forEach(() => {
+        const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        circle.setAttribute('r', '2.8');
+        circle.setAttribute('class', 'dcn-dot');
+        svg.appendChild(circle);
+        dots.push(circle);
+    });
+
+    // Offset arrows (only visible in deformable mode)
+    const arrows = [];
+    gridPts.forEach(() => {
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line.setAttribute('class', 'dcn-arrow');
+        svg.appendChild(line);
+        arrows.push(line);
+    });
+
+    function updatePositions() {
+        dots.forEach((dot, i) => {
+            dot.setAttribute('cx', currentPts[i].x);
+            dot.setAttribute('cy', currentPts[i].y);
+        });
+        lines.forEach(({ el, a, b }) => {
+            el.setAttribute('x1', currentPts[a].x);
+            el.setAttribute('y1', currentPts[a].y);
+            el.setAttribute('x2', currentPts[b].x);
+            el.setAttribute('y2', currentPts[b].y);
+        });
+        arrows.forEach((arrow, i) => {
+            arrow.setAttribute('x1', gridPts[i].x);
+            arrow.setAttribute('y1', gridPts[i].y);
+            arrow.setAttribute('x2', currentPts[i].x);
+            arrow.setAttribute('y2', currentPts[i].y);
+        });
+    }
+
+    function animateTo(targetPts) {
+        const startPts = currentPts.map(p => ({ x: p.x, y: p.y }));
+        const duration = 500;
+        const start = performance.now();
+        function tick(now) {
+            const t = Math.min(1, (now - start) / duration);
+            const ease = 1 - Math.pow(1 - t, 3);
+            currentPts.forEach((p, i) => {
+                p.x = startPts[i].x + (targetPts[i].x - startPts[i].x) * ease;
+                p.y = startPts[i].y + (targetPts[i].y - startPts[i].y) * ease;
+            });
+            updatePositions();
+            if (t < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+    }
+
+    // Toggle buttons
+    const toggle = document.createElement('div');
+    toggle.className = 'dcn-toggle';
+
+    const btnStd = document.createElement('button');
+    btnStd.className = 'dcn-btn active';
+    btnStd.textContent = 'Standard';
+
+    const btnDef = document.createElement('button');
+    btnDef.className = 'dcn-btn';
+    btnDef.textContent = 'Deformable';
+
+    function setMode(m) {
+        if (m === mode) return;
+        mode = m;
+        btnStd.classList.toggle('active', mode === 'standard');
+        btnDef.classList.toggle('active', mode === 'deformable');
+        svg.classList.toggle('dcn-deformable', mode === 'deformable');
+        animateTo(mode === 'deformable' ? deformedPts : gridPts);
+    }
+
+    btnStd.addEventListener('click', () => setMode('standard'));
+    btnDef.addEventListener('click', () => setMode('deformable'));
+
+    toggle.appendChild(btnStd);
+    toggle.appendChild(btnDef);
+
+    // Caption
+    const caption = document.createElement('p');
+    caption.className = 'dcn-caption';
+    caption.textContent = 'Click to toggle between fixed and learnable sampling positions.';
+
+    container.appendChild(toggle);
+    container.appendChild(svg);
+    container.appendChild(caption);
+    updatePositions();
+}
+
+function renderMicroblogTags(activeTag) {
+    const allTags = [...new Set(microblogEntries.flatMap(e => e.tags))];
+    microblogTagsEl.innerHTML = '';
+
+    const allBtn = document.createElement('button');
+    allBtn.className = 'microblog-tag-btn' + (activeTag === 'all' ? ' active' : '');
+    allBtn.textContent = 'All';
+    allBtn.addEventListener('click', () => filterMicroblog('all'));
+    microblogTagsEl.appendChild(allBtn);
+
+    allTags.forEach(tag => {
+        const btn = document.createElement('button');
+        btn.className = 'microblog-tag-btn' + (activeTag === tag ? ' active' : '');
+        btn.textContent = tag;
+        btn.addEventListener('click', () => filterMicroblog(tag));
+        microblogTagsEl.appendChild(btn);
+    });
+}
+
+function renderMicroblogList(filterTag) {
+    const filtered = filterTag === 'all'
+        ? microblogEntries
+        : microblogEntries.filter(e => e.tags.includes(filterTag));
+
+    microblogCards.innerHTML = filtered.map((e, i) =>
+        `<div class="microblog-card" data-id="${e.id}" style="animation-delay: ${i * 30}ms">
+            <span class="microblog-card-title">${e.title}</span>
+            <span class="microblog-card-date">${e.date}</span>
+        </div>`
+    ).join('');
+
+    microblogCards.querySelectorAll('.microblog-card').forEach(card => {
+        card.addEventListener('click', () => showMicroblogPost(card.dataset.id));
+    });
+}
+
+function filterMicroblog(tag) {
+    if (microblogTagSwitching) return;
+    microblogTagSwitching = true;
+
+    renderMicroblogTags(tag);
+    microblogCards.classList.add('fading');
+
+    setTimeout(() => {
+        renderMicroblogList(tag);
+        microblogCards.classList.remove('fading');
+        colorizeLinks();
+        microblogTagSwitching = false;
+    }, 300);
+}
+
+function showMicroblogPost(id) {
+    const entry = microblogEntries.find(e => e.id === id);
+    if (!entry) return;
+
+    microblogList.classList.add('hidden');
+    microblogDetail.classList.add('visible');
+
+    const refsHtml = entry.links.length
+        ? `<div class="microblog-detail-refs"><span>References</span>${entry.links.map(l => `<a href="${l.url}" target="_blank">${l.label}</a>`).join('')}</div>`
+        : '';
+
+    microblogDetail.innerHTML = `
+        <button class="back-btn" id="microblog-back-btn">&larr; back</button>
+        <div class="microblog-detail-title">${entry.title}</div>
+        <div class="microblog-detail-meta">
+            <span class="microblog-detail-date">${entry.date}</span>
+            ${entry.tags.map(t => `<span class="microblog-detail-tag">${t}</span>`).join('')}
+        </div>
+        ${entry.diagram ? `<div class="microblog-diagram" id="microblog-diagram-${entry.diagram}"></div>` : ''}
+        <div class="microblog-detail-content">${entry.content}</div>
+        ${refsHtml}
+    `;
+
+    document.getElementById('microblog-back-btn').addEventListener('click', hideMicroblogPost);
+    if (entry.diagram) buildMicroblogDiagram(entry.diagram);
+    colorizeLinks();
+}
+
+function hideMicroblogPost() {
+    microblogDetail.classList.remove('visible');
+    microblogList.classList.remove('hidden');
+}
+
+renderMicroblogTags('all');
+renderMicroblogList('all');
 
 colorizeLinks();
 
