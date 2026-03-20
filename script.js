@@ -707,22 +707,24 @@ function showNotation() {
     microblogNotation.classList.add('visible');
 
     microblogNotation.innerHTML = `
-        <button class="back-btn" id="notation-back-btn">&larr; back</button>
-        <div class="microblog-detail-title">Notations</div>
-        <table class="notation-table">
-            <thead>
-                <tr><th>Symbol</th><th>Meaning</th></tr>
-            </thead>
-            <tbody>
-                <tr><td>x</td><td>Input feature map</td></tr>
-                <tr><td>y</td><td>Output feature map</td></tr>
-                <tr><td>w(p<sub>n</sub>)</td><td>Kernel weight at grid position n</td></tr>
-                <tr><td>p<sub>0</sub></td><td>Current output spatial position</td></tr>
-                <tr><td>p<sub>n</sub></td><td>Sampling offset in the kernel grid</td></tr>
-                <tr><td>&Delta;p<sub>n</sub></td><td>Learnable offset added to each sampling position</td></tr>
-                <tr><td>m<sub>n</sub></td><td>Learnable modulation scalar per sample</td></tr>
-            </tbody>
-        </table>
+        <div class="notation-content">
+            <button class="back-btn" id="notation-back-btn">&larr; back</button>
+            <div class="microblog-detail-title">Notations</div>
+            <table class="notation-table">
+                <thead>
+                    <tr><th>Symbol</th><th>Meaning</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>x</td><td>Input feature map</td></tr>
+                    <tr><td>y</td><td>Output feature map</td></tr>
+                    <tr><td>w(p<sub>n</sub>)</td><td>Kernel weight at grid position n</td></tr>
+                    <tr><td>p<sub>0</sub></td><td>Current output spatial position</td></tr>
+                    <tr><td>p<sub>n</sub></td><td>Sampling offset in the kernel grid</td></tr>
+                    <tr><td>&Delta;p<sub>n</sub></td><td>Learnable offset added to each sampling position</td></tr>
+                    <tr><td>m<sub>n</sub></td><td>Learnable modulation scalar per sample</td></tr>
+                </tbody>
+            </table>
+        </div>
     `;
 
     document.getElementById('notation-back-btn').addEventListener('click', hideNotation);

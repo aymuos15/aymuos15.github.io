@@ -10,6 +10,8 @@
     font-size: 0.8rem;
     color: var(--text-secondary);
     text-align: center;
+    background: var(--bg);
+    z-index: 100;
 }
 
 .rainbow-ch {

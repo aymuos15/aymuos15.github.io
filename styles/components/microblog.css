@@ -153,12 +153,64 @@
     display: none;
 }
 
+#microblog.active {
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100vh - 6rem);
+    overflow: hidden;
+}
+
+#microblog-list {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    padding-bottom: 3rem;
+    padding-right: 0.5rem;
+    margin-right: -1.5rem;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+}
+
+#microblog-list::-webkit-scrollbar {
+    width: 4px;
+}
+
+#microblog-list::-webkit-scrollbar-thumb {
+    background: var(--border);
+}
+
 .microblog-detail {
     display: none;
 }
 
 .microblog-detail.visible {
     display: block;
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    padding-bottom: 3rem;
+    padding-right: 0.5rem;
+    margin-right: -1.5rem;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+}
+
+#microblog-notation.visible {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.notation-content {
+    width: 100%;
+}
+
+.microblog-detail.visible::-webkit-scrollbar {
+    width: 4px;
+}
+
+.microblog-detail.visible::-webkit-scrollbar-thumb {
+    background: var(--border);
 }
 
 .microblog-detail .back-btn {
