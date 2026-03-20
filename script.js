@@ -422,13 +422,8 @@ const microblogEntries = [
         title: "Deformable Convolutions",
         tags: ["computer-vision", "convolutions"],
         diagram: "deformable-conv",
-        content: `<p>Standard convolutions sample on a fixed rectangular grid, limiting for irregular shapes. Deformable Convolutions (Dai et al., 2017) add learnable offsets to each sampling position so the receptive field adapts to the geometry of the content. DCNv2 (Zhu et al., 2019) adds per-sample modulation scalars that control <em>how much</em> each offset position contributes. DCNv3 (Wang et al., 2023) shares weights across groups and softmax-normalises the modulation, and DCNv4 (Xiong et al., 2024) removes the softmax constraint and optimises memory access for faster inference.</p>`,
-        links: [
-            { label: "Dai et al., ICCV 2017", url: "https://arxiv.org/abs/1703.06211" },
-            { label: "Zhu et al., CVPR 2019", url: "https://arxiv.org/abs/1811.11168" },
-            { label: "Wang et al., CVPR 2023", url: "https://arxiv.org/abs/2211.05778" },
-            { label: "Xiong et al., CVPR 2024", url: "https://arxiv.org/abs/2401.06197" }
-        ]
+        content: `<p>Standard convolutions sample on a fixed rectangular grid, limiting for irregular shapes. Deformable Convolutions (<a href="https://arxiv.org/abs/1703.06211" target="_blank">Dai et al., ICCV 2017</a>) add learnable offsets to each sampling position so the receptive field adapts to the geometry of the content. DCNv2 (<a href="https://arxiv.org/abs/1811.11168" target="_blank">Zhu et al., CVPR 2019</a>) adds per-sample modulation scalars that control <em>how much</em> each offset position contributes. DCNv3 (<a href="https://arxiv.org/abs/2211.05778" target="_blank">Wang et al., CVPR 2023</a>) shares weights across groups and softmax-normalises the modulation, and DCNv4 (<a href="https://arxiv.org/abs/2401.06197" target="_blank">Xiong et al., CVPR 2024</a>) removes the softmax constraint and optimises memory access for faster inference.</p>`,
+        links: []
     }
 ];
 /* eslint-enable quotes */
@@ -570,13 +565,52 @@ function buildMicroblogDiagram(type) {
     toggle.appendChild(btnStd);
     toggle.appendChild(btnDef);
 
+    // Equation panel
+    const eqPanel = document.createElement('div');
+    eqPanel.className = 'dcn-eq';
+    eqPanel.innerHTML = `
+        <div class="dcn-eq-standard dcn-eq-block active">
+            <span class="dcn-eq-label">Standard</span>
+            <span class="dcn-eq-formula">y(p<sub>0</sub>) = &Sigma; w(p<sub>n</sub>) &middot; x(p<sub>0</sub> + p<sub>n</sub>)</span>
+        </div>
+        <div class="dcn-eq-deformable dcn-eq-block">
+            <span class="dcn-eq-label">Deformable</span>
+            <span class="dcn-eq-formula">y(p<sub>0</sub>) = &Sigma; w(p<sub>n</sub>) &middot; x(p<sub>0</sub> + p<sub>n</sub> + <em>&Delta;p<sub>n</sub></em>)</span>
+        </div>
+        <div class="dcn-eq-v2 dcn-eq-block">
+            <span class="dcn-eq-label">v2 / v3 / v4</span>
+            <span class="dcn-eq-formula">y(p<sub>0</sub>) = &Sigma; w(p<sub>n</sub>) &middot; <em>m<sub>n</sub></em> &middot; x(p<sub>0</sub> + p<sub>n</sub> + <em>&Delta;p<sub>n</sub></em>)</span>
+            <span class="dcn-eq-note">v3 &amp; v4 differ architecturally, not in the sampling formula.</span>
+        </div>
+    `;
+
+    const eqBlocks = eqPanel.querySelectorAll('.dcn-eq-block');
+
+    // Wrap SVG + equation side by side
+    const body = document.createElement('div');
+    body.className = 'dcn-body';
+    body.appendChild(svg);
+    body.appendChild(eqPanel);
+
+    const origSetMode = setMode;
+    setMode = function(m) {
+        origSetMode(m);
+        eqBlocks.forEach(b => b.classList.remove('active'));
+        if (m === 'standard') {
+            eqPanel.querySelector('.dcn-eq-standard').classList.add('active');
+        } else {
+            eqPanel.querySelector('.dcn-eq-deformable').classList.add('active');
+            eqPanel.querySelector('.dcn-eq-v2').classList.add('active');
+        }
+    };
+
     // Caption
     const caption = document.createElement('p');
     caption.className = 'dcn-caption';
     caption.textContent = 'Click to toggle between fixed and learnable sampling positions.';
 
     container.appendChild(toggle);
-    container.appendChild(svg);
+    container.appendChild(body);
     container.appendChild(caption);
     updatePositions();
 }
@@ -664,6 +698,42 @@ function hideMicroblogPost() {
     microblogDetail.classList.remove('visible');
     microblogList.classList.remove('hidden');
 }
+
+// ── Notation view ────────────────────────────────────────────────────────────
+const microblogNotation = document.getElementById('microblog-notation');
+
+function showNotation() {
+    microblogList.classList.add('hidden');
+    microblogNotation.classList.add('visible');
+
+    microblogNotation.innerHTML = `
+        <button class="back-btn" id="notation-back-btn">&larr; back</button>
+        <div class="microblog-detail-title">Notations</div>
+        <table class="notation-table">
+            <thead>
+                <tr><th>Symbol</th><th>Meaning</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>x</td><td>Input feature map</td></tr>
+                <tr><td>y</td><td>Output feature map</td></tr>
+                <tr><td>w(p<sub>n</sub>)</td><td>Kernel weight at grid position n</td></tr>
+                <tr><td>p<sub>0</sub></td><td>Current output spatial position</td></tr>
+                <tr><td>p<sub>n</sub></td><td>Sampling offset in the kernel grid</td></tr>
+                <tr><td>&Delta;p<sub>n</sub></td><td>Learnable offset added to each sampling position</td></tr>
+                <tr><td>m<sub>n</sub></td><td>Learnable modulation scalar per sample</td></tr>
+            </tbody>
+        </table>
+    `;
+
+    document.getElementById('notation-back-btn').addEventListener('click', hideNotation);
+}
+
+function hideNotation() {
+    microblogNotation.classList.remove('visible');
+    microblogList.classList.remove('hidden');
+}
+
+document.getElementById('microblog-notation-link').addEventListener('click', showNotation);
 
 renderMicroblogTags('all');
 renderMicroblogList('all');

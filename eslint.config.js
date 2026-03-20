@@ -13,6 +13,7 @@ export default [
                 Image: 'readonly',
                 setTimeout: 'readonly',
                 requestAnimationFrame: 'readonly',
+                cancelAnimationFrame: 'readonly',
                 performance: 'readonly'
             }
         },

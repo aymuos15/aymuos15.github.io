@@ -99,6 +99,55 @@
     margin-bottom: 3.2rem;
 }
 
+/* Notation link */
+.microblog-notation-link {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-color: var(--border);
+    text-underline-offset: 3px;
+    display: inline-block;
+    margin-top: 1rem;
+    transition: color 0.2s ease;
+}
+
+.microblog-notation-link:hover {
+    color: var(--text);
+}
+
+/* Notation table */
+.notation-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    font-size: 0.85rem;
+}
+
+.notation-table th {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 400;
+    color: var(--text-secondary);
+    text-align: left;
+    padding: 0.4rem 0;
+    border-bottom: 1px solid var(--text-secondary);
+}
+
+.notation-table td {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+}
+
+.notation-table td:first-child {
+    font-family: var(--font-mono);
+    font-weight: 500;
+    color: var(--link);
+    width: 6rem;
+}
+
 /* Detail view */
 #microblog-list.hidden {
     display: none;
@@ -226,11 +275,16 @@
     border-bottom: 2px solid var(--text);
 }
 
+.dcn-body {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
 .dcn-svg {
-    width: 100%;
-    max-width: 280px;
-    display: block;
-    margin: 0 auto;
+    width: 50%;
+    max-width: 220px;
+    flex-shrink: 0;
 }
 
 .dcn-line {
@@ -269,6 +323,50 @@
     margin-top: 0.6rem;
 }
 
+.dcn-eq {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.dcn-eq-block {
+    opacity: 0.3;
+    transition: opacity 0.4s ease;
+}
+
+.dcn-eq-block.active {
+    opacity: 1;
+}
+
+.dcn-eq-label {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    color: var(--text-secondary);
+    display: block;
+    margin-bottom: 0.15rem;
+}
+
+.dcn-eq-formula {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text);
+    line-height: 1.6;
+}
+
+.dcn-eq-formula em {
+    color: var(--link);
+    font-style: normal;
+}
+
+.dcn-eq-note {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    color: var(--text-secondary);
+    display: block;
+    margin-top: 0.2rem;
+}
+
 @media (max-width: 768px) {
     .microblog-tag-btn {
         font-size: 0.6rem;
@@ -289,6 +387,19 @@
 
     .microblog-detail-content p {
         font-size: 0.8rem;
+    }
+
+    .dcn-body {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .dcn-svg {
+        width: 70%;
+    }
+
+    .dcn-eq-formula {
+        font-size: 0.65rem;
     }
 
     .microblog-detail-refs a {
