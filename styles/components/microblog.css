@@ -76,6 +76,10 @@
 .microblog-card-title {
     font-size: 0.9rem;
     color: var(--text);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
 }
 
 .microblog-card-date {
@@ -84,6 +88,7 @@
     font-weight: 700;
     color: var(--text-secondary);
     flex-shrink: 0;
+    white-space: nowrap;
     margin-left: 1rem;
 }
 
@@ -239,6 +244,7 @@
 .microblog-detail-meta {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     gap: 0.6rem;
     margin-bottom: 1.2rem;
 }
@@ -247,6 +253,7 @@
     font-family: var(--font-mono);
     font-size: 0.75rem;
     color: var(--text-secondary);
+    white-space: nowrap;
 }
 
 .microblog-detail-tag {
