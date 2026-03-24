@@ -431,6 +431,23 @@
     margin-top: 0.2rem;
 }
 
+/* Worktree diagram */
+.wt-diagram-area {
+    transition: opacity 0.2s ease;
+    padding: 0.4rem 0;
+}
+
+.wt-diagram-area.wt-fading {
+    opacity: 0;
+}
+
+.wt-svg {
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+    display: block;
+}
+
 @media (max-width: 768px) {
     .microblog-tag-btn {
         font-size: 0.6rem;
