@@ -90,6 +90,7 @@
     gap: 4px;
     height: 150px;
     padding-bottom: 14px;
+    flex-shrink: 0;
 }
 
 .diagram-bar-col {
@@ -136,6 +137,8 @@
     font-size: 0.45rem;
     color: var(--text-secondary);
     white-space: nowrap;
+    min-width: 3.2em;
+    text-align: center;
     transition: color 0.3s;
 }
 
