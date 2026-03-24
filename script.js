@@ -451,50 +451,48 @@ function buildWorktreeDiagram() {
 
     let mode = 'branch';
 
-    // Shared geometry
-    const W = 300, H = 150;
-    const gitX = W / 2, gitY = 22, gitRx = 30, gitRy = 12;
+    // Shared geometry — larger viewBox so SVG text renders at readable sizes
+    const W = 440, H = 220;
+    const gitX = W / 2, gitY = 32, gitRx = 44, gitRy = 18;
 
-    // Animated node positions: [gitEllipse, ...boxes, ...branch-labels]
-    // We'll track box centres and animate between layouts
     const branchLayout = {
-        boxes: [{ x: W / 2, y: 90 }],
+        boxes: [{ x: W / 2, y: 130 }],
         labels: [
-            { x: 46,  y: 90, text: 'main',   dim: true },
-            { x: W / 2, y: 130, text: 'feat-A', dim: false },
-            { x: 254, y: 90, text: 'fix-B',  dim: true }
+            { x: 62,  y: 130, text: 'main',   dim: true },
+            { x: W / 2, y: 190, text: 'feat-A', dim: false },
+            { x: 378, y: 130, text: 'fix-B',  dim: true }
         ],
-        connectors: [[gitX, gitY + gitRy, W / 2, 90 - 15]],
+        connectors: [[gitX, gitY + gitRy, W / 2, 130 - 22]],
         footnote: 'stash \u2192 checkout \u2192 switch'
     };
 
     const worktreeLayout = {
         boxes: [
-            { x: W / 2 - 65, y: 90 },
-            { x: W / 2 + 65, y: 90 }
+            { x: W / 2 - 95, y: 130 },
+            { x: W / 2 + 95, y: 130 }
         ],
         labels: [],
         connectors: [
-            [gitX - 10, gitY + gitRy, W / 2 - 65, 90 - 15],
-            [gitX + 10, gitY + gitRy, W / 2 + 65, 90 - 15]
+            [gitX - 16, gitY + gitRy, W / 2 - 95, 130 - 22],
+            [gitX + 16, gitY + gitRy, W / 2 + 95, 130 - 22]
         ],
         footnote: 'parallel \u2014 no stashing needed'
     };
 
     function buildSvg(layout) {
-        const bw = 90, bh = 30;
+        const bw = 130, bh = 44;
         let s = `<svg viewBox="0 0 ${W} ${H}" class="wt-svg" xmlns="http://www.w3.org/2000/svg">`;
 
         // .git ellipse
         s += `<ellipse cx="${gitX}" cy="${gitY}" rx="${gitRx}" ry="${gitRy}"
-            fill="none" stroke="var(--text-secondary)" stroke-width="1" stroke-dasharray="3 2" opacity="0.55"/>`;
-        s += `<text x="${gitX}" y="${gitY + 3.5}" text-anchor="middle"
-            font-family="var(--font-mono)" font-size="8" fill="var(--text-secondary)">.git</text>`;
+            fill="none" stroke="var(--text-secondary)" stroke-width="1.2" stroke-dasharray="4 3" opacity="0.55"/>`;
+        s += `<text x="${gitX}" y="${gitY + 5}" text-anchor="middle"
+            font-family="var(--font-mono)" font-size="13" fill="var(--text-secondary)">.git</text>`;
 
         // Connectors (dashed lines from .git to boxes)
         layout.connectors.forEach(([x1, y1, x2, y2]) => {
             s += `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}"
-                stroke="var(--text-secondary)" stroke-width="0.7" stroke-dasharray="3 2" opacity="0.45"/>`;
+                stroke="var(--text-secondary)" stroke-width="0.9" stroke-dasharray="4 3" opacity="0.45"/>`;
         });
 
         // Boxes
@@ -503,30 +501,28 @@ function buildWorktreeDiagram() {
                 ? (i === 0 ? 'var(--link)' : 'var(--text)')
                 : 'var(--text)';
             s += `<rect x="${b.x - bw/2}" y="${b.y - bh/2}" width="${bw}" height="${bh}"
-                rx="3" fill="none" stroke="${col}" stroke-width="1"/>`;
-            // Inner label for worktree mode, "working dir" for branch mode
+                rx="4" fill="none" stroke="${col}" stroke-width="1.2"/>`;
             const inner = layout.boxes.length === 1 ? 'working dir' : (i === 0 ? 'feat-A/' : 'fix-B/');
-            s += `<text x="${b.x}" y="${b.y + 3}" text-anchor="middle"
-                font-family="var(--font-mono)" font-size="7.5" fill="${col}">${inner}</text>`;
+            s += `<text x="${b.x}" y="${b.y + 5}" text-anchor="middle"
+                font-family="var(--font-mono)" font-size="12" fill="${col}">${inner}</text>`;
         });
 
         // Branch labels (only in branch mode)
         layout.labels.forEach(l => {
             const col = l.dim ? 'var(--text-secondary)' : 'var(--link)';
             const op = l.dim ? '0.4' : '1';
-            s += `<text x="${l.x}" y="${l.y + 3}" text-anchor="middle"
-                font-family="var(--font-mono)" font-size="7" fill="${col}" opacity="${op}">${l.text}</text>`;
-            // Active indicator arrow for the checked-out branch
+            s += `<text x="${l.x}" y="${l.y + 5}" text-anchor="middle"
+                font-family="var(--font-mono)" font-size="11" fill="${col}" opacity="${op}">${l.text}</text>`;
             if (!l.dim && layout.boxes.length === 1) {
                 const bx = layout.boxes[0].x;
-                s += `<line x1="${l.x}" y1="${l.y - 4}" x2="${bx}" y2="${layout.boxes[0].y + bh/2}"
-                    stroke="var(--link)" stroke-width="0.6" stroke-dasharray="2 2" opacity="0.45"/>`;
+                s += `<line x1="${l.x}" y1="${l.y - 5}" x2="${bx}" y2="${layout.boxes[0].y + bh/2}"
+                    stroke="var(--link)" stroke-width="0.7" stroke-dasharray="3 2" opacity="0.45"/>`;
             }
         });
 
         // Footnote
-        s += `<text x="${W / 2}" y="${H - 4}" text-anchor="middle"
-            font-family="var(--font-mono)" font-size="6.5" fill="var(--text-secondary)" opacity="0.5">${layout.footnote}</text>`;
+        s += `<text x="${W / 2}" y="${H - 6}" text-anchor="middle"
+            font-family="var(--font-mono)" font-size="10" fill="var(--text-secondary)" opacity="0.5">${layout.footnote}</text>`;
 
         s += '</svg>';
         return s;
