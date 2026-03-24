@@ -6,10 +6,10 @@
   "type": "module",
   "scripts": {
     "lint": "npm run lint:js && npm run lint:css && npm run lint:html",
-    "lint:js": "eslint script.js",
+    "lint:js": "eslint \"js/**/*.js\" \"microblogs/**/*.js\"",
     "lint:css": "stylelint style.css",
     "lint:html": "htmlhint index.html",
-    "lint:fix": "eslint script.js --fix && stylelint style.css --fix",
+    "lint:fix": "eslint \"js/**/*.js\" \"microblogs/**/*.js\" --fix && stylelint style.css --fix",
     "prepare": "husky"
   },
   "lint-staged": {
