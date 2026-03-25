@@ -1,4 +1,5 @@
 [
+    { "date": "Mar. '26", "description": "<a href=\"https://github.com/BrainImageAnalysis/instance-loss\">Instance Awareness of Multi-class Semantic Segmentation Loss Functions</a> accepted at CVPR CV4Clinical Workshop.", "category": "publishing" },
     { "date": "Mar. '26", "description": "Graduate TA for Image and Signal Processing with <a href=\"https://kclpure.kcl.ac.uk/portal/en/persons/richard.housden\">Prof. James Housden</a>", "category": "teaching" },
     { "date": "Mar. '26", "description": "Graduate TA for Python with <a href=\"https://www.kcl.ac.uk/people/marc-modat\">Prof. Marc Modat</a> and <a href=\"https://cai4cai.ml/author/jonathan-shapey/\">Dr. Jonathan Shapey</a>", "category": "teaching" },
     { "date": "Feb. '26", "description": "<a href=\"https://github.com/Project-MONAI/MONAI/pull/8688\">Fix docstring typos across codebase</a> - Project-MONAI/MONAI", "category": "pr" },
