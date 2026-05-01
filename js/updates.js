@@ -2,6 +2,7 @@
 // Updates data
 /* eslint-disable quotes */
 const updates = [
+    { "date": "May. '26", "description": "Selected for Google Summer of Code (GSoC) 2026 with the <a href=\"https://github.com/neuroinformatics-unit/\">Neuroinformatics Unit</a>.", "category": "misc" },
     { "date": "Apr. '26", "description": "Reviewing for NeurIPS 2026 and MICCAI 2026.", "category": "reviewing" },
     { "date": "Mar. '26", "description": "<a href=\"https://github.com/BrainImageAnalysis/instance-loss\">Instance Awareness of Multi-class Semantic Segmentation Loss Functions</a> accepted at CVPR CV4Clinical Workshop.", "category": "publishing" },
     { "date": "Mar. '26", "description": "Graduate TA for Image and Signal Processing with <a href=\"https://kclpure.kcl.ac.uk/portal/en/persons/richard.housden\">Prof. James Housden</a>", "category": "teaching" },
