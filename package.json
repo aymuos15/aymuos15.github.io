@@ -2,14 +2,13 @@
   "name": "aymuos15.github.io",
   "version": "1.0.0",
   "description": "This is me.",
-  "main": "script.js",
   "type": "module",
   "scripts": {
     "lint": "npm run lint:js && npm run lint:css && npm run lint:html",
-    "lint:js": "eslint \"js/**/*.js\" \"microblogs/**/*.js\"",
-    "lint:css": "stylelint style.css",
-    "lint:html": "htmlhint index.html",
-    "lint:fix": "eslint \"js/**/*.js\" \"microblogs/**/*.js\" --fix && stylelint style.css --fix",
+    "lint:js": "eslint \"src/js/**/*.js\" \"src/microblogs/**/*.js\"",
+    "lint:css": "stylelint \"src/styles/**/*.css\"",
+    "lint:html": "htmlhint src/index.html",
+    "lint:fix": "eslint \"src/js/**/*.js\" \"src/microblogs/**/*.js\" --fix && stylelint \"src/styles/**/*.css\" --fix",
     "prepare": "husky"
   },
   "lint-staged": {
