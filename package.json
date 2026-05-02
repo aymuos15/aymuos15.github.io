@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "This is me.",
   "type": "module",
+  "packageManager": "bun@1.2.22",
   "scripts": {
-    "lint": "npm run lint:js && npm run lint:css && npm run lint:html",
+    "lint": "bun run lint:js && bun run lint:css && bun run lint:html",
     "lint:js": "eslint \"src/js/**/*.js\" \"src/microblogs/**/*.js\"",
     "lint:css": "stylelint \"src/styles/**/*.css\"",
     "lint:html": "htmlhint src/index.html",
