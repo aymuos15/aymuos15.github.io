@@ -5,11 +5,12 @@
   "type": "module",
   "packageManager": "bun@1.2.22",
   "scripts": {
+    "dev": "bun run dev-server.js",
     "lint": "bun run lint:js && bun run lint:css && bun run lint:html",
-    "lint:js": "eslint \"src/js/**/*.js\" \"src/microblogs/**/*.js\"",
+    "lint:js": "eslint dev-server.js \"src/js/**/*.js\" \"src/microblogs/**/*.js\"",
     "lint:css": "stylelint \"src/styles/**/*.css\"",
     "lint:html": "htmlhint src/index.html",
-    "lint:fix": "eslint \"src/js/**/*.js\" \"src/microblogs/**/*.js\" --fix && stylelint \"src/styles/**/*.css\" --fix",
+    "lint:fix": "eslint dev-server.js \"src/js/**/*.js\" \"src/microblogs/**/*.js\" --fix && stylelint \"src/styles/**/*.css\" --fix",
     "prepare": "husky"
   },
   "lint-staged": {
