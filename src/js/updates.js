@@ -79,6 +79,14 @@ renderUpdates('all', false);
 
 const nameLink = document.querySelector('.name-link');
 const pronunciation = document.getElementById('pronunciation');
+const aboutSection = document.getElementById('about');
+const aboutContent = document.getElementById('about-content');
+const collaborators = document.getElementById('collaborators');
+const researchLink = document.querySelector('.research-link');
+const backButton = document.getElementById('back-btn');
+
+collaborators.inert = true;
+collaborators.setAttribute('aria-hidden', 'true');
 
 // Tab click handlers
 let tabSwitching = false;
@@ -114,12 +122,21 @@ nameLink.addEventListener('click', () => {
 });
 
 // Research link - toggle collaborators
-document.querySelector('.research-link').addEventListener('click', () => {
-    document.getElementById('about-content').classList.add('hidden');
-    document.getElementById('collaborators').classList.add('visible');
+researchLink.addEventListener('click', () => {
+    aboutSection.classList.add('showing-collaborators');
+    aboutContent.classList.add('hidden');
+    aboutContent.setAttribute('aria-hidden', 'true');
+    collaborators.classList.add('visible');
+    collaborators.inert = false;
+    collaborators.setAttribute('aria-hidden', 'false');
+    colorizeLinks();
 });
 
-document.getElementById('back-btn').addEventListener('click', () => {
-    document.getElementById('collaborators').classList.remove('visible');
-    document.getElementById('about-content').classList.remove('hidden');
+backButton.addEventListener('click', () => {
+    aboutSection.classList.remove('showing-collaborators');
+    collaborators.classList.remove('visible');
+    collaborators.inert = true;
+    collaborators.setAttribute('aria-hidden', 'true');
+    aboutContent.classList.remove('hidden');
+    aboutContent.setAttribute('aria-hidden', 'false');
 });
