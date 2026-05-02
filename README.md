@@ -1,13 +1,15 @@
-This is me.
+# aymuos15.github.io
 
-This is still in alpha. Espicially the mobile version. Will update things fully soon.
+Code for my personal website.
 
-Feel free to fork the code :D
+## Develop
 
-## Tooling
+```bash
+bun install
+bun run dev
+bun run lint
+```
 
-This repo now uses Bun as its package manager and script runner.
+## Deploy
 
-Install dependencies with `bun install`.
-
-Run checks with `bun run lint`.
+Push to `main` and GitHub Pages deploys the contents of `src/`.
