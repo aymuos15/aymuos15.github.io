@@ -34,6 +34,11 @@
     opacity: 0.6;
 }
 
+.name-link span,
+.pronunciation span {
+    transition: color 0.25s ease;
+}
+
 .pronunciation {
     font-style: italic;
     font-size: 0.95rem;

@@ -12,6 +12,49 @@ function colorizeLinks() {
     });
 }
 
+function colorizeRandomLetters(el, accentRatio = 0.28) {
+    const text = el.dataset.original || el.textContent;
+    const letterPositions = [];
+
+    el.dataset.original = text;
+
+    [...text].forEach((ch, index) => {
+        if (/[A-Za-z]/.test(ch)) {
+            letterPositions.push(index);
+        }
+    });
+
+    if (!letterPositions.length) return;
+
+    const accentCount = Math.max(1, Math.floor(letterPositions.length * accentRatio));
+    const accentPositions = new Set();
+
+    while (accentPositions.size < Math.min(accentCount, letterPositions.length)) {
+        const randomIndex = Math.floor(Math.random() * letterPositions.length);
+        accentPositions.add(letterPositions[randomIndex]);
+    }
+
+    const fragment = document.createDocumentFragment();
+
+    [...text].forEach((ch, index) => {
+        if (!/[A-Za-z]/.test(ch)) {
+            fragment.appendChild(document.createTextNode(ch));
+            return;
+        }
+
+        const span = document.createElement('span');
+        span.textContent = ch;
+
+        if (accentPositions.has(index)) {
+            span.style.color = pastelColors[Math.floor(Math.random() * pastelColors.length)];
+        }
+
+        fragment.appendChild(span);
+    });
+
+    el.replaceChildren(fragment);
+}
+
 function nextFrame(fn) {
     requestAnimationFrame(() => requestAnimationFrame(fn));
 }

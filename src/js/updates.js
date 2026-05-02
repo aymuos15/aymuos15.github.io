@@ -77,6 +77,9 @@ function renderUpdates(category, resetScroll) {
 
 renderUpdates('all', false);
 
+const nameLink = document.querySelector('.name-link');
+const pronunciation = document.getElementById('pronunciation');
+
 // Tab click handlers
 let tabSwitching = false;
 
@@ -104,8 +107,10 @@ tabs.forEach(tab => {
 });
 
 // Name click - toggle pronunciation
-document.querySelector('.name-link').addEventListener('click', () => {
-    document.getElementById('pronunciation').classList.toggle('visible');
+nameLink.addEventListener('click', () => {
+    pronunciation.classList.toggle('visible');
+    colorizeRandomLetters(nameLink, 0.32);
+    colorizeRandomLetters(pronunciation, 0.4);
 });
 
 // Research link - toggle collaborators
