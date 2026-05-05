@@ -1,7 +1,115 @@
 /* Research Section — Instance Imbalance Diagram */
 .instance-diagram {
     margin: 1.5rem 0 2rem;
+    overflow: hidden;
+    transition: opacity 0.3s ease, max-height 0.45s ease, margin 0.35s ease;
 }
+
+.instance-diagram.collapsing {
+    opacity: 0;
+    max-height: 0 !important;
+    margin: 0 !important;
+}
+
+.seg-link {
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-color: var(--link);
+    text-underline-offset: 3px;
+    color: var(--text);
+    transition: color 0.2s ease;
+}
+
+.seg-link:hover {
+    color: var(--link);
+}
+
+.niivue-viewer {
+    margin: 0;
+    opacity: 0;
+    transform: translateY(-6px);
+    max-height: 0;
+    overflow: hidden;
+    pointer-events: none;
+    transition: opacity 0.35s ease, transform 0.35s ease, max-height 0.45s ease, margin 0.35s ease;
+}
+
+/* Off-screen warm-up: gives canvas real dimensions so NiiVue can attach and
+   upload textures before the user opens the viewer. */
+.niivue-viewer.preheating {
+    position: fixed;
+    top: -10000px;
+    left: 0;
+    width: 800px;
+    max-height: none;
+    transition: none;
+}
+
+.niivue-viewer.active {
+    opacity: 1;
+    transform: translateY(0);
+    max-height: 800px;
+    pointer-events: auto;
+    margin: 1.5rem 0 2rem;
+}
+
+.niivue-error {
+    color: #f88;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    margin-top: 0.5rem;
+    white-space: pre-wrap;
+}
+
+.niivue-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+.niivue-select {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    color: var(--text);
+}
+
+.niivue-select select {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    padding: 4px 8px;
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.niivue-select select:hover,
+.niivue-select select:focus {
+    border-color: var(--link);
+    outline: none;
+}
+
+.niivue-cell {
+    position: relative;
+    background: #000;
+    border-radius: 6px;
+    overflow: hidden;
+    aspect-ratio: 16 / 10;
+}
+
+.niivue-cell canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
 
 /* Scatter + vertical bars side by side */
 .diagram-top {

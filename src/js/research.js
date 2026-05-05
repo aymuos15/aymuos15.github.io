@@ -79,12 +79,12 @@
 
     const btnD = document.createElement('button');
     btnD.className = 'diagram-btn active';
-    btnD.textContent = 'Dice Loss';
+    btnD.textContent = 'Dice Metric';
     btnD.addEventListener('click', () => setMode('dice'));
 
     const btnI = document.createElement('button');
     btnI.className = 'diagram-btn';
-    btnI.textContent = 'Instance-Aware Dice Loss';
+    btnI.textContent = 'Instance-Aware Dice Metric';
     btnI.addEventListener('click', () => setMode('instance'));
 
     toggle.appendChild(btnD);
@@ -229,8 +229,8 @@
         currentPq = t.pq;
 
         caption.textContent = mode === 'dice'
-            ? 'With Dice loss, the largest instance owns 48.5% of the gradient. The 3 smallest share just 3.2% \u2014 the model has almost no incentive to detect them.'
-            : 'Instance-aware: every instance contributes 12.5%, regardless of size. Small lesions receive equal learning signal.';
+            ? 'With the standard Dice Score, the largest instance owns 48.5% of the metric. The 3 smallest share just 3.2%. Missing them barely changes the score.'
+            : 'Instance-aware: every instance contributes 12.5% to the score, regardless of size. Small lesions are weighted equally.';
     }
 
     // ── Hover cross-highlighting ──

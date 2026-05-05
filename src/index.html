@@ -86,8 +86,30 @@
 
         <section id="research" class="section">
             <div class="instance-diagram" id="instance-diagram"></div>
-            <p>My research focuses on handling instance imbalance in brain tumour segmentation.</p>
-            <p>But I enjoy coding in general. Maybe an ode to my undergrad in CS. It's why I worked at Cosine to work on Large Code Models and why I love building developer tools.</p>
+            <div class="niivue-viewer" id="niivue-viewer">
+                <div class="niivue-controls">
+                    <label class="niivue-select">
+                        <span>Modality</span>
+                        <select id="nv-modality">
+                            <option value="t1c" selected>T1c</option>
+                            <option value="t1n">T1n</option>
+                            <option value="t2f">T2f</option>
+                            <option value="t2w">T2w</option>
+                        </select>
+                    </label>
+                    <label class="niivue-select">
+                        <span>View</span>
+                        <select id="nv-view">
+                            <option value="axial" selected>Axial</option>
+                            <option value="coronal">Coronal</option>
+                            <option value="sagittal">Sagittal</option>
+                            <option value="multi">Multi</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="niivue-cell"><canvas id="nv-canvas" width="800" height="500"></canvas></div>
+            </div>
+            <p>My PhD is on <span class="seg-link">segmentation</span> at all granularities, applied to Neuro-Oncology.</p>
         </section>
 
         <section id="news" class="section">
@@ -150,5 +172,7 @@
 <script src="js/microblog-init.js"></script>
 <script src="js/gallery.js"></script>
 <script src="js/research.js"></script>
+<script src="https://unpkg.com/@niivue/niivue@0.62.0/dist/niivue.umd.js"></script>
+<script src="js/niivue-viewer.js"></script>
 </body>
 </html>
