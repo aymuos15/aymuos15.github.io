@@ -33,26 +33,22 @@
 
 .cv-frame {
     border: 1px solid var(--border);
-    border-radius: 6px;
+    border-radius: 4px;
     overflow: hidden;
-    background: var(--bg);
-    height: calc(100vh - 240px);
-    min-height: 480px;
+    background: transparent;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .cv-embed {
     width: 100%;
-    height: 100%;
+    height: auto;
+    aspect-ratio: 8.5 / 11;
     border: none;
     display: block;
+    background: transparent;
 }
 
 @media (max-width: 768px) {
-    .cv-frame {
-        height: calc(100vh - 220px);
-        min-height: 360px;
-    }
-
     .cv-meta {
         font-size: 0.62rem;
         flex-direction: column;
