@@ -14,6 +14,32 @@
     z-index: 100;
 }
 
+.footer-cv {
+    display: none;
+    font-family: var(--font-mono);
+    letter-spacing: 0.04em;
+}
+
+.footer-cv a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.footer-cv a:hover {
+    color: var(--text);
+    border-bottom-color: var(--text);
+}
+
+body:has(#about.section.active) .footer-info {
+    display: none;
+}
+
+body:has(#about.section.active) .footer-cv {
+    display: inline;
+}
+
 .rainbow-ch {
     display: inline-block;
     animation: rainbow-in 0.35s ease forwards;
