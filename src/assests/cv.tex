@@ -1,0 +1,138 @@
+\documentclass[letterpaper,10pt]{article}
+
+\usepackage[margin=0.55in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{palatino}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{multicol}
+
+% Colors
+\definecolor{accent}{HTML}{2C3E50}
+\definecolor{light}{HTML}{7F8C8D}
+
+\pagestyle{empty}
+
+\titleformat{\section}
+  {\large\scshape\raggedright\color{accent}}
+  {}{0em}{}
+  [\vspace{-4pt}{\color{light}\hrule height 0.4pt}\vspace{2pt}]
+\titlespacing*{\section}{0pt}{3mm}{2pt}
+
+\setlist[itemize]{leftmargin=1.2em, itemsep=4pt, parsep=0pt, topsep=2pt}
+\renewcommand\labelitemi{\textcolor{light}{\textbullet}}
+
+\newcommand{\cvline}[2]{\noindent\makebox[\linewidth][l]{#1\hfill #2}\par\vspace{2.5pt}}
+\newcommand{\cvtextline}[1]{\noindent #1\par\vspace{2.5pt}}
+\newcommand{\pr}[2]{\href{#1}{\##2}}
+\newcommand{\prlist}[1]{\textcolor{light}{[#1]}}
+
+\begin{document}
+
+% ── Header ──
+\noindent{\LARGE\scshape\color{accent} Soumya Snigdha Kundu}\hfill{\small\color{light}
+  \href{mailto:soumya_snigdha.kundu@kcl.ac.uk}{Mail}\enspace$\cdot$\enspace
+  \href{https://aymuos15.github.io/}{Website}\enspace$\cdot$\enspace
+  \href{https://scholar.google.com/citations?user=WmHtKBYAAAAJ}{Google Scholar}\enspace$\cdot$\enspace
+  \href{https://www.linkedin.com/in/soumyaskundu/}{LinkedIn}\enspace$\cdot$\enspace
+  \href{https://x.com/aymuosk}{X}
+}\par
+
+\vspace{-2pt}
+
+% ── Education ──
+\section{Education}
+\noindent{\small
+\cvline{\textbf{King's College London} --- Ph.D.\ Biomedical Engineering and Imaging Science}{Oct 2023 -- Oct 2027}
+\cvline{\textbf{Queen Mary University of London} --- M.Sc.\ Machine Learning (Distinction)}{Sep 2022 -- Sep 2023}
+\cvline{\textbf{SRM Institute of Science and Technology} --- B.Tech.\ Computer Science (Distinction)}{Jul 2018 -- May 2022}
+}
+
+% ── Publications ──
+\section{Representative Papers}
+
+\noindent{\small
+\cvtextline{\textbf{S.\ S.\ Kundu} et al. (2026). Instance Awareness of Multi-class Semantic Segmentation Loss Functions. \textit{CV4CLINIC@}\textbf{\underline{CVPR}}.}
+\cvtextline{\textbf{S.\ S.\ Kundu} et al. (2025). Cluster Dice. \textit{SPIE Medical Imaging}.}
+\cvtextline{\textbf{S.\ S.\ Kundu} et al. (2024). Spinal osteophyte detection via robust patch extraction on minimally annotated x-rays. \textit{IEEE }\textbf{\underline{ISBI}}.}
+\cvtextline{Naidu, R. \& \textbf{S.\ S.\ Kundu} (2021). Improved variants of Score-CAM via Smoothing and Integrating. \textit{RCV@}\textbf{\underline{CVPR}}.}
+\cvtextline{\textbf{S.\ S.\ Kundu} (2021). A Distributed Deep Learning Framework for Federated Big Medical Image Analysis. \textit{IEEE \textbf{\underline{Big Data}}}.}
+}
+
+% ── Industry Experience ──
+\section{Relevant Industry Experience}
+\noindent{\small
+\cvline{\textbf{Cosine (YC 23)} --- Machine Learning and Product Intern \textcolor{light}{(Genie 3; Multilingual SWE-Bench)}}{Summer 2025}
+}
+
+% ── Software ──
+\section{Representative Software \& Open Source Contributions}
+\noindent{\small
+\cvline{\textbf{Panoptica} --- \textcolor{light}{[Maintainer]} Instance-wise segmentation metrics}{\textcolor{light}{26$\star$}}
+\cvline{\textbf{Ultraflwr} --- \textcolor{light}{[Author]} Federated learning on the edge}{\textcolor{light}{20$\star$}}
+\cvline{\textbf{MONAI} --- \textcolor{light}{[Core contributor]} to the Medical Open Network for AI (MONAI)}{\textcolor{light}{8k$\star$}}
+\cvtextline{\textbf{PRs:}
+  Optax \prlist{\pr{https://github.com/google-deepmind/optax/pull/1340}{1340}, \pr{https://github.com/google-deepmind/optax/pull/1366}{1366}, \pr{https://github.com/google-deepmind/optax/pull/1458}{1458}},
+  batchgeneratorsv2 \prlist{\pr{https://github.com/MIC-DKFZ/batchgeneratorsv2/pull/16}{16}, \pr{https://github.com/MIC-DKFZ/batchgeneratorsv2/pull/19}{19}},
+  torchsparsegradutils \prlist{\pr{https://github.com/cai4cai/torchsparsegradutils/pull/63}{63}, \pr{https://github.com/cai4cai/torchsparsegradutils/pull/65}{65}, \pr{https://github.com/cai4cai/torchsparsegradutils/pull/66}{66}, \pr{https://github.com/cai4cai/torchsparsegradutils/pull/67}{67}},
+  OpenTUI \prlist{\pr{https://github.com/anomalyco/opentui/pull/253}{253}},
+  Fresh \prlist{\pr{https://github.com/sinelaw/fresh/pull/421}{421}}}
+}
+
+% ── Fellowships & Grants ──
+\section{Representative Fellowships \& Grants}
+\noindent{\small
+\cvline{Google Summer of Code (\textbf{GSoC}) --- Neuroinformatics Unit \textcolor{light}{(1{,}141 of 23{,}371 proposals selected, $\sim$4.9\%)}}{2026}
+\cvline{MRC DTP Postgraduate Studentship --- King's College London \textcolor{light}{($<$2\% selection, $\sim$\pounds205k)}}{2023}
+\cvline{BDI Summer Internship --- University of Oxford \textcolor{light}{(1 of 4 selected)}}{2023}
+\cvline{Summer Research Internship --- IIT Gandhinagar \textcolor{light}{($<$0.008\% selection)}}{2023}
+\cvline{\textbf{MITACS} Globalink Research Internship --- TRIUMF (UVic) \textcolor{light}{($<$3\% selection)}}{2021}
+}
+
+% ── Awards ──
+\section{Representative Awards}
+\noindent{\small
+\cvline{SPIE Medical Imaging Travel Grant Award \textcolor{light}{(\$1000)}}{2025}
+\cvline{IEEE ISBI'24 Best Student Poster Award Finalist \textcolor{light}{(Top 8 of 717)}}{2024}
+\cvline{UKRI Fast Start: Innovation Grant --- Co-Applicant \textcolor{light}{($\sim$\pounds50k)}}{2022}
+}
+
+% ── Skills ──
+\section{Programming \& Software Development}
+\noindent{\small
+\cvtextline{\textbf{Languages:} Python, C++, Bash, \LaTeX}
+\cvtextline{\textbf{ML:} PyTorch, JAX, NumPy, CUDA}
+\cvtextline{\textbf{Tools:} Git, Slurm, Docker, Kubernetes, macOS, Linux}
+}
+
+% ── Teaching ──
+\section{Graduate Teaching}
+\noindent{\small
+\cvline{Image and Signal Processing \textcolor{light}{(Prof.\ James Housden)}}{Spring 2026}
+\cvline{Python \textcolor{light}{(Dr.\ Marc Modat and Dr.\ Jonathan Shapey)}}{Spring 2026}
+\cvline{Journal Club --- Biomedical Engineering \textcolor{light}{(Prof.\ Monica Agromayor)}}{Winter 2024 \& Spring 2025}
+\cvline{Statistics --- Biomedical Engineering \textcolor{light}{(Prof.\ James Housden)}}{Spring 2025}
+}
+
+% ── Supervision ──
+\section{Supervision}
+\noindent{\small
+\cvline{Yingfang Tao --- KCL BSc Thesis Supervision}{2025--26}
+\cvline{Jai Pradeep Awasthi and Pranav Rustagi (LNMIIT) \textcolor{light}{with Yang Li}}{Summer 2025}
+\cvline{In2Stem (4 High School students) \textcolor{light}{with Lorena Garcia-Foncillas Macias}}{Summers 2024/25}
+}
+
+% ── Academic Service ──
+\section{Academic Service}
+\noindent{\small
+\textbf{Reviewing:} MICCAI, ICML, NeurIPS, ICLR, AISTATS, IEEE-ISBI.
+}
+
+\vfill
+\begin{center}
+{\small\textcolor{light}{References available on request.}}
+\end{center}
+
+\end{document}
