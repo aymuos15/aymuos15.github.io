@@ -34,6 +34,29 @@
     opacity: 0.6;
 }
 
+/* Inline photo revealed on name click */
+.name-photo {
+    display: inline-block;
+    height: 1em;
+    width: 0;
+    vertical-align: -0.14em;
+    margin-right: 0;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center 25%;
+    opacity: 0;
+    transform: scale(0.6);
+    transition: width 0.35s ease, height 0.35s ease, opacity 0.35s ease, margin-right 0.35s ease, transform 0.35s ease;
+}
+
+.name-link.show-photo .name-photo {
+    height: 1em;
+    width: 1em;
+    margin-right: 0.35rem;
+    opacity: 1;
+    transform: scale(1);
+}
+
 .name-link span,
 .pronunciation span {
     transition: color 0.25s ease;

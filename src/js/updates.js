@@ -131,8 +131,9 @@ tabs.forEach(tab => {
 
 // Name click - toggle pronunciation
 nameLink.addEventListener('click', () => {
+    nameLink.classList.toggle('show-photo');
     pronunciation.classList.toggle('visible');
-    colorizeRandomLetters(nameLink, 0.32);
+    colorizeRandomLetters(nameLink.querySelector('.name-text'), 0.32);
     colorizeRandomLetters(pronunciation, 0.4);
 });
 
