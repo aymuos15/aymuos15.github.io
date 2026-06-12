@@ -35,6 +35,12 @@ main {
     padding: 3.5rem 2rem 3rem;
 }
 
+@media (max-width: 768px) {
+    main {
+        padding: 3rem 1.5rem;
+    }
+}
+
 a {
     text-decoration: underline;
     text-underline-offset: 3px;

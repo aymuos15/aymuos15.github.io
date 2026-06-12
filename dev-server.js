@@ -26,15 +26,17 @@ const server = Bun.serve({
             return new Response('Not found', { status: 404 });
         }
 
+        const noCache = { 'Cache-Control': 'no-store, no-cache, must-revalidate' };
+
         const file = Bun.file(targetPath);
 
         if (await file.exists()) {
-            return new Response(file);
+            return new Response(file, { headers: noCache });
         }
 
         if (!extname(pathname)) {
             const fallback = Bun.file(resolve(rootDir, 'index.html'));
-            return new Response(fallback);
+            return new Response(fallback, { headers: noCache });
         }
 
         return new Response('Not found', { status: 404 });
