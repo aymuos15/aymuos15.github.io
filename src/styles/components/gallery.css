@@ -1,34 +1,94 @@
-/* Gallery Section */
-.image-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 200px 200px;
-    width: 100%;
-    gap: 0;
-}
-
-.image-grid-cell {
+/* Gallery — free-floating image cloud */
+.image-cloud {
     position: relative;
-    overflow: hidden;
-    cursor: pointer;
-}
-
-.image-grid-cell img {
-    position: absolute;
-    top: 0;
-    left: 0;
+    height: 460px;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 1.5s ease-in-out;
+    overflow: hidden;
 }
 
-.image-grid-cell img:hover {
-    opacity: 0.85;
+
+@keyframes cloud-drift {
+    0%   { translate: 0 0; }
+    25%  { translate: var(--dx1) var(--dy1); }
+    50%  { translate: var(--dx2) var(--dy2); }
+    75%  { translate: var(--dx1) var(--dy2); }
+    100% { translate: 0 0; }
 }
 
-@media (max-width: 768px) {
-    .image-grid {
-        grid-template-rows: 140px 140px;
+/* Inner universe — scale this on mobile to compress all positions uniformly */
+.cloud-universe {
+    position: absolute;
+    inset: 0;
+    transform-origin: center center;
+}
+
+.cloud-photo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 150px;
+    cursor: pointer;
+    border-radius: 4px;
+    transform: translate(-50%, -50%) translate(var(--cx, 0), var(--cy, 0)) rotate(var(--rot, 0deg));
+    transition: transform 0.42s cubic-bezier(0.4, 0, 0.2, 1), filter 0.35s;
+    z-index: var(--z, 1);
+    animation: cloud-drift var(--dur, 8s) var(--delay, 0s) ease-in-out infinite;
+}
+
+.cloud-photo img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+}
+
+.cloud-caption {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    font-family: var(--font-mono);
+    font-size: 8px;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    line-height: 1.4;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+}
+
+/* Hover: straighten + lift */
+.cloud-photo:hover {
+    transform: translate(-50%, -50%) translate(var(--cx, 0), var(--cy, 0)) rotate(0deg) scale(1.08);
+    z-index: 10;
+}
+
+/* Focused: move to center, scale up */
+.cloud-photo.focused {
+    transform: translate(-50%, -50%) rotate(0deg) scale(1.75);
+    z-index: 35;
+}
+
+/* Dim others when one is focused */
+.image-cloud.has-focus .cloud-photo:not(.focused) {
+    filter: brightness(0.4) saturate(0.55);
+}
+
+@media (max-width: 640px) {
+    .image-cloud {
+        height: 340px;
+    }
+
+    .cloud-universe {
+        transform: scale(0.62);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cloud-photo {
+        transition: filter 0.2s;
+        animation: none;
     }
 }
