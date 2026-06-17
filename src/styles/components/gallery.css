@@ -1,9 +1,20 @@
 /* Gallery — free-floating image cloud */
 .image-cloud {
-    position: relative;
-    height: 460px;
-    width: 100%;
-    overflow: hidden;
+    position: fixed;
+    inset: 4.5rem 0 3rem;
+    overflow: auto;
+    cursor: grab;
+    overscroll-behavior: contain;
+    touch-action: pan-x pan-y;
+    scrollbar-width: none;
+}
+
+.image-cloud::-webkit-scrollbar {
+    display: none;
+}
+
+.image-cloud.is-panning {
+    cursor: grabbing;
 }
 
 
@@ -17,8 +28,9 @@
 
 /* Inner universe — scale this on mobile to compress all positions uniformly */
 .cloud-universe {
-    position: absolute;
-    inset: 0;
+    position: relative;
+    width: max(1200px, 140vw);
+    height: max(900px, 140vh);
     transform-origin: center center;
 }
 
@@ -74,16 +86,6 @@
 /* Dim others when one is focused */
 .image-cloud.has-focus .cloud-photo:not(.focused) {
     filter: brightness(0.4) saturate(0.55);
-}
-
-@media (max-width: 640px) {
-    .image-cloud {
-        height: 340px;
-    }
-
-    .cloud-universe {
-        transform: scale(0.62);
-    }
 }
 
 @media (prefers-reduced-motion: reduce) {

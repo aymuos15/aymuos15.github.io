@@ -18,6 +18,7 @@ export default [
                 setTimeout: 'readonly',
                 requestAnimationFrame: 'readonly',
                 cancelAnimationFrame: 'readonly',
+                IntersectionObserver: 'readonly',
                 performance: 'readonly'
             }
         },
