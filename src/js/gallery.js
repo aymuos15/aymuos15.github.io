@@ -36,11 +36,22 @@ universe.style.height = `max(${spanY}px, 140vh)`;
 
 let focused = null;
 
-// Pan the viewport to the centre of the oversized canvas.
+// Centroid of the photo cluster, relative to the canvas centre (where each
+// photo is positioned from). Load-independent — uses fixed coordinates, not
+// rendered image sizes.
+const clusterX = (Math.min(...photos.map(p => p.x)) + Math.max(...photos.map(p => p.x))) / 2;
+const clusterY = (Math.min(...photos.map(p => p.y)) + Math.max(...photos.map(p => p.y))) / 2;
+
+// Scroll so the photo cluster sits at the true centre of the screen (both axes),
+// accounting for the cloud's header/footer inset.
 function centreCanvas(behavior) {
+    if (!cloud.clientWidth) return;
+    const rect = cloud.getBoundingClientRect();
+    const contentX = universe.offsetWidth / 2 + clusterX;
+    const contentY = universe.offsetHeight / 2 + clusterY;
     cloud.scrollTo({
-        left: (cloud.scrollWidth - cloud.clientWidth) / 2,
-        top: (cloud.scrollHeight - cloud.clientHeight) / 2,
+        left: contentX - (window.innerWidth / 2 - rect.left),
+        top: contentY - (window.innerHeight / 2 - rect.top),
         behavior: behavior || 'auto',
     });
 }
