@@ -151,20 +151,26 @@ nameLink.addEventListener('click', () => {
 
 // Research link - toggle collaborators
 researchLink.addEventListener('click', () => {
-    aboutSection.classList.add('showing-collaborators');
-    aboutContent.classList.add('hidden');
-    aboutContent.setAttribute('aria-hidden', 'true');
-    collaborators.classList.add('visible');
-    collaborators.inert = false;
-    collaborators.setAttribute('aria-hidden', 'false');
-    colorizeLinks();
+    const swap = () => {
+        aboutSection.classList.add('showing-collaborators');
+        aboutContent.classList.add('hidden');
+        aboutContent.setAttribute('aria-hidden', 'true');
+        collaborators.classList.add('visible');
+        collaborators.inert = false;
+        collaborators.setAttribute('aria-hidden', 'false');
+        colorizeLinks();
+    };
+    if (window.ditherTransition) window.ditherTransition(swap); else swap();
 });
 
 backButton.addEventListener('click', () => {
-    aboutSection.classList.remove('showing-collaborators');
-    collaborators.classList.remove('visible');
-    collaborators.inert = true;
-    collaborators.setAttribute('aria-hidden', 'true');
-    aboutContent.classList.remove('hidden');
-    aboutContent.setAttribute('aria-hidden', 'false');
+    const swap = () => {
+        aboutSection.classList.remove('showing-collaborators');
+        collaborators.classList.remove('visible');
+        collaborators.inert = true;
+        collaborators.setAttribute('aria-hidden', 'true');
+        aboutContent.classList.remove('hidden');
+        aboutContent.setAttribute('aria-hidden', 'false');
+    };
+    if (window.ditherTransition) window.ditherTransition(swap); else swap();
 });
