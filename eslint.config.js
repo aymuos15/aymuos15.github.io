@@ -19,6 +19,7 @@ export default [
                 requestAnimationFrame: 'readonly',
                 cancelAnimationFrame: 'readonly',
                 IntersectionObserver: 'readonly',
+                MutationObserver: 'readonly',
                 performance: 'readonly'
             }
         },

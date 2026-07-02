@@ -127,6 +127,7 @@ tabs.forEach(tab => {
         updatesList.classList.add('fading');
         hideContribGraph();
         hideSpotify();
+        window.hideGrainShader?.();
 
         setTimeout(() => {
             renderUpdates(tab.dataset.category, true);
@@ -135,6 +136,7 @@ tabs.forEach(tab => {
             tabSwitching = false;
             if (tab.dataset.category === 'pr') showContribGraph();
             if (tab.dataset.category === 'misc') showSpotify();
+            if (tab.dataset.category === 'reviewing') window.showGrainShader?.();
         }, 300);
     });
 });

@@ -121,7 +121,12 @@
                 <button class="tab" data-category="pr">PRs</button>
                 <button class="tab" data-category="misc">Misc</button>
             </div>
-            <div class="updates-list" id="updates-list"></div>
+            <div class="updates-wrap">
+                <div class="grain-shader" id="grain-shader">
+                    <div class="grain-shader__inner" id="grain-shader-mount"></div>
+                </div>
+                <div class="updates-list" id="updates-list"></div>
+            </div>
             <div class="spotify-embed" id="spotify-embed">
                 <iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/19bQiwEKhXUBJWY6oV3KZk?utm_source=generator&theme=0" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="eager"></iframe>
             </div>
@@ -169,5 +174,6 @@
 <script src="js/research.js"></script>
 <script src="https://unpkg.com/@niivue/niivue@0.62.0/dist/niivue.umd.js"></script>
 <script src="js/niivue-viewer.js"></script>
+<script type="module" src="js/grain-shader.js"></script>
 </body>
 </html>
