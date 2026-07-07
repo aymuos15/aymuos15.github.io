@@ -12,6 +12,10 @@
     text-align: center;
     background: var(--bg);
     z-index: 100;
+
+    /* Fade the footer in step with the body on theme change (base.css), so it
+       doesn't snap to the new colour a beat ahead of the rest of the page. */
+    transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 .footer-cv {
