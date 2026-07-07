@@ -15,7 +15,13 @@ navToggle.addEventListener('click', () => {
 });
 
 document.addEventListener('click', (e) => {
-    if (!navLinksContainer.contains(e.target) && !navToggle.contains(e.target)) {
+    // Keep the dropdown open when toggling the theme, so the tile-field menu
+    // doesn't get dismissed mid-look on a light/dark switch.
+    if (
+        !navLinksContainer.contains(e.target) &&
+        !navToggle.contains(e.target) &&
+        !e.target.closest('.theme-toggle')
+    ) {
         navLinksContainer.classList.remove('open');
     }
 });

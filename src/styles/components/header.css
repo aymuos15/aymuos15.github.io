@@ -60,7 +60,11 @@
     opacity: 0;
     pointer-events: none;
     transform: translateY(-8px);
-    transition: opacity 0.2s ease, transform 0.2s ease;
+
+    /* background-color/color match the body's 0.4s (base.css) so the open
+       dropdown re-themes in step instead of snapping a beat early. */
+    transition: opacity 0.2s ease, transform 0.2s ease,
+        background-color 0.4s ease, color 0.4s ease;
 }
 
 .nav-links.open {
@@ -84,6 +88,23 @@
        right-aligned text sits flush with the dropdown's right edge. */
     margin-right: -0.15em;
     transition: color 0.2s ease;
+}
+
+/* Tile-field treatment (About section only): the canvas paints the menu as
+   tiles behind the links; the real <a>s stay on top with hidden text so they
+   remain clickable. */
+.nav-tiles-canvas {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.nav-links.nav-tiled a,
+.nav-links.nav-tiled a:hover,
+.nav-links.nav-tiled a.active {
+    color: transparent;
+    position: relative;
+    z-index: 1;
 }
 
 .nav-links a:hover {
