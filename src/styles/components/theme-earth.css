@@ -1,0 +1,18 @@
+/* Rotating WebGL Earth that replaces the theme icon on the Gallery
+   section. Clicking it (the whole .theme-toggle button) still toggles
+   light/dark, handled by theme.js. Mirrors .theme-scatter (Research). */
+.theme-earth {
+    display: none;
+    width: 32px;
+    height: 32px;
+}
+
+/* On the Gallery section, swap the sun/moon icon for the Earth. */
+[data-section="gallery"] .theme-toggle .icon-sun,
+[data-section="gallery"] .theme-toggle .icon-moon {
+    display: none !important;
+}
+
+[data-section="gallery"] .theme-toggle .theme-earth {
+    display: block;
+}
