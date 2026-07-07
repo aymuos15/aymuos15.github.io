@@ -1,0 +1,33 @@
+/* Ray-marched volume cloud that fills the footer as a background, shown
+   only on the Microblog ("blog") section. Adapted from
+   https://threejs.org/examples/#webgl_volume_cloud */
+.footer-cloud {
+    display: none;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Keep the footer text above the cloud. */
+.footer-info,
+.footer-cv {
+    position: relative;
+    z-index: 1;
+}
+
+[data-section="microblog"] .footer-cloud {
+    display: block;
+}
+
+/* Boost legibility over the moving cloud. */
+[data-section="microblog"] .footer {
+    color: #fff;
+    text-shadow: 0 1px 3px rgb(0 0 0 / 60%);
+}
+
+[data-section="microblog"] .footer-cv a {
+    color: #fff;
+}
