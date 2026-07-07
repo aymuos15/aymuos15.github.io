@@ -21,13 +21,3 @@
 [data-section="microblog"] .footer-cloud {
     display: block;
 }
-
-/* Boost legibility over the moving cloud. */
-[data-section="microblog"] .footer {
-    color: #fff;
-    text-shadow: 0 1px 3px rgb(0 0 0 / 60%);
-}
-
-[data-section="microblog"] .footer-cv a {
-    color: #fff;
-}
