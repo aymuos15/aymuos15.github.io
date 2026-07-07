@@ -1,0 +1,18 @@
+/* Three.js instanced-scatter ornament that replaces the theme icon
+   on the Research section. Clicking it (the whole .theme-toggle button)
+   still toggles light/dark, handled by theme.js. */
+.theme-scatter {
+    display: none;
+    width: 30px;
+    height: 30px;
+}
+
+/* On the Research section, swap the sun/moon icon for the scatter. */
+[data-section="research"] .theme-toggle .icon-sun,
+[data-section="research"] .theme-toggle .icon-moon {
+    display: none !important;
+}
+
+[data-section="research"] .theme-toggle .theme-scatter {
+    display: block;
+}

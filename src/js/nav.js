@@ -50,6 +50,10 @@ function switchSection(targetId) {
     current.classList.remove('active');
     current.classList.add('leaving');
 
+    // Expose the active section on <html> so CSS/JS (e.g. the Research
+    // theme-scatter ornament) can react to which section is showing.
+    document.documentElement.setAttribute('data-section', targetId);
+
     highlightSocials(targetId);
     updateFooterRainbow(targetId);
 
@@ -59,6 +63,12 @@ function switchSection(targetId) {
         isTransitioning = false;
         colorizeLinks();
     }, 300);
+}
+
+// Reflect the initial active section on <html> at load.
+const initialSection = document.querySelector('.section.active');
+if (initialSection) {
+    document.documentElement.setAttribute('data-section', initialSection.id);
 }
 
 navLinks.forEach(link => {
