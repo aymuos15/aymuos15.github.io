@@ -44,10 +44,6 @@ const fragmentShader = /* glsl */`
     out vec4 color;
 
     uniform vec3 base;
-    uniform vec3 cA;
-    uniform vec3 cB;
-    uniform vec3 cC;
-    uniform vec3 cD;
     uniform sampler3D map;
 
     uniform float threshold;
@@ -91,15 +87,6 @@ const fragmentShader = /* glsl */`
         return sample1( coord + vec3( - step ) ) - sample1( coord + vec3( step ) );
     }
 
-    // Soft pastel-rainbow tint spread across the cloud so it drifts
-    // through pink -> peach -> blue -> lilac rather than one flat colour.
-    vec3 pastel( vec3 pos ) {
-        float g = clamp( pos.x + 0.5, 0.0, 1.0 );
-        if ( g < 0.333 ) return mix( cA, cB, g / 0.333 );
-        if ( g < 0.666 ) return mix( cB, cC, ( g - 0.333 ) / 0.333 );
-        return mix( cC, cD, ( g - 0.666 ) / 0.334 );
-    }
-
     vec4 linearToSRGB( in vec4 value ) {
         return vec4( mix( pow( value.rgb, vec3( 0.41666 ) ) * 1.055 - vec3( 0.055 ), value.rgb * 12.92, vec3( lessThanEqual( value.rgb, vec3( 0.0031308 ) ) ) ), value.a );
     }
@@ -129,7 +116,7 @@ const fragmentShader = /* glsl */`
 
             float col = shading( p + 0.5 ) * 3.0 + ( ( p.x + p.y ) * 0.25 ) + 0.2;
 
-            ac.rgb += ( 1.0 - ac.a ) * d * col * pastel( p );
+            ac.rgb += ( 1.0 - ac.a ) * d * col;
             ac.a += ( 1.0 - ac.a ) * d;
 
             if ( ac.a >= 0.95 ) break;
@@ -178,29 +165,18 @@ function build() {
     scene = new THREE.Scene();
 
     camera = new THREE.PerspectiveCamera( 60, 1, 0.1, 100 );
-    camera.position.set( 0, 0, 2.1 );
+    camera.position.set( 0, 0, 1.4 );
     camera.lookAt( 0, 0, 0 );
-
-    // Pastel rainbow lifted from the site palette (window.pastelColors),
-    // with a sensible fallback if utils.js hasn't loaded yet.
-    const palette = ( window.pastelColors && window.pastelColors.length )
-        ? window.pastelColors
-        : [ '#e8a0bf', '#f2cc8f', '#a8d8ea', '#c4b8e8' ];
-    const pick = ( hex ) => new THREE.Color( hex );
 
     const material = new THREE.RawShaderMaterial({
         glslVersion: THREE.GLSL3,
         uniforms: {
-            base: { value: new THREE.Color( 0x000000 ) },
-            cA: { value: pick( palette[0] ) },
-            cB: { value: pick( palette[2 % palette.length] ) },
-            cC: { value: pick( palette[4 % palette.length] ) },
-            cD: { value: pick( palette[6 % palette.length] ) },
+            base: { value: new THREE.Color( 0x798aa0 ) },
             map: { value: buildVolumeTexture() },
             cameraPos: { value: new THREE.Vector3() },
             threshold: { value: 0.25 },
-            opacity: { value: 0.32 },
-            range: { value: 0.12 },
+            opacity: { value: 0.25 },
+            range: { value: 0.1 },
             steps: { value: 100 },
             frame: { value: 0 }
         },
@@ -210,10 +186,10 @@ function build() {
         transparent: true
     });
 
-    // A gently wider-than-tall puff — the volume's radial falloff keeps
-    // the edges soft, so it reads as a drifting cloud, not a rectangle.
+    // A wide, flat slab so the cloud fills the footer strip rather than
+    // sitting as a lone cube in the middle.
     mesh = new THREE.Mesh( new THREE.BoxGeometry( 1, 1, 1 ), material );
-    mesh.scale.set( 1.7, 1.0, 1.0 );
+    mesh.scale.set( 4, 1, 1 );
     scene.add( mesh );
 
     resize();
