@@ -141,11 +141,16 @@ tabs.forEach(tab => {
     });
 });
 
-// Name click - toggle pronunciation
+// Name click - toggle pronunciation + run the Typer reveal on the name
+const nameTyper = new window.Typer(nameLink.querySelector('.name-text'), {
+    fps: 24,
+    cycles: 3,
+    initVisible: true,
+});
 nameLink.addEventListener('click', () => {
     nameLink.classList.toggle('show-photo');
     pronunciation.classList.toggle('visible');
-    colorizeRandomLetters(nameLink.querySelector('.name-text'), 0.32);
+    nameTyper.in();
     colorizeRandomLetters(pronunciation, 0.4);
 });
 

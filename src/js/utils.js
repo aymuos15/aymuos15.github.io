@@ -5,6 +5,9 @@ const pastelColors = [
     '#a8e0c8', '#c4b8e8', '#e8c8a0', '#a0c8e8'
 ];
 
+// Shared with typer.js (separate script scope) for per-glyph pastel colors.
+window.pastelColors = pastelColors;
+
 function colorizeLinks() {
     document.querySelectorAll('main a').forEach(link => {
         const color = pastelColors[Math.floor(Math.random() * pastelColors.length)];
