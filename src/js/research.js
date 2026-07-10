@@ -21,7 +21,7 @@ const researchThemes = [
         tint: '#8b9bd4',
         blurb: 'When averaging hides the small lesions.',
         orb3d: 'sphere',
-        intro: 'Standard overlap metrics let one large structure dominate the score, so missing tiny lesions barely registers. I work on instance-aware losses and metrics that weight every lesion fairly. Toggle the metric to see the effect.',
+        intro: 'Overlap metrics favour big structures, so tiny lesions barely dent the score. I build instance-aware losses that weight every lesion equally. Toggle to see the effect.',
         interactive: 'instance',
         papers: [
             { title: 'Cluster Dice', venue: 'SPIE Medical Imaging 2025', url: 'https://github.com/aymuos15/Cluster-Dice' },
