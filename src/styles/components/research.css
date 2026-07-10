@@ -203,6 +203,14 @@ body.research-modal-open {
     box-shadow: 0 40px 90px -30px rgba(0, 0, 0, 0.5);
     transform: translateY(14px) scale(0.97);
     transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+
+    /* Hidden scrollbar, matching the rest of the site (Firefox) */
+    scrollbar-width: none;
+}
+
+/* Hidden scrollbar (WebKit / Chromium) */
+.research-modal-panel::-webkit-scrollbar {
+    display: none;
 }
 
 .research-modal.open .research-modal-panel {

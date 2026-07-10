@@ -116,14 +116,6 @@
                     <div class="niivue-cell"><canvas id="nv-canvas" width="800" height="500"></canvas></div>
                 </div>
             </div>
-
-            <div class="research-modal" id="research-modal" role="dialog" aria-modal="true" aria-labelledby="research-modal-title" hidden>
-                <div class="research-modal-backdrop" data-close></div>
-                <div class="research-modal-panel">
-                    <button class="research-modal-close" data-close aria-label="Close">&times;</button>
-                    <div class="research-modal-body" id="research-modal-body"></div>
-                </div>
-            </div>
         </section>
 
         <section id="news" class="section">
@@ -167,6 +159,16 @@
             <div class="image-cloud"></div>
         </section>
     </main>
+
+    <!-- Research detail modal — kept a direct child of <body> so its fixed
+         positioning/z-index escape the section's animation stacking context -->
+    <div class="research-modal" id="research-modal" role="dialog" aria-modal="true" aria-labelledby="research-modal-title" hidden>
+        <div class="research-modal-backdrop" data-close></div>
+        <div class="research-modal-panel">
+            <button class="research-modal-close" data-close aria-label="Close">&times;</button>
+            <div class="research-modal-body" id="research-modal-body"></div>
+        </div>
+    </div>
 
     <footer class="footer">
         <span class="footer-info"><span id="footer-city">namma Chennai | London</span> | <span id="footer-email">soumya_snigdha.kundu-at-kcl.ac.uk</span></span>
