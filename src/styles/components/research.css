@@ -304,15 +304,16 @@ body.research-modal-open {
 @media (max-width: 768px) {
     .research-deck {
         flex-wrap: wrap;
-        gap: 10px;
-        padding-top: 1rem;
+        gap: 12px;
+        padding: 0.5rem 0;
+        min-height: 0;
     }
 
     .research-card {
         margin-left: 0;
         transform: none;
-        width: 132px;
-        height: 172px;
+        width: 126px;
+        height: 156px;
     }
 
     .research-card:hover,
