@@ -1,13 +1,11 @@
 /* eslint-disable no-undef */
 // ── NiiVue Neuro-Oncology Viewer ────────────────────────────────────────────
 (function () {
-    const link = document.querySelector('.seg-link');
-    const diagram = document.getElementById('instance-diagram');
     const viewer = document.getElementById('niivue-viewer');
     const canvas = document.getElementById('nv-canvas');
     const modSel = document.getElementById('nv-modality');
     const viewSel = document.getElementById('nv-view');
-    if (!link || !diagram || !viewer || !canvas) return;
+    if (!viewer || !canvas) return;
 
     const base = 'assests/BraTS-MET-00001-000/';
     const segUrl = base + 'BraTS-MET-00001-000-seg.nii.gz';
@@ -134,31 +132,24 @@
     modSel.addEventListener('change', () => loadMod(modSel.value));
     viewSel.addEventListener('change', () => applyView(viewSel.value));
 
-    function show() {
+    // ── Public API: the research modal drives visibility ──
+    function activate() {
         viewer.classList.remove('preheating');
-        diagram.style.maxHeight = diagram.scrollHeight + 'px';
-        requestAnimationFrame(() => {
-            diagram.classList.add('collapsing');
-            viewer.classList.add('active');
-        });
+        viewer.classList.add('active');
         init().then(() => {
             if (nv && nv.resizeListener) nv.resizeListener();
         }).catch((e) => console.debug('[niivue] init rejected', e));
     }
 
-    function hide() {
+    function deactivate() {
         viewer.classList.remove('active');
-        diagram.classList.remove('collapsing');
-        // Clear inline max-height after the transition so layout is natural again
-        setTimeout(() => { diagram.style.maxHeight = ''; }, 500);
     }
 
-    link.addEventListener('click', () => {
-        if (viewer.classList.contains('active')) hide();
-        else show();
-    });
-
     const warm = () => { init().catch(() => {}); };
+
+    window.NiiViewer = { activate, deactivate, prefetch: warm };
+
+    // Warm the volumes as soon as the visitor heads for the research section.
     document.querySelectorAll('a[href="#research"], .research-link').forEach((el) => {
         el.addEventListener('click', warm, { once: true });
     });
