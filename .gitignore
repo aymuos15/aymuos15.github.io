@@ -1,5 +1,8 @@
 journey.md
 
+# stashed asset kept locally for possible future use
+src/assets/scenery.webp
+
 # dependencies
 /node_modules
 /.pnp

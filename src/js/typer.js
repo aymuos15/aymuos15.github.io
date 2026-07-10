@@ -49,7 +49,6 @@ const ALL_VARIATIONS = [
 class Typer {
     constructor(element, opts = {}) {
         this.element = element;
-        this.originalContent = element.innerHTML;
         this.source = element.textContent || '';
         this.length = this.source.replace(/\s/g, '').length;
         this.fps = opts.fps ?? 20;
@@ -113,26 +112,10 @@ class Typer {
         }
     }
 
-    reset(text) {
-        this.stopLoop();
-        this.source = text;
-        this.length = text.replace(/\s/g, '').length;
-        this.divisor = this.length > 1 ? this.length - 1 : 1;
-        this.frames = this.length ? this.fps * (1 + this.length * 0.01) : 0;
-        this.denominator = this.frames - this.frames * this.cycleLength || 1;
-        this.frame = 0;
-        this.type = 'initial';
-        this.build();
-        this.applyFrame();
-        this.element.dataset.typerType = 'initial';
-    }
-
     in() { this.setType('in'); }
-    out() { this.setType('out'); }
-    inOut() { this.setType('inout'); }
 
     setType(t) {
-        if (t === this.type && t !== 'inout') return;
+        if (t === this.type) return;
         this.type = t;
         this.element.dataset.typerType = t;
         this.stopLoop();
@@ -170,11 +153,10 @@ class Typer {
     }
 
     tick() {
-        const total = this.type === 'inout' ? this.frames * 2 : this.frames;
         this.frame += 1;
-        this.frame = clamp(this.frame, 0, total);
+        this.frame = clamp(this.frame, 0, this.frames);
         this.applyFrame();
-        if (this.frame >= total) {
+        if (this.frame >= this.frames) {
             this.stopLoop();
             this.type = 'done';
             this.element.dataset.typerType = 'done';
@@ -187,16 +169,7 @@ class Typer {
             this.charNodes.forEach(n => this.setClass(n, 'char charInit'));
             return;
         }
-        const phase =
-            this.type === 'inout' && this.frame > this.frames
-                ? 'out'
-                : this.type === 'inout'
-                    ? 'in'
-                    : this.type;
-        const progress =
-            (this.type === 'inout' && phase === 'out'
-                ? this.frame - this.frames
-                : this.frame) / this.denominator;
+        const progress = this.frame / this.denominator;
 
         for (const node of this.charNodes) {
             let p = progress - node.cp;
@@ -210,13 +183,7 @@ class Typer {
             }
             if (p >= 1) variation = '';
             const midClass = variation ? `char ${variation}` : 'char';
-
-            let cls;
-            if (phase === 'in') {
-                cls = p <= 0 ? 'char charInit' : p >= 1 ? 'char' : midClass;
-            } else {
-                cls = p <= 0 ? 'char' : p >= 1 ? 'char charInit' : midClass;
-            }
+            const cls = p <= 0 ? 'char charInit' : p >= 1 ? 'char' : midClass;
             this.setClass(node, cls);
         }
     }
@@ -229,12 +196,6 @@ class Typer {
 
     shuffle() {
         this.variations.sort(() => 0.5 - Math.random());
-    }
-
-    destroy() {
-        this.stopLoop();
-        this.element.innerHTML = this.originalContent;
-        delete this.element.dataset.typerType;
     }
 }
 

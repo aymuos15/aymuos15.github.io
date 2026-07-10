@@ -54,23 +54,6 @@
     border-radius: 4px;
 }
 
-.cloud-caption {
-    position: absolute;
-    top: calc(100% + 6px);
-    left: 50%;
-    transform: translateX(-50%);
-    white-space: nowrap;
-    font-family: var(--font-mono);
-    font-size: 8px;
-    letter-spacing: 0.6px;
-    text-transform: uppercase;
-    color: var(--text-secondary);
-    line-height: 1.4;
-    opacity: 0;
-    transition: opacity 0.3s;
-    pointer-events: none;
-}
-
 /* Hover: straighten + lift */
 .cloud-photo:hover {
     transform: translate(-50%, -50%) translate(var(--cx, 0), var(--cy, 0)) rotate(0deg) scale(1.08);

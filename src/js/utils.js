@@ -58,10 +58,6 @@ function colorizeRandomLetters(el, accentRatio = 0.28) {
     el.replaceChildren(fragment);
 }
 
-function nextFrame(fn) {
-    requestAnimationFrame(() => requestAnimationFrame(fn));
-}
-
 // Social icon highlights per section
 const socialHighlights = {
     about:    { linkedin: '#0A66C2', x: null },

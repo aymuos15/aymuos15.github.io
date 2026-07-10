@@ -84,6 +84,4 @@
         if (!newsSection?.classList.contains('active')) return;
         burst(e.clientX, e.clientY);
     });
-
-    window.binaryBurst = burst;
 })();

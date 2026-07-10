@@ -8,16 +8,6 @@ h1 {
     margin-bottom: 1.5rem;
 }
 
-.section-label {
-    font-family: var(--font-mono);
-    font-size: 0.65rem;
-    font-weight: 400;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--text-secondary);
-    margin-bottom: 2rem;
-}
-
 p {
     font-size: 1.05rem;
     font-weight: 400;
@@ -40,10 +30,5 @@ sup {
 
     p {
         font-size: 0.95rem;
-    }
-
-    .section-label {
-        font-size: 0.6rem;
-        margin-bottom: 1.5rem;
     }
 }
