@@ -17,6 +17,7 @@ const photos = [
     { src: 'gallery/wa8.jpeg',      alt: '',                  x:  265, y:  130, rot: -1.7, z: 2 },
     { src: 'gallery/wa9.jpeg',      alt: '',                  x:  -10, y: -200, rot:  1.1, z: 1 },
     { src: 'gallery/wa10.jpeg',     alt: '',                  x:  205, y:  -150, rot: -3.0, z: 1 },
+    { src: 'gallery/wa11.jpeg',     alt: '',                  x: -160, y: -195, rot:  2.0, z: 6 },
 ];
 
 const cloud = document.querySelector('.image-cloud');
