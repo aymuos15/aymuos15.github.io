@@ -8,7 +8,8 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    border-top: 1px solid var(--border);
+    gap: 0.75rem;
+    padding-right: 6px;
 }
 
 /* Paper dithering shader, one per row; mounted in about.js. */
@@ -37,21 +38,60 @@
     opacity: 0.45;
 }
 
+/* Raised card: hard offset shadow reads as an extruded slab, not a blur. */
 .about-row {
     position: relative;
     z-index: 1;
-    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    box-shadow: 4px 4px 0 var(--border), 0 6px 18px rgb(0 0 0 / 12%);
+    transition:
+        transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.about-row:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--border), 0 10px 24px rgb(0 0 0 / 18%);
+}
+
+/* Open rows press back down into the page. */
+.about-row.open {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0 var(--border), 0 2px 8px rgb(0 0 0 / 10%);
+}
+
+[data-theme="dark"] .about-row {
+    box-shadow: 4px 4px 0 rgb(0 0 0 / 60%), 0 6px 18px rgb(0 0 0 / 45%);
+}
+
+[data-theme="dark"] .about-row:hover {
+    box-shadow: 6px 6px 0 rgb(0 0 0 / 65%), 0 10px 24px rgb(0 0 0 / 55%);
+}
+
+[data-theme="dark"] .about-row.open {
+    box-shadow: 1px 1px 0 rgb(0 0 0 / 50%), 0 2px 8px rgb(0 0 0 / 35%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .about-row,
+    .about-row:hover,
+    .about-row.open {
+        transform: none;
+    }
 }
 
 .about-row__head {
     position: relative;
     isolation: isolate;
     display: grid;
-    grid-template-columns: 2.2rem 1fr auto;
+    grid-template-columns: 2.2rem 1fr;
     align-items: center;
     gap: 1rem;
     width: 100%;
-    padding: 0.55rem 0.2rem;
+    padding: 0.55rem 0.9rem;
     background: none;
     border: none;
     cursor: pointer;
@@ -83,20 +123,6 @@
 
 .about-row.open .about-row__title {
     font-weight: 500;
-}
-
-.about-row__chev {
-    width: 0.5rem;
-    height: 0.5rem;
-    margin-right: 0.4rem;
-    border-right: 1px solid var(--text-secondary);
-    border-bottom: 1px solid var(--text-secondary);
-    transform: rotate(45deg) translate(-2px, -2px);
-    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.about-row.open .about-row__chev {
-    transform: rotate(-135deg) translate(-2px, -2px);
 }
 
 .about-row__panel {
