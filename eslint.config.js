@@ -20,6 +20,7 @@ export default [
                 cancelAnimationFrame: 'readonly',
                 IntersectionObserver: 'readonly',
                 MutationObserver: 'readonly',
+                ResizeObserver: 'readonly',
                 getComputedStyle: 'readonly',
                 performance: 'readonly'
             }

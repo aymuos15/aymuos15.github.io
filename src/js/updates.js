@@ -104,15 +104,6 @@ renderUpdates('all', false);
 
 const nameLink = document.querySelector('.name-link');
 const pronunciation = document.getElementById('pronunciation');
-const aboutSection = document.getElementById('about');
-const aboutContent = document.getElementById('about-content');
-const collaborators = document.getElementById('collaborators');
-const researchLink = document.querySelector('.research-link');
-const backButton = document.getElementById('back-btn');
-
-collaborators.inert = true;
-collaborators.setAttribute('aria-hidden', 'true');
-
 // Tab click handlers
 let tabSwitching = false;
 
@@ -152,30 +143,4 @@ nameLink.addEventListener('click', () => {
     pronunciation.classList.toggle('visible');
     nameTyper.in();
     colorizeRandomLetters(pronunciation, 0.4);
-});
-
-// Research link - toggle collaborators
-researchLink.addEventListener('click', () => {
-    const swap = () => {
-        aboutSection.classList.add('showing-collaborators');
-        aboutContent.classList.add('hidden');
-        aboutContent.setAttribute('aria-hidden', 'true');
-        collaborators.classList.add('visible');
-        collaborators.inert = false;
-        collaborators.setAttribute('aria-hidden', 'false');
-        colorizeLinks();
-    };
-    if (window.ditherTransition) window.ditherTransition(swap); else swap();
-});
-
-backButton.addEventListener('click', () => {
-    const swap = () => {
-        aboutSection.classList.remove('showing-collaborators');
-        collaborators.classList.remove('visible');
-        collaborators.inert = true;
-        collaborators.setAttribute('aria-hidden', 'true');
-        aboutContent.classList.remove('hidden');
-        aboutContent.setAttribute('aria-hidden', 'false');
-    };
-    if (window.ditherTransition) window.ditherTransition(swap); else swap();
 });

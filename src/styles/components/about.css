@@ -1,96 +1,128 @@
-/* About Section */
+/* About Section - typographic accordion */
 #about {
     position: relative;
     isolation: isolate;
 }
 
-#about.section.active,
-#about.section.leaving {
-    display: block;
-}
-
-.about-stage {
-    display: grid;
+.about-accordion {
     position: relative;
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--border);
 }
 
-.about-panel {
-    grid-area: 1 / 1;
+/* Paper dithering shader, one per row; mounted in about.js. */
+.about-row__dither {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    height: var(--head-height, 100%);
+    pointer-events: none;
+    opacity: 0.55;
+    transition: opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.about-row:hover .about-row__dither,
+.about-row.open .about-row__dither {
+    opacity: 0.9;
+}
+
+/* Pastels blow out against the near-black background, so pull them back. */
+[data-theme="dark"] .about-row__dither {
+    opacity: 0.22;
+}
+
+[data-theme="dark"] .about-row:hover .about-row__dither,
+[data-theme="dark"] .about-row.open .about-row__dither {
+    opacity: 0.45;
+}
+
+.about-row {
     position: relative;
     z-index: 1;
+    border-bottom: 1px solid var(--border);
 }
 
-#about-content {
-    opacity: 1;
-}
-
-#about-content.hidden {
-    opacity: 0;
-    pointer-events: none;
-}
-
-.collaborators {
-    opacity: 0;
-    pointer-events: none;
-}
-
-.collaborators.visible {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-
-.research-link {
-    cursor: pointer;
+.about-row__head {
     position: relative;
-    text-decoration: underline;
-    text-decoration-color: var(--link);
-    text-underline-offset: 3px;
+    isolation: isolate;
+    display: grid;
+    grid-template-columns: 2.2rem 1fr auto;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    padding: 0.55rem 0.2rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
     color: var(--text);
-    transition: color 0.2s ease;
 }
 
-.research-link:hover {
+.about-row__num {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    text-align: center;
+    transition: color 0.25s ease;
+}
+
+.about-row.open .about-row__num,
+.about-row__head:hover .about-row__num {
     color: var(--link);
 }
 
-.research-link::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -0.18rem;
-    width: 100%;
-    height: 1px;
-    background: currentcolor;
-    transform: scaleX(0);
-    transform-origin: left;
-    opacity: 0.8;
+.about-row__title {
+    font-family: var(--font-sans);
+    font-size: clamp(1.35rem, 3.4vw, 1.9rem);
+    font-weight: 300;
+    line-height: 1.3;
+    letter-spacing: -0.015em;
+    transition: font-weight 0.2s ease, color 0.25s ease;
+}
+
+.about-row.open .about-row__title {
+    font-weight: 500;
+}
+
+.about-row__chev {
+    width: 0.5rem;
+    height: 0.5rem;
+    margin-right: 0.4rem;
+    border-right: 1px solid var(--text-secondary);
+    border-bottom: 1px solid var(--text-secondary);
+    transform: rotate(45deg) translate(-2px, -2px);
     transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.research-link:hover::after,
-#about.showing-collaborators .research-link::after {
-    transform: scaleX(1);
+.about-row.open .about-row__chev {
+    transform: rotate(-135deg) translate(-2px, -2px);
 }
 
-.back-btn {
-    background: none;
-    border: none;
+.about-row__panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.about-row.open .about-row__panel {
+    grid-template-rows: 1fr;
+}
+
+.about-row__body {
+    overflow: hidden;
+}
+
+.about-row__body p {
+    margin: 0;
+    padding: 0 1.2rem 1.1rem 3.2rem;
+    font-size: 0.85rem;
+    line-height: 1.7;
     color: var(--text-secondary);
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45rem;
-    font-family: var(--font-mono);
-    font-size: 0.9rem;
-    cursor: pointer;
-    padding: 0;
-    margin-top: 1rem;
-    transform: translateX(0);
-    transition: color 0.2s ease, transform 0.25s ease;
+    opacity: 0;
+    transition: opacity 0.3s ease 0.1s;
 }
 
-.back-btn:hover {
-    color: var(--text);
-    transform: translateX(-0.3rem);
+.about-row.open .about-row__body p {
+    opacity: 1;
 }
-
