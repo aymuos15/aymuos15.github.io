@@ -57,6 +57,9 @@ function switchSection(targetId) {
     highlightSocials(targetId);
     updateFooterRainbow(targetId);
 
+    // Let the auto-hide chrome re-show the header/footer on a page switch.
+    document.dispatchEvent(new CustomEvent('sectionchange', { detail: { targetId } }));
+
     setTimeout(() => {
         current.classList.remove('leaving');
         next.classList.add('active');

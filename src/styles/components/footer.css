@@ -15,7 +15,17 @@
 
     /* Fade the footer in step with the body on theme change (base.css), so it
        doesn't snap to the new colour a beat ahead of the rest of the page. */
-    transition: background-color 0.4s ease, color 0.4s ease;
+    transition: background-color 0.4s ease, color 0.4s ease,
+        opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* Auto-hide: the footer moves in lockstep with the header — visible on
+   entry/page-switch, then faded out until a click or a trip to the top edge
+   brings the pair back (see js/chrome-autohide.js). */
+.footer.chrome--hidden {
+    opacity: 0;
+    transform: translateY(14px);
+    pointer-events: none;
 }
 
 .footer-cv {

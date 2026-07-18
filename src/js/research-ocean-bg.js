@@ -1,12 +1,17 @@
-// WebGPU ocean background for the Segmentation research card.
-// Adapted from the three.js webgpu_ocean example (WaterMesh + SkyMesh on the
-// WebGPU renderer, which auto-falls back to WebGL2). Stripped of the example's
-// GUI, inspector, bloom and occlusion box; the camera slowly orbits so the
-// water and sky drift behind the card content. Renders only while the Research
-// section is showing, and holds still under reduced motion.
-import * as THREE from 'https://esm.sh/three@0.169.0/webgpu';
-import { WaterMesh } from 'https://esm.sh/three@0.169.0/examples/jsm/objects/WaterMesh.js';
-import { SkyMesh } from 'https://esm.sh/three@0.169.0/examples/jsm/objects/SkyMesh.js';
+// WebGL ocean background for the Segmentation research card.
+// Adapted from the three.js webgl_shaders_ocean example (classic Water + Sky on
+// the WebGL renderer). We deliberately avoid the WebGPU renderer here: pairing
+// WebGPURenderer with the example WaterMesh/SkyMesh pulls in a second Three.js
+// instance whose node materials never bind to the renderer, and on many
+// GPU/driver combos (e.g. Mesa Intel) WebGPU reports an adapter yet paints
+// nothing — so the card silently came up blank. Plain WebGL is the same
+// single-instance path the Instance Metrics card already uses reliably.
+// The camera slowly orbits so the water and sky drift behind the card content.
+// Renders only while the Research section is showing, and holds still under
+// reduced motion.
+import * as THREE from 'https://esm.sh/three@0.169.0';
+import { Water } from 'https://esm.sh/three@0.169.0/examples/jsm/objects/Water.js';
+import { Sky } from 'https://esm.sh/three@0.169.0/examples/jsm/objects/Sky.js';
 
 const card = document.querySelector('.research-card[data-id="segmentation"]');
 const WATER_NORMALS_URL = 'https://cdn.jsdelivr.net/gh/mrdoob/three.js@r169/examples/textures/waternormals.jpg';
@@ -33,7 +38,7 @@ function sizeToCard() {
 }
 
 function init(canvas) {
-    renderer = new THREE.WebGPURenderer({ canvas, antialias: true, alpha: true });
+    renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 0.35;
@@ -47,56 +52,58 @@ function init(canvas) {
     const waterNormals = new THREE.TextureLoader().load(WATER_NORMALS_URL);
     waterNormals.wrapS = waterNormals.wrapT = THREE.RepeatWrapping;
 
-    water = new WaterMesh(
+    water = new Water(
         new THREE.PlaneGeometry(10000, 10000),
         {
+            textureWidth: 512,
+            textureHeight: 512,
             waterNormals,
             sunDirection: new THREE.Vector3(),
             sunColor: 0xffffff,
             waterColor: 0x001e2f,
             distortionScale: 3.7,
+            fog: false,
         }
     );
     water.rotation.x = -Math.PI / 2;
     scene.add(water);
 
     // Sky
-    const sky = new SkyMesh();
+    const sky = new Sky();
     sky.scale.setScalar(10000);
     scene.add(sky);
-    sky.turbidity.value = 10;
-    sky.rayleigh.value = 2;
-    sky.mieCoefficient.value = 0.005;
-    sky.mieDirectionalG.value = 0.8;
-    // Clouds only exist on newer builds — set them defensively.
-    if (sky.cloudCoverage) sky.cloudCoverage.value = 0.4;
-    if (sky.cloudDensity) sky.cloudDensity.value = 0.5;
-    if (sky.cloudElevation) sky.cloudElevation.value = 0.5;
+    const skyU = sky.material.uniforms;
+    skyU.turbidity.value = 10;
+    skyU.rayleigh.value = 2;
+    skyU.mieCoefficient.value = 0.005;
+    skyU.mieDirectionalG.value = 0.8;
 
     const elevation = 3, azimuth = 175;
     const pmrem = new THREE.PMREMGenerator(renderer);
     const sceneEnv = new THREE.Scene();
+    let renderTarget;
 
     function updateSun() {
         const phi = THREE.MathUtils.degToRad(90 - elevation);
         const theta = THREE.MathUtils.degToRad(azimuth);
         sun.setFromSphericalCoords(1, phi, theta);
-        sky.sunPosition.value.copy(sun);
-        water.sunDirection.value.copy(sun).normalize();
+        skyU.sunPosition.value.copy(sun);
+        water.material.uniforms.sunDirection.value.copy(sun).normalize();
 
+        if (renderTarget) renderTarget.dispose();
         sceneEnv.add(sky);
-        const rt = pmrem.fromScene(sceneEnv);
+        renderTarget = pmrem.fromScene(sceneEnv);
         scene.add(sky);
-        scene.environment = rt.texture;
+        scene.environment = renderTarget.texture;
     }
 
-    renderer.init().then(() => {
-        updateSun();
-        ready = true;
-        sizeToCard();
-        renderer.render(scene, camera); // first paint
-        ensureRunning();
-    });
+    updateSun();
+    ready = true;
+    sizeToCard();
+    // First paint runs at the card's tiny home-section size; don't let a hiccup
+    // here abort init (and with it the section-switch observer set up below).
+    try { renderer.render(scene, camera); } catch { /* the loop paints properly once Research is shown */ }
+    ensureRunning();
 
     window.addEventListener('resize', () => { if (ready) sizeToCard(); });
 }
@@ -109,6 +116,7 @@ function frame() {
     const radius = 120;
     camera.position.set(Math.cos(ang) * radius, 22, Math.sin(ang) * radius);
     camera.lookAt(0, 6, 0);
+    water.material.uniforms.time.value = reduceMotion ? 0 : t;
     renderer.render(scene, camera);
     if (reduceMotion) { running = false; return; }
     requestAnimationFrame(frame);
@@ -126,8 +134,11 @@ if (card) {
     canvas.setAttribute('aria-hidden', 'true');
     card.insertBefore(canvas, card.firstChild);
     card.classList.add('research-card--bg');
-    init(canvas);
 
+    // Register the section-switch observer *before* init so the render loop can
+    // still be kicked off even if init throws partway through.
     const observer = new MutationObserver(ensureRunning);
     observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-section'] });
+
+    init(canvas);
 }

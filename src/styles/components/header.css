@@ -12,7 +12,17 @@
     margin: 0 auto;
     padding: 1.5rem 2rem;
     background: var(--bg);
-    transition: color 0.4s ease, background-color 0.4s ease;
+    transition: color 0.4s ease, background-color 0.4s ease,
+        opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* Auto-hide: the header shows on entry/page-switch then fades away, returning
+   only on a click or when the pointer reaches the top edge (see
+   js/chrome-autohide.js). */
+.header.chrome--hidden {
+    opacity: 0;
+    transform: translateY(-14px);
+    pointer-events: none;
 }
 
 .social-links {
