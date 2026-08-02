@@ -2,7 +2,7 @@
 // Updates data
 /* eslint-disable quotes */
 const updates = [
-    { "date": "Jul. '26", "description": "Hosting another High School Intern via the <a href=\"https://in2scienceuk.org/our-programmes/in2stem/\">In2STEM programme</a>.", "category": "teaching" },
+    { "date": "Jul. '26", "description": "Hosting 1 High School Intern via the <a href=\"https://in2scienceuk.org/our-programmes/in2stem/\">In2STEM programme</a>.", "category": "teaching" },
     { "date": "May. '26", "description": "Preprint: <a href=\"https://osf.io/preprints/edarxiv/ugaz6_v1\">The Impact of Application Anonymisation on Diversity in Doctoral Recruitment: A Pre-Post Observational Study</a>. Some really fun (eye-opening) work with my MRC DTP colleagues and Advisors!", "category": "publishing" },
     { "date": "May. '26", "description": "Received the <a href=\"https://claude.com/contact-sales/claude-for-oss\">Claude for Open Source</a> grant.", "category": "misc" },
     { "date": "May. '26", "description": "Selected for Google Summer of Code (GSoC) 2026 with the <a href=\"https://github.com/neuroinformatics-unit/\">Neuroinformatics Unit</a>.", "category": "misc" },
