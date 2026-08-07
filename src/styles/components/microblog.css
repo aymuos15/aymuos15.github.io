@@ -2,488 +2,495 @@
 
 /* Tag filter bar */
 .microblog-tags {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-    margin-bottom: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
 }
 
 .microblog-tag-btn {
-    background: transparent;
-    border: 1px solid var(--border);
-    color: var(--text-secondary);
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    padding: 0.25rem 0.6rem;
-    border-radius: 2px;
-    cursor: pointer;
-    transition: color 0.2s ease, border-color 0.2s ease;
+  padding: 0.25rem 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease;
 }
 
 .microblog-tag-btn:hover {
-    color: var(--text);
-    border-color: var(--text-secondary);
+  color: var(--text);
+  border-color: var(--text-secondary);
 }
 
 .microblog-tag-btn.active {
-    color: var(--text);
-    border-color: var(--text);
+  color: var(--text);
+  border-color: var(--text);
 }
 
 /* Cards container */
 .microblog-cards {
-    display: block;
-    width: 100%;
-    max-height: 18rem;
-    overflow: hidden auto;
-    scrollbar-width: thin;
-    scrollbar-color: var(--border) transparent;
-    transition: opacity 0.3s ease;
+  display: block;
+  width: 100%;
+  max-height: 18rem;
+  overflow: hidden auto;
+  scrollbar-color: var(--border) transparent;
+  scrollbar-width: thin;
+  transition: opacity 0.3s ease;
 }
 
 .microblog-cards.fading {
-    opacity: 0;
+  opacity: 0;
 }
 
 .microblog-cards::-webkit-scrollbar {
-    width: 4px;
+  width: 4px;
 }
 
 .microblog-cards::-webkit-scrollbar-thumb {
-    background: var(--border);
+  background: var(--border);
 }
 
 /* Card */
 .microblog-card {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    width: 100%;
-    padding: 8px 0;
-    border-bottom: 1px solid var(--border);
-    cursor: pointer;
-    opacity: 0;
-    transform: translateY(6px);
-    animation: item-in 0.35s ease forwards;
-    transition: opacity 0.2s ease;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  width: 100%;
+  padding: 8px 0;
+  cursor: pointer;
+  border-bottom: 1px solid var(--border);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.2s ease;
+  animation: item-in 0.35s ease forwards;
 }
 
 .microblog-card:last-child {
-    border-bottom: none;
+  border-bottom: none;
 }
 
 .microblog-card:hover {
-    opacity: 0.65;
+  opacity: 0.65;
 }
 
 .microblog-card-title {
-    font-size: 0.9rem;
-    color: var(--text);
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    min-width: 0;
-    flex: 1;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 0.9rem;
+  color: var(--text);
+  white-space: nowrap;
 }
 
 .microblog-card-date {
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-    font-weight: 700;
-    color: var(--text-secondary);
-    flex-shrink: 0;
-    white-space: nowrap;
-    margin-left: 1rem;
+  flex-shrink: 0;
+  margin-left: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  white-space: nowrap;
 }
 
 /* Blurb */
 .microblog-blurb {
-    font-size: 0.85rem;
-    line-height: 1.6;
-    color: var(--text-secondary);
-    margin-bottom: 0.7rem;
+  margin-bottom: 0.7rem;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
 }
 
 .microblog-blurb:last-of-type {
-    margin-bottom: 3.2rem;
+  margin-bottom: 3.2rem;
 }
 
 /* Notation link */
 .microblog-notation-link {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    color: var(--text-secondary);
-    cursor: pointer;
-    text-decoration: underline;
-    text-decoration-color: var(--border);
-    text-underline-offset: 3px;
-    display: inline-block;
-    margin-top: 1rem;
-    transition: color 0.2s ease;
+  display: inline-block;
+  padding: 0;
+  margin-top: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  text-decoration: underline;
+  text-decoration-color: var(--border);
+  text-underline-offset: 3px;
+  cursor: pointer;
+  background: none;
+  border: 0;
+  transition: color 0.2s ease;
 }
 
 .microblog-notation-link:hover {
-    color: var(--text);
+  color: var(--text);
 }
 
 /* Notation table */
 .notation-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 1rem;
-    font-size: 0.85rem;
+  width: 100%;
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  border-collapse: collapse;
 }
 
 .notation-table th {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    font-weight: 400;
-    color: var(--text-secondary);
-    text-align: left;
-    padding: 0.4rem 0;
-    border-bottom: 1px solid var(--text-secondary);
+  padding: 0.4rem 0;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: var(--text-secondary);
+  text-align: left;
+  border-bottom: 1px solid var(--text-secondary);
 }
 
 .notation-table td {
-    padding: 0.5rem 0;
-    border-bottom: 1px solid var(--border);
-    color: var(--text);
+  padding: 0.5rem 0;
+  color: var(--text);
+  border-bottom: 1px solid var(--border);
 }
 
 .notation-table td:first-child {
-    font-family: var(--font-mono);
-    font-weight: 500;
-    color: var(--link);
-    width: 6rem;
+  width: 6rem;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  color: var(--link);
 }
 
 /* Detail view */
 #microblog-list.hidden {
-    display: none;
+  display: none;
 }
 
 #microblog.active {
-    display: flex;
-    flex-direction: column;
-    max-height: calc(100vh - 6rem);
-    padding-top: 0.5rem;
-    overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - 6rem);
+  padding-top: 0.5rem;
+  overflow: hidden;
 }
 
 #microblog-list {
-    flex: 1;
-    min-height: 0;
-    overflow: hidden auto;
-    padding-bottom: 3rem;
-    padding-right: 1.5rem;
-    margin-right: -1.5rem;
-    scrollbar-width: thin;
-    scrollbar-color: var(--border) transparent;
+  flex: 1;
+  min-height: 0;
+  padding-right: 1.5rem;
+  padding-bottom: 3rem;
+  margin-right: -1.5rem;
+  overflow: hidden auto;
+  scrollbar-color: var(--border) transparent;
+  scrollbar-width: thin;
 }
 
 #microblog-list::-webkit-scrollbar {
-    width: 4px;
+  width: 4px;
 }
 
 #microblog-list::-webkit-scrollbar-thumb {
-    background: var(--border);
+  background: var(--border);
 }
 
 .microblog-detail {
-    display: none;
+  display: none;
 }
 
 .microblog-detail.visible {
-    display: block;
-    flex: 1;
-    min-height: 0;
-    overflow-y: auto;
-    padding-bottom: 3rem;
-    padding-right: 1.5rem;
-    margin-right: -1.5rem;
-    scrollbar-width: thin;
-    scrollbar-color: var(--border) transparent;
+  display: block;
+  flex: 1;
+  min-height: 0;
+  padding-right: 1.5rem;
+  padding-bottom: 3rem;
+  margin-right: -1.5rem;
+  overflow-y: auto;
+  scrollbar-color: var(--border) transparent;
+  scrollbar-width: thin;
 }
 
 #microblog-notation.visible {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .notation-content {
-    width: 100%;
+  width: 100%;
 }
 
 .microblog-detail.visible::-webkit-scrollbar {
-    width: 4px;
+  width: 4px;
 }
 
 .microblog-detail.visible::-webkit-scrollbar-thumb {
-    background: var(--border);
+  background: var(--border);
 }
 
 .microblog-detail .back-btn {
-    background: none;
-    border: none;
-    color: var(--text-secondary);
-    font-family: var(--font-mono);
-    font-size: 0.9rem;
-    cursor: pointer;
-    padding: 0;
-    margin-bottom: 1rem;
-    transition: color 0.2s ease;
+  padding: 0;
+  margin-bottom: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  background: none;
+  border: none;
+  transition: color 0.2s ease;
 }
 
 .microblog-detail .back-btn:hover {
-    color: var(--text);
+  color: var(--text);
 }
 
 .microblog-detail-title {
-    font-size: 1.1rem;
-    font-weight: 500;
-    margin-bottom: 0.4rem;
-    color: var(--text);
+  margin-bottom: 0.4rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--text);
 }
 
 .microblog-detail-meta {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 0.6rem;
-    margin-bottom: 1.2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  align-items: center;
+  margin-bottom: 1.2rem;
 }
 
 .microblog-detail-date {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    color: var(--text-secondary);
-    white-space: nowrap;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  white-space: nowrap;
 }
 
 .microblog-detail-tag {
-    font-family: var(--font-mono);
-    font-size: 0.65rem;
-    color: var(--text-secondary);
-    border: 1px solid var(--border);
-    padding: 0.15rem 0.45rem;
-    border-radius: 2px;
+  padding: 0.15rem 0.45rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+  border-radius: 2px;
 }
 
 .microblog-detail-content p {
-    font-size: 0.9rem;
-    line-height: 1.75;
-    margin-bottom: 0.8rem;
-    color: var(--text);
+  margin-bottom: 0.8rem;
+  font-size: 0.9rem;
+  line-height: 1.75;
+  color: var(--text);
 }
 
 .microblog-detail-refs {
-    margin-top: 1.2rem;
-    padding-top: 0.8rem;
-    border-top: 1px solid var(--border);
+  padding-top: 0.8rem;
+  margin-top: 1.2rem;
+  border-top: 1px solid var(--border);
 }
 
 .microblog-detail-refs span {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    color: var(--text-secondary);
-    display: block;
-    margin-bottom: 0.4rem;
+  display: block;
+  margin-bottom: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-secondary);
 }
 
 .microblog-detail-refs a {
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-    color: var(--text);
-    text-decoration: underline;
-    text-decoration-color: var(--link);
-    text-underline-offset: 3px;
-    margin-right: 1rem;
-    transition: color 0.2s ease;
+  margin-right: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-color: var(--link);
+  text-underline-offset: 3px;
+  transition: color 0.2s ease;
 }
 
 .microblog-detail-refs a:hover {
-    color: var(--link);
+  color: var(--link);
 }
 
 /* Deformable conv diagram */
 .microblog-diagram {
-    margin: 1.2rem 0;
+  margin: 1.2rem 0;
 }
 
 .dcn-toggle {
-    display: flex;
-    gap: 0;
-    margin-bottom: 0.8rem;
+  display: flex;
+  gap: 0;
+  margin-bottom: 0.8rem;
 }
 
 .dcn-btn {
-    flex: 1;
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid var(--border);
-    padding: 8px 0;
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    cursor: pointer;
-    color: var(--text-secondary);
-    transition: color 0.2s ease, border-color 0.2s ease;
+  flex: 1;
+  padding: 8px 0;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease;
 }
 
 .dcn-btn:hover {
-    color: var(--text);
+  color: var(--text);
 }
 
 .dcn-btn.active {
-    color: var(--text);
-    border-bottom: 2px solid var(--text);
+  color: var(--text);
+  border-bottom: 2px solid var(--text);
 }
 
 .dcn-body {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
 }
 
 .dcn-svg {
-    width: 50%;
-    max-width: 220px;
-    flex-shrink: 0;
+  flex-shrink: 0;
+  width: 50%;
+  max-width: 220px;
 }
 
 .dcn-line {
-    stroke: var(--text-secondary);
-    stroke-width: 0.5;
-    opacity: 0.4;
-    transition: opacity 0.3s ease;
+  opacity: 0.4;
+  stroke: var(--text-secondary);
+  stroke-width: 0.5;
+  transition: opacity 0.3s ease;
 }
 
 .dcn-dot {
-    fill: var(--text);
-    transition: fill 0.3s ease;
+  fill: var(--text);
+  transition: fill 0.3s ease;
 }
 
 .dcn-arrow {
-    stroke: var(--link);
-    stroke-width: 0.6;
-    stroke-dasharray: 2 1.5;
-    opacity: 0;
-    transition: opacity 0.4s ease;
+  opacity: 0;
+  stroke: var(--link);
+  stroke-width: 0.6;
+  stroke-dasharray: 2 1.5;
+  transition: opacity 0.4s ease;
 }
 
 .dcn-svg.dcn-deformable .dcn-arrow {
-    opacity: 0.7;
+  opacity: 0.7;
 }
 
 .dcn-svg.dcn-deformable .dcn-dot {
-    fill: var(--link);
+  fill: var(--link);
 }
 
 .dcn-caption {
-    font-family: var(--font-mono);
-    font-size: 0.65rem;
-    color: var(--text-secondary);
-    text-align: center;
-    margin-top: 0.6rem;
+  margin-top: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-secondary);
+  text-align: center;
 }
 
 .dcn-eq {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.6rem;
 }
 
 .dcn-eq-block {
-    opacity: 0.3;
-    transition: opacity 0.4s ease;
+  opacity: 0.3;
+  transition: opacity 0.4s ease;
 }
 
 .dcn-eq-block.active {
-    opacity: 1;
+  opacity: 1;
 }
 
 .dcn-eq-label {
-    font-family: var(--font-mono);
-    font-size: 0.6rem;
-    color: var(--text-secondary);
-    display: block;
-    margin-bottom: 0.15rem;
+  display: block;
+  margin-bottom: 0.15rem;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--text-secondary);
 }
 
 .dcn-eq-formula {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    color: var(--text);
-    line-height: 1.6;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.6;
+  color: var(--text);
 }
 
 .dcn-eq-formula em {
-    color: var(--link);
-    font-style: normal;
+  font-style: normal;
+  color: var(--link);
 }
 
 .dcn-eq-note {
-    font-family: var(--font-mono);
-    font-size: 0.6rem;
-    color: var(--text-secondary);
-    display: block;
-    margin-top: 0.2rem;
+  display: block;
+  margin-top: 0.2rem;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--text-secondary);
 }
 
 /* Worktree diagram */
 .wt-diagram-area {
-    transition: opacity 0.2s ease;
-    padding: 0.4rem 0;
+  padding: 0.4rem 0;
+  transition: opacity 0.2s ease;
 }
 
 .wt-diagram-area.wt-fading {
-    opacity: 0;
+  opacity: 0;
 }
 
 .wt-svg {
-    width: 100%;
-    max-width: 320px;
-    margin: 0 auto;
-    display: block;
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
 }
 
 @media (max-width: 768px) {
-    .microblog-tag-btn {
-        font-size: 0.6rem;
-        padding: 0.2rem 0.45rem;
-    }
+  .microblog-tag-btn {
+    padding: 0.2rem 0.45rem;
+    font-size: 0.6rem;
+  }
 
-    .microblog-card-title {
-        font-size: 0.8rem;
-    }
+  .microblog-card-title {
+    font-size: 0.8rem;
+  }
 
-    .microblog-card-date {
-        font-size: 0.7rem;
-    }
+  .microblog-card-date {
+    font-size: 0.7rem;
+  }
 
-    .microblog-detail-title {
-        font-size: 1rem;
-    }
+  .microblog-detail-title {
+    font-size: 1rem;
+  }
 
-    .microblog-detail-content p {
-        font-size: 0.8rem;
-    }
+  .microblog-detail-content p {
+    font-size: 0.8rem;
+  }
 
-    .dcn-body {
-        flex-direction: column;
-        gap: 1rem;
-    }
+  .dcn-body {
+    flex-direction: column;
+    gap: 1rem;
+  }
 
-    .dcn-svg {
-        width: 70%;
-    }
+  .dcn-svg {
+    width: 70%;
+  }
 
-    .dcn-eq-formula {
-        font-size: 0.65rem;
-    }
+  .dcn-eq-formula {
+    font-size: 0.65rem;
+  }
 
-    .microblog-detail-refs a {
-        font-size: 0.7rem;
-    }
+  .microblog-detail-refs a {
+    font-size: 0.7rem;
+  }
 }

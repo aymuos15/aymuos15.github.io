@@ -1,53 +1,55 @@
 /* Reset and Base Styles */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
 html {
-    scrollbar-width: none;
+  scrollbar-width: none;
 }
 
 html::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 body {
-    font-family: var(--font-sans);
-    background: var(--bg);
-    color: var(--text);
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    transition: background-color 0.4s ease, color 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  font-family: var(--font-sans);
+  color: var(--text);
+  background: var(--bg);
+  transition:
+    background-color 0.4s ease,
+    color 0.4s ease;
 }
 
 main {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    max-width: var(--content-max-width);
-    width: 100%;
-    margin: 0 auto;
-    padding: 3.5rem 2rem 3rem;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: var(--content-max-width);
+  padding: 3.5rem 2rem 3rem;
+  margin: 0 auto;
 }
 
 @media (max-width: 768px) {
-    main {
-        padding: 3rem 1.5rem;
-    }
+  main {
+    padding: 3rem 1.5rem;
+  }
 }
 
 a {
-    text-decoration: underline;
-    text-underline-offset: 3px;
-    text-decoration-color: currentcolor;
-    transition: opacity 0.2s ease;
+  text-decoration: underline;
+  text-decoration-color: currentcolor;
+  text-underline-offset: 3px;
+  transition: opacity 0.2s ease;
 }
 
 a:hover {
-    opacity: 0.65;
+  opacity: 0.65;
 }

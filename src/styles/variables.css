@@ -1,23 +1,23 @@
 /* Theme Variables */
 :root {
-    --bg: #fafaf5;
-    --text: #1a1a1a;
-    --text-secondary: #888;
-    --link: #8c7b6b;
-    --border: rgba(0, 0, 0, 0.1);
+  --bg: #fafaf5;
+  --text: #1a1a1a;
+  --text-secondary: #888;
+  --link: #8c7b6b;
+  --border: rgba(0, 0, 0, 0.1);
 
-    /* Layout */
-    --content-max-width: 640px;
+  /* Layout */
+  --content-max-width: 640px;
 
-    /* Fonts */
-    --font-sans: "IBM Plex Sans", "Helvetica Neue", arial, sans-serif;
-    --font-mono: "Space Mono", "Courier New", monospace;
+  /* Fonts */
+  --font-sans: "IBM Plex Sans", "Helvetica Neue", arial, sans-serif;
+  --font-mono: "Space Mono", "Courier New", monospace;
 }
 
 [data-theme="dark"] {
-    --bg: #111110;
-    --text: #e8e4dd;
-    --text-secondary: #777;
-    --link: #c4a882;
-    --border: rgba(255, 255, 255, 0.1);
+  --bg: #111110;
+  --text: #e8e4dd;
+  --text-secondary: #777;
+  --link: #c4a882;
+  --border: rgba(255, 255, 255, 0.1);
 }

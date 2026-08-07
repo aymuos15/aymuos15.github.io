@@ -1,90 +1,106 @@
 /* Sections - single view with transitions */
 .section {
-    display: none;
-    width: 100%;
+  display: none;
+  width: 100%;
 }
 
 .section.active {
-    display: block;
-    animation: section-in 0.5s ease both;
+  display: block;
+  animation: section-in 0.5s ease both;
 }
 
 .section.leaving {
-    display: block;
-    animation: section-out 0.3s ease both;
+  display: block;
+  animation: section-out 0.3s ease both;
 }
 
 @keyframes section-in {
-    from { opacity: 0; }
-    to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes section-out {
-    from { opacity: 1; }
-    to { opacity: 0; }
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
 
 /* Home-specific */
 .name-link {
-    cursor: pointer;
-    transition: opacity 0.2s ease;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
 }
 
 .name-link:hover {
-    opacity: 0.6;
+  opacity: 0.6;
 }
 
 /* Inline photo revealed on name click */
 .name-photo {
-    display: inline-block;
-    height: 1em;
-    width: 0;
-    vertical-align: -0.14em;
-    margin-right: 0;
-    border-radius: 50%;
-    object-fit: cover;
-    object-position: center 25%;
-    opacity: 0;
-    transform: scale(0.6);
-    transition: width 0.35s ease, height 0.35s ease, opacity 0.35s ease, margin-right 0.35s ease, transform 0.35s ease;
+  display: inline-block;
+  width: 0;
+  height: 1em;
+  margin-right: 0;
+  vertical-align: -0.14em;
+  object-fit: cover;
+  object-position: center 25%;
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0.6);
+  transition:
+    width 0.35s ease,
+    height 0.35s ease,
+    opacity 0.35s ease,
+    margin-right 0.35s ease,
+    transform 0.35s ease;
 }
 
 .name-link.show-photo .name-photo {
-    height: 1em;
-    width: 1em;
-    margin-right: 0.35rem;
-    opacity: 1;
-    transform: scale(1);
+  width: 1em;
+  height: 1em;
+  margin-right: 0.35rem;
+  opacity: 1;
+  transform: scale(1);
 }
 
 .name-link span,
 .pronunciation span {
-    transition: color 0.25s ease;
+  transition: color 0.25s ease;
 }
 
 .pronunciation {
-    font-style: italic;
-    font-size: 0.95rem;
-    color: var(--text-secondary);
-    opacity: 0;
-    max-height: 0;
-    overflow: hidden;
-    margin-bottom: 0;
-    transition: opacity 0.4s ease, max-height 0.4s ease, margin-bottom 0.4s ease;
+  max-height: 0;
+  margin-bottom: 0;
+  overflow: hidden;
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--text-secondary);
+  opacity: 0;
+  transition:
+    opacity 0.4s ease,
+    max-height 0.4s ease,
+    margin-bottom 0.4s ease;
 }
 
 .pronunciation.visible {
-    opacity: 1;
-    max-height: 3rem;
-    margin-bottom: 1.5rem;
+  max-height: 3rem;
+  margin-bottom: 1.5rem;
+  opacity: 1;
 }
 
 /* Inline affiliation logos */
 .inline-logo {
-    height: 1.1em;
-    width: auto;
-    vertical-align: -0.18em;
-    margin-right: 0.3em;
-    object-fit: contain;
-    border-radius: 3px;
+  width: auto;
+  height: 1.1em;
+  margin-right: 0.3em;
+  vertical-align: -0.18em;
+  object-fit: contain;
+  border-radius: 3px;
 }

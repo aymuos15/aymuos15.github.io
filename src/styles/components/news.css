@@ -1,201 +1,207 @@
 /* News Section */
 .tabs {
-    display: flex;
-    width: 100%;
+  display: flex;
+  width: 100%;
 }
 
 .tab {
-    flex: 1;
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid var(--border);
-    padding: 10px 0;
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    font-weight: 400;
-    cursor: pointer;
-    color: var(--text-secondary);
-    transition: color 0.2s ease, border-color 0.2s ease;
+  flex: 1;
+  padding: 10px 0;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--text-secondary);
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease;
 }
 
 .tab:hover {
-    color: var(--text);
+  color: var(--text);
 }
 
 .tab.active {
-    color: var(--text);
-    border-bottom: 2px solid var(--text);
+  color: var(--text);
+  border-bottom: 2px solid var(--text);
 }
 
 .updates-list {
-    max-height: 13rem;
-    overflow-y: auto;
-    padding: 15px 0;
-    scrollbar-width: thin;
-    scrollbar-color: var(--border) transparent;
-    transition: opacity 0.3s ease;
+  max-height: 13rem;
+  padding: 15px 0;
+  overflow-y: auto;
+  scrollbar-color: var(--border) transparent;
+  scrollbar-width: thin;
+  transition: opacity 0.3s ease;
 }
 
 .updates-list.fading {
-    opacity: 0;
+  opacity: 0;
 }
 
 .updates-list::-webkit-scrollbar {
-    width: 4px;
+  width: 4px;
 }
 
 .updates-list::-webkit-scrollbar-thumb {
-    background: var(--border);
+  background: var(--border);
 }
 
 .update-item {
-    display: flex;
-    gap: 15px;
-    padding: 8px 0;
-    border-bottom: 1px solid var(--border);
-    font-size: 0.9rem;
-    line-height: 1.6;
-    opacity: 0;
-    transform: translateY(6px);
-    animation: item-in 0.35s ease forwards;
+  display: flex;
+  gap: 15px;
+  padding: 8px 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  border-bottom: 1px solid var(--border);
+  opacity: 0;
+  transform: translateY(6px);
+  animation: item-in 0.35s ease forwards;
 }
 
 @keyframes item-in {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .update-item:last-child {
-    border-bottom: none;
+  border-bottom: none;
 }
 
 .update-date {
-    font-family: var(--font-mono);
-    min-width: 75px;
-    font-size: 0.8rem;
-    font-weight: 700;
-    flex-shrink: 0;
+  flex-shrink: 0;
+  min-width: 75px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
 }
 
 .update-desc {
-    flex: 1;
+  flex: 1;
 }
 
 .update-desc a {
-    text-decoration: underline;
-    text-decoration-color: currentcolor;
+  text-decoration: underline;
+  text-decoration-color: currentcolor;
 }
 
 @media (max-width: 768px) {
-    .tab {
-        padding: 6px 0;
-        font-size: 0.6rem;
-    }
+  .tab {
+    padding: 6px 0;
+    font-size: 0.6rem;
+  }
 
-    .update-item {
-        font-size: 0.8rem;
-        gap: 8px;
-        padding: 5px 0;
-    }
+  .update-item {
+    gap: 8px;
+    padding: 5px 0;
+    font-size: 0.8rem;
+  }
 
-    .update-date {
-        min-width: 55px;
-    }
+  .update-date {
+    min-width: 55px;
+  }
 }
 
 .spotify-embed {
-    overflow: hidden;
-    max-height: 0;
-    transition: max-height 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .spotify-embed.visible {
-    max-height: 200px;
+  max-height: 200px;
 }
 
 .spotify-embed iframe {
-    display: block;
-    margin-top: 2rem;
+  display: block;
+  margin-top: 2rem;
 }
 
 /* Grain gradient shader — background layer behind the Reviews list */
 .updates-wrap {
-    position: relative;
+  position: relative;
 }
 
 .updates-wrap .updates-list {
-    position: relative;
-    z-index: 1;
+  position: relative;
+  z-index: 1;
 }
 
 .grain-shader {
-    position: absolute;
-    inset: 0 -12px;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.45s ease;
+  position: absolute;
+  inset: 0 -12px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.45s ease;
 }
 
 .grain-shader.visible {
-    opacity: 1;
+  opacity: 1;
 }
 
 .grain-shader__inner {
-    height: 100%;
+  height: 100%;
 }
 
 .grain-shader canvas {
-    display: block;
-    width: 100%;
-    height: 100%;
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .updates-list.on-shader {
-    text-shadow: 0 0 8px var(--bg), 0 0 3px var(--bg);
+  text-shadow:
+    0 0 8px var(--bg),
+    0 0 3px var(--bg);
 }
 
 /* Contribution graph — 3D canvas, PRs tab */
 .contrib-graph {
-    overflow: hidden;
-    max-height: 0;
-    transition: max-height 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .contrib-graph.visible {
-    max-height: 500px;
+  max-height: 500px;
 }
 
 .contrib-graph__inner {
-    padding-top: 1rem;
-    opacity: 0;
-    transform: translateY(14px);
-    transition: opacity 0.45s ease 0.2s, transform 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
+  padding-top: 1rem;
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.45s ease 0.2s,
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
 }
 
 .contrib-graph.visible .contrib-graph__inner {
-    opacity: 1;
-    transform: translateY(0);
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .contrib-graph canvas {
-    max-width: 100%;
-    display: block;
-    cursor: crosshair;
+  display: block;
+  max-width: 100%;
+  cursor: crosshair;
 }
 
 .contrib-tip {
-    display: none;
-    position: fixed;
-    z-index: 300;
-    font-family: var(--font-mono);
-    font-size: 0.62rem;
-    letter-spacing: 0.05em;
-    color: var(--text);
-    background: var(--bg);
-    border: 1px solid var(--border);
-    padding: 0.25rem 0.55rem;
-    pointer-events: none;
-    white-space: nowrap;
+  position: fixed;
+  z-index: 300;
+  display: none;
+  padding: 0.25rem 0.55rem;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: var(--text);
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  pointer-events: none;
+  background: var(--bg);
+  border: 1px solid var(--border);
 }

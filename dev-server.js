@@ -1,46 +1,46 @@
-import { extname, resolve } from 'node:path';
+import { extname, resolve } from "node:path";
 
 const port = Number(process.env.PORT || 3000);
-const rootDir = resolve(import.meta.dir, 'src');
+const rootDir = resolve(import.meta.dir, "src");
 
 function resolvePath(pathname) {
-    const relativePath = pathname === '/' ? 'index.html' : pathname.slice(1);
-    const targetPath = resolve(rootDir, relativePath);
+  const relativePath = pathname === "/" ? "index.html" : pathname.slice(1);
+  const targetPath = resolve(rootDir, relativePath);
 
-    if (targetPath !== rootDir && !targetPath.startsWith(`${rootDir}/`)) {
-        return null;
-    }
+  if (targetPath !== rootDir && !targetPath.startsWith(`${rootDir}/`)) {
+    return null;
+  }
 
-    return targetPath;
+  return targetPath;
 }
 
 const server = Bun.serve({
-    port,
-    development: true,
-    async fetch(req) {
-        const url = new URL(req.url);
-        const pathname = decodeURIComponent(url.pathname);
-        const targetPath = resolvePath(pathname);
+  development: true,
+  async fetch(req) {
+    const url = new URL(req.url);
+    const pathname = decodeURIComponent(url.pathname);
+    const targetPath = resolvePath(pathname);
 
-        if (!targetPath) {
-            return new Response('Not found', { status: 404 });
-        }
-
-        const noCache = { 'Cache-Control': 'no-store, no-cache, must-revalidate' };
-
-        const file = Bun.file(targetPath);
-
-        if (await file.exists()) {
-            return new Response(file, { headers: noCache });
-        }
-
-        if (!extname(pathname)) {
-            const fallback = Bun.file(resolve(rootDir, 'index.html'));
-            return new Response(fallback, { headers: noCache });
-        }
-
-        return new Response('Not found', { status: 404 });
+    if (!targetPath) {
+      return new Response("Not found", { status: 404 });
     }
+
+    const noCache = { "Cache-Control": "no-store, no-cache, must-revalidate" };
+
+    const file = Bun.file(targetPath);
+
+    if (await file.exists()) {
+      return new Response(file, { headers: noCache });
+    }
+
+    if (!extname(pathname)) {
+      const fallback = Bun.file(resolve(rootDir, "index.html"));
+      return new Response(fallback, { headers: noCache });
+    }
+
+    return new Response("Not found", { status: 404 });
+  },
+  port,
 });
 
 console.log(`Dev server running at http://localhost:${server.port}`);

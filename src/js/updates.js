@@ -1,164 +1,662 @@
-/* eslint-disable no-undef */
 // Updates data
-/* eslint-disable quotes */
 const updates = [
-    { "date": "Jul. '26", "description": "Hosting 1 High School Intern via the <a href=\"https://in2scienceuk.org/our-programmes/in2stem/\">In2STEM programme</a>.", "category": "teaching" },
-    { "date": "May. '26", "description": "Preprint: <a href=\"https://osf.io/preprints/edarxiv/ugaz6_v1\">The Impact of Application Anonymisation on Diversity in Doctoral Recruitment: A Pre-Post Observational Study</a>. Some really fun (eye-opening) work with my MRC DTP colleagues and Advisors!", "category": "publishing" },
-    { "date": "May. '26", "description": "Received the <a href=\"https://claude.com/contact-sales/claude-for-oss\">Claude for Open Source</a> grant.", "category": "misc" },
-    { "date": "May. '26", "description": "Selected for Google Summer of Code (GSoC) 2026 with the <a href=\"https://github.com/neuroinformatics-unit/\">Neuroinformatics Unit</a>.", "category": "misc" },
-    { "date": "Apr. '26", "description": "Reviewing for NeurIPS 2026 and MICCAI 2026.", "category": "reviewing" },
-    { "date": "Mar. '26", "description": "<a href=\"https://github.com/BrainImageAnalysis/instance-loss\">Instance Awareness of Multi-class Semantic Segmentation Loss Functions</a> accepted at CVPR CV4Clinical Workshop.", "category": "publishing" },
-    { "date": "Mar. '26", "description": "Graduate TA for Image and Signal Processing with <a href=\"https://kclpure.kcl.ac.uk/portal/en/persons/richard.housden\">Prof. James Housden</a>", "category": "teaching" },
-    { "date": "Mar. '26", "description": "Graduate TA for Python with <a href=\"https://www.kcl.ac.uk/people/marc-modat\">Prof. Marc Modat</a> and <a href=\"https://cai4cai.ml/author/jonathan-shapey/\">Dr. Jonathan Shapey</a>", "category": "teaching" },
-    { "date": "Jul. '26", "description": "<a href=\"https://github.com/brainglobe/cellfinder/pull/646\">Use single underscore for internal CurationWidget methods</a> - brainglobe/cellfinder", "category": "pr" },
-    { "date": "Jul. '26", "description": "<a href=\"https://github.com/Project-MONAI/MONAI/pull/8902\">Fix class_labels mutation across multi-metric write_metrics_reports</a> - Project-MONAI/MONAI", "category": "pr" },
-    { "date": "Jul. '26", "description": "<a href=\"https://github.com/reflex-dev/xy/pull/366\">Resolve categorical palettes once per trace in authored-marker scatters</a> - reflex-dev/xy", "category": "pr" },
-    { "date": "Jul. '26", "description": "<a href=\"https://github.com/NVlabs/cuda-oxide/pull/448\">fix(cargo-oxide): normalize crate stem in emit-ltoir artifact paths</a> - NVlabs/cuda-oxide", "category": "pr" },
-    { "date": "Jul. '26", "description": "<a href=\"https://github.com/brainglobe/cellfinder/pull/637\">Make the background channel optional in the napari plugin</a> - brainglobe/cellfinder", "category": "pr" },
-    { "date": "Jul. '26", "description": "<a href=\"https://github.com/brainglobe/brainglobe-workflows/pull/179\">Remove stale model-config reference from brainmapper conftest</a> - brainglobe/brainglobe-workflows", "category": "pr" },
-    { "date": "Jul. '26", "description": "<a href=\"https://github.com/Project-MONAI/MONAI/pull/8978\">Perf: faster get_largest_connected_component_mask (bincount + LUT gather)</a> - Project-MONAI/MONAI", "category": "pr" },
-    { "date": "Jul. '26", "description": "<a href=\"https://github.com/SimpleITK/SimpleITK/pull/2628\">Improve documentation for composite transform</a> - SimpleITK/SimpleITK", "category": "pr" },
-    { "date": "Jul. '26", "description": "<a href=\"https://github.com/cai4cai/torchsparsegradutils/pull/89\">Add sparse_bidir_logsumexp: simultaneous row- and column-wise log-sum-exp</a> - cai4cai/torchsparsegradutils", "category": "pr" },
-    { "date": "Jul. '26", "description": "<a href=\"https://github.com/Project-MONAI/MONAI/pull/8953\">Fix non-functional jitter in Warp.get_reference_grid</a> - Project-MONAI/MONAI", "category": "pr" },
-    { "date": "Jul. '26", "description": "<a href=\"https://github.com/cai4cai/torchsparsegradutils/pull/87\">Add sparse_logsumexp: numerically stable sparse log-sum-exp reduction</a> - cai4cai/torchsparsegradutils", "category": "pr" },
-    { "date": "Jul. '26", "description": "<a href=\"https://github.com/Project-MONAI/MONAI/pull/8975\">Perf: skip redundant full-image mask on StdShiftIntensity nonzero=False path</a> - Project-MONAI/MONAI", "category": "pr" },
-    { "date": "Jul. '26", "description": "<a href=\"https://github.com/brainglobe/cellfinder/pull/619\">Make the background channel optional for classification</a> - brainglobe/cellfinder", "category": "pr" },
-    { "date": "Jul. '26", "description": "<a href=\"https://github.com/Project-MONAI/MONAI/pull/8963\">Support configurable rotation order in create_rotate</a> - Project-MONAI/MONAI", "category": "pr" },
-    { "date": "Jul. '26", "description": "<a href=\"https://github.com/Project-MONAI/MONAI/pull/8962\">docs: clarify RandWeightedCrop(d) does not crop the weight map (#7851)</a> - Project-MONAI/MONAI", "category": "pr" },
-    { "date": "Jul. '26", "description": "<a href=\"https://github.com/Project-MONAI/MONAI/pull/8968\">fix: emit nnUNet store_true flags as bare CLI args in nnUNetV2Runner</a> - Project-MONAI/MONAI", "category": "pr" },
-    { "date": "Jul. '26", "description": "<a href=\"https://github.com/Project-MONAI/MONAI/pull/8944\">Fix nnUNet runner store_true flag command construction</a> - Project-MONAI/MONAI", "category": "pr" },
-    { "date": "Jun. '26", "description": "<a href=\"https://github.com/Project-MONAI/MONAI/pull/8952\">Remove dead and redundant code across monai/</a> - Project-MONAI/MONAI", "category": "pr" },
-    { "date": "Jun. '26", "description": "<a href=\"https://github.com/Project-MONAI/MONAI/pull/8951\">Fix FROC num_targets miscount when labels_to_exclude is set</a> - Project-MONAI/MONAI", "category": "pr" },
-    { "date": "Jun. '26", "description": "<a href=\"https://github.com/Project-MONAI/MONAI/pull/8907\">Fix adaptor map_names calling dict as function when inputs is a name-mapping dict</a> - Project-MONAI/MONAI", "category": "pr" },
-    { "date": "Jun. '26", "description": "<a href=\"https://github.com/Project-MONAI/MONAI/pull/8943\">tests: remove more duplicate test cases</a> - Project-MONAI/MONAI", "category": "pr" },
-    { "date": "Jun. '26", "description": "<a href=\"https://github.com/Project-MONAI/MONAI/pull/8901\">Fix batched_nms for ndarray inputs</a> - Project-MONAI/MONAI", "category": "pr" },
-    { "date": "Jun. '26", "description": "<a href=\"https://github.com/aws-samples/sample-migration-of-training-medical-imaging-modes-from-ec2-to-sagemaker/pull/12\">nnU-Net v2 pipeline</a> - aws-samples/sample-migration-of-training-medical-imaging-modes-from-ec2-to-sagemaker", "category": "pr" },
-    { "date": "Jun. '26", "description": "<a href=\"https://github.com/brainglobe/cellfinder/pull/623\">Mark curation points with a single vstack instead of a loop</a> - brainglobe/cellfinder", "category": "pr" },
-    { "date": "Jun. '26", "description": "<a href=\"https://github.com/brainglobe/cellfinder/pull/621\">Show \"Done\" only after training data is actually saved</a> - brainglobe/cellfinder", "category": "pr" },
-    { "date": "Jun. '26", "description": "<a href=\"https://github.com/Project-MONAI/MONAI/pull/8896\">Remove duplicate and dead test cases</a> - Project-MONAI/MONAI", "category": "pr" },
-    { "date": "May. '26", "description": "<a href=\"https://github.com/Project-MONAI/MONAI/pull/8887\">Fix nnUNet test directory leakage into current working directory</a> - Project-MONAI/MONAI", "category": "pr" },
-    { "date": "May. '26", "description": "<a href=\"https://github.com/Project-MONAI/MONAI/pull/8858\">Add nested dot-notation access to ConfigParser</a> - Project-MONAI/MONAI", "category": "pr" },
-    { "date": "May. '26", "description": "<a href=\"https://github.com/Project-MONAI/MONAI/pull/8703\">Enhance SoftclDiceLoss and SoftDiceclDiceLoss with DiceLoss-compatible API</a> - Project-MONAI/MONAI", "category": "pr" },
-    { "date": "May. '26", "description": "<a href=\"https://github.com/Project-MONAI/MONAI/pull/8695\">Replace pickle with JSON in Auto3DSeg algo serialization</a> - Project-MONAI/MONAI", "category": "pr" },
-    { "date": "May. '26", "description": "<a href=\"https://github.com/Project-MONAI/MONAI/pull/8787\">Fix nested Compose map_items in forward and inverse paths</a> - Project-MONAI/MONAI", "category": "pr" },
-    { "date": "May. '26", "description": "<a href=\"https://github.com/Project-MONAI/MONAI/pull/8690\">Fix align_corners mismatch in AffineTransform</a> - Project-MONAI/MONAI", "category": "pr" },
-    { "date": "May. '26", "description": "<a href=\"https://github.com/BrainLesion/tutorials/pull/77\">Add BraTS Mets panoptica tutorial with Standard PQ and Part PQ</a> - BrainLesion/tutorials", "category": "pr" },
-    { "date": "May. '26", "description": "<a href=\"https://github.com/patrick-toulme/pyptx/pull/5\">Drop a-suffix from Blackwell bw example arch targets</a> - patrick-toulme/pyptx", "category": "pr" },
-    { "date": "May. '26", "description": "<a href=\"https://github.com/Project-MONAI/MONAI/pull/8841\">Fix incomplete activation validation in HausdorffDTLoss</a> - Project-MONAI/MONAI", "category": "pr" },
-    { "date": "May. '26", "description": "<a href=\"https://github.com/Project-MONAI/MONAI/pull/8825\">Avoid eager C-order copy in NibabelReader</a> - Project-MONAI/MONAI", "category": "pr" },
-    { "date": "Apr. '26", "description": "<a href=\"https://github.com/Project-MONAI/MONAI/pull/8778\">Fix multi-axis shear transform to compose individual shear matrices</a> - Project-MONAI/MONAI", "category": "pr" },
-    { "date": "Apr. '26", "description": "<a href=\"https://github.com/Project-MONAI/MONAI/pull/8782\">Fix memory leak in optional_import traceback handling</a> - Project-MONAI/MONAI", "category": "pr" },
-    { "date": "Apr. '26", "description": "<a href=\"https://github.com/brainglobe/brainglobe-utils/pull/151\">Fix KeyError when saving artifact-only cell lists</a> - brainglobe/brainglobe-utils", "category": "pr" },
-    { "date": "Apr. '26", "description": "<a href=\"https://github.com/BrainLesion/panoptica/pull/245\">Drop cupy dependency</a> - BrainLesion/panoptica", "category": "pr" },
-    { "date": "Mar. '26", "description": "<a href=\"https://github.com/MIC-DKFZ/batchgeneratorsv2/pull/19\">Precompute spatial grid</a> - MIC-DKFZ/batchgeneratorsv2", "category": "pr" },
-    { "date": "Mar. '26", "description": "<a href=\"https://github.com/MIC-DKFZ/batchgeneratorsv2/pull/16\">use broadcasting for mask transform</a> - MIC-DKFZ/batchgeneratorsv2", "category": "pr" },
-    { "date": "Mar. '26", "description": "<a href=\"https://github.com/Project-MONAI/MONAI/pull/8781\">Fix make_gaussian_kernel truncated parameter unit mismatch (#8780)</a> - Project-MONAI/MONAI", "category": "pr" },
-    { "date": "Mar. '26", "description": "<a href=\"https://github.com/Project-MONAI/MONAI/pull/8766\">Remove unused <code>n_dims</code> parameter from <code>Fourier.inv_shift_fourier</code></a> - Project-MONAI/MONAI", "category": "pr" },
-    { "date": "Mar. '26", "description": "<a href=\"https://github.com/Project-MONAI/MONAI/pull/8765\">Add explicit spatial_ndim tracking to MetaTensor</a> - Project-MONAI/MONAI", "category": "pr" },
-    { "date": "Mar. '26", "description": "<a href=\"https://github.com/Project-MONAI/MONAI/pull/8763\">Add GradientAccumulation utility for SupervisedTrainer</a> - Project-MONAI/MONAI", "category": "pr" },
-    { "date": "Mar. '26", "description": "<a href=\"https://github.com/Project-MONAI/MONAI/pull/8762\">Fft cleanup/update</a> - Project-MONAI/MONAI", "category": "pr" },
-    { "date": "Jan. '26", "description": "<a href=\"https://github.com/Project-MONAI/MONAI/pull/8696\">Fix GEGLU docstring: Sigmoid -&gt; GELU</a> - Project-MONAI/MONAI", "category": "pr" },
-    { "date": "Jan. '26", "description": "<a href=\"https://github.com/Project-MONAI/MONAI/pull/8684\">Add 3D support and confusion matrix output to PanopticQualityMetric</a> - Project-MONAI/MONAI", "category": "pr" },
-    { "date": "Feb. '26", "description": "<a href=\"https://github.com/Project-MONAI/MONAI/pull/8688\">Fix docstring typos across codebase</a> - Project-MONAI/MONAI", "category": "pr" },
-    { "date": "Jan. '26", "description": "<a href=\"https://github.com/cai4cai/torchsparsegradutils/pull/67\">perf: replace torch.cat([*B]) with reshape in sparse_triangular_solve</a> - cai4cai/torchsparsegradutils", "category": "pr" },
-    { "date": "Jan. '26", "description": "<a href=\"https://github.com/cai4cai/torchsparsegradutils/pull/65\">perf: replace torch.cat([*B]) with reshape in sparse_mm</a> - cai4cai/torchsparsegradutils", "category": "pr" },
-    { "date": "Jan. '26", "description": "<a href=\"https://github.com/Project-MONAI/MONAI/pull/8680\">Rename NormalizeLabelsInDatasetd to RemapLabelsToSequentiald</a> - Project-MONAI/MONAI", "category": "pr" },
-    { "date": "Jan. '26", "description": "<a href=\"https://github.com/google-deepmind/optax/pull/1458\">Generalize dice_loss with alpha/beta weighting</a> - google-deepmind/optax", "category": "pr" },
-    { "date": "Jan. '26", "description": "<a href=\"https://github.com/cai4cai/torchsparsegradutils/pull/66\">Performance improvements for sparse operations</a> - cai4cai/torchsparsegradutils", "category": "pr" },
-    { "date": "Jan. '26", "description": "<a href=\"https://github.com/cai4cai/torchsparsegradutils/pull/63\">Fix PyTorch version comparison</a> - cai4cai/torchsparsegradutils", "category": "pr" },
-    { "date": "Dec. '25", "description": "<a href=\"https://github.com/sinelaw/fresh/pull/421\">Support for opening multiple files from CLI</a> - sinelaw/fresh", "category": "pr" },
-    { "date": "Nov. '25", "description": "<a href=\"https://github.com/anomalyco/opentui/pull/253\">Fix TerminalConsole.resize parameters</a> - anomalyco/opentui", "category": "pr" },
-    { "date": "Oct. '25", "description": "<a href=\"https://github.com/lbr-stack/roboreg/pull/88\">Fix Kabsch algorithm naming</a> - lbr-stack/roboreg", "category": "pr" },
-    { "date": "Oct. '25", "description": "Will be supervising the BSc thesis of Yingfan Tao", "category": "teaching" },
-    { "date": "Sept. '25", "description": "<a href=\"https://github.com/BrainLesion/panoptica/pull/234\">Setup workflows from voronoi branch</a> - BrainLesion/panoptica", "category": "pr" },
-    { "date": "Sept. '25", "description": "<a href=\"https://github.com/BrainLesion/panoptica/pull/228\">Fix voxelspacing dimension mismatch</a> - BrainLesion/panoptica", "category": "pr" },
-    { "date": "Jun. '25", "description": "<a href=\"https://github.com/google-deepmind/optax/pull/1366\">Add segmentation based (dice) loss</a> - google-deepmind/optax", "category": "pr" },
-    { "date": "Jun. '25", "description": "<a href=\"https://github.com/google-deepmind/optax/pull/1340\">Enable adaptive gradient clipping for high-dim tensors</a> - google-deepmind/optax", "category": "pr" },
-    { "date": "May. '25", "description": "<a href=\"https://github.com/BrainLesion/panoptica/pull/204\">Making Panoptica Part Aware</a> - BrainLesion/panoptica", "category": "pr" },
-    { "date": "Apr. '25", "description": "<a href=\"https://github.com/BrainLesion/panoptica/pull/196\">New Matcher Class: Hungarian Matching</a> - BrainLesion/panoptica", "category": "pr" },
-    { "date": "Sept. '24", "description": "<a href=\"https://github.com/BrainImageAnalysis/instance-loss/pull/2\">Optimised connected components with gradients</a> - BrainImageAnalysis/instance-loss", "category": "pr" },
-    { "date": "Jan. '23", "description": "<a href=\"https://github.com/ivy-llc/ivy/pull/9963\">Added binarizer to experimental API</a> - ivy-llc/ivy", "category": "pr" },
-    { "date": "Aug. '25", "description": "Hosting 2 High School Interns via the <a href=\"https://in2scienceuk.org/our-programmes/in2stem/\">In2STEM programme</a>.", "category": "teaching" },
-    { "date": "Jul. '25", "description": "Will be hosting <a href=\"https://www.linkedin.com/in/jeeezzhusss/\">Jai</a> and <a href=\"https://www.linkedin.com/in/pranav-rustagi-8a5a18253/\">Pranav</a> from LNMIIT as research interns with Yang.", "category": "teaching" },
-    { "date": "Jun. '25", "description": "Starting an internship at <a href=\"https://cosine.sh/\">Cosine</a>. Machine Learning Engineering and Product.", "category": "misc" },
-    { "date": "Mar. '25", "description": "Released <a href=\"https://github.com/KCL-BMEIS/UltraFlwr\">Ultraflwr</a>. Library for Federated Object Detection on the edge. Now a poster accept @MICCAI-AMAI'25!", "category": "publishing" },
-    { "date": "Mar. '25", "description": "Graduate TA for Statistics with <a href=\"https://kclpure.kcl.ac.uk/portal/en/persons/richard.housden\">Prof. Richard Housden</a>", "category": "teaching" },
-    { "date": "Mar. '25", "description": "Reviewing for MICCAI 2025, NeurIPS 2025 and ICML 2025.", "category": "reviewing" },
-    { "date": "Feb. '25", "description": "<a href=\"https://github.com/aymuos15/Promptly-Cited\">KneeXNeT</a> accepted to MICAD'24. Congrats Nicahree!", "category": "publishing" },
-    { "date": "Dec. '24", "description": "Passed my Qualifiers. Officially a PhD Student!", "category": "misc" },
-    { "date": "Dec. '24", "description": "<a href=\"https://github.com/aymuos15/Cluster-Dice\">Cluster Dice</a> accepted at SPIE Medical Imaging'25.", "category": "publishing" },
-    { "date": "Sept '24", "description": "Member of Technical Programme Committee for ISBI 2025.", "category": "reviewing" },
-    { "date": "Sept '24", "description": "Reviewing for AISTATS 2025.", "category": "reviewing" },
-    { "date": "Sept '24", "description": "<a href=\"https://github.com/aymuos15/Promptly-Cited\">Promptly-Cited</a> accepted at NeurIPS-WiML Workshop.", "category": "publishing" },
-    { "date": "Sept '24", "description": "<a href=\"https://voxel51.com/computer-vision-events/visual-ai-in-healthcare-sept-19-2024/\">Talk</a> for Voxel 51 on my current Ph.D. work!", "category": "misc" },
-    { "date": "Sept '24", "description": "Graduate TA for Research Club - Biomedical Engineering.", "category": "teaching" },
-    { "date": "Sept '24", "description": "Reviewing for NeurIPS-WiML 2024, ICLR 2024.", "category": "reviewing" },
-    { "date": "Aug. '24", "description": "Hosting 2 High School Interns via the <a href=\"https://in2scienceuk.org/our-programmes/in2stem/\">In2STEM programme</a>.", "category": "teaching" },
-    { "date": "June '24", "description": "Reviewing for NeurIPS, MICCAI-FAIMI, CaPTion@MICCAI, and ICML-ML4MLS 2024.", "category": "reviewing" },
-    { "date": "May. '24", "description": "Best Student Poster Award Finalist at ISBI'24.", "category": "misc" },
-    { "date": "Feb. '24", "description": "<a href=\"https://github.com/aymuos15/SegPatch\">SegPatch</a> accepted at ISBI'24!", "category": "publishing" },
-    { "date": "Jan. '24", "description": "Student Representative for the <a href=\"https://kcl-mrcdtp.com/about/the-team/\">KCL MRC DTP</a>.", "category": "misc" },
-    { "date": "Nov. '23", "description": "Reviewing for ISBI 2024.", "category": "reviewing" },
-    { "date": "Nov. '23", "description": "Top 8 Finish at Anthropic-London Hackathon.", "category": "misc" },
-    { "date": "Oct. '23", "description": "Began my alignment on the <a href=\"https://www.imagingcdt.com/\">Smart Imaging CDT</a>.", "category": "misc" },
-    { "date": "Sept '23", "description": "Defended my MSc Thesis and Started my PhD.", "category": "misc" }
+  {
+    category: "teaching",
+    date: "Jul. '26",
+    description:
+      'Hosting 1 High School Intern via the <a href="https://in2scienceuk.org/our-programmes/in2stem/">In2STEM programme</a>.',
+  },
+  {
+    category: "publishing",
+    date: "May. '26",
+    description:
+      'Preprint: <a href="https://osf.io/preprints/edarxiv/ugaz6_v1">The Impact of Application Anonymisation on Diversity in Doctoral Recruitment: A Pre-Post Observational Study</a>. Some really fun (eye-opening) work with my MRC DTP colleagues and Advisors!',
+  },
+  {
+    category: "misc",
+    date: "May. '26",
+    description:
+      'Received the <a href="https://claude.com/contact-sales/claude-for-oss">Claude for Open Source</a> grant.',
+  },
+  {
+    category: "misc",
+    date: "May. '26",
+    description:
+      'Selected for Google Summer of Code (GSoC) 2026 with the <a href="https://github.com/neuroinformatics-unit/">Neuroinformatics Unit</a>.',
+  },
+  {
+    category: "reviewing",
+    date: "Apr. '26",
+    description: "Reviewing for NeurIPS 2026 and MICCAI 2026.",
+  },
+  {
+    category: "publishing",
+    date: "Mar. '26",
+    description:
+      '<a href="https://github.com/BrainImageAnalysis/instance-loss">Instance Awareness of Multi-class Semantic Segmentation Loss Functions</a> accepted at CVPR CV4Clinical Workshop.',
+  },
+  {
+    category: "teaching",
+    date: "Mar. '26",
+    description:
+      'Graduate TA for Image and Signal Processing with <a href="https://kclpure.kcl.ac.uk/portal/en/persons/richard.housden">Prof. James Housden</a>',
+  },
+  {
+    category: "teaching",
+    date: "Mar. '26",
+    description:
+      'Graduate TA for Python with <a href="https://www.kcl.ac.uk/people/marc-modat">Prof. Marc Modat</a> and <a href="https://cai4cai.ml/author/jonathan-shapey/">Dr. Jonathan Shapey</a>',
+  },
+  {
+    category: "pr",
+    date: "Jul. '26",
+    description:
+      '<a href="https://github.com/brainglobe/cellfinder/pull/646">Use single underscore for internal CurationWidget methods</a> - brainglobe/cellfinder',
+  },
+  {
+    category: "pr",
+    date: "Jul. '26",
+    description:
+      '<a href="https://github.com/Project-MONAI/MONAI/pull/8902">Fix class_labels mutation across multi-metric write_metrics_reports</a> - Project-MONAI/MONAI',
+  },
+  {
+    category: "pr",
+    date: "Jul. '26",
+    description:
+      '<a href="https://github.com/reflex-dev/xy/pull/366">Resolve categorical palettes once per trace in authored-marker scatters</a> - reflex-dev/xy',
+  },
+  {
+    category: "pr",
+    date: "Jul. '26",
+    description:
+      '<a href="https://github.com/NVlabs/cuda-oxide/pull/448">fix(cargo-oxide): normalize crate stem in emit-ltoir artifact paths</a> - NVlabs/cuda-oxide',
+  },
+  {
+    category: "pr",
+    date: "Jul. '26",
+    description:
+      '<a href="https://github.com/brainglobe/cellfinder/pull/637">Make the background channel optional in the napari plugin</a> - brainglobe/cellfinder',
+  },
+  {
+    category: "pr",
+    date: "Jul. '26",
+    description:
+      '<a href="https://github.com/brainglobe/brainglobe-workflows/pull/179">Remove stale model-config reference from brainmapper conftest</a> - brainglobe/brainglobe-workflows',
+  },
+  {
+    category: "pr",
+    date: "Jul. '26",
+    description:
+      '<a href="https://github.com/Project-MONAI/MONAI/pull/8978">Perf: faster get_largest_connected_component_mask (bincount + LUT gather)</a> - Project-MONAI/MONAI',
+  },
+  {
+    category: "pr",
+    date: "Jul. '26",
+    description:
+      '<a href="https://github.com/SimpleITK/SimpleITK/pull/2628">Improve documentation for composite transform</a> - SimpleITK/SimpleITK',
+  },
+  {
+    category: "pr",
+    date: "Jul. '26",
+    description:
+      '<a href="https://github.com/cai4cai/torchsparsegradutils/pull/89">Add sparse_bidir_logsumexp: simultaneous row- and column-wise log-sum-exp</a> - cai4cai/torchsparsegradutils',
+  },
+  {
+    category: "pr",
+    date: "Jul. '26",
+    description:
+      '<a href="https://github.com/Project-MONAI/MONAI/pull/8953">Fix non-functional jitter in Warp.get_reference_grid</a> - Project-MONAI/MONAI',
+  },
+  {
+    category: "pr",
+    date: "Jul. '26",
+    description:
+      '<a href="https://github.com/cai4cai/torchsparsegradutils/pull/87">Add sparse_logsumexp: numerically stable sparse log-sum-exp reduction</a> - cai4cai/torchsparsegradutils',
+  },
+  {
+    category: "pr",
+    date: "Jul. '26",
+    description:
+      '<a href="https://github.com/Project-MONAI/MONAI/pull/8975">Perf: skip redundant full-image mask on StdShiftIntensity nonzero=False path</a> - Project-MONAI/MONAI',
+  },
+  {
+    category: "pr",
+    date: "Jul. '26",
+    description:
+      '<a href="https://github.com/brainglobe/cellfinder/pull/619">Make the background channel optional for classification</a> - brainglobe/cellfinder',
+  },
+  {
+    category: "pr",
+    date: "Jul. '26",
+    description:
+      '<a href="https://github.com/Project-MONAI/MONAI/pull/8963">Support configurable rotation order in create_rotate</a> - Project-MONAI/MONAI',
+  },
+  {
+    category: "pr",
+    date: "Jul. '26",
+    description:
+      '<a href="https://github.com/Project-MONAI/MONAI/pull/8962">docs: clarify RandWeightedCrop(d) does not crop the weight map (#7851)</a> - Project-MONAI/MONAI',
+  },
+  {
+    category: "pr",
+    date: "Jul. '26",
+    description:
+      '<a href="https://github.com/Project-MONAI/MONAI/pull/8968">fix: emit nnUNet store_true flags as bare CLI args in nnUNetV2Runner</a> - Project-MONAI/MONAI',
+  },
+  {
+    category: "pr",
+    date: "Jul. '26",
+    description:
+      '<a href="https://github.com/Project-MONAI/MONAI/pull/8944">Fix nnUNet runner store_true flag command construction</a> - Project-MONAI/MONAI',
+  },
+  {
+    category: "pr",
+    date: "Jun. '26",
+    description:
+      '<a href="https://github.com/Project-MONAI/MONAI/pull/8952">Remove dead and redundant code across monai/</a> - Project-MONAI/MONAI',
+  },
+  {
+    category: "pr",
+    date: "Jun. '26",
+    description:
+      '<a href="https://github.com/Project-MONAI/MONAI/pull/8951">Fix FROC num_targets miscount when labels_to_exclude is set</a> - Project-MONAI/MONAI',
+  },
+  {
+    category: "pr",
+    date: "Jun. '26",
+    description:
+      '<a href="https://github.com/Project-MONAI/MONAI/pull/8907">Fix adaptor map_names calling dict as function when inputs is a name-mapping dict</a> - Project-MONAI/MONAI',
+  },
+  {
+    category: "pr",
+    date: "Jun. '26",
+    description:
+      '<a href="https://github.com/Project-MONAI/MONAI/pull/8943">tests: remove more duplicate test cases</a> - Project-MONAI/MONAI',
+  },
+  {
+    category: "pr",
+    date: "Jun. '26",
+    description:
+      '<a href="https://github.com/Project-MONAI/MONAI/pull/8901">Fix batched_nms for ndarray inputs</a> - Project-MONAI/MONAI',
+  },
+  {
+    category: "pr",
+    date: "Jun. '26",
+    description:
+      '<a href="https://github.com/aws-samples/sample-migration-of-training-medical-imaging-modes-from-ec2-to-sagemaker/pull/12">nnU-Net v2 pipeline</a> - aws-samples/sample-migration-of-training-medical-imaging-modes-from-ec2-to-sagemaker',
+  },
+  {
+    category: "pr",
+    date: "Jun. '26",
+    description:
+      '<a href="https://github.com/brainglobe/cellfinder/pull/623">Mark curation points with a single vstack instead of a loop</a> - brainglobe/cellfinder',
+  },
+  {
+    category: "pr",
+    date: "Jun. '26",
+    description:
+      '<a href="https://github.com/brainglobe/cellfinder/pull/621">Show "Done" only after training data is actually saved</a> - brainglobe/cellfinder',
+  },
+  {
+    category: "pr",
+    date: "Jun. '26",
+    description:
+      '<a href="https://github.com/Project-MONAI/MONAI/pull/8896">Remove duplicate and dead test cases</a> - Project-MONAI/MONAI',
+  },
+  {
+    category: "pr",
+    date: "May. '26",
+    description:
+      '<a href="https://github.com/Project-MONAI/MONAI/pull/8887">Fix nnUNet test directory leakage into current working directory</a> - Project-MONAI/MONAI',
+  },
+  {
+    category: "pr",
+    date: "May. '26",
+    description:
+      '<a href="https://github.com/Project-MONAI/MONAI/pull/8858">Add nested dot-notation access to ConfigParser</a> - Project-MONAI/MONAI',
+  },
+  {
+    category: "pr",
+    date: "May. '26",
+    description:
+      '<a href="https://github.com/Project-MONAI/MONAI/pull/8703">Enhance SoftclDiceLoss and SoftDiceclDiceLoss with DiceLoss-compatible API</a> - Project-MONAI/MONAI',
+  },
+  {
+    category: "pr",
+    date: "May. '26",
+    description:
+      '<a href="https://github.com/Project-MONAI/MONAI/pull/8695">Replace pickle with JSON in Auto3DSeg algo serialization</a> - Project-MONAI/MONAI',
+  },
+  {
+    category: "pr",
+    date: "May. '26",
+    description:
+      '<a href="https://github.com/Project-MONAI/MONAI/pull/8787">Fix nested Compose map_items in forward and inverse paths</a> - Project-MONAI/MONAI',
+  },
+  {
+    category: "pr",
+    date: "May. '26",
+    description:
+      '<a href="https://github.com/Project-MONAI/MONAI/pull/8690">Fix align_corners mismatch in AffineTransform</a> - Project-MONAI/MONAI',
+  },
+  {
+    category: "pr",
+    date: "May. '26",
+    description:
+      '<a href="https://github.com/BrainLesion/tutorials/pull/77">Add BraTS Mets panoptica tutorial with Standard PQ and Part PQ</a> - BrainLesion/tutorials',
+  },
+  {
+    category: "pr",
+    date: "May. '26",
+    description:
+      '<a href="https://github.com/patrick-toulme/pyptx/pull/5">Drop a-suffix from Blackwell bw example arch targets</a> - patrick-toulme/pyptx',
+  },
+  {
+    category: "pr",
+    date: "May. '26",
+    description:
+      '<a href="https://github.com/Project-MONAI/MONAI/pull/8841">Fix incomplete activation validation in HausdorffDTLoss</a> - Project-MONAI/MONAI',
+  },
+  {
+    category: "pr",
+    date: "May. '26",
+    description:
+      '<a href="https://github.com/Project-MONAI/MONAI/pull/8825">Avoid eager C-order copy in NibabelReader</a> - Project-MONAI/MONAI',
+  },
+  {
+    category: "pr",
+    date: "Apr. '26",
+    description:
+      '<a href="https://github.com/Project-MONAI/MONAI/pull/8778">Fix multi-axis shear transform to compose individual shear matrices</a> - Project-MONAI/MONAI',
+  },
+  {
+    category: "pr",
+    date: "Apr. '26",
+    description:
+      '<a href="https://github.com/Project-MONAI/MONAI/pull/8782">Fix memory leak in optional_import traceback handling</a> - Project-MONAI/MONAI',
+  },
+  {
+    category: "pr",
+    date: "Apr. '26",
+    description:
+      '<a href="https://github.com/brainglobe/brainglobe-utils/pull/151">Fix KeyError when saving artifact-only cell lists</a> - brainglobe/brainglobe-utils',
+  },
+  {
+    category: "pr",
+    date: "Apr. '26",
+    description:
+      '<a href="https://github.com/BrainLesion/panoptica/pull/245">Drop cupy dependency</a> - BrainLesion/panoptica',
+  },
+  {
+    category: "pr",
+    date: "Mar. '26",
+    description:
+      '<a href="https://github.com/MIC-DKFZ/batchgeneratorsv2/pull/19">Precompute spatial grid</a> - MIC-DKFZ/batchgeneratorsv2',
+  },
+  {
+    category: "pr",
+    date: "Mar. '26",
+    description:
+      '<a href="https://github.com/MIC-DKFZ/batchgeneratorsv2/pull/16">use broadcasting for mask transform</a> - MIC-DKFZ/batchgeneratorsv2',
+  },
+  {
+    category: "pr",
+    date: "Mar. '26",
+    description:
+      '<a href="https://github.com/Project-MONAI/MONAI/pull/8781">Fix make_gaussian_kernel truncated parameter unit mismatch (#8780)</a> - Project-MONAI/MONAI',
+  },
+  {
+    category: "pr",
+    date: "Mar. '26",
+    description:
+      '<a href="https://github.com/Project-MONAI/MONAI/pull/8766">Remove unused <code>n_dims</code> parameter from <code>Fourier.inv_shift_fourier</code></a> - Project-MONAI/MONAI',
+  },
+  {
+    category: "pr",
+    date: "Mar. '26",
+    description:
+      '<a href="https://github.com/Project-MONAI/MONAI/pull/8765">Add explicit spatial_ndim tracking to MetaTensor</a> - Project-MONAI/MONAI',
+  },
+  {
+    category: "pr",
+    date: "Mar. '26",
+    description:
+      '<a href="https://github.com/Project-MONAI/MONAI/pull/8763">Add GradientAccumulation utility for SupervisedTrainer</a> - Project-MONAI/MONAI',
+  },
+  {
+    category: "pr",
+    date: "Mar. '26",
+    description:
+      '<a href="https://github.com/Project-MONAI/MONAI/pull/8762">Fft cleanup/update</a> - Project-MONAI/MONAI',
+  },
+  {
+    category: "pr",
+    date: "Jan. '26",
+    description:
+      '<a href="https://github.com/Project-MONAI/MONAI/pull/8696">Fix GEGLU docstring: Sigmoid -&gt; GELU</a> - Project-MONAI/MONAI',
+  },
+  {
+    category: "pr",
+    date: "Jan. '26",
+    description:
+      '<a href="https://github.com/Project-MONAI/MONAI/pull/8684">Add 3D support and confusion matrix output to PanopticQualityMetric</a> - Project-MONAI/MONAI',
+  },
+  {
+    category: "pr",
+    date: "Feb. '26",
+    description:
+      '<a href="https://github.com/Project-MONAI/MONAI/pull/8688">Fix docstring typos across codebase</a> - Project-MONAI/MONAI',
+  },
+  {
+    category: "pr",
+    date: "Jan. '26",
+    description:
+      '<a href="https://github.com/cai4cai/torchsparsegradutils/pull/67">perf: replace torch.cat([*B]) with reshape in sparse_triangular_solve</a> - cai4cai/torchsparsegradutils',
+  },
+  {
+    category: "pr",
+    date: "Jan. '26",
+    description:
+      '<a href="https://github.com/cai4cai/torchsparsegradutils/pull/65">perf: replace torch.cat([*B]) with reshape in sparse_mm</a> - cai4cai/torchsparsegradutils',
+  },
+  {
+    category: "pr",
+    date: "Jan. '26",
+    description:
+      '<a href="https://github.com/Project-MONAI/MONAI/pull/8680">Rename NormalizeLabelsInDatasetd to RemapLabelsToSequentiald</a> - Project-MONAI/MONAI',
+  },
+  {
+    category: "pr",
+    date: "Jan. '26",
+    description:
+      '<a href="https://github.com/google-deepmind/optax/pull/1458">Generalize dice_loss with alpha/beta weighting</a> - google-deepmind/optax',
+  },
+  {
+    category: "pr",
+    date: "Jan. '26",
+    description:
+      '<a href="https://github.com/cai4cai/torchsparsegradutils/pull/66">Performance improvements for sparse operations</a> - cai4cai/torchsparsegradutils',
+  },
+  {
+    category: "pr",
+    date: "Jan. '26",
+    description:
+      '<a href="https://github.com/cai4cai/torchsparsegradutils/pull/63">Fix PyTorch version comparison</a> - cai4cai/torchsparsegradutils',
+  },
+  {
+    category: "pr",
+    date: "Dec. '25",
+    description:
+      '<a href="https://github.com/sinelaw/fresh/pull/421">Support for opening multiple files from CLI</a> - sinelaw/fresh',
+  },
+  {
+    category: "pr",
+    date: "Nov. '25",
+    description:
+      '<a href="https://github.com/anomalyco/opentui/pull/253">Fix TerminalConsole.resize parameters</a> - anomalyco/opentui',
+  },
+  {
+    category: "pr",
+    date: "Oct. '25",
+    description:
+      '<a href="https://github.com/lbr-stack/roboreg/pull/88">Fix Kabsch algorithm naming</a> - lbr-stack/roboreg',
+  },
+  {
+    category: "teaching",
+    date: "Oct. '25",
+    description: "Will be supervising the BSc thesis of Yingfan Tao",
+  },
+  {
+    category: "pr",
+    date: "Sept. '25",
+    description:
+      '<a href="https://github.com/BrainLesion/panoptica/pull/234">Setup workflows from voronoi branch</a> - BrainLesion/panoptica',
+  },
+  {
+    category: "pr",
+    date: "Sept. '25",
+    description:
+      '<a href="https://github.com/BrainLesion/panoptica/pull/228">Fix voxelspacing dimension mismatch</a> - BrainLesion/panoptica',
+  },
+  {
+    category: "pr",
+    date: "Jun. '25",
+    description:
+      '<a href="https://github.com/google-deepmind/optax/pull/1366">Add segmentation based (dice) loss</a> - google-deepmind/optax',
+  },
+  {
+    category: "pr",
+    date: "Jun. '25",
+    description:
+      '<a href="https://github.com/google-deepmind/optax/pull/1340">Enable adaptive gradient clipping for high-dim tensors</a> - google-deepmind/optax',
+  },
+  {
+    category: "pr",
+    date: "May. '25",
+    description:
+      '<a href="https://github.com/BrainLesion/panoptica/pull/204">Making Panoptica Part Aware</a> - BrainLesion/panoptica',
+  },
+  {
+    category: "pr",
+    date: "Apr. '25",
+    description:
+      '<a href="https://github.com/BrainLesion/panoptica/pull/196">New Matcher Class: Hungarian Matching</a> - BrainLesion/panoptica',
+  },
+  {
+    category: "pr",
+    date: "Sept. '24",
+    description:
+      '<a href="https://github.com/BrainImageAnalysis/instance-loss/pull/2">Optimised connected components with gradients</a> - BrainImageAnalysis/instance-loss',
+  },
+  {
+    category: "pr",
+    date: "Jan. '23",
+    description:
+      '<a href="https://github.com/ivy-llc/ivy/pull/9963">Added binarizer to experimental API</a> - ivy-llc/ivy',
+  },
+  {
+    category: "teaching",
+    date: "Aug. '25",
+    description:
+      'Hosting 2 High School Interns via the <a href="https://in2scienceuk.org/our-programmes/in2stem/">In2STEM programme</a>.',
+  },
+  {
+    category: "teaching",
+    date: "Jul. '25",
+    description:
+      'Will be hosting <a href="https://www.linkedin.com/in/jeeezzhusss/">Jai</a> and <a href="https://www.linkedin.com/in/pranav-rustagi-8a5a18253/">Pranav</a> from LNMIIT as research interns with Yang.',
+  },
+  {
+    category: "misc",
+    date: "Jun. '25",
+    description:
+      'Starting an internship at <a href="https://cosine.sh/">Cosine</a>. Machine Learning Engineering and Product.',
+  },
+  {
+    category: "publishing",
+    date: "Mar. '25",
+    description:
+      'Released <a href="https://github.com/KCL-BMEIS/UltraFlwr">Ultraflwr</a>. Library for Federated Object Detection on the edge. Now a poster accept @MICCAI-AMAI\'25!',
+  },
+  {
+    category: "teaching",
+    date: "Mar. '25",
+    description:
+      'Graduate TA for Statistics with <a href="https://kclpure.kcl.ac.uk/portal/en/persons/richard.housden">Prof. Richard Housden</a>',
+  },
+  {
+    category: "reviewing",
+    date: "Mar. '25",
+    description: "Reviewing for MICCAI 2025, NeurIPS 2025 and ICML 2025.",
+  },
+  {
+    category: "publishing",
+    date: "Feb. '25",
+    description:
+      '<a href="https://github.com/aymuos15/Promptly-Cited">KneeXNeT</a> accepted to MICAD\'24. Congrats Nicahree!',
+  },
+  {
+    category: "misc",
+    date: "Dec. '24",
+    description: "Passed my Qualifiers. Officially a PhD Student!",
+  },
+  {
+    category: "publishing",
+    date: "Dec. '24",
+    description:
+      '<a href="https://github.com/aymuos15/Cluster-Dice">Cluster Dice</a> accepted at SPIE Medical Imaging\'25.',
+  },
+  {
+    category: "reviewing",
+    date: "Sept '24",
+    description: "Member of Technical Programme Committee for ISBI 2025.",
+  },
+  {
+    category: "reviewing",
+    date: "Sept '24",
+    description: "Reviewing for AISTATS 2025.",
+  },
+  {
+    category: "publishing",
+    date: "Sept '24",
+    description:
+      '<a href="https://github.com/aymuos15/Promptly-Cited">Promptly-Cited</a> accepted at NeurIPS-WiML Workshop.',
+  },
+  {
+    category: "misc",
+    date: "Sept '24",
+    description:
+      '<a href="https://voxel51.com/computer-vision-events/visual-ai-in-healthcare-sept-19-2024/">Talk</a> for Voxel 51 on my current Ph.D. work!',
+  },
+  {
+    category: "teaching",
+    date: "Sept '24",
+    description: "Graduate TA for Research Club - Biomedical Engineering.",
+  },
+  {
+    category: "reviewing",
+    date: "Sept '24",
+    description: "Reviewing for NeurIPS-WiML 2024, ICLR 2024.",
+  },
+  {
+    category: "teaching",
+    date: "Aug. '24",
+    description:
+      'Hosting 2 High School Interns via the <a href="https://in2scienceuk.org/our-programmes/in2stem/">In2STEM programme</a>.',
+  },
+  {
+    category: "reviewing",
+    date: "June '24",
+    description:
+      "Reviewing for NeurIPS, MICCAI-FAIMI, CaPTion@MICCAI, and ICML-ML4MLS 2024.",
+  },
+  {
+    category: "misc",
+    date: "May. '24",
+    description: "Best Student Poster Award Finalist at ISBI'24.",
+  },
+  {
+    category: "publishing",
+    date: "Feb. '24",
+    description:
+      '<a href="https://github.com/aymuos15/SegPatch">SegPatch</a> accepted at ISBI\'24!',
+  },
+  {
+    category: "misc",
+    date: "Jan. '24",
+    description:
+      'Student Representative for the <a href="https://kcl-mrcdtp.com/about/the-team/">KCL MRC DTP</a>.',
+  },
+  {
+    category: "reviewing",
+    date: "Nov. '23",
+    description: "Reviewing for ISBI 2024.",
+  },
+  {
+    category: "misc",
+    date: "Nov. '23",
+    description: "Top 8 Finish at Anthropic-London Hackathon.",
+  },
+  {
+    category: "misc",
+    date: "Oct. '23",
+    description:
+      'Began my alignment on the <a href="https://www.imagingcdt.com/">Smart Imaging CDT</a>.',
+  },
+  {
+    category: "misc",
+    date: "Sept '23",
+    description: "Defended my MSc Thesis and Started my PhD.",
+  },
 ];
 /* eslint-enable quotes */
 
 function renderUpdates(category, resetScroll) {
-    const filtered = category === 'all'
-        ? updates.filter(u => u.category !== 'pr')
-        : updates.filter(u => u.category === category);
-    updatesList.innerHTML = filtered.map((u, i) =>
+  const filtered =
+    category === "all"
+      ? updates.filter((u) => u.category !== "pr")
+      : updates.filter((u) => u.category === category);
+  updatesList.innerHTML = filtered
+    .map(
+      (u, i) =>
         `<div class="update-item" data-category="${u.category}" style="animation-delay: ${i * 30}ms"><span class="update-date">${u.date}</span><span class="update-desc">${u.description}</span></div>`
-    ).join('');
+    )
+    .join("");
 
-    if (resetScroll) {
-        updatesList.scrollTop = 0;
-    }
+  if (resetScroll) {
+    updatesList.scrollTop = 0;
+  }
 }
 
-renderUpdates('all', false);
+renderUpdates("all", false);
 
-const nameLink = document.querySelector('.name-link');
-const pronunciation = document.getElementById('pronunciation');
+const nameLink = document.querySelector(".name-link");
+const pronunciation = document.getElementById("pronunciation");
 // Tab click handlers
 let tabSwitching = false;
+for (const tab of tabs) {
+  tab.addEventListener("click", () => {
+    if (tabSwitching || tab.classList.contains("active")) {
+      return;
+    }
+    tabSwitching = true;
+    for (const t of tabs) {
+      t.classList.remove("active");
+    }
+    tab.classList.add("active");
 
-tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-        if (tabSwitching || tab.classList.contains('active')) return;
-        tabSwitching = true;
+    updatesList.classList.add("fading");
+    hideContribGraph();
+    hideSpotify();
+    window.hideGrainShader?.();
 
-        tabs.forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-
-        updatesList.classList.add('fading');
-        hideContribGraph();
-        hideSpotify();
-        window.hideGrainShader?.();
-
-        setTimeout(() => {
-            renderUpdates(tab.dataset.category, true);
-            updatesList.classList.remove('fading');
-            colorizeLinks();
-            tabSwitching = false;
-            if (tab.dataset.category === 'pr') showContribGraph();
-            if (tab.dataset.category === 'misc') showSpotify();
-            if (tab.dataset.category === 'reviewing') window.showGrainShader?.();
-        }, 300);
-    });
-});
+    setTimeout(() => {
+      renderUpdates(tab.dataset.category, true);
+      updatesList.classList.remove("fading");
+      colorizeLinks();
+      tabSwitching = false;
+      if (tab.dataset.category === "pr") {
+        showContribGraph();
+      }
+      if (tab.dataset.category === "misc") {
+        showSpotify();
+      }
+      if (tab.dataset.category === "reviewing") {
+        window.showGrainShader?.();
+      }
+    }, 300);
+  });
+}
 
 // Name click - toggle pronunciation + run the Typer reveal on the name
-const nameTyper = new window.Typer(nameLink.querySelector('.name-text'), {
-    fps: 24,
-    cycles: 3,
-    initVisible: true,
+const nameTyper = new window.Typer(nameLink.querySelector(".name-text"), {
+  cycles: 3,
+  fps: 24,
+  initVisible: true,
 });
-nameLink.addEventListener('click', () => {
-    nameLink.classList.toggle('show-photo');
-    pronunciation.classList.toggle('visible');
-    nameTyper.in();
-    colorizeRandomLetters(pronunciation, 0.4);
+nameLink.addEventListener("click", () => {
+  nameLink.classList.toggle("show-photo");
+  pronunciation.classList.toggle("visible");
+  nameTyper.in();
+  colorizeRandomLetters(pronunciation, 0.4);
 });

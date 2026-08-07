@@ -1,0 +1,53 @@
+{
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "extends": ["ultracite/biome/core"],
+  "javascript": {
+    // The site's src/js files are classic <script> tags sharing one global
+    // scope, so cross-file helpers/elements are legitimately global.
+    "globals": [
+      "Bun",
+      "niivue",
+      "_renderCanvas",
+      "buildMicroblogDiagramDCN",
+      "buildWorktreeDiagram",
+      "colorizeLinks",
+      "colorizeRandomLetters",
+      "contribCanvas",
+      "contribGraph",
+      "contribTip",
+      "hideContribGraph",
+      "hideSpotify",
+      "highlightSocials",
+      "microblogEntries",
+      "renderMicroblogList",
+      "renderMicroblogTags",
+      "showContribGraph",
+      "showSpotify",
+      "tabs",
+      "updateFooterRainbow",
+      "updatesList"
+    ]
+  },
+  "overrides": [
+    {
+      "includes": ["src/js/**/*.js", "src/microblogs/**/*.js"],
+      "linter": {
+        "rules": {
+          "complexity": {
+            // The canvas render loops and SVG builders are long by nature;
+            // splitting a per-frame hot path to satisfy a metric would cost
+            // more than it buys.
+            "noExcessiveCognitiveComplexity": "off"
+          },
+          // Declarations here are consumed by sibling <script> files through
+          // the shared global scope, so per-file unused detection misfires.
+          "correctness": { "noUnusedVariables": "off" },
+          "performance": {
+            // `import * as THREE` is the documented three.js entry point.
+            "noNamespaceImport": "off"
+          }
+        }
+      }
+    }
+  ]
+}

@@ -2,39 +2,38 @@
   "name": "aymuos15.github.io",
   "version": "1.0.0",
   "description": "This is me.",
-  "type": "module",
-  "packageManager": "bun@1.2.22",
-  "scripts": {
-    "dev": "bun run dev-server.js",
-    "lint": "bun run lint:js && bun run lint:css && bun run lint:html",
-    "lint:js": "eslint dev-server.js \"src/js/**/*.js\" \"src/microblogs/**/*.js\"",
-    "lint:css": "stylelint \"src/styles/**/*.css\"",
-    "lint:html": "htmlhint src/index.html",
-    "lint:fix": "eslint dev-server.js \"src/js/**/*.js\" \"src/microblogs/**/*.js\" --fix && stylelint \"src/styles/**/*.css\" --fix",
-    "prepare": "husky"
-  },
-  "lint-staged": {
-    "*.js": "eslint --fix",
-    "*.css": "stylelint --fix",
-    "*.html": "htmlhint"
+  "keywords": [],
+  "homepage": "https://github.com/aymuos15/aymuos15.github.io#readme",
+  "bugs": {
+    "url": "https://github.com/aymuos15/aymuos15.github.io/issues"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/aymuos15/aymuos15.github.io.git"
   },
-  "keywords": [],
-  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/aymuos15/aymuos15.github.io/issues"
+  "author": "",
+  "type": "module",
+  "scripts": {
+    "check": "ultracite check",
+    "dev": "bun run dev-server.js",
+    "fix": "ultracite fix",
+    "lint": "bun run lint:code && bun run lint:html",
+    "lint:code": "ultracite check",
+    "lint:fix": "ultracite fix",
+    "lint:html": "htmlhint src/index.html",
+    "prepare": "husky"
   },
-  "homepage": "https://github.com/aymuos15/aymuos15.github.io#readme",
+  "lint-staged": {
+    "*.{js,css,json,jsonc}": "ultracite fix",
+    "*.html": "htmlhint"
+  },
   "devDependencies": {
-    "eslint": "^9.39.2",
+    "@biomejs/biome": "2.5.6",
     "htmlhint": "^1.8.0",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.7",
-    "stylelint": "^16.26.1",
-    "stylelint-config-standard": "^39.0.1"
-  }
+    "ultracite": "7.10.1"
+  },
+  "packageManager": "bun@1.2.22"
 }

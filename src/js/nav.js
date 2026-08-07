@@ -1,84 +1,97 @@
-/* eslint-disable no-undef */
 // Cached DOM references
-const navLinksContainer = document.querySelector('.nav-links');
-const navLinks = document.querySelectorAll('.nav-links a');
-const navToggle = document.querySelector('.nav-toggle');
-const updatesList = document.getElementById('updates-list');
-const tabs = document.querySelectorAll('.tab');
-const contribGraph  = document.getElementById('contrib-graph');
-const contribCanvas = document.getElementById('contrib-canvas');
-const contribTip    = document.getElementById('contrib-tip');
+const navLinksContainer = document.querySelector(".nav-links");
+const navLinks = document.querySelectorAll(".nav-links a");
+const navToggle = document.querySelector(".nav-toggle");
+const updatesList = document.getElementById("updates-list");
+const tabs = document.querySelectorAll(".tab");
+const contribGraph = document.getElementById("contrib-graph");
+const contribCanvas = document.getElementById("contrib-canvas");
+const contribTip = document.getElementById("contrib-tip");
 
 // Mobile nav dropdown
-navToggle.addEventListener('click', () => {
-    navLinksContainer.classList.toggle('open');
+navToggle.addEventListener("click", () => {
+  navLinksContainer.classList.toggle("open");
 });
 
-document.addEventListener('click', (e) => {
-    // Keep the dropdown open when toggling the theme, so the tile-field menu
-    // doesn't get dismissed mid-look on a light/dark switch.
-    if (
-        !navLinksContainer.contains(e.target) &&
-        !navToggle.contains(e.target) &&
-        !e.target.closest('.theme-toggle')
-    ) {
-        navLinksContainer.classList.remove('open');
-    }
+document.addEventListener("click", (e) => {
+  // Keep the dropdown open when toggling the theme, so the tile-field menu
+  // doesn't get dismissed mid-look on a light/dark switch.
+  if (
+    !(
+      navLinksContainer.contains(e.target) ||
+      navToggle.contains(e.target) ||
+      e.target.closest(".theme-toggle")
+    )
+  ) {
+    navLinksContainer.classList.remove("open");
+  }
 });
 
-const spotifyEmbed = document.getElementById('spotify-embed');
-function showSpotify() { spotifyEmbed.classList.add('visible'); }
-function hideSpotify() { spotifyEmbed.classList.remove('visible'); }
+const spotifyEmbed = document.getElementById("spotify-embed");
+function showSpotify() {
+  spotifyEmbed.classList.add("visible");
+}
+function hideSpotify() {
+  spotifyEmbed.classList.remove("visible");
+}
 
 // Section switching
 let isTransitioning = false;
 
 function switchSection(targetId) {
-    if (isTransitioning) return;
+  if (isTransitioning) {
+    return;
+  }
 
-    const current = document.querySelector('.section.active');
-    const next = document.getElementById(targetId);
+  const current = document.querySelector(".section.active");
+  const next = document.getElementById(targetId);
 
-    if (!next || current === next) return;
+  if (!next || current === next) {
+    return;
+  }
 
-    isTransitioning = true;
+  isTransitioning = true;
+  for (const a of navLinks) {
+    a.classList.remove("active");
+  }
+  const navLink = document.querySelector(`.nav-links a[href="#${targetId}"]`);
+  if (navLink) {
+    navLink.classList.add("active");
+  }
 
-    navLinks.forEach(a => a.classList.remove('active'));
-    const navLink = document.querySelector(`.nav-links a[href="#${targetId}"]`);
-    if (navLink) navLink.classList.add('active');
+  current.classList.remove("active");
+  current.classList.add("leaving");
 
-    current.classList.remove('active');
-    current.classList.add('leaving');
+  // Expose the active section on <html> so CSS/JS (e.g. the Research
+  // theme-scatter ornament) can react to which section is showing.
+  document.documentElement.setAttribute("data-section", targetId);
 
-    // Expose the active section on <html> so CSS/JS (e.g. the Research
-    // theme-scatter ornament) can react to which section is showing.
-    document.documentElement.setAttribute('data-section', targetId);
+  highlightSocials(targetId);
+  updateFooterRainbow(targetId);
 
-    highlightSocials(targetId);
-    updateFooterRainbow(targetId);
+  // Let the auto-hide chrome re-show the header/footer on a page switch.
+  document.dispatchEvent(
+    new CustomEvent("sectionchange", { detail: { targetId } })
+  );
 
-    // Let the auto-hide chrome re-show the header/footer on a page switch.
-    document.dispatchEvent(new CustomEvent('sectionchange', { detail: { targetId } }));
-
-    setTimeout(() => {
-        current.classList.remove('leaving');
-        next.classList.add('active');
-        isTransitioning = false;
-        colorizeLinks();
-    }, 300);
+  setTimeout(() => {
+    current.classList.remove("leaving");
+    next.classList.add("active");
+    isTransitioning = false;
+    colorizeLinks();
+  }, 300);
 }
 
 // Reflect the initial active section on <html> at load.
-const initialSection = document.querySelector('.section.active');
+const initialSection = document.querySelector(".section.active");
 if (initialSection) {
-    document.documentElement.setAttribute('data-section', initialSection.id);
+  document.documentElement.setAttribute("data-section", initialSection.id);
 }
-
-navLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-        e.preventDefault();
-        navLinksContainer.classList.remove('open');
-        const targetId = link.getAttribute('href').slice(1);
-        switchSection(targetId);
-    });
-});
+for (const link of navLinks) {
+  link.addEventListener("click", (e) => {
+    e.preventDefault();
+    navLinksContainer.classList.remove("open");
+    const targetId = link.getAttribute("href").slice(1);
+    switchSection(targetId);
+  });
+}

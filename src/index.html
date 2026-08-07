@@ -1,245 +1,636 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Soumya Snigdha Kundu</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles/main.css">
-</head>
-<body>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    >
+    <link href="styles/main.css" rel="stylesheet">
+  </head>
+  <body>
     <nav class="header">
-        <button class="theme-toggle" aria-label="Toggle theme">
-            <svg class="icon-sun" viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
-                <path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58a.996.996 0 00-1.41 0 .996.996 0 000 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37a.996.996 0 00-1.41 0 .996.996 0 000 1.41l1.06 1.06c.39.39 1.03.39 1.41 0a.996.996 0 000-1.41l-1.06-1.06zm1.06-10.96a.996.996 0 000-1.41.996.996 0 00-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36a.996.996 0 000-1.41.996.996 0 00-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"/>
-            </svg>
-            <svg class="icon-moon" viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
-                <path d="M12 3a9 9 0 109 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 01-4.4 2.26 5.403 5.403 0 01-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"/>
-            </svg>
-            <canvas class="theme-scatter" width="64" height="64" aria-hidden="true"></canvas>
-            <canvas class="theme-earth" width="72" height="72" aria-hidden="true"></canvas>
-        </button>
-        <div class="social-links">
-            <a href="https://x.com/aymuosk" target="_blank" aria-label="X" data-social="x">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                </svg>
-            </a>
-            <a href="https://github.com/aymuos15" target="_blank" aria-label="GitHub" data-social="github">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-                    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-                </svg>
-            </a>
-            <a href="https://scholar.google.com/citations?user=WmHtKBYAAAAJ&hl=en" target="_blank" aria-label="Google Scholar" data-social="scholar">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-                    <path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/>
-                </svg>
-            </a>
-            <a href="https://www.linkedin.com/in/soumyaskundu/" target="_blank" aria-label="LinkedIn" data-social="linkedin">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                </svg>
-            </a>
-            <a href="https://discuss.pytorch.org/u/soumya_kundu/summary" target="_blank" aria-label="PyTorch Forum" data-social="pytorch">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-                    <path d="M12.005 0L4.952 7.053a9.865 9.865 0 000 14.022 9.866 9.866 0 0014.022 0c3.984-3.9 3.986-10.205.085-14.023l-1.744 1.743c2.904 2.905 2.904 7.634 0 10.538s-7.634 2.904-10.538 0-2.904-7.634 0-10.538l4.647-4.646.582-.665zm3.568 4.142a1.467 1.467 0 10-.001 2.935 1.467 1.467 0 00.001-2.935z"/>
-                </svg>
-            </a>
-        </div>
-        <button class="nav-toggle" aria-label="Menu">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-                <path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/>
-            </svg>
-        </button>
-        <div class="nav-links">
-            <a href="#home" class="active">Home</a>
-            <a href="#about">About</a>
-            <a href="#research">Research</a>
-            <a href="#news">News</a>
-            <a href="#microblog">Microblog</a>
-            <a href="#gallery">Gallery</a>
-        </div>
+      <button aria-label="Toggle theme" class="theme-toggle" type="button">
+        <svg
+          aria-hidden="true"
+          class="icon-sun"
+          fill="currentColor"
+          height="14"
+          viewBox="0 0 24 24"
+          width="14"
+        >
+          <path
+            d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58a.996.996 0 00-1.41 0 .996.996 0 000 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37a.996.996 0 00-1.41 0 .996.996 0 000 1.41l1.06 1.06c.39.39 1.03.39 1.41 0a.996.996 0 000-1.41l-1.06-1.06zm1.06-10.96a.996.996 0 000-1.41.996.996 0 00-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36a.996.996 0 000-1.41.996.996 0 00-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"
+          />
+        </svg>
+        <svg
+          aria-hidden="true"
+          class="icon-moon"
+          fill="currentColor"
+          height="14"
+          viewBox="0 0 24 24"
+          width="14"
+        >
+          <path
+            d="M12 3a9 9 0 109 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 01-4.4 2.26 5.403 5.403 0 01-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"
+          />
+        </svg>
+        <canvas
+          aria-hidden="true"
+          class="theme-scatter"
+          height="64"
+          width="64"
+        ></canvas>
+        <canvas
+          aria-hidden="true"
+          class="theme-earth"
+          height="72"
+          width="72"
+        ></canvas>
+      </button>
+      <div class="social-links">
+        <a
+          aria-label="X"
+          data-social="x"
+          href="https://x.com/aymuosk"
+          target="_blank"
+        >
+          <svg
+            aria-hidden="true"
+            fill="currentColor"
+            height="16"
+            viewBox="0 0 24 24"
+            width="16"
+          >
+            <path
+              d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+            />
+          </svg>
+        </a>
+        <a
+          aria-label="GitHub"
+          data-social="github"
+          href="https://github.com/aymuos15"
+          target="_blank"
+        >
+          <svg
+            aria-hidden="true"
+            fill="currentColor"
+            height="16"
+            viewBox="0 0 24 24"
+            width="16"
+          >
+            <path
+              d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
+            />
+          </svg>
+        </a>
+        <a
+          aria-label="Google Scholar"
+          data-social="scholar"
+          href="https://scholar.google.com/citations?user=WmHtKBYAAAAJ&hl=en"
+          target="_blank"
+        >
+          <svg
+            aria-hidden="true"
+            fill="currentColor"
+            height="16"
+            viewBox="0 0 24 24"
+            width="16"
+          >
+            <path
+              d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"
+            />
+          </svg>
+        </a>
+        <a
+          aria-label="LinkedIn"
+          data-social="linkedin"
+          href="https://www.linkedin.com/in/soumyaskundu/"
+          target="_blank"
+        >
+          <svg
+            aria-hidden="true"
+            fill="currentColor"
+            height="16"
+            viewBox="0 0 24 24"
+            width="16"
+          >
+            <path
+              d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+            />
+          </svg>
+        </a>
+        <a
+          aria-label="PyTorch Forum"
+          data-social="pytorch"
+          href="https://discuss.pytorch.org/u/soumya_kundu/summary"
+          target="_blank"
+        >
+          <svg
+            aria-hidden="true"
+            fill="currentColor"
+            height="16"
+            viewBox="0 0 24 24"
+            width="16"
+          >
+            <path
+              d="M12.005 0L4.952 7.053a9.865 9.865 0 000 14.022 9.866 9.866 0 0014.022 0c3.984-3.9 3.986-10.205.085-14.023l-1.744 1.743c2.904 2.905 2.904 7.634 0 10.538s-7.634 2.904-10.538 0-2.904-7.634 0-10.538l4.647-4.646.582-.665zm3.568 4.142a1.467 1.467 0 10-.001 2.935 1.467 1.467 0 00.001-2.935z"
+            />
+          </svg>
+        </a>
+      </div>
+      <button aria-label="Menu" class="nav-toggle" type="button">
+        <svg
+          aria-hidden="true"
+          fill="currentColor"
+          height="16"
+          viewBox="0 0 24 24"
+          width="16"
+        >
+          <path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z" />
+        </svg>
+      </button>
+      <div class="nav-links">
+        <a class="active" href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#research">Research</a>
+        <a href="#news">News</a>
+        <a href="#microblog">Microblog</a>
+        <a href="#gallery">Gallery</a>
+      </div>
     </nav>
 
     <main>
-        <section id="home" class="section active">
-            <h1 class="name-link"><img class="name-photo" src="assets/me.jpg" alt="Soumya Snigdha Kundu"><span class="name-text" data-typer>Soumya Snigdha Kundu</span></h1>
-            <p class="pronunciation" id="pronunciation">(Shou-mo Snigh-dho Kun-du)</p>
-            <p>3<sup>rd</sup> Year Ph.D. working on Deep Learning at <a href="https://cai4cai.ml/" target="_blank"><img class="inline-logo" src="assets/logos/kcl.png" alt="">KCL</a> advised by <a href="https://cai4cai.ml/author/tom-vercauteren/" target="_blank">Tom Vercauteren</a> and <a href="https://cai4cai.ml/author/jonathan-shapey/" target="_blank">Jonathan Shapey</a>. I am funded by the <img class="inline-logo" src="assets/logos/mrc.png" alt="">Medical Research Council.</p>
-            <p>Recently, I've collaborated with <a href="https://reubendo.github.io/" target="_blank">Reuben Dorent</a> at <img class="inline-logo" src="assets/logos/inria.png" alt="">Inria and <a href="https://hertie.ai/independent-research-groups/team/members/florian-kofler" target="_blank">Florian Kofler</a> at <img class="inline-logo" src="assets/logos/tubingen.png" alt="">Tübingen. Previously, I've worked with <a href="https://www.bdi.ox.ac.uk/Team/bartek-papiez" target="_blank">Bartek Papiez</a> at <img class="inline-logo" src="assets/logos/oxford.png" alt="">Oxford, <a href="https://pdeperio.github.io/" target="_blank">Patrick de Perio</a> and <a href="https://triumf.ca/people/akira-konaka/" target="_blank">Akira Konaka</a> at <img class="inline-logo" src="assets/logos/triumf.png" alt="">TRIUMF-Canada and <a href="https://civil.iitr.ac.in/CE?Uid=tarun.gangwar" target="_blank">Tarun Gangwar</a> at <img class="inline-logo" src="assets/logos/iitgn.png" alt="">IIT-GN.</p>
-            <p>I love software. I've interned with <a href="https://cosine.sh/" target="_blank"><img class="inline-logo" src="assets/logos/cosine.png" alt="">Cosine (YC 23)</a> and did <a href="https://summerofcode.withgoogle.com/" target="_blank"><img class="inline-logo" src="assets/logos/gsoc.png" alt="">GSoC</a>'26 with the <a href="https://github.com/neuroinformatics-unit/" target="_blank"><img class="inline-logo" src="assets/logos/niu.png" alt="">Neuroinformatics Unit</a>.</p>
-        </section>
+      <section class="section active" id="home">
+        <h1 class="name-link">
+          <img
+            alt="Soumya Snigdha Kundu"
+            class="name-photo"
+            src="assets/me.jpg"
+          ><span class="name-text" data-typer>Soumya Snigdha Kundu</span>
+        </h1>
+        <p class="pronunciation" id="pronunciation">
+          (Shou-mo Snigh-dho Kun-du)
+        </p>
+        <p>
+          3<sup>rd</sup>
+          Year Ph.D. working on Deep Learning at
+          <a href="https://cai4cai.ml/" target="_blank"
+            ><img alt="" class="inline-logo" src="assets/logos/kcl.png">KCL</a
+          >
+          advised by
+          <a href="https://cai4cai.ml/author/tom-vercauteren/" target="_blank"
+            >Tom Vercauteren</a
+          >
+          and
+          <a href="https://cai4cai.ml/author/jonathan-shapey/" target="_blank"
+            >Jonathan Shapey</a
+          >. I am funded by the
+          <img alt="" class="inline-logo" src="assets/logos/mrc.png">Medical
+          Research Council.
+        </p>
+        <p>
+          Recently, I've collaborated with
+          <a href="https://reubendo.github.io/" target="_blank"
+            >Reuben Dorent</a
+          >
+          at <img alt="" class="inline-logo" src="assets/logos/inria.png">Inria
+          and
+          <a
+            href="https://hertie.ai/independent-research-groups/team/members/florian-kofler"
+            target="_blank"
+            >Florian Kofler</a
+          >
+          at
+          <img
+            alt=""
+            class="inline-logo"
+            src="assets/logos/tubingen.png"
+          >Tübingen. Previously, I've worked with
+          <a href="https://www.bdi.ox.ac.uk/Team/bartek-papiez" target="_blank"
+            >Bartek Papiez</a
+          >
+          at
+          <img alt="" class="inline-logo" src="assets/logos/oxford.png">Oxford,
+          <a href="https://pdeperio.github.io/" target="_blank"
+            >Patrick de Perio</a
+          >
+          and
+          <a href="https://triumf.ca/people/akira-konaka/" target="_blank"
+            >Akira Konaka</a
+          >
+          at
+          <img
+            alt=""
+            class="inline-logo"
+            src="assets/logos/triumf.png"
+          >TRIUMF-Canada and
+          <a
+            href="https://civil.iitr.ac.in/CE?Uid=tarun.gangwar"
+            target="_blank"
+            >Tarun Gangwar</a
+          >
+          at
+          <img alt="" class="inline-logo" src="assets/logos/iitgn.png">IIT-GN.
+        </p>
+        <p>
+          I love software. I've interned with
+          <a href="https://cosine.sh/" target="_blank"
+            ><img
+              alt=""
+              class="inline-logo"
+              src="assets/logos/cosine.png"
+            >Cosine (YC 23)</a
+          >
+          and did
+          <a href="https://summerofcode.withgoogle.com/" target="_blank"
+            ><img alt="" class="inline-logo" src="assets/logos/gsoc.png">GSoC</a
+          >'26 with the
+          <a href="https://github.com/neuroinformatics-unit/" target="_blank"
+            ><img
+              alt=""
+              class="inline-logo"
+              src="assets/logos/niu.png"
+            >Neuroinformatics Unit</a
+          >.
+        </p>
+      </section>
 
-        <section id="about" class="section">
-            <div class="about-accordion" id="about-accordion">
-                <div class="about-row">
-                    <div class="about-row__dither" aria-hidden="true"></div>
-                    <button class="about-row__head" aria-expanded="false" aria-controls="about-panel-1">
-                        <span class="about-row__num">1</span>
-                        <span class="about-row__title">Past Advisors</span>
-                    </button>
-                    <div class="about-row__panel" id="about-panel-1">
-                        <div class="about-row__body">
-                            <p>My MSc was with <a href="https://webspace.eecs.qmul.ac.uk/g.slabaugh/" target="_blank">Greg Slabaugh</a> and Vineet Batta at QMUL. Did my UG with <a href="https://www.srmist.edu.in/faculty/dr-s-dhanalakshmi/" target="_blank">Dhanalakshmi Samiappan</a> and <a href="https://nitdgp.ac.in/department/computer-science-engineering/faculty-1/debashis-nandi" target="_blank">Debashis Nandi</a> (NIT-D) at SRM.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="about-row">
-                    <div class="about-row__dither" aria-hidden="true"></div>
-                    <button class="about-row__head" aria-expanded="false" aria-controls="about-panel-2">
-                        <span class="about-row__num">2</span>
-                        <span class="about-row__title">Hobbies</span>
-                    </button>
-                    <div class="about-row__panel" id="about-panel-2">
-                        <div class="about-row__body">
-                            <p>I am always exploring London's food scene or breaking down complex rhyme schemes in rap. In school, I represented my country in futsal and debated nationally.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="about-row">
-                    <div class="about-row__dither" aria-hidden="true"></div>
-                    <button class="about-row__head" aria-expanded="false" aria-controls="about-panel-3">
-                        <span class="about-row__num">3</span>
-                        <span class="about-row__title">Mentorship</span>
-                    </button>
-                    <div class="about-row__panel" id="about-panel-3">
-                        <div class="about-row__body">
-                            <p>I regularly mentor students (see In2Stem!) and researchers. Please reach out!</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="about-row">
-                    <div class="about-row__dither" aria-hidden="true"></div>
-                    <button class="about-row__head" aria-expanded="false" aria-controls="about-panel-4">
-                        <span class="about-row__num">4</span>
-                        <span class="about-row__title">Support System</span>
-                    </button>
-                    <div class="about-row__panel" id="about-panel-4">
-                        <div class="about-row__body">
-                            <p>Many have supported my research. In no particular order, everyone at CAI4CAI: <a href="https://cai4cai.ml/author/lorena-garcia-foncillas-macias/" target="_blank">Lorena Macias</a>, <a href="https://cai4cai.ml/author/meng-wei/" target="_blank">Meng Wei</a>, <a href="https://cai4cai.ml/author/theo-barfoot/" target="_blank">Theo Barfoot</a>, <a href="https://cai4cai.ml/author/aaron-kujawa/" target="_blank">Aaron Kujawa</a>, <a href="https://cai4cai.ml/author/marina-ivory/" target="_blank">Marina Ivory</a>, <a href="https://cai4cai.ml/author/navodini-wijethilake/" target="_blank">Navodini Wijethilake</a>, <a href="https://cai4cai.ml/author/oluwatosin-alabi/" target="_blank">Oluwatosin Alabi</a> and <a href="https://cai4cai.ml/author/martin-huber/" target="_blank">Martin Huber</a>. Along with: <a href="https://www.linkedin.com/in/pooja-ganesh-alpha/" target="_blank">Pooja Ganesh</a> (SEL), <a href="https://www.kcl.ac.uk/people/treasa-jiang" target="_blank">Treasa Jiang</a> (KCL), <a href="https://hertie.ai/independent-research-groups/team/members/florian-kofler" target="_blank">Florian Kofler</a> (TUM), <a href="https://www.linkedin.com/in/rakshit-naidu-8b3431166/" target="_blank">Rakshit Naidu</a> (GaTech), <a href="https://uk.linkedin.com/in/aarsh-chaube-568b901b2" target="_blank">Aarsh Chaube</a> (Edinburgh), <a href="https://www.linkedin.com/in/mona-furukawa-1043b916a/" target="_blank">Mona Furukawa</a> (Oxford), <a href="https://uk.linkedin.com/in/yang-li-5b94b2175" target="_blank">Yang Li</a> (KCL), and <a href="https://uk.linkedin.com/in/ruoyang-liu-57a321163" target="_blank">Ruoyang Liu</a> (KCL).</p>
-                        </div>
-                    </div>
-                </div>
+      <section class="section" id="about">
+        <div class="about-accordion" id="about-accordion">
+          <div class="about-row">
+            <div aria-hidden="true" class="about-row__dither"></div>
+            <button
+              aria-controls="about-panel-1"
+              aria-expanded="false"
+              class="about-row__head"
+              type="button"
+            >
+              <span class="about-row__num">1</span>
+              <span class="about-row__title">Past Advisors</span>
+            </button>
+            <div class="about-row__panel" id="about-panel-1">
+              <div class="about-row__body">
+                <p>
+                  My MSc was with
+                  <a
+                    href="https://webspace.eecs.qmul.ac.uk/g.slabaugh/"
+                    target="_blank"
+                    >Greg Slabaugh</a
+                  >
+                  and Vineet Batta at QMUL. Did my UG with
+                  <a
+                    href="https://www.srmist.edu.in/faculty/dr-s-dhanalakshmi/"
+                    target="_blank"
+                    >Dhanalakshmi Samiappan</a
+                  >
+                  and
+                  <a
+                    href="https://nitdgp.ac.in/department/computer-science-engineering/faculty-1/debashis-nandi"
+                    target="_blank"
+                    >Debashis Nandi</a
+                  >
+                  (NIT-D) at SRM.
+                </p>
+              </div>
             </div>
-        </section>
+          </div>
+          <div class="about-row">
+            <div aria-hidden="true" class="about-row__dither"></div>
+            <button
+              aria-controls="about-panel-2"
+              aria-expanded="false"
+              class="about-row__head"
+              type="button"
+            >
+              <span class="about-row__num">2</span>
+              <span class="about-row__title">Hobbies</span>
+            </button>
+            <div class="about-row__panel" id="about-panel-2">
+              <div class="about-row__body">
+                <p>
+                  I am always exploring London's food scene or breaking down
+                  complex rhyme schemes in rap. In school, I represented my
+                  country in futsal and debated nationally.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="about-row">
+            <div aria-hidden="true" class="about-row__dither"></div>
+            <button
+              aria-controls="about-panel-3"
+              aria-expanded="false"
+              class="about-row__head"
+              type="button"
+            >
+              <span class="about-row__num">3</span>
+              <span class="about-row__title">Mentorship</span>
+            </button>
+            <div class="about-row__panel" id="about-panel-3">
+              <div class="about-row__body">
+                <p>
+                  I regularly mentor students (see In2Stem!) and researchers.
+                  Please reach out!
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="about-row">
+            <div aria-hidden="true" class="about-row__dither"></div>
+            <button
+              aria-controls="about-panel-4"
+              aria-expanded="false"
+              class="about-row__head"
+              type="button"
+            >
+              <span class="about-row__num">4</span>
+              <span class="about-row__title">Support System</span>
+            </button>
+            <div class="about-row__panel" id="about-panel-4">
+              <div class="about-row__body">
+                <p>
+                  Many have supported my research. In no particular order,
+                  everyone at CAI4CAI:
+                  <a
+                    href="https://cai4cai.ml/author/lorena-garcia-foncillas-macias/"
+                    target="_blank"
+                    >Lorena Macias</a
+                  >,
+                  <a href="https://cai4cai.ml/author/meng-wei/" target="_blank"
+                    >Meng Wei</a
+                  >,
+                  <a
+                    href="https://cai4cai.ml/author/theo-barfoot/"
+                    target="_blank"
+                    >Theo Barfoot</a
+                  >,
+                  <a
+                    href="https://cai4cai.ml/author/aaron-kujawa/"
+                    target="_blank"
+                    >Aaron Kujawa</a
+                  >,
+                  <a
+                    href="https://cai4cai.ml/author/marina-ivory/"
+                    target="_blank"
+                    >Marina Ivory</a
+                  >,
+                  <a
+                    href="https://cai4cai.ml/author/navodini-wijethilake/"
+                    target="_blank"
+                    >Navodini Wijethilake</a
+                  >,
+                  <a
+                    href="https://cai4cai.ml/author/oluwatosin-alabi/"
+                    target="_blank"
+                    >Oluwatosin Alabi</a
+                  >
+                  and
+                  <a
+                    href="https://cai4cai.ml/author/martin-huber/"
+                    target="_blank"
+                    >Martin Huber</a
+                  >. Along with:
+                  <a
+                    href="https://www.linkedin.com/in/pooja-ganesh-alpha/"
+                    target="_blank"
+                    >Pooja Ganesh</a
+                  >
+                  (SEL),
+                  <a
+                    href="https://www.kcl.ac.uk/people/treasa-jiang"
+                    target="_blank"
+                    >Treasa Jiang</a
+                  >
+                  (KCL),
+                  <a
+                    href="https://hertie.ai/independent-research-groups/team/members/florian-kofler"
+                    target="_blank"
+                    >Florian Kofler</a
+                  >
+                  (TUM),
+                  <a
+                    href="https://www.linkedin.com/in/rakshit-naidu-8b3431166/"
+                    target="_blank"
+                    >Rakshit Naidu</a
+                  >
+                  (GaTech),
+                  <a
+                    href="https://uk.linkedin.com/in/aarsh-chaube-568b901b2"
+                    target="_blank"
+                    >Aarsh Chaube</a
+                  >
+                  (Edinburgh),
+                  <a
+                    href="https://www.linkedin.com/in/mona-furukawa-1043b916a/"
+                    target="_blank"
+                    >Mona Furukawa</a
+                  >
+                  (Oxford),
+                  <a
+                    href="https://uk.linkedin.com/in/yang-li-5b94b2175"
+                    target="_blank"
+                    >Yang Li</a
+                  >
+                  (KCL), and
+                  <a
+                    href="https://uk.linkedin.com/in/ruoyang-liu-57a321163"
+                    target="_blank"
+                    >Ruoyang Liu</a
+                  >
+                  (KCL).
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-        <section id="research" class="section">
-            <p class="research-lead">My PhD is on segmentation at all granularities, applied to Neuro-Oncology.</p>
-            <div class="research-deck" id="research-deck"></div>
+      <section class="section" id="research">
+        <p class="research-lead">
+          My PhD is on segmentation at all granularities, applied to
+          Neuro-Oncology.
+        </p>
+        <div class="research-deck" id="research-deck"></div>
 
-            <!-- Live interactive nodes are parked here and reparented into a modal on open -->
-            <div class="research-interactives" id="research-interactives" aria-hidden="true">
-                <div class="niivue-viewer" id="niivue-viewer">
-                    <div class="niivue-controls">
-                        <label class="niivue-select">
-                            <span>Modality</span>
-                            <select id="nv-modality">
-                                <option value="t1c" selected>T1c</option>
-                                <option value="t1n">T1n</option>
-                                <option value="t2f">T2f</option>
-                                <option value="t2w">T2w</option>
-                            </select>
-                        </label>
-                        <label class="niivue-select">
-                            <span>View</span>
-                            <select id="nv-view">
-                                <option value="axial" selected>Axial</option>
-                                <option value="coronal">Coronal</option>
-                                <option value="sagittal">Sagittal</option>
-                                <option value="multi">Multi</option>
-                            </select>
-                        </label>
-                    </div>
-                    <div class="niivue-cell"><canvas id="nv-canvas" width="800" height="500"></canvas></div>
-                </div>
+        <!-- Live interactive nodes are parked here and reparented into a modal on open -->
+        <div
+          aria-hidden="true"
+          class="research-interactives"
+          id="research-interactives"
+        >
+          <div class="niivue-viewer" id="niivue-viewer">
+            <div class="niivue-controls">
+              <label class="niivue-select">
+                <span>Modality</span>
+                <select id="nv-modality">
+                  <option selected value="t1c">T1c</option>
+                  <option value="t1n">T1n</option>
+                  <option value="t2f">T2f</option>
+                  <option value="t2w">T2w</option>
+                </select>
+              </label>
+              <label class="niivue-select">
+                <span>View</span>
+                <select id="nv-view">
+                  <option selected value="axial">Axial</option>
+                  <option value="coronal">Coronal</option>
+                  <option value="sagittal">Sagittal</option>
+                  <option value="multi">Multi</option>
+                </select>
+              </label>
             </div>
-        </section>
+            <div class="niivue-cell">
+              <canvas height="500" id="nv-canvas" width="800"></canvas>
+            </div>
+          </div>
+        </div>
+      </section>
 
-        <section id="news" class="section">
-            <div class="tabs">
-                <button class="tab active" data-category="all">All</button>
-                <button class="tab" data-category="publishing">Papers</button>
-                <button class="tab" data-category="teaching">TA</button>
-                <button class="tab" data-category="reviewing">Reviews</button>
-                <button class="tab" data-category="pr">PRs</button>
-                <button class="tab" data-category="misc">Misc</button>
-            </div>
-            <div class="updates-wrap">
-                <div class="grain-shader" id="grain-shader">
-                    <div class="grain-shader__inner" id="grain-shader-mount"></div>
-                </div>
-                <div class="updates-list" id="updates-list"></div>
-            </div>
-            <div class="spotify-embed" id="spotify-embed">
-                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/19bQiwEKhXUBJWY6oV3KZk?utm_source=generator&theme=0" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="eager"></iframe>
-            </div>
-            <div class="contrib-graph" id="contrib-graph">
-                <div class="contrib-graph__inner">
-                    <canvas id="contrib-canvas" aria-label="GitHub contributions"></canvas>
-                </div>
-            </div>
-            <div class="contrib-tip" id="contrib-tip"></div>
-        </section>
+      <section class="section" id="news">
+        <div class="tabs">
+          <button class="tab active" data-category="all" type="button">
+            All
+          </button>
+          <button class="tab" data-category="publishing" type="button">
+            Papers
+          </button>
+          <button class="tab" data-category="teaching" type="button">TA</button>
+          <button class="tab" data-category="reviewing" type="button">
+            Reviews
+          </button>
+          <button class="tab" data-category="pr" type="button">PRs</button>
+          <button class="tab" data-category="misc" type="button">Misc</button>
+        </div>
+        <div class="updates-wrap">
+          <div class="grain-shader" id="grain-shader">
+            <div class="grain-shader__inner" id="grain-shader-mount"></div>
+          </div>
+          <div class="updates-list" id="updates-list"></div>
+        </div>
+        <div class="spotify-embed" id="spotify-embed">
+          <iframe
+            allow="
+              autoplay;
+              clipboard-write;
+              encrypted-media;
+              fullscreen;
+              picture-in-picture;
+            "
+            allowfullscreen=""
+            frameborder="0"
+            height="152"
+            loading="eager"
+            src="https://open.spotify.com/embed/album/19bQiwEKhXUBJWY6oV3KZk?utm_source=generator&theme=0"
+            style="border-radius:12px"
+            title="Spotify album player"
+            width="100%"
+          ></iframe>
+        </div>
+        <div class="contrib-graph" id="contrib-graph">
+          <div class="contrib-graph__inner">
+            <canvas
+              aria-label="GitHub contributions"
+              id="contrib-canvas"
+            ></canvas>
+          </div>
+        </div>
+        <div class="contrib-tip" id="contrib-tip"></div>
+      </section>
 
-        <section id="microblog" class="section">
-            <div id="microblog-list">
-                <p class="microblog-blurb">One can think of this as my database for Human RAG during conversations with Tom, as a means to match his infinite test-time knowledge base.</p>
-                <div class="microblog-tags" id="microblog-tags"></div>
-                <div class="microblog-cards" id="microblog-cards"></div>
-                <a class="microblog-notation-link" id="microblog-notation-link">notations</a>
-            </div>
-            <div id="microblog-detail" class="microblog-detail"></div>
-            <div id="microblog-notation" class="microblog-detail"></div>
-        </section>
+      <section class="section" id="microblog">
+        <div id="microblog-list">
+          <p class="microblog-blurb">
+            One can think of this as my database for Human RAG during
+            conversations with Tom, as a means to match his infinite test-time
+            knowledge base.
+          </p>
+          <div class="microblog-tags" id="microblog-tags"></div>
+          <div class="microblog-cards" id="microblog-cards"></div>
+          <button
+            class="microblog-notation-link"
+            id="microblog-notation-link"
+            type="button"
+          >
+            notations
+          </button>
+        </div>
+        <div class="microblog-detail" id="microblog-detail"></div>
+        <div class="microblog-detail" id="microblog-notation"></div>
+      </section>
 
-        <section id="gallery" class="section">
-            <div class="image-cloud"></div>
-        </section>
+      <section class="section" id="gallery">
+        <div class="image-cloud"></div>
+      </section>
     </main>
 
     <!-- Research detail modal — kept a direct child of <body> so its fixed
          positioning/z-index escape the section's animation stacking context -->
-    <div class="research-modal" id="research-modal" role="dialog" aria-modal="true" aria-labelledby="research-modal-title" hidden>
-        <div class="research-modal-backdrop" data-close></div>
-        <div class="research-modal-panel">
-            <button class="research-modal-close" data-close aria-label="Close">&times;</button>
-            <div class="research-modal-body" id="research-modal-body"></div>
-        </div>
+    <div
+      aria-labelledby="research-modal-title"
+      aria-modal="true"
+      class="research-modal"
+      hidden
+      id="research-modal"
+      role="dialog"
+    >
+      <div class="research-modal-backdrop" data-close></div>
+      <div class="research-modal-panel">
+        <button
+          aria-label="Close"
+          class="research-modal-close"
+          data-close
+          type="button"
+        >
+          &times;
+        </button>
+        <div class="research-modal-body" id="research-modal-body"></div>
+      </div>
     </div>
 
     <footer class="footer">
-        <span class="footer-info"><span id="footer-city">namma Chennai | London</span> | <span id="footer-email">soumya_snigdha.kundu-at-kcl.ac.uk</span></span>
-        <span class="footer-cv">
-            <a href="assests/cv.pdf" download>CV.pdf</a> | <a href="assests/cv.tex" download>CV.tex</a>
-        </span>
+      <span class="footer-info"
+        ><span id="footer-city">namma Chennai | London</span>
+        | <span id="footer-email">soumya_snigdha.kundu-at-kcl.ac.uk</span></span
+      >
+      <span class="footer-cv">
+        <a download href="assests/cv.pdf">CV.pdf</a>
+        | <a download href="assests/cv.tex">CV.tex</a>
+      </span>
     </footer>
 
-<script src="js/theme.js"></script>
-<script src="js/utils.js"></script>
-<script src="js/typer.js"></script>
-<script src="js/nav.js"></script>
-<script src="js/chrome-autohide.js"></script>
-<script src="js/click-binary.js"></script>
-<script src="js/nav-tiles.js"></script>
-<script src="js/contrib-graph.js"></script>
-<script src="js/updates.js"></script>
-<script src="js/microblog.js"></script>
-<script src="microblogs/worktree-vs-branches.js"></script>
-<script src="microblogs/deformable-convolutions.js"></script>
-<script src="js/microblog-init.js"></script>
-<script type="module" src="js/about.js"></script>
-<script src="js/gallery.js"></script>
-<script src="js/research.js"></script>
-<script src="https://unpkg.com/@niivue/niivue@0.62.0/dist/niivue.umd.js"></script>
-<script src="js/niivue-viewer.js"></script>
-<script type="module" src="js/three-scatter.js"></script>
-<script type="module" src="js/theme-earth.js"></script>
-<script type="module" src="js/research-head-orb.js"></script>
-<script type="module" src="js/research-sphere-orb.js"></script>
-<script type="module" src="js/research-ocean-bg.js"></script>
-<script type="module" src="js/research-particles-bg.js"></script>
-<script type="module" src="js/grain-shader.js"></script>
-</body>
+    <script defer src="js/theme.js"></script>
+    <script defer src="js/utils.js"></script>
+    <script defer src="js/typer.js"></script>
+    <script defer src="js/nav.js"></script>
+    <script defer src="js/chrome-autohide.js"></script>
+    <script defer src="js/click-binary.js"></script>
+    <script defer src="js/nav-tiles.js"></script>
+    <script defer src="js/contrib-graph.js"></script>
+    <script defer src="js/updates.js"></script>
+    <script defer src="js/microblog.js"></script>
+    <script defer src="microblogs/worktree-vs-branches.js"></script>
+    <script defer src="microblogs/deformable-convolutions.js"></script>
+    <script defer src="js/microblog-init.js"></script>
+    <script src="js/about.js" type="module"></script>
+    <script defer src="js/gallery.js"></script>
+    <script defer src="js/research.js"></script>
+    <script
+      defer
+      src="https://unpkg.com/@niivue/niivue@0.62.0/dist/niivue.umd.js"
+    ></script>
+    <script defer src="js/niivue-viewer.js"></script>
+    <script src="js/three-scatter.js" type="module"></script>
+    <script src="js/theme-earth.js" type="module"></script>
+    <script src="js/research-head-orb.js" type="module"></script>
+    <script src="js/research-sphere-orb.js" type="module"></script>
+    <script src="js/research-ocean-bg.js" type="module"></script>
+    <script src="js/research-particles-bg.js" type="module"></script>
+    <script src="js/grain-shader.js" type="module"></script>
+  </body>
 </html>

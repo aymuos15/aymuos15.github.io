@@ -1,79 +1,92 @@
 /* Gallery — free-floating image cloud */
 .image-cloud {
-    position: fixed;
-    inset: 4.5rem 0 3rem;
-    overflow: auto;
-    cursor: grab;
-    overscroll-behavior: contain;
-    touch-action: pan-x pan-y;
-    scrollbar-width: none;
+  position: fixed;
+  inset: 4.5rem 0 3rem;
+  overflow: auto;
+  overscroll-behavior: contain;
+  touch-action: pan-x pan-y;
+  cursor: grab;
+  scrollbar-width: none;
 }
 
 .image-cloud::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 .image-cloud.is-panning {
-    cursor: grabbing;
+  cursor: grabbing;
 }
 
-
 @keyframes cloud-drift {
-    0%   { translate: 0 0; }
-    25%  { translate: var(--dx1) var(--dy1); }
-    50%  { translate: var(--dx2) var(--dy2); }
-    75%  { translate: var(--dx1) var(--dy2); }
-    100% { translate: 0 0; }
+  0% {
+    translate: 0 0;
+  }
+  25% {
+    translate: var(--dx1) var(--dy1);
+  }
+  50% {
+    translate: var(--dx2) var(--dy2);
+  }
+  75% {
+    translate: var(--dx1) var(--dy2);
+  }
+  100% {
+    translate: 0 0;
+  }
 }
 
 /* Inner universe — scale this on mobile to compress all positions uniformly */
 .cloud-universe {
-    position: relative;
-    width: max(1200px, 140vw);
-    height: max(900px, 140vh);
-    transform-origin: center center;
+  position: relative;
+  width: max(1200px, 140vw);
+  height: max(900px, 140vh);
+  transform-origin: center center;
 }
 
 .cloud-photo {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 150px;
-    cursor: pointer;
-    border-radius: 4px;
-    transform: translate(-50%, -50%) translate(var(--cx, 0), var(--cy, 0)) rotate(var(--rot, 0deg));
-    transition: transform 0.42s cubic-bezier(0.4, 0, 0.2, 1), filter 0.35s;
-    z-index: var(--z, 1);
-    animation: cloud-drift var(--dur, 8s) var(--delay, 0s) ease-in-out infinite;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: var(--z, 1);
+  width: 150px;
+  cursor: pointer;
+  border-radius: 4px;
+  transform: translate(-50%, -50%) translate(var(--cx, 0), var(--cy, 0))
+    rotate(var(--rot, 0deg));
+  transition:
+    transform 0.42s cubic-bezier(0.4, 0, 0.2, 1),
+    filter 0.35s;
+  animation: cloud-drift var(--dur, 8s) var(--delay, 0s) ease-in-out infinite;
 }
 
 .cloud-photo img {
-    width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 4px;
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
 }
 
 /* Hover: straighten + lift */
 .cloud-photo:hover {
-    transform: translate(-50%, -50%) translate(var(--cx, 0), var(--cy, 0)) rotate(0deg) scale(1.08);
-    z-index: 10;
+  z-index: 10;
+  transform: translate(-50%, -50%) translate(var(--cx, 0), var(--cy, 0))
+    rotate(0deg) scale(1.08);
 }
 
 /* Focused: move to center, scale up */
 .cloud-photo.focused {
-    transform: translate(-50%, -50%) rotate(0deg) scale(1.75);
-    z-index: 35;
+  z-index: 35;
+  transform: translate(-50%, -50%) rotate(0deg) scale(1.75);
 }
 
 /* Dim others when one is focused */
 .image-cloud.has-focus .cloud-photo:not(.focused) {
-    filter: brightness(0.4) saturate(0.55);
+  filter: brightness(0.4) saturate(0.55);
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .cloud-photo {
-        transition: filter 0.2s;
-        animation: none;
-    }
+  .cloud-photo {
+    transition: filter 0.2s;
+    animation: none;
+  }
 }

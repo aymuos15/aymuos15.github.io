@@ -4,12 +4,13 @@
 // cloud layer and a soft atmospheric rim. Rendered into the .theme-earth
 // canvas inside the theme button, so clicking it still toggles the theme
 // (handled by theme.js). Runs only while Gallery is the active section.
-import * as THREE from 'https://esm.sh/three@0.169.0';
+import * as THREE from "https://esm.sh/three@0.169.0";
 
-const canvas = document.querySelector('.theme-earth');
+const canvas = document.querySelector(".theme-earth");
 
 // Served from the three.js repo (the npm package omits example textures).
-const TEX = 'https://cdn.jsdelivr.net/gh/mrdoob/three.js@r169/examples/textures/planets/';
+const TEX =
+  "https://cdn.jsdelivr.net/gh/mrdoob/three.js@r169/examples/textures/planets/";
 
 let renderer, scene, camera, earth, clouds;
 let started = false;
@@ -17,7 +18,7 @@ let running = false;
 
 // Day/night shader: blend the daytime map into the night-lights map
 // across the terminator, driven by the sun direction.
-const earthVertex = /* glsl */`
+const earthVertex = /* glsl */ `
     varying vec2 vUv;
     varying vec3 vNormal;
     void main() {
@@ -27,7 +28,7 @@ const earthVertex = /* glsl */`
     }
 `;
 
-const earthFragment = /* glsl */`
+const earthFragment = /* glsl */ `
     uniform sampler2D dayMap;
     uniform sampler2D nightMap;
     uniform vec3 sunDirection;
@@ -48,74 +49,92 @@ const earthFragment = /* glsl */`
 `;
 
 function build() {
-    renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-    renderer.setPixelRatio( window.devicePixelRatio );
-    renderer.setSize( canvas.width, canvas.height, false );
+  renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, canvas });
+  renderer.setPixelRatio(window.devicePixelRatio);
+  renderer.setSize(canvas.width, canvas.height, false);
 
-    scene = new THREE.Scene();
+  scene = new THREE.Scene();
 
-    camera = new THREE.PerspectiveCamera( 40, 1, 0.1, 100 );
-    camera.position.set( 0, 0, 3 );
-    camera.lookAt( 0, 0, 0 );
+  camera = new THREE.PerspectiveCamera(40, 1, 0.1, 100);
+  camera.position.set(0, 0, 3);
+  camera.lookAt(0, 0, 0);
 
-    const loader = new THREE.TextureLoader();
-    loader.setCrossOrigin( 'anonymous' );
-    const dayMap = loader.load( `${TEX}earth_atmos_2048.jpg` );
-    const nightMap = loader.load( `${TEX}earth_lights_2048.png` );
-    const cloudMap = loader.load( `${TEX}earth_clouds_1024.png` );
-    dayMap.colorSpace = THREE.SRGBColorSpace;
-    nightMap.colorSpace = THREE.SRGBColorSpace;
+  const loader = new THREE.TextureLoader();
+  loader.setCrossOrigin("anonymous");
+  const dayMap = loader.load(`${TEX}earth_atmos_2048.jpg`);
+  const nightMap = loader.load(`${TEX}earth_lights_2048.png`);
+  const cloudMap = loader.load(`${TEX}earth_clouds_1024.png`);
+  dayMap.colorSpace = THREE.SRGBColorSpace;
+  nightMap.colorSpace = THREE.SRGBColorSpace;
 
-    const geometry = new THREE.SphereGeometry( 1, 48, 48 );
+  const geometry = new THREE.SphereGeometry(1, 48, 48);
 
-    const material = new THREE.ShaderMaterial({
-        uniforms: {
-            dayMap: { value: dayMap },
-            nightMap: { value: nightMap },
-            sunDirection: { value: new THREE.Vector3( 1, 0.3, 1 ).normalize() }
-        },
-        vertexShader: earthVertex,
-        fragmentShader: earthFragment
-    });
+  const material = new THREE.ShaderMaterial({
+    fragmentShader: earthFragment,
+    uniforms: {
+      dayMap: { value: dayMap },
+      nightMap: { value: nightMap },
+      sunDirection: { value: new THREE.Vector3(1, 0.3, 1).normalize() },
+    },
+    vertexShader: earthVertex,
+  });
 
-    earth = new THREE.Mesh( geometry, material );
-    earth.rotation.z = 0.41; // ~23.5° axial tilt
-    scene.add( earth );
+  earth = new THREE.Mesh(geometry, material);
+  earth.rotation.z = 0.41; // ~23.5° axial tilt
+  scene.add(earth);
 
-    clouds = new THREE.Mesh(
-        new THREE.SphereGeometry( 1.015, 48, 48 ),
-        new THREE.MeshBasicMaterial({ map: cloudMap, transparent: true, opacity: 0.55, depthWrite: false })
-    );
-    earth.add( clouds );
+  clouds = new THREE.Mesh(
+    new THREE.SphereGeometry(1.015, 48, 48),
+    new THREE.MeshBasicMaterial({
+      depthWrite: false,
+      map: cloudMap,
+      opacity: 0.55,
+      transparent: true,
+    })
+  );
+  earth.add(clouds);
 }
 
 function tick() {
-    if ( !running ) return;
-    earth.rotation.y += 0.0025;
-    clouds.rotation.y += 0.0006;
-    renderer.render( scene, camera );
-    requestAnimationFrame( tick );
+  if (!running) {
+    return;
+  }
+  earth.rotation.y += 0.0025;
+  clouds.rotation.y += 0.0006;
+  renderer.render(scene, camera);
+  requestAnimationFrame(tick);
 }
 
 function start() {
-    if ( !started ) { build(); started = true; }
-    if ( running ) return;
-    running = true;
-    requestAnimationFrame( tick );
+  if (!started) {
+    build();
+    started = true;
+  }
+  if (running) {
+    return;
+  }
+  running = true;
+  requestAnimationFrame(tick);
 }
 
 function stop() {
-    running = false;
+  running = false;
 }
 
 // Run the WebGL loop only while the Gallery section is showing.
 function sync() {
-    if ( document.documentElement.getAttribute('data-section') === 'gallery' ) start();
-    else stop();
+  if (document.documentElement.getAttribute("data-section") === "gallery") {
+    start();
+  } else {
+    stop();
+  }
 }
 
-if ( canvas ) {
-    const observer = new MutationObserver( sync );
-    observer.observe( document.documentElement, { attributes: true, attributeFilter: ['data-section'] });
-    sync();
+if (canvas) {
+  const observer = new MutationObserver(sync);
+  observer.observe(document.documentElement, {
+    attributeFilter: ["data-section"],
+    attributes: true,
+  });
+  sync();
 }

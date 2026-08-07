@@ -1,33 +1,33 @@
 /* Theme Toggle */
 .theme-toggle {
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    color: var(--text-secondary);
-    transition: color 0.2s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  color: var(--text-secondary);
+  cursor: pointer;
+  background: none;
+  border: none;
+  transition: color 0.2s ease;
 }
 
 .theme-toggle:hover {
-    color: var(--text);
+  color: var(--text);
 }
 
 .theme-toggle svg {
-    display: none;
-    width: 16px;
-    height: 16px;
+  display: none;
+  width: 16px;
+  height: 16px;
 }
 
 /* Light mode: show moon (click to go dark) */
 [data-theme="light"] .theme-toggle .icon-moon {
-    display: block;
+  display: block;
 }
 
 /* Dark mode: show sun (click to go light) */
 [data-theme="dark"] .theme-toggle .icon-sun {
-    display: block;
+  display: block;
 }

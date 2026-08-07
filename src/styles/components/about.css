@@ -1,154 +1,168 @@
 /* About Section - typographic accordion */
 #about {
-    position: relative;
-    isolation: isolate;
+  position: relative;
+  isolation: isolate;
 }
 
 .about-accordion {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    padding-right: 6px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-right: 6px;
 }
 
 /* Paper dithering shader, one per row; mounted in about.js. */
 .about-row__dither {
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    height: var(--head-height, 100%);
-    pointer-events: none;
-    opacity: 0.55;
-    transition: opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  height: var(--head-height, 100%);
+  pointer-events: none;
+  opacity: 0.55;
+  transition: opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .about-row:hover .about-row__dither,
 .about-row.open .about-row__dither {
-    opacity: 0.9;
+  opacity: 0.9;
 }
 
 /* Pastels blow out against the near-black background, so pull them back. */
 [data-theme="dark"] .about-row__dither {
-    opacity: 0.22;
+  opacity: 0.22;
 }
 
 [data-theme="dark"] .about-row:hover .about-row__dither,
 [data-theme="dark"] .about-row.open .about-row__dither {
-    opacity: 0.45;
+  opacity: 0.45;
 }
 
 /* Raised card: hard offset shadow reads as an extruded slab, not a blur. */
 .about-row {
-    position: relative;
-    z-index: 1;
-    overflow: hidden;
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    box-shadow: 4px 4px 0 var(--border), 0 6px 18px rgb(0 0 0 / 12%);
-    transition:
-        transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
-        box-shadow 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  box-shadow:
+    4px 4px 0 var(--border),
+    0 6px 18px rgb(0 0 0 / 12%);
+  transition:
+    transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.28s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .about-row:hover {
-    transform: translate(-2px, -2px);
-    box-shadow: 6px 6px 0 var(--border), 0 10px 24px rgb(0 0 0 / 18%);
+  box-shadow:
+    6px 6px 0 var(--border),
+    0 10px 24px rgb(0 0 0 / 18%);
+  transform: translate(-2px, -2px);
 }
 
 /* Open rows press back down into the page. */
 .about-row.open {
-    transform: translate(2px, 2px);
-    box-shadow: 1px 1px 0 var(--border), 0 2px 8px rgb(0 0 0 / 10%);
+  box-shadow:
+    1px 1px 0 var(--border),
+    0 2px 8px rgb(0 0 0 / 10%);
+  transform: translate(2px, 2px);
 }
 
 [data-theme="dark"] .about-row {
-    box-shadow: 4px 4px 0 rgb(0 0 0 / 60%), 0 6px 18px rgb(0 0 0 / 45%);
+  box-shadow:
+    4px 4px 0 rgb(0 0 0 / 60%),
+    0 6px 18px rgb(0 0 0 / 45%);
 }
 
 [data-theme="dark"] .about-row:hover {
-    box-shadow: 6px 6px 0 rgb(0 0 0 / 65%), 0 10px 24px rgb(0 0 0 / 55%);
+  box-shadow:
+    6px 6px 0 rgb(0 0 0 / 65%),
+    0 10px 24px rgb(0 0 0 / 55%);
 }
 
 [data-theme="dark"] .about-row.open {
-    box-shadow: 1px 1px 0 rgb(0 0 0 / 50%), 0 2px 8px rgb(0 0 0 / 35%);
+  box-shadow:
+    1px 1px 0 rgb(0 0 0 / 50%),
+    0 2px 8px rgb(0 0 0 / 35%);
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .about-row,
-    .about-row:hover,
-    .about-row.open {
-        transform: none;
-    }
+  .about-row,
+  .about-row:hover,
+  .about-row.open {
+    transform: none;
+  }
 }
 
 .about-row__head {
-    position: relative;
-    isolation: isolate;
-    display: grid;
-    grid-template-columns: 2.2rem 1fr;
-    align-items: center;
-    gap: 1rem;
-    width: 100%;
-    padding: 0.55rem 0.9rem;
-    background: none;
-    border: none;
-    cursor: pointer;
-    text-align: left;
-    color: var(--text);
+  position: relative;
+  display: grid;
+  grid-template-columns: 2.2rem 1fr;
+  gap: 1rem;
+  align-items: center;
+  width: 100%;
+  padding: 0.55rem 0.9rem;
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+  background: none;
+  border: none;
+  isolation: isolate;
 }
 
 .about-row__num {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    color: var(--text-secondary);
-    text-align: center;
-    transition: color 0.25s ease;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  text-align: center;
+  transition: color 0.25s ease;
 }
 
 .about-row.open .about-row__num,
 .about-row__head:hover .about-row__num {
-    color: var(--link);
+  color: var(--link);
 }
 
 .about-row__title {
-    font-family: var(--font-sans);
-    font-size: clamp(1.35rem, 3.4vw, 1.9rem);
-    font-weight: 300;
-    line-height: 1.3;
-    letter-spacing: -0.015em;
-    transition: font-weight 0.2s ease, color 0.25s ease;
+  font-family: var(--font-sans);
+  font-size: clamp(1.35rem, 3.4vw, 1.9rem);
+  font-weight: 300;
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+  transition:
+    font-weight 0.2s ease,
+    color 0.25s ease;
 }
 
 .about-row.open .about-row__title {
-    font-weight: 500;
+  font-weight: 500;
 }
 
 .about-row__panel {
-    display: grid;
-    grid-template-rows: 0fr;
-    transition: grid-template-rows 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .about-row.open .about-row__panel {
-    grid-template-rows: 1fr;
+  grid-template-rows: 1fr;
 }
 
 .about-row__body {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 .about-row__body p {
-    margin: 0;
-    padding: 0 1.2rem 1.1rem 3.2rem;
-    font-size: 0.85rem;
-    line-height: 1.7;
-    color: var(--text-secondary);
-    opacity: 0;
-    transition: opacity 0.3s ease 0.1s;
+  padding: 0 1.2rem 1.1rem 3.2rem;
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  opacity: 0;
+  transition: opacity 0.3s ease 0.1s;
 }
 
 .about-row.open .about-row__body p {
-    opacity: 1;
+  opacity: 1;
 }
