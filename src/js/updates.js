@@ -1,6 +1,12 @@
 // Updates data
 const updates = [
   {
+    category: "misc",
+    date: "Aug. '26",
+    description:
+      'Received the <a href="https://openai.com/index/introducing-the-codex-open-source-fund/">Codex Open Source Fund</a> grant.',
+  },
+  {
     category: "teaching",
     date: "Jul. '26",
     description:
