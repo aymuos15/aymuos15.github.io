@@ -1,6 +1,6 @@
-\documentclass[letterpaper,10pt]{article}
+\documentclass[letterpaper,9pt]{extarticle}
 
-\usepackage[margin=0.55in, bottom=0.35in]{geometry}
+\usepackage[left=0.4in, right=0.4in, top=0.35in, bottom=0.35in]{geometry}
 \usepackage[T1]{fontenc}
 \usepackage{palatino}
 \usepackage{enumitem}
@@ -24,7 +24,7 @@
 \setlist[itemize]{leftmargin=1.2em, itemsep=4pt, parsep=0pt, topsep=2pt}
 \renewcommand\labelitemi{\textcolor{light}{\textbullet}}
 
-\newcommand{\cvline}[2]{\noindent\makebox[\linewidth][l]{#1\hfill #2}\par\vspace{2.5pt}}
+\newcommand{\cvline}[2]{\noindent\makebox[\linewidth][l]{#1\hfill\makebox[3em][r]{#2}}\par\vspace{2.5pt}}
 \newcommand{\cvtextline}[1]{\noindent #1\par\vspace{2.5pt}}
 \newcommand{\pr}[2]{\href{#1}{\##2}}
 \newcommand{\prlist}[1]{\textcolor{light}{[#1]}}
@@ -54,12 +54,13 @@
 \section{Representative Papers}
 
 \noindent{\small
-\cvtextline{Hsieh, I., \textbf{S.\ S.\ Kundu}, Vercauteren, T., \& Dorent, R. (2027). SinkSLOT: Sinkhorn via Sparse Lifted Optimal Transport. \textbf{\underline{AAAI}}.}
-\cvtextline{\textbf{S.\ S.\ Kundu} et al. (2026). Instance Awareness of Multi-class Semantic Segmentation Loss Functions. \textit{CV4CLINIC@}\textbf{\underline{CVPR}}.}
-\cvtextline{\textbf{S.\ S.\ Kundu} et al. (2025). Cluster Dice. \textit{SPIE Medical Imaging}.}
-\cvtextline{\textbf{S.\ S.\ Kundu} et al. (2024). Spinal osteophyte detection via robust patch extraction on minimally annotated x-rays. \textit{IEEE }\textbf{\underline{ISBI}}.}
-\cvtextline{Naidu, R. \& \textbf{S.\ S.\ Kundu} (2021). Improved variants of Score-CAM via Smoothing and Integrating. \textit{RCV@}\textbf{\underline{CVPR}}.}
-\cvtextline{\textbf{S.\ S.\ Kundu} (2021). A Distributed Deep Learning Framework for Federated Big Medical Image Analysis. \textit{IEEE \textbf{\underline{Big Data}}}.}
+\cvline{Hsieh, I., \textbf{S.\ S.\ Kundu}, Vercauteren, T., \& Dorent, R. (2027). SinkSLOT: Sinkhorn via Sparse Lifted Optimal Transport.}{\textbf{\underline{AAAI}}}
+\cvline{Gro\ss{}kopf, E., \textbf{S.\ S.\ Kundu} et al. (2026). {\footnotesize Redefining Instance Matching: A Unified Framework for Part-Aware Matching in Panoptic Segmentation Evaluation.}}{\textbf{\underline{NeurIPS}}}
+\cvline{\textbf{S.\ S.\ Kundu} et al. (2026). Instance Awareness of Multi-class Semantic Segmentation Loss Functions.}{\textit{CV4CLINIC@}\textbf{\underline{CVPR}}}
+\cvline{\textbf{S.\ S.\ Kundu} et al. (2025). Cluster Dice.}{\textit{SPIE Medical Imaging}}
+\cvline{\textbf{S.\ S.\ Kundu} et al. (2024). Spinal osteophyte detection via robust patch extraction on minimally annotated x-rays.}{\textit{IEEE }\textbf{\underline{ISBI}}}
+\cvline{Naidu, R. \& \textbf{S.\ S.\ Kundu} (2021). Improved variants of Score-CAM via Smoothing and Integrating.}{\textit{RCV@}\textbf{\underline{CVPR}}}
+\cvline{\textbf{S.\ S.\ Kundu} (2021). A Distributed Deep Learning Framework for Federated Big Medical Image Analysis.}{\textit{IEEE \textbf{\underline{Big Data}}}}
 }
 
 % ── Industry Experience ──
@@ -71,15 +72,10 @@
 % ── Software ──
 \section{Representative Software \& Open Source Contributions}
 \noindent{\small
-\cvline{\textbf{Panoptica} --- \textcolor{light}{[Maintainer]} Instance-wise segmentation metrics}{\textcolor{light}{26$\star$}}
-\cvline{\textbf{Ultraflwr} --- \textcolor{light}{[Author]} Federated learning on the edge}{\textcolor{light}{20$\star$}}
-\cvline{\textbf{MONAI} --- \textcolor{light}{[Core contributor]} to the Medical Open Network for AI (MONAI)}{\textcolor{light}{8k$\star$}}
-\cvtextline{\textbf{PRs:}
-  Optax \prlist{\pr{https://github.com/google-deepmind/optax/pull/1340}{1340}, \pr{https://github.com/google-deepmind/optax/pull/1366}{1366}, \pr{https://github.com/google-deepmind/optax/pull/1458}{1458}},
-  batchgeneratorsv2 \prlist{\pr{https://github.com/MIC-DKFZ/batchgeneratorsv2/pull/16}{16}, \pr{https://github.com/MIC-DKFZ/batchgeneratorsv2/pull/19}{19}},
-  torchsparsegradutils \prlist{\pr{https://github.com/cai4cai/torchsparsegradutils/pull/63}{63}, \pr{https://github.com/cai4cai/torchsparsegradutils/pull/65}{65}, \pr{https://github.com/cai4cai/torchsparsegradutils/pull/66}{66}, \pr{https://github.com/cai4cai/torchsparsegradutils/pull/67}{67}},
-  OpenTUI \prlist{\pr{https://github.com/anomalyco/opentui/pull/253}{253}},
-  Fresh \prlist{\pr{https://github.com/sinelaw/fresh/pull/421}{421}}}
+\cvline{\textbf{Panoptica} --- \textcolor{light}{[Maintainer]} Instance-wise segmentation metrics}{\textcolor{light}{33$\star$}}
+\cvline{\textbf{Ultraflwr} --- \textcolor{light}{[Author]} Federated learning on the edge}{\textcolor{light}{30$\star$}}
+\cvline{\textbf{torchsparsegradutils} --- \textcolor{light}{[Maintainer]} Utilities for PyTorch sparse tensors}{\textcolor{light}{40$\star$}}
+\cvline{\textbf{MONAI} --- \textcolor{light}{[Core contributor]} to the Medical Open Network for AI (MONAI)}{\textcolor{light}{8.5k$\star$}}
 }
 
 % ── Fellowships & Grants ──
