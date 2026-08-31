@@ -55,6 +55,24 @@ const updates = [
   },
   {
     category: "pr",
+    date: "Aug. '26",
+    description:
+      '<a href="https://github.com/brainglobe/cellfinder/pull/647">Validate training paths instead of overloading Path.home()</a> - brainglobe/cellfinder',
+  },
+  {
+    category: "pr",
+    date: "Aug. '26",
+    description:
+      '<a href="https://github.com/brainglobe/cellfinder/pull/643">Support 2D classification</a> - brainglobe/cellfinder',
+  },
+  {
+    category: "pr",
+    date: "Aug. '26",
+    description:
+      '<a href="https://github.com/brainglobe/cellfinder/pull/648">Remove dead fiji coordinate helper functions</a> - brainglobe/cellfinder',
+  },
+  {
+    category: "pr",
     date: "Jul. '26",
     description:
       '<a href="https://github.com/brainglobe/cellfinder/pull/646">Use single underscore for internal CurationWidget methods</a> - brainglobe/cellfinder',
