@@ -1,6 +1,12 @@
 // Updates data
 const updates = [
   {
+    category: "publishing",
+    date: "Aug. '26",
+    description:
+      'Preprint: <a href="https://arxiv.org/abs/2608.28262">SinkSLOT: Sinkhorn via Sparse Lifted Optimal Transport</a>. Congrats Ian!',
+  },
+  {
     category: "misc",
     date: "Aug. '26",
     description:
