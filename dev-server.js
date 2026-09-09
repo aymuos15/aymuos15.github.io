@@ -1,7 +1,7 @@
 import { extname, resolve } from "node:path";
 
 const port = Number(process.env.PORT || 3000);
-const rootDir = resolve(import.meta.dir, "src");
+const rootDir = resolve(import.meta.dir, process.env.SERVE_DIR || "src");
 
 function resolvePath(pathname) {
   const relativePath = pathname === "/" ? "index.html" : pathname.slice(1);

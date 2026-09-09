@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Soumya Snigdha Kundu</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&display=swap"
+      rel="stylesheet"
+    >
+    <link href="styles/main.css" rel="stylesheet">
+    <script>
+    "use strict";
+    (() => {
+      const saved = localStorage.getItem("theme-preference");
+      const theme =
+        saved ||
+        (window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light");
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <button
+        aria-label="Toggle light and dark mode"
+        class="theme-toggle"
+        type="button"
+      >
+        <canvas
+          aria-hidden="true"
+          class="theme-earth"
+          height="80"
+          width="80"
+        ></canvas>
+      </button>
+      <nav aria-label="Elsewhere" class="site-nav">
+        <a
+          aria-label="X"
+          href="https://x.com/aymuosk"
+          rel="noopener"
+          target="_blank"
+        >
+          <svg
+            aria-hidden="true"
+            fill="currentColor"
+            height="16"
+            viewBox="0 0 24 24"
+            width="16"
+          >
+            <path
+              d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+            />
+          </svg>
+        </a>
+        <a
+          aria-label="GitHub"
+          href="https://github.com/aymuos15"
+          rel="noopener"
+          target="_blank"
+        >
+          <svg
+            aria-hidden="true"
+            fill="currentColor"
+            height="16"
+            viewBox="0 0 24 24"
+            width="16"
+          >
+            <path
+              d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
+            />
+          </svg>
+        </a>
+        <a
+          aria-label="Google Scholar"
+          href="https://scholar.google.com/citations?user=WmHtKBYAAAAJ&hl=en"
+          rel="noopener"
+          target="_blank"
+        >
+          <svg
+            aria-hidden="true"
+            fill="currentColor"
+            height="16"
+            viewBox="0 0 24 24"
+            width="16"
+          >
+            <path
+              d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"
+            />
+          </svg>
+        </a>
+      </nav>
+    </header>
+
+    <nav aria-label="Sections" class="rail"></nav>
+
+    <main class="page">
+      <div class="intro" id="intro">
+        <h1 class="name">
+          <button
+            aria-controls="pronunciation"
+            aria-expanded="false"
+            class="name-toggle"
+            title="How to say it"
+            type="button"
+          >
+            Soumya Snigdha Kundu
+          </button>
+          <span class="pronunciation" id="pronunciation"
+            >Shou‑mo Snigh‑dho Kun‑du</span
+          >
+        </h1>
+
+        <div class="bio">
+          <p>
+            Third‑year PhD student working on deep learning at
+            <a href="https://cai4cai.ml/" rel="noopener" target="_blank"
+              >KCL</a
+            >, advised by
+            <a
+              href="https://cai4cai.ml/author/tom-vercauteren/"
+              rel="noopener"
+              target="_blank"
+              >Tom Vercauteren</a
+            >
+            and
+            <a
+              href="https://cai4cai.ml/author/jonathan-shapey/"
+              rel="noopener"
+              target="_blank"
+              >Jonathan Shapey</a
+            >. Funded by the Medical Research Council.
+          </p>
+          <p>
+            Recently I've collaborated with
+            <a href="https://reubendo.github.io/" rel="noopener" target="_blank"
+              >Reuben Dorent</a
+            >
+            at Inria and
+            <a
+              href="https://hertie.ai/independent-research-groups/team/members/florian-kofler"
+              rel="noopener"
+              target="_blank"
+              >Florian Kofler</a
+            >
+            at Tübingen. Before that,
+            <a
+              href="https://www.bdi.ox.ac.uk/Team/bartek-papiez"
+              rel="noopener"
+              target="_blank"
+              >Bartek Papiez</a
+            >
+            at Oxford,
+            <a href="https://pdeperio.github.io/" rel="noopener" target="_blank"
+              >Patrick de Perio</a
+            >
+            and
+            <a
+              href="https://triumf.ca/people/akira-konaka/"
+              rel="noopener"
+              target="_blank"
+              >Akira Konaka</a
+            >
+            at TRIUMF, and
+            <a
+              href="https://civil.iitr.ac.in/CE?Uid=tarun.gangwar"
+              rel="noopener"
+              target="_blank"
+              >Tarun Gangwar</a
+            >
+            at IIT‑GN.
+          </p>
+          <p>
+            I love software. I've interned with
+            <a href="https://cosine.sh/" rel="noopener" target="_blank"
+              >Cosine</a
+            >
+            and did
+            <a
+              href="https://summerofcode.withgoogle.com/"
+              rel="noopener"
+              target="_blank"
+              >Google Summer of Code</a
+            >
+            2026 with the
+            <a
+              href="https://github.com/neuroinformatics-unit/"
+              rel="noopener"
+              target="_blank"
+              >Neuroinformatics Unit</a
+            >.
+          </p>
+        </div>
+      </div>
+
+      <section aria-label="Projects" class="projects" id="projects"></section>
+
+      <section aria-label="News" class="news" id="news">
+        <div class="news-filters" hidden></div>
+        <div class="news-wrap">
+          <div class="news-scroll">
+            <ol aria-live="polite" class="news-table"></ol>
+          </div>
+          <canvas
+            aria-label="GitHub contributions over the last year"
+            class="news-contrib"
+            hidden
+          ></canvas>
+        </div>
+        <div class="news-foot">
+          <button
+            aria-expanded="false"
+            class="news-more"
+            hidden
+            type="button"
+          ></button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer" id="photos">
+      <section aria-label="Photos" class="belt">
+        <div class="belt-track"></div>
+      </section>
+      <div class="footer-bar">
+        <a href="mailto:soumya_snigdha.kundu@kcl.ac.uk"
+          >soumya_snigdha.kundu@kcl.ac.uk</a
+        >
+      </div>
+    </footer>
+
+    <script>
+    "use strict";
+    const toggle = document.querySelector(".name-toggle");
+    const pron = document.getElementById("pronunciation");
+    toggle.addEventListener("click", () => {
+      const open = !pron.classList.contains("is-open");
+      pron.classList.toggle("is-open", open);
+      toggle.setAttribute("aria-expanded", String(open));
+    });
+    </script>
+    <script src="js/theme-earth.js" type="module"></script>
+    <script src="js/belt.js" type="module"></script>
+    <script src="js/rail.js" type="module"></script>
+    <div
+      aria-labelledby="project-modal-title"
+      aria-modal="true"
+      class="project-modal"
+      hidden
+      role="dialog"
+    >
+      <div class="project-modal-backdrop" data-close></div>
+      <div class="project-modal-panel">
+        <button
+          aria-label="Close"
+          class="project-modal-close"
+          data-close
+          type="button"
+        >
+          &times;
+        </button>
+        <div class="project-modal-slot"></div>
+      </div>
+    </div>
+
+    <script
+      defer
+      src="https://unpkg.com/@niivue/niivue@0.62.0/dist/niivue.umd.js"
+    ></script>
+    <script src="js/projects.js" type="module"></script>
+    <script src="js/news.js" type="module"></script>
+  </body>
+</html>

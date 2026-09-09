@@ -1,0 +1,1236 @@
+:root {
+  --bg: #f5efe0;
+  --ink: #111111;
+  --muted: #6f6a5e;
+  --accent: var(--ink);
+  --measure: 60ch;
+  --gutter: clamp(1.25rem, 5vw, 3rem);
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  --bg: #111111;
+  --ink: #f5efe0;
+  --muted: #a39d8e;
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 112.5%;
+  /* Native scrollbar hidden; the scroll rail (.rail) replaces it. */
+  scrollbar-width: none;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
+  margin: 0;
+  font-family: "Newsreader", Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  font-optical-sizing: auto;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+  color: var(--ink);
+  background: var(--bg);
+  text-rendering: optimizeLegibility;
+  transition:
+    background-color 0.6s ease,
+    color 0.6s ease;
+}
+
+a {
+  color: inherit;
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--accent);
+  text-underline-offset: 0.18em;
+}
+
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Shared column for the header, the page body, and the footer overlay. */
+.site-header,
+.page,
+.footer-bar {
+  width: 100%;
+  max-width: calc(var(--measure) + 2 * var(--gutter));
+  padding-inline: var(--gutter);
+  margin-inline: auto;
+}
+
+.site-header {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 1.25rem;
+  color: var(--muted);
+}
+
+.site-header a {
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.site-header a:hover {
+  color: var(--ink);
+}
+
+.site-nav {
+  display: flex;
+  gap: 1.1rem;
+  align-items: center;
+}
+
+.site-nav a {
+  display: inline-flex;
+  padding: 0.25rem;
+  margin: -0.25rem;
+  line-height: 0;
+}
+
+.site-nav svg {
+  display: block;
+}
+
+.page {
+  flex: 1;
+  padding-block: 0 3rem;
+}
+
+/* Intro (name + bio) starts part-way down the first viewport rather than
+   hugging the header, so the page opens roughly centred. */
+.intro {
+  padding-top: clamp(3rem, 18vh, 10rem);
+}
+
+.name {
+  position: relative;
+  margin: 0 0 2rem;
+  font-size: 1.35rem;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.name-toggle {
+  all: unset;
+  display: inline-block;
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--accent);
+  text-underline-offset: 0.18em;
+  cursor: pointer;
+  transition: transform 0.45s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.name-toggle[aria-expanded="true"] {
+  transform: translateY(-1.3em);
+}
+
+.name-toggle:hover {
+  text-decoration-thickness: 2px;
+}
+
+.name-toggle:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.pronunciation {
+  position: absolute;
+  inset-inline-start: 0;
+  top: 0;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--muted);
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(0.35em);
+  transition:
+    opacity 0.4s ease 0.1s,
+    transform 0.45s cubic-bezier(0.2, 0, 0, 1) 0.05s;
+}
+
+.pronunciation.is-open {
+  opacity: 1;
+  transform: none;
+}
+
+.bio {
+  max-width: var(--measure);
+  font-size: 1.05rem;
+}
+
+.bio p {
+  margin: 0 0 1.1em;
+}
+
+.bio p:last-child {
+  margin-bottom: 0;
+}
+
+/* Project deck: fanned cards with live 3D orbs, then a fold-out detail. */
+.projects {
+  max-width: var(--measure);
+  margin-top: 16.5rem;
+  font-size: 0.9rem;
+}
+
+.deck {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 0.6rem 0;
+}
+
+.deck-card {
+  all: unset;
+  position: relative;
+  z-index: var(--z, 1);
+  box-sizing: border-box;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  width: 150px;
+  height: 196px;
+  padding: 1rem;
+  margin-left: -34px;
+  cursor: pointer;
+  background: var(--bg);
+  border: 1px solid
+    color-mix(
+      in srgb,
+      var(--tint) 35%,
+      color-mix(in srgb, var(--ink) 20%, transparent)
+    );
+  border-radius: 16px;
+  transform: translateY(var(--ty, 0)) rotate(var(--rot, 0deg));
+  transform-origin: bottom center;
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.3s ease,
+    border-color 0.3s ease,
+    background-color 0.6s ease;
+}
+
+.deck-card:first-child {
+  margin-left: 0;
+}
+
+/* Cards with a live canvas background. */
+.deck-card--bg {
+  overflow: hidden;
+}
+
+.deck-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Desaturate the sea so it reads like the grayscale scan above it. */
+.deck-bg--ocean {
+  filter: grayscale(1) contrast(1.08) brightness(1.02);
+}
+
+/* Scrim: effect shows up top, fades to the card colour so text stays legible. */
+.deck-card--bg::after {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  content: "";
+  background: linear-gradient(
+    to top,
+    var(--bg) 10%,
+    var(--bg) 26%,
+    transparent 64%
+  );
+}
+
+.deck-card:hover,
+.deck-card:focus-visible,
+.deck-card[aria-expanded="true"] {
+  z-index: 20;
+  border-color: color-mix(in srgb, var(--tint) 70%, transparent);
+  transform: translateY(-20px) rotate(0deg) scale(1.03);
+}
+
+.deck-card:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+/* Dim the rest of the fan when one card is engaged. */
+.deck:has(.deck-card:hover) .deck-card:not(:hover),
+.deck.has-open .deck-card:not([aria-expanded="true"]):not(:hover) {
+  opacity: 0.5;
+  filter: saturate(0.55);
+}
+
+.deck-orb {
+  position: relative;
+  width: 46px;
+  height: 46px;
+  margin-bottom: auto;
+}
+
+.deck-orb--plain {
+  background: radial-gradient(
+    circle at 35% 30%,
+    color-mix(in srgb, var(--tint) 92%, #fff) 0%,
+    var(--tint) 55%,
+    color-mix(in srgb, var(--tint) 70%, transparent) 100%
+  );
+  border-radius: 50%;
+  box-shadow: 0 6px 18px -4px color-mix(in srgb, var(--tint) 70%, transparent);
+}
+
+.deck-orb canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.deck-orb--sphere canvas {
+  inset: -18%;
+  width: 136%;
+  height: 136%;
+}
+
+.deck-label {
+  margin-top: 0.6rem;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.deck-blurb {
+  margin-top: 0.3rem;
+  font-size: 0.8rem;
+  font-style: italic;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+.deck-card--bg > .deck-orb,
+.deck-card--bg > .deck-label,
+.deck-card--bg > .deck-blurb {
+  position: relative;
+  z-index: 2;
+}
+
+/* Narrow screens: the fan stays a fan, scaled to fit (see projects.js). */
+.deck {
+  transform-origin: top center;
+}
+
+/* ── Optimal transport demo ── */
+.ot-demo {
+  margin: 0 0 0.5rem;
+  font-size: 0.85rem;
+}
+
+.ot-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1.2rem;
+  align-items: center;
+  margin-bottom: 0.6rem;
+}
+
+.ot-pick {
+  display: flex;
+  gap: 0.45rem;
+  align-items: center;
+}
+
+.ot-pick select,
+.ot-toggle {
+  padding: 3px 8px;
+  font: inherit;
+  color: var(--ink);
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid color-mix(in srgb, var(--ink) 30%, transparent);
+  border-radius: 4px;
+}
+
+.ot-pick input[type="range"] {
+  width: 110px;
+  accent-color: var(--tint);
+}
+
+.ot-toggle[aria-pressed="true"] {
+  color: var(--bg);
+  background: var(--ink);
+  border-color: var(--ink);
+}
+
+.ot-canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.ot-caption {
+  margin: 0.5rem 0 0;
+  color: var(--muted);
+}
+
+/* ── Project modal ── */
+body.modal-open {
+  overflow: hidden;
+}
+
+.project-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.project-modal.is-open {
+  opacity: 1;
+}
+
+.project-modal[hidden] {
+  display: none;
+}
+
+.project-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: color-mix(in srgb, var(--bg) 45%, transparent);
+  backdrop-filter: blur(8px);
+}
+
+.project-modal-panel {
+  position: relative;
+  width: min(92vw, 600px);
+  max-height: 86vh;
+  padding: 2rem 2rem 2.2rem;
+  overflow-y: auto;
+  scrollbar-width: none;
+  background: var(--bg);
+  border: 1px solid
+    color-mix(
+      in srgb,
+      var(--tint, var(--ink)) 30%,
+      color-mix(in srgb, var(--ink) 20%, transparent)
+    );
+  border-radius: 18px;
+  box-shadow: 0 40px 90px -30px rgba(0, 0, 0, 0.5);
+  transform: translateY(14px) scale(0.97);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.project-modal-panel::-webkit-scrollbar {
+  display: none;
+}
+
+.project-modal.is-open .project-modal-panel {
+  transform: none;
+}
+
+.project-modal-close {
+  all: unset;
+  position: absolute;
+  top: 0.9rem;
+  right: 1rem;
+  padding: 0.2rem 0.4rem;
+  font-size: 1.4rem;
+  line-height: 1;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.project-modal-close:hover,
+.project-modal-close:focus-visible {
+  color: var(--ink);
+}
+
+.modal-title {
+  display: inline-block;
+  padding-bottom: 0.4rem;
+  margin: 0 0 0.75rem;
+  font-size: 1.35rem;
+  font-weight: 500;
+  border-bottom: 2px solid var(--tint);
+}
+
+.modal-intro {
+  margin: 0 0 1.2rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.modal-heading {
+  margin: 1.4rem 0 0.4rem;
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.modal-papers {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.modal-papers li {
+  padding: 0.5rem 0;
+  border-top: 1px solid color-mix(in srgb, var(--ink) 15%, transparent);
+}
+
+.modal-papers li:first-child {
+  border-top: none;
+}
+
+.modal-venue {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* ── NiiVue viewer ── */
+.niivue-viewer {
+  margin: 0 0 0.5rem;
+}
+
+.niivue-controls {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+  font-size: 0.85rem;
+}
+
+.niivue-select {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.niivue-select select {
+  padding: 3px 8px;
+  font: inherit;
+  color: var(--ink);
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid color-mix(in srgb, var(--ink) 30%, transparent);
+  border-radius: 4px;
+}
+
+.niivue-cell {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: #000;
+  border-radius: 6px;
+}
+
+.niivue-cell canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.niivue-error {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  color: #c44;
+  white-space: pre-wrap;
+}
+
+/* ── Instance imbalance diagram ── */
+.instance-diagram {
+  --line: color-mix(in srgb, var(--ink) 18%, transparent);
+  --blob-default: color-mix(in srgb, var(--ink) 60%, transparent);
+  margin: 0 0 0.5rem;
+  font-size: 0.8rem;
+}
+
+.diagram-labels {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+
+.label-tab,
+.diagram-btn {
+  all: unset;
+  color: var(--muted);
+  cursor: pointer;
+  transition:
+    color 0.2s,
+    border-color 0.2s,
+    background 0.2s;
+}
+
+.label-tab {
+  padding: 0 0 3px;
+  border-bottom: 1.5px solid transparent;
+}
+
+.label-tab.active {
+  color: var(--ink);
+  border-bottom-color: var(--ink);
+}
+
+.label-tab:hover:not(.active),
+.diagram-btn:hover:not(.active) {
+  color: var(--ink);
+}
+
+.label-tab.active.rainbow,
+.diagram-btn.active.rainbow {
+  -webkit-text-fill-color: transparent;
+  background: linear-gradient(
+    90deg,
+    #b8a0d8,
+    #7cbcd4,
+    #8cc8a0,
+    #d4cc80,
+    #d48888
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.label-tab.active.rainbow {
+  border-image: linear-gradient(
+      90deg,
+      #b8a0d8,
+      #7cbcd4,
+      #8cc8a0,
+      #d4cc80,
+      #d48888
+    )
+    1;
+}
+
+.diagram-top {
+  display: flex;
+  gap: 12px;
+  align-items: stretch;
+}
+
+.diagram-scatter {
+  position: relative;
+  flex: 1;
+  height: 150px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.diagram-blob {
+  position: absolute;
+  cursor: pointer;
+  background: var(--blob-color, var(--blob-default));
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition:
+    opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.3s ease,
+    background 0.5s ease;
+}
+
+.blob-ring {
+  position: absolute;
+  inset: -3px;
+  pointer-events: none;
+  border: 1.5px solid var(--blob-color, var(--blob-default));
+  border-radius: 50%;
+  transition:
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.6s ease,
+    border-color 0.5s ease;
+}
+
+.instance-diagram.has-highlight .diagram-blob:not(.highlighted) {
+  opacity: 0.1 !important;
+  filter: grayscale(0.8);
+}
+
+.instance-diagram.has-highlight .diagram-bar-col:not(.highlighted) {
+  opacity: 0.2;
+}
+
+.diagram-bars {
+  display: flex;
+  flex-shrink: 0;
+  gap: 4px;
+  align-items: flex-end;
+  height: 150px;
+  padding-bottom: 14px;
+}
+
+.diagram-bar-col {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.bar-dot {
+  flex-shrink: 0;
+  background: var(--blob-color, var(--blob-default));
+  border-radius: 50%;
+  transition: background 0.5s ease;
+}
+
+.bar-track-v {
+  position: relative;
+  flex: 1;
+  width: 6px;
+  overflow: hidden;
+  background: var(--line);
+  border-radius: 3px;
+}
+
+.bar-fill-v {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: var(--blob-color, var(--blob-default));
+  border-radius: 3px;
+  transition:
+    height 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.5s ease;
+}
+
+.bar-pct {
+  min-width: 3.2em;
+  font-size: 0.6rem;
+  color: var(--muted);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.diagram-bar-col.highlighted .bar-pct {
+  color: var(--ink);
+}
+
+.diagram-controls {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0.6rem 0;
+}
+
+.diagram-toggle {
+  display: flex;
+}
+
+.diagram-btn {
+  padding: 5px 14px;
+  border: 1px solid var(--line);
+}
+
+.diagram-btn:first-child {
+  border-radius: 4px 0 0 4px;
+}
+
+.diagram-btn:last-child {
+  border-left: none;
+  border-radius: 0 4px 4px 0;
+}
+
+.diagram-btn.active {
+  color: var(--ink);
+  background: var(--line);
+}
+
+.diagram-scores {
+  display: flex;
+  gap: 1.2rem;
+}
+
+.score-card {
+  display: flex;
+  gap: 0.35rem;
+  align-items: baseline;
+}
+
+.score-label {
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+
+.score-value {
+  min-width: 2.4em;
+  font-size: 1.05rem;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.score-value.low {
+  color: #c66;
+}
+
+.diagram-caption {
+  margin: 0;
+  color: var(--muted);
+}
+
+/* News: a journal. Months hang once in the left margin; entries under
+   them are plain sentences. Collapsed it shows the latest three; open it
+   is a box six entries tall that scrolls the rest, month labels sticking
+   as their entries pass. Categories exist only as filters. */
+.news {
+  --month-w: 5.5em;
+  --month-gap: 1.25em;
+  max-width: var(--measure);
+  margin-top: 17rem;
+  font-size: 0.9rem;
+}
+
+.news ol {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.news [hidden] {
+  display: none !important;
+}
+
+.news-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2em 1.1em;
+  margin-bottom: 1.2em;
+  color: var(--muted);
+  animation: news-fade 0.5s ease 0.2s both;
+}
+
+.news-filters.is-sliding {
+  overflow: hidden;
+  transition:
+    height 0.38s cubic-bezier(0.2, 0, 0, 1),
+    margin-bottom 0.38s cubic-bezier(0.2, 0, 0, 1);
+}
+
+@keyframes news-fade {
+  from {
+    opacity: 0;
+    transform: translateY(0.3em);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.news-filters button,
+.news-foot button {
+  all: unset;
+  color: var(--muted);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+  cursor: pointer;
+}
+
+.news-filters button:hover,
+.news-foot button:hover {
+  color: var(--ink);
+}
+
+.news-filters button[aria-pressed="true"] {
+  color: var(--ink);
+  text-decoration-line: underline;
+}
+
+.news-filters button:focus-visible,
+.news-foot button:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.news-wrap {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+/* The box reaches left into the margin so the hanging months are inside
+   its clip; the entries themselves stay on the measure. */
+.news-scroll {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding-left: calc(var(--month-w) + var(--month-gap));
+  margin-left: calc(-1 * (var(--month-w) + var(--month-gap)));
+  overflow: hidden;
+  transition:
+    max-height 0.45s cubic-bezier(0.2, 0, 0, 1),
+    height 0.45s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.news.is-open .news-scroll {
+  --fade: 1.4em;
+  padding-top: var(--fade);
+  padding-bottom: var(--fade);
+  margin-top: calc(-1 * var(--fade));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    #000 var(--fade),
+    #000 calc(100% - var(--fade)),
+    transparent
+  );
+}
+
+.news.is-open .news-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* A month: label in the margin column, entries in the text column. The
+   group reaches left into the margin so the entries stay on the measure. */
+.news-group {
+  display: grid;
+  grid-template-columns: var(--month-w) 1fr;
+  column-gap: var(--month-gap);
+  align-items: start;
+  margin-left: calc(-1 * (var(--month-w) + var(--month-gap)));
+}
+
+.news-group + .news-group {
+  margin-top: 1.1em;
+}
+
+.news-month {
+  position: sticky;
+  top: 0;
+  padding: 0.3em 0;
+  color: var(--muted);
+  text-align: right;
+  white-space: nowrap;
+  background: var(--bg);
+  transition: background-color 0.6s ease;
+}
+
+.news.is-open .news-month {
+  top: var(--fade);
+}
+
+.news-row {
+  padding: 0.3em 0;
+  opacity: 0;
+  transform: translateY(0.5em);
+  transition:
+    opacity 0.35s ease,
+    transform 0.45s cubic-bezier(0.2, 0, 0, 1);
+  transition-delay: var(--d, 0ms);
+}
+
+.news-row.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+.news.is-closing .news-row:not(.is-in) {
+  transition-duration: 0.25s, 0.3s;
+}
+
+.news-contrib {
+  display: block;
+  flex: none;
+  margin-top: -1.6em; /* tops out level with the first entry */
+  animation: news-fade 0.5s ease 0.2s both;
+}
+
+/* Phones: the block lies across the top of the list instead. */
+@media (max-width: 640px) {
+  .news-wrap {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .news-contrib {
+    order: -1;
+    max-width: 100%;
+    margin-top: 0;
+  }
+
+  /* With the block above, the box no longer tucks under the filters. */
+  .news-wrap:has(.news-contrib:not([hidden])) .news-scroll {
+    margin-top: 0;
+  }
+}
+
+.news.is-closing .news-filters,
+.news.is-closing .news-contrib {
+  animation: news-fade 0.3s ease reverse both;
+}
+
+.news-foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4em 1.5em;
+  justify-content: space-between;
+  margin-top: 1.2em;
+  color: var(--muted);
+}
+
+.news-more {
+  text-decoration-line: underline;
+}
+
+/* No room to hang the month: it sits above its entries instead. */
+@media (max-width: 900px) {
+  .news-scroll {
+    padding-left: 0;
+    margin-left: 0;
+  }
+
+  .news-group {
+    grid-template-columns: 1fr;
+    margin-left: 0;
+  }
+
+  .news-month {
+    position: static;
+    padding-bottom: 0;
+    text-align: left;
+  }
+}
+
+/* Footer sits in normal flow at the end of the page; body's flex column
+   keeps it at the bottom on short pages. */
+.site-footer {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  color: var(--muted);
+  background: var(--bg);
+  transition: background-color 0.6s ease;
+}
+
+.belt {
+  --belt-h: clamp(160px, 26vw, 240px);
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: var(--belt-h);
+  margin: 0;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.belt-track {
+  display: flex;
+  align-items: flex-end;
+  width: max-content;
+  height: 100%;
+  animation: belt-drift 120s linear infinite;
+}
+
+.belt:hover .belt-track {
+  animation-play-state: paused;
+}
+
+.belt-item {
+  position: relative;
+  flex: none;
+  height: calc(var(--belt-h) * 0.8 * var(--scale));
+  margin: 0;
+  transform: translateY(var(--dy)) rotate(var(--rot));
+}
+
+.belt-item img {
+  display: block;
+  width: auto;
+  height: 100%;
+  user-select: none;
+}
+
+@keyframes belt-drift {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.footer-bar {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 1.25rem;
+  z-index: 3;
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: flex-end;
+  pointer-events: none;
+}
+
+.footer-bar > * {
+  pointer-events: auto;
+}
+
+.site-footer a {
+  font-size: 0.9rem;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.theme-toggle {
+  all: unset;
+  display: block;
+  flex: none;
+  width: 40px;
+  height: 40px;
+  line-height: 0;
+  pointer-events: auto;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 4px;
+}
+
+.theme-earth {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body,
+  .name-toggle,
+  .pronunciation {
+    transition: none;
+  }
+
+  .belt {
+    overflow-x: auto;
+  }
+
+  .news-row,
+  .news-scroll,
+  .news-filters.is-sliding,
+  .deck-card,
+  .project-modal,
+  .project-modal-panel {
+    transition: none;
+  }
+
+  .news-filters,
+  .news-contrib {
+    animation: none;
+  }
+
+  .belt-track {
+    animation: none;
+  }
+}
+
+/* ── Scroll rail: stacked lines on the right, one per section. Each line
+   grows and brightens as its section nears the viewport centre. Clicking
+   jumps to the section. ── */
+.rail {
+  position: fixed;
+  top: 50%;
+  right: clamp(0.75rem, 2vw, 1.5rem);
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  transform: translateY(-50%);
+}
+
+.rail-item {
+  --w: 0;
+  display: block;
+  width: 2rem;
+  height: 0.7rem;
+  padding: 0;
+  cursor: pointer;
+  background: none;
+  border: 0;
+}
+
+.rail-item::before {
+  display: block;
+  width: calc(0.7rem + 1.3rem * var(--w));
+  height: 1px;
+  margin-left: auto;
+  content: "";
+  background: var(--ink);
+  opacity: calc(0.25 + 0.75 * var(--w));
+  transition:
+    width 0.25s ease,
+    opacity 0.25s ease;
+}
+
+.rail-item:hover::before,
+.rail-item:focus-visible::before {
+  width: 2rem;
+  opacity: 1;
+}
+
+.rail-item:focus-visible {
+  outline: none;
+}
+
+@media (max-width: 640px) {
+  .rail {
+    display: none;
+  }
+}

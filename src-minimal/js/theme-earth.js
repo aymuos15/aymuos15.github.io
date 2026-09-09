@@ -1,0 +1,178 @@
+// Rotating Earth that doubles as the light/dark toggle, fixed to the
+// bottom-left corner. Ported from the main site's theme-earth.js.
+// biome-ignore lint/performance/noNamespaceImport: three.js namespace from a CDN URL module
+import * as THREE from "https://esm.sh/three@0.169.0";
+
+const button = document.querySelector(".theme-toggle");
+const canvas = document.querySelector(".theme-earth");
+
+// Served from the three.js repo (the npm package omits example textures).
+const TEX =
+  "https://cdn.jsdelivr.net/gh/mrdoob/three.js@r169/examples/textures/planets/";
+
+let renderer, scene, camera, earth, clouds, material;
+
+// Where the sun sits for each theme: lit face toward the viewer in light
+// mode, city lights toward the viewer in dark mode.
+const SUN_LIGHT = new THREE.Vector3(0.6, 0.35, 1).normalize();
+const SUN_DARK = new THREE.Vector3(-0.6, 0.35, -1).normalize();
+const sunTarget = new THREE.Vector3().copy(SUN_LIGHT);
+let started = false;
+let running = false;
+
+// Day/night shader: blend the daytime map into the night-lights map
+// across the terminator, driven by the sun direction.
+const earthVertex = /* glsl */ `
+    varying vec2 vUv;
+    varying vec3 vNormal;
+    void main() {
+        vUv = uv;
+        vNormal = normalize( normalMatrix * normal );
+        gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+    }
+`;
+
+const earthFragment = /* glsl */ `
+    uniform sampler2D dayMap;
+    uniform sampler2D nightMap;
+    uniform vec3 sunDirection;
+    uniform float nightBoost;
+    varying vec2 vUv;
+    varying vec3 vNormal;
+    void main() {
+        float intensity = dot( normalize( vNormal ), normalize( sunDirection ) );
+        float mixAmount = smoothstep( -0.3, 0.2, intensity );
+        float lightMode = 1.0 - nightBoost;
+        vec3 day = texture2D( dayMap, vUv ).rgb * ( 1.2 + 0.5 * lightMode )
+            + vec3( 0.05, 0.10, 0.18 ) * lightMode; // lift the dark ocean on cream
+        vec3 night = texture2D( nightMap, vUv ).rgb * ( 1.7 + 2.3 * nightBoost );
+        vec3 color = mix( night, day, mixAmount );
+        color += 0.06 + 0.06 * lightMode;
+        // Subtle rim / atmosphere glow toward the edges.
+        float rim = pow( 1.0 - max( dot( normalize( vNormal ), vec3( 0.0, 0.0, 1.0 ) ), 0.0 ), 3.0 );
+        color += mix( vec3( 0.25, 0.4, 0.7 ) * 0.6, vec3( 0.75, 0.7, 0.55 ) * 0.9, nightBoost ) * rim;
+        gl_FragColor = vec4( color, 1.0 );
+    }
+`;
+
+function build() {
+  renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, canvas });
+  renderer.setPixelRatio(window.devicePixelRatio);
+  renderer.setSize(canvas.width, canvas.height, false);
+
+  scene = new THREE.Scene();
+
+  camera = new THREE.PerspectiveCamera(40, 1, 0.1, 100);
+  camera.position.set(0, 0, 3);
+  camera.lookAt(0, 0, 0);
+
+  const loader = new THREE.TextureLoader();
+  loader.setCrossOrigin("anonymous");
+  const dayMap = loader.load(`${TEX}earth_atmos_2048.jpg`);
+  const nightMap = loader.load(`${TEX}earth_lights_2048.png`);
+  const cloudMap = loader.load(`${TEX}earth_clouds_1024.png`);
+  dayMap.colorSpace = THREE.SRGBColorSpace;
+  nightMap.colorSpace = THREE.SRGBColorSpace;
+
+  const geometry = new THREE.SphereGeometry(1, 48, 48);
+
+  material = new THREE.ShaderMaterial({
+    fragmentShader: earthFragment,
+    uniforms: {
+      dayMap: { value: dayMap },
+      nightBoost: { value: currentTheme() === "dark" ? 1 : 0 },
+      nightMap: { value: nightMap },
+      sunDirection: { value: sunTarget.clone() },
+    },
+    vertexShader: earthVertex,
+  });
+
+  earth = new THREE.Mesh(geometry, material);
+  earth.rotation.z = 0.41; // ~23.5° axial tilt
+  scene.add(earth);
+
+  clouds = new THREE.Mesh(
+    new THREE.SphereGeometry(1.015, 48, 48),
+    new THREE.MeshBasicMaterial({
+      depthWrite: false,
+      map: cloudMap,
+      opacity: 0.55,
+      transparent: true,
+    })
+  );
+  earth.add(clouds);
+}
+
+function tick() {
+  if (!running) {
+    return;
+  }
+  earth.rotation.y += 0.0025;
+  clouds.rotation.y += 0.0006;
+  material.uniforms.sunDirection.value.lerp(sunTarget, 0.04).normalize();
+  const boost = material.uniforms.nightBoost;
+  boost.value += ((currentTheme() === "dark" ? 1 : 0) - boost.value) * 0.04;
+  renderer.render(scene, camera);
+  requestAnimationFrame(tick);
+}
+
+function start() {
+  if (!started) {
+    build();
+    started = true;
+  }
+  if (running) {
+    return;
+  }
+  running = true;
+  requestAnimationFrame(tick);
+}
+
+function stop() {
+  running = false;
+}
+
+function currentTheme() {
+  return document.documentElement.getAttribute("data-theme") === "dark"
+    ? "dark"
+    : "light";
+}
+
+function syncSun() {
+  sunTarget.copy(currentTheme() === "dark" ? SUN_DARK : SUN_LIGHT);
+}
+
+function setTheme(next) {
+  document.documentElement.setAttribute("data-theme", next);
+  localStorage.setItem("theme-preference", next);
+  button.setAttribute("aria-pressed", String(next === "dark"));
+  syncSun();
+  if (!running) {
+    material.uniforms.sunDirection.value.copy(sunTarget);
+    material.uniforms.nightBoost.value = next === "dark" ? 1 : 0;
+    renderer.render(scene, camera);
+  }
+}
+
+if (canvas && button) {
+  button.setAttribute("aria-pressed", String(currentTheme() === "dark"));
+  button.addEventListener("click", () => {
+    setTheme(currentTheme() === "dark" ? "light" : "dark");
+  });
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+  syncSun();
+  build();
+  started = true;
+  if (reduce.matches) {
+    renderer.render(scene, camera);
+  } else {
+    start();
+  }
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      stop();
+    } else if (!reduce.matches) {
+      start();
+    }
+  });
+}
