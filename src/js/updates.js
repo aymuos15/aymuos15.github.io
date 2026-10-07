@@ -1,13 +1,19 @@
 // Updates data
 const updates = [
   {
+    category: "awards",
+    date: "Oct. '26",
+    description:
+      'Won 3rd place at the BraTS-METS challenge, MICCAI 2026 workshop: <a href="https://papers.miccai.org/miccai-2026-sat/BraTS_METS_035.html">Inference-Time Decoding for Brain Metastasis Segmentation</a>.',
+  },
+  {
     category: "publishing",
     date: "Aug. '26",
     description:
       'Preprint: <a href="https://arxiv.org/abs/2608.28262">SinkSLOT: Sinkhorn via Sparse Lifted Optimal Transport</a>. Congrats Ian!',
   },
   {
-    category: "misc",
+    category: "grants",
     date: "Aug. '26",
     description:
       'Received the <a href="https://openai.com/index/introducing-the-codex-open-source-fund/">Codex Open Source Fund</a> grant.',
@@ -25,7 +31,7 @@ const updates = [
       'Preprint: <a href="https://osf.io/preprints/edarxiv/ugaz6_v1">The Impact of Application Anonymisation on Diversity in Doctoral Recruitment: A Pre-Post Observational Study</a>. Some really fun (eye-opening) work with my MRC DTP colleagues and Advisors!',
   },
   {
-    category: "misc",
+    category: "grants",
     date: "May. '26",
     description:
       'Received the <a href="https://claude.com/contact-sales/claude-for-oss">Claude for Open Source</a> grant.',
@@ -581,7 +587,7 @@ const updates = [
       "Reviewing for NeurIPS, MICCAI-FAIMI, CaPTion@MICCAI, and ICML-ML4MLS 2024.",
   },
   {
-    category: "misc",
+    category: "awards",
     date: "May. '24",
     description: "Best Student Poster Award Finalist at ISBI'24.",
   },
@@ -603,7 +609,7 @@ const updates = [
     description: "Reviewing for ISBI 2024.",
   },
   {
-    category: "misc",
+    category: "awards",
     date: "Nov. '23",
     description: "Top 8 Finish at Anthropic-London Hackathon.",
   },

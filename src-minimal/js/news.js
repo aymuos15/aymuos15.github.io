@@ -17,6 +17,8 @@ const CONTRIB_CELL = 7; // bar size when the graph stands beside the list
 const narrow = window.matchMedia("(max-width: 640px)"); // graph lies above the list
 const STAGGER_ROWS = 10; // only the first few new rows animate in
 const LABELS = {
+  awards: "awards",
+  grants: "grants",
   misc: "misc",
   pr: "open source",
   publishing: "publishing",
@@ -28,6 +30,8 @@ const FILTER_ORDER = [
   "publishing",
   "teaching",
   "pr",
+  "grants",
+  "awards",
   "misc",
   "reviewing",
 ];
