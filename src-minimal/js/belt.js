@@ -67,3 +67,121 @@ if (track) {
   track.appendChild(buildSet(false));
   track.appendChild(buildSet(true)); // second copy makes the loop seamless
 }
+
+// Footer email: each letter turns black or white depending on what is
+// directly behind it (a photo pixel, or the page background), so the
+// address stays legible as photos drift underneath it.
+const email = document.querySelector(".footer-bar a");
+const belt = document.querySelector(".belt");
+
+// Downscaled copy of each photo for cheap pixel reads.
+const SAMPLE_SIZE = 64;
+const samplers = new WeakMap();
+
+function samplerFor(img) {
+  let s = samplers.get(img);
+  if (s) {
+    return s;
+  }
+  if (!(img.complete && img.naturalWidth)) {
+    return null;
+  }
+  const canvas = document.createElement("canvas");
+  canvas.width = SAMPLE_SIZE;
+  canvas.height = SAMPLE_SIZE;
+  const ctx = canvas.getContext("2d", { willReadFrequently: true });
+  ctx.drawImage(img, 0, 0, SAMPLE_SIZE, SAMPLE_SIZE);
+  s = ctx.getImageData(0, 0, SAMPLE_SIZE, SAMPLE_SIZE).data;
+  samplers.set(img, s);
+  return s;
+}
+
+// Relative luminance (0..1) of the photo under viewport point (x, y),
+// or null when no photo is there.
+function photoLuminance(x, y) {
+  const img = document
+    .elementsFromPoint(x, y)
+    .find((el) => el.tagName === "IMG" && belt.contains(el));
+  if (!img) {
+    return null;
+  }
+  const data = samplerFor(img);
+  if (!data) {
+    return null;
+  }
+  // Undo the figure's tilt to get the point in the image's own frame.
+  const rect = img.getBoundingClientRect();
+  const rot =
+    (Number.parseFloat(img.parentElement.style.getPropertyValue("--rot")) *
+      Math.PI) /
+    180;
+  const dx = x - (rect.left + rect.width / 2);
+  const dy = y - (rect.top + rect.height / 2);
+  const u = dx * Math.cos(-rot) - dy * Math.sin(-rot);
+  const v = dx * Math.sin(-rot) + dy * Math.cos(-rot);
+  const px = Math.floor((u / img.offsetWidth + 0.5) * SAMPLE_SIZE);
+  const py = Math.floor((v / img.offsetHeight + 0.5) * SAMPLE_SIZE);
+  if (px < 0 || py < 0 || px >= SAMPLE_SIZE || py >= SAMPLE_SIZE) {
+    return null;
+  }
+  const i = (py * SAMPLE_SIZE + px) * 4;
+  return (0.2126 * data[i] + 0.7152 * data[i + 1] + 0.0722 * data[i + 2]) / 255;
+}
+
+// Mean luminance over a small grid inside a letter's box, so one stray
+// pixel can't flip it. Null when most of the letter is off-photo.
+const GRID = [0.2, 0.5, 0.8];
+
+function letterLuminance(r) {
+  let sum = 0;
+  let hits = 0;
+  for (const fx of GRID) {
+    for (const fy of GRID) {
+      const lum = photoLuminance(r.left + r.width * fx, r.top + r.height * fy);
+      if (lum !== null) {
+        sum += lum;
+        hits += 1;
+      }
+    }
+  }
+  return hits * 2 > GRID.length ** 2 ? sum / hits : null;
+}
+
+const LIGHT_PHOTO = 0.6;
+const FRAME_MS = 100;
+
+if (email && belt) {
+  email.setAttribute("aria-label", email.textContent.trim());
+  const letters = [...email.textContent.trim()].map((ch) => {
+    const span = document.createElement("span");
+    span.className = "ink-letter";
+    span.setAttribute("aria-hidden", "true");
+    span.textContent = ch;
+    return span;
+  });
+  email.replaceChildren(...letters);
+
+  let last = 0;
+  const tick = (now) => {
+    requestAnimationFrame(tick);
+    if (now - last < FRAME_MS) {
+      return;
+    }
+    last = now;
+    const beltRect = belt.getBoundingClientRect();
+    if (beltRect.bottom < 0 || beltRect.top > innerHeight) {
+      return;
+    }
+    for (const span of letters) {
+      const r = span.getBoundingClientRect();
+      const lum = letterLuminance(r);
+      // Off-photo letters fall back to the theme ink via CSS.
+      let ink = "";
+      if (lum !== null) {
+        ink = lum > LIGHT_PHOTO ? "dark" : "light";
+      }
+      span.dataset.ink = ink;
+    }
+  };
+  requestAnimationFrame(tick);
+}

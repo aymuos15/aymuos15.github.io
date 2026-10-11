@@ -1234,3 +1234,15 @@ body.modal-open {
     display: none;
   }
 }
+
+.ink-letter {
+  transition: color 0.25s ease;
+}
+
+.ink-letter[data-ink="dark"] {
+  color: #111111;
+}
+
+.ink-letter[data-ink="light"] {
+  color: #ffffff;
+}
