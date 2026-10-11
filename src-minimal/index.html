@@ -363,21 +363,35 @@
 
     <script>
     "use strict";
+    // The name and "collaborate" each unfold their own asides; only one
+    // can be open at a time, so opening one closes the other.
     const toggle = document.querySelector(".name-toggle");
     const pron = document.getElementById("pronunciation");
     const mentoring = document.getElementById("mentoring");
-    toggle.addEventListener("click", () => {
-      const open = !pron.classList.contains("is-open");
+    const supportToggle = document.querySelector(".support-toggle");
+    const support = document.getElementById("support");
+    const setName = (open) => {
       pron.classList.toggle("is-open", open);
       mentoring.classList.toggle("is-open", open);
       toggle.setAttribute("aria-expanded", String(open));
-    });
-    const supportToggle = document.querySelector(".support-toggle");
-    const support = document.getElementById("support");
-    supportToggle.addEventListener("click", () => {
-      const open = !support.classList.contains("is-open");
+    };
+    const setSupport = (open) => {
       support.classList.toggle("is-open", open);
       supportToggle.setAttribute("aria-expanded", String(open));
+    };
+    toggle.addEventListener("click", () => {
+      const open = toggle.getAttribute("aria-expanded") !== "true";
+      setName(open);
+      if (open) {
+        setSupport(false);
+      }
+    });
+    supportToggle.addEventListener("click", () => {
+      const open = supportToggle.getAttribute("aria-expanded") !== "true";
+      setSupport(open);
+      if (open) {
+        setName(false);
+      }
     });
     </script>
     <script src="js/theme-earth.js" type="module"></script>
