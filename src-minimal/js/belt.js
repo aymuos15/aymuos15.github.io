@@ -65,9 +65,43 @@ function buildSet(copy) {
   return frag;
 }
 
+// Seconds for the belt to travel one full photo set.
+const LOOP_S = 120;
+const reduceMotion = window.matchMedia(
+  "(prefers-reduced-motion: reduce)"
+).matches;
+
+// Drift the belt from script rather than a CSS animation: phone browsers
+// can leave a CSS animation paused (a tap counts as a sticky hover) or
+// stall it on such a wide layer. Only a real mouse pauses it.
+function drift(strip) {
+  let offset = 0;
+  let paused = false;
+  let last = performance.now();
+  const frame = (now) => {
+    const half = track.scrollWidth / 2;
+    if (!paused && half > 0) {
+      offset = (offset + ((now - last) / 1000) * (half / LOOP_S)) % half;
+      track.style.transform = `translate3d(${-offset}px, 0, 0)`;
+    }
+    last = now;
+    requestAnimationFrame(frame);
+  };
+  strip.addEventListener("pointerenter", (e) => {
+    paused = e.pointerType === "mouse";
+  });
+  strip.addEventListener("pointerleave", () => {
+    paused = false;
+  });
+  requestAnimationFrame(frame);
+}
+
 if (track) {
   track.appendChild(buildSet(false));
   track.appendChild(buildSet(true)); // second copy makes the loop seamless
+  if (!reduceMotion) {
+    drift(track.parentElement);
+  }
 }
 
 // Footer email: each letter turns black or white depending on what is
