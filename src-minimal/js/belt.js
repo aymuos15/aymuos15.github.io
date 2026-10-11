@@ -1,24 +1,26 @@
 // Photo conveyor belt: a full-bleed strip that drifts sideways forever.
+// Photos are belt-sized copies (480px tall) of src/gallery, so phones can
+// animate them smoothly.
 // Each photo is nudged and tilted a little so the belt feels slightly
 // off-kilter, while the strip itself stays a clean rectangle.
 const photos = [
-  { alt: "Bhavith", src: "gallery/bhavith.jpeg" },
-  { alt: "CAI4CAI workshop", src: "gallery/cai4cai.jpg" },
-  { alt: "ISBI 2024", src: "gallery/isbi.jpeg" },
-  { alt: "Pooja", src: "gallery/pooja.jpeg" },
-  { alt: "Parents", src: "gallery/parents.jpeg" },
-  { alt: "Pupil study", src: "gallery/pupil.jpeg" },
-  { alt: "", src: "gallery/wa1.jpeg" },
-  { alt: "", src: "gallery/wa2.jpeg" },
-  { alt: "", src: "gallery/wa3.jpeg" },
-  { alt: "", src: "gallery/wa4.jpeg" },
-  { alt: "", src: "gallery/wa5.jpeg" },
-  { alt: "", src: "gallery/wa6.jpeg" },
-  { alt: "", src: "gallery/wa7.jpeg" },
-  { alt: "", src: "gallery/wa8.jpeg" },
-  { alt: "", src: "gallery/wa9.jpeg" },
-  { alt: "", src: "gallery/wa10.jpeg" },
-  { alt: "", src: "gallery/wa11.jpeg" },
+  { alt: "Bhavith", src: "photos/bhavith.jpg" },
+  { alt: "CAI4CAI workshop", src: "photos/cai4cai.jpg" },
+  { alt: "ISBI 2024", src: "photos/isbi.jpg" },
+  { alt: "Pooja", src: "photos/pooja.jpg" },
+  { alt: "Parents", src: "photos/parents.jpg" },
+  { alt: "Pupil study", src: "photos/pupil.jpg" },
+  { alt: "", src: "photos/wa1.jpg" },
+  { alt: "", src: "photos/wa2.jpg" },
+  { alt: "", src: "photos/wa3.jpg" },
+  { alt: "", src: "photos/wa4.jpg" },
+  { alt: "", src: "photos/wa5.jpg" },
+  { alt: "", src: "photos/wa6.jpg" },
+  { alt: "", src: "photos/wa7.jpg" },
+  { alt: "", src: "photos/wa8.jpg" },
+  { alt: "", src: "photos/wa9.jpg" },
+  { alt: "", src: "photos/wa10.jpg" },
+  { alt: "", src: "photos/wa11.jpg" },
 ];
 
 // Deterministic jitter so the layout is the same on every visit.

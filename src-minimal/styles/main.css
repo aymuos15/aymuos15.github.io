@@ -373,10 +373,15 @@ body.is-sketching .intro {
   width: max-content;
   height: 100%;
   animation: belt-drift 120s linear infinite;
+  will-change: transform;
 }
 
-.belt:hover .belt-track {
-  animation-play-state: paused;
+/* Pause on hover only where hovering exists; a tap on a phone would
+   otherwise leave the belt stuck. */
+@media (hover: hover) {
+  .belt:hover .belt-track {
+    animation-play-state: paused;
+  }
 }
 
 .belt-item {
