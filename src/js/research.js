@@ -42,6 +42,32 @@ const researchThemes = [
     tint: "#8b9bd4",
     title: "Instance Metrics",
   },
+  {
+    blurb: "Moving mass, sparsely.",
+    id: "optimal-transport",
+    interactive: "sinkhorn",
+    intro:
+      "Entropic optimal transport finds a coupling between two distributions with Sinkhorn iterations. SinkSLOT reaches the same plans through a sparse lifted formulation. Below, watch a plan form as the regularisation changes.",
+    orb3d: "transport",
+    papers: [
+      {
+        title: "SinkSLOT: Sinkhorn via Sparse Lifted Optimal Transport",
+        url: "https://arxiv.org/abs/2608.28262",
+        venue: "Preprint 2026",
+      },
+    ],
+    tint: "#7cbcd4",
+    title: "Optimal Transport",
+  },
+  {
+    blurb: "CuteSinkhorn.",
+    id: "cuda-kernels",
+    intro: "CuteSinkhorn.",
+    orb3d: "tiles",
+    papers: [],
+    tint: "#8cc8a0",
+    title: "CUDA Kernels",
+  },
 ];
 
 // ── Instance Imbalance Interactive Diagram (mounts into a given container) ────
@@ -348,6 +374,8 @@ function buildInstanceDiagram(container) {
     } else if (theme.orb3d === "sphere") {
       orbHtml =
         '<span class="research-card-orb research-card-orb--scan"><canvas class="research-card-orb-sphere" width="112" height="112" aria-hidden="true"></canvas></span>';
+    } else if (theme.orb3d === "transport" || theme.orb3d === "tiles") {
+      orbHtml = `<span class="research-card-orb research-card-orb--scan"><canvas class="research-card-orb-${theme.orb3d}" width="112" height="112" aria-hidden="true"></canvas></span>`;
     }
 
     card.innerHTML = `
@@ -400,6 +428,11 @@ function buildInstanceDiagram(container) {
           setTimeout(() => window.dispatchEvent(new Event("resize")), 350);
         }
       }
+    } else if (theme.interactive === "sinkhorn" && window.buildSinkhornDemo) {
+      const mount = document.createElement("div");
+      mount.className = "ot-demo";
+      modalBody.appendChild(mount);
+      window.buildSinkhornDemo(mount, theme.tint);
     }
 
     if (theme.papers?.length) {

@@ -1,4 +1,4 @@
-// Bézier particle-stream background for the Instance Metrics research card.
+// Bézier particle-stream background for the Optimal Transport research card.
 // A modern-three (r169) port of Szenia Zadvorsky's "Animated Particles" pen
 // (codepen qOYqGv), which used three r73 + the old THREE.BAS library. Here the
 // per-particle motion is baked into instanced buffer attributes and evaluated
@@ -10,7 +10,7 @@
 import * as THREE from "https://esm.sh/three@0.169.0";
 
 const card = document.querySelector(
-  '.research-card[data-id="instance-metrics"]'
+  '.research-card[data-id="optimal-transport"]'
 );
 
 const COUNT = 16_000;

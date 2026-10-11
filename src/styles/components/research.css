@@ -100,7 +100,9 @@
 
 /* Live 3D orbs (scanned-head volume / phyllotaxis sphere) floating in the disc slot */
 .research-card-orb-scan,
-.research-card-orb-sphere {
+.research-card-orb-sphere,
+.research-card-orb-transport,
+.research-card-orb-tiles {
   position: absolute;
   inset: 0;
   display: block;
@@ -783,4 +785,57 @@ body.research-modal-open {
   .bar-pct {
     font-size: 0.4rem;
   }
+}
+
+/* ── Optimal transport demo ── */
+.ot-demo {
+  margin: 0 0 0.5rem;
+  font-size: 0.85rem;
+}
+
+.ot-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1.2rem;
+  align-items: center;
+  margin-bottom: 0.6rem;
+}
+
+.ot-pick {
+  display: flex;
+  gap: 0.45rem;
+  align-items: center;
+}
+
+.ot-pick select,
+.ot-toggle {
+  padding: 3px 8px;
+  font: inherit;
+  color: var(--text);
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid color-mix(in srgb, var(--text) 30%, transparent);
+  border-radius: 4px;
+}
+
+.ot-pick input[type="range"] {
+  width: 110px;
+  accent-color: var(--tint);
+}
+
+.ot-toggle[aria-pressed="true"] {
+  color: var(--bg);
+  background: var(--text);
+  border-color: var(--text);
+}
+
+.ot-canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.ot-caption {
+  margin: 0.5rem 0 0;
+  color: var(--text-secondary);
 }
