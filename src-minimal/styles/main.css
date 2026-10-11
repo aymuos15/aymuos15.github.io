@@ -41,6 +41,13 @@ html {
   display: none;
 }
 
+/* Phones: a touch smaller (17px instead of 18px). */
+@media (max-width: 640px) {
+  html {
+    font-size: 106.25%;
+  }
+}
+
 body {
   display: flex;
   flex-direction: column;
