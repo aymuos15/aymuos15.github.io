@@ -2,7 +2,9 @@
 // Pages are drawn with PDF.js (fetched on first open) rather than the
 // browser's PDF viewer, with the PDF's own links laid over them. Without
 // JS the icon is a plain link to the PDF.
-const PDFJS = "https://cdn.jsdelivr.net/npm/pdfjs-dist@6.4.299/build";
+// The legacy build polyfills the newest JS features, which many phone
+// browsers still lack.
+const PDFJS = "https://cdn.jsdelivr.net/npm/pdfjs-dist@6.4.299/legacy/build";
 
 const link = document.querySelector(".cv-link");
 const dialog = document.querySelector(".cv-dialog");
@@ -81,12 +83,15 @@ if (link && dialog) {
     if (rendering) {
       return;
     }
-    rendering = renderCv().catch(() => {
-      // PDF.js failed to load: fall back to the PDF itself.
+    rendering = renderCv().catch((error) => {
+      // PDF.js failed: fall back to the PDF itself. Navigate in place;
+      // a new window opened this late is no longer tied to the click,
+      // so phones block it as a pop-up.
+      console.error("CV render failed", error);
       dialog.close();
       pagesEl.replaceChildren();
       rendering = null;
-      window.open(link.href, "_blank", "noopener");
+      window.location.assign(link.href);
     });
   });
 
