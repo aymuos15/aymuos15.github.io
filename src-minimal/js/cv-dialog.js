@@ -19,7 +19,6 @@ async function renderPage(page) {
 
   const sheet = document.createElement("div");
   sheet.className = "cv-page";
-  sheet.style.aspectRatio = `${viewport.width} / ${viewport.height}`;
 
   const canvas = document.createElement("canvas");
   canvas.width = Math.floor(viewport.width * ratio);
