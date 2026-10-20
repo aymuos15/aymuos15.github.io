@@ -443,8 +443,8 @@ body.is-sketching .intro {
 /* No frame: the CV sheet floats on the dimmed page, controls above it. */
 .cv-dialog {
   width: min(820px, 94vw);
-  height: 94vh;
-  max-height: none;
+  height: fit-content;
+  max-height: 94vh;
   padding: 0;
   overflow: hidden;
   color: #ffffff;
@@ -455,6 +455,12 @@ body.is-sketching .intro {
 .cv-dialog[open] {
   display: flex;
   flex-direction: column;
+}
+
+/* The dialog takes focus on open so keyboard users land inside it; it is
+   not a control, so it gets no focus ring. */
+.cv-dialog:focus {
+  outline: none;
 }
 
 .cv-dialog::backdrop {
@@ -506,6 +512,7 @@ body.is-sketching .intro {
   flex: 1;
   flex-direction: column;
   gap: 1rem;
+  min-height: 0;
   overflow-y: auto;
   overscroll-behavior: contain;
 }
@@ -527,6 +534,7 @@ body.is-sketching .intro {
 
 .cv-page-link {
   position: absolute;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .cv-page-link:hover {

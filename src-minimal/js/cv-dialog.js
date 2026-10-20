@@ -80,6 +80,9 @@ if (link && dialog) {
   link.addEventListener("click", (event) => {
     event.preventDefault();
     dialog.showModal();
+    // Focus the dialog itself, not its first link, so Download doesn't open
+    // wearing a focus ring.
+    dialog.focus();
     if (rendering) {
       return;
     }
