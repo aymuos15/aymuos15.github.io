@@ -104,10 +104,10 @@ if (track) {
   }
 }
 
-// Footer email: each letter turns black or white depending on what is
-// directly behind it (a photo pixel, or the page background), so the
-// address stays legible as photos drift underneath it.
-const email = document.querySelector(".footer-bar a");
+// Footer email, separator and CV icon: each letter (and the icon) turns
+// black or white depending on what is directly behind it (a photo pixel,
+// or the page background), so they stay legible as photos drift past.
+const email = document.querySelector('.footer-bar a[href^="mailto:"]');
 const belt = document.querySelector(".belt");
 
 // Downscaled copy of each photo for cheap pixel reads.
@@ -196,6 +196,7 @@ if (email && belt) {
     return span;
   });
   email.replaceChildren(...letters);
+  letters.push(...document.querySelectorAll(".footer-bar > .ink-letter"));
 
   let last = 0;
   const tick = (now) => {

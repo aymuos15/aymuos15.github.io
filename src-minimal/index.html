@@ -357,8 +357,56 @@
         <a href="mailto:soumya_snigdha.kundu@kcl.ac.uk"
           >soumya_snigdha.kundu@kcl.ac.uk</a
         >
+        <span aria-hidden="true" class="footer-sep ink-letter">|</span>
+        <a
+          aria-label="CV"
+          class="cv-link ink-letter"
+          href="assests/cv.pdf"
+          rel="noopener"
+          target="_blank"
+        >
+          <svg
+            aria-hidden="true"
+            fill="none"
+            height="16"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.75"
+            viewBox="0 0 24 24"
+            width="16"
+          >
+            <path
+              d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+            />
+            <path d="M14 2v6h6M8 13h8M8 17h5" />
+          </svg>
+        </a>
       </div>
     </footer>
+
+    <dialog aria-label="CV" autofocus class="cv-dialog">
+      <div class="cv-dialog-bar">
+        <a download="Soumya_Snigdha_Kundu_CV.pdf" href="assests/cv.pdf"
+          >Download</a
+        >
+        <button aria-label="Close" class="cv-close" type="button">
+          <svg
+            aria-hidden="true"
+            fill="none"
+            height="18"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-width="1.75"
+            viewBox="0 0 24 24"
+            width="18"
+          >
+            <path d="M6 6l12 12M18 6L6 18" />
+          </svg>
+        </button>
+      </div>
+      <div class="cv-pages"></div>
+    </dialog>
 
     <script>
     "use strict";
@@ -396,5 +444,6 @@
     <script src="js/theme-earth.js" type="module"></script>
     <script src="js/belt.js" type="module"></script>
     <script src="js/sketch-notes.js" type="module"></script>
+    <script src="js/cv-dialog.js" type="module"></script>
   </body>
 </html>
